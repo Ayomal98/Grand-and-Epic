@@ -1,4 +1,4 @@
-<?php include("../Templates/connection.php");
+<?php include("../../config/connection.php");
 // include("dinein-booking.php");
 $number_of_tables = 15;
 // $showTablesQuery = "SELECT Table_No,Time,isBooked FROM tables";

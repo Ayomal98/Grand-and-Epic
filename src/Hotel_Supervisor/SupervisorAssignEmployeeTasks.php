@@ -6,7 +6,7 @@ $email = $_SESSION['User_Email'];
 
 <html>
 	<head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 		<title>
 		Supervisor Assign Employee Tasks
         </title>
@@ -15,7 +15,7 @@ $email = $_SESSION['User_Email'];
 	<body bgcolor = "black">
 
 	<center>
-    <img src="../Images/Logo.png" width="20%">
+    <img src="../../public/images/Logo.png" width="20%">
     
     <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
@@ -29,20 +29,21 @@ $email = $_SESSION['User_Email'];
 		<div class="sidenav">	
 			<button class="dropdown-btn">Assign Employee Tasks
 				<i class="fa fa-caret-down"></i>
-				</button>
-				<div class="dropdown-container">
+			</button>
+			<div class="dropdown-container">
                 <a href="SupervisorDashboard.php"><font size = "4 px">Dashboard</font></a>
                 <a href="SupervisorManageMeals.php">Manage Meals</a>
                 <a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
                 <a href="SupervisorLeaveRequest.php"><font size = "4 px">Request a leave</font></a>
-				</div>
+			</div>
 		</div>
+
 		<div class = "top-right">
-		<table width = "100%">
+	<table width = "100%">
 		<tr>
-		<td>
-			<img src = "../Images/ayomal.png" height = "40%" >
-		</td>
+            <td>
+                <img src ="../../public/images/ayomal.png" height = "40%" >
+            </td>
 		</tr>
 	</table>
 	</div>
@@ -122,7 +123,7 @@ $email = $_SESSION['User_Email'];
 			<table style="border: 1px solid white; width:100%" >
 				<tr>
 					<td align ="center">
-						<img src = "../Images/BIgCal.png" height = "10%" >
+						<img src = "../../public/images/BIgCal.png" height = "10%" >
 					</td>
 				</tr>
 				<tr>
@@ -238,7 +239,7 @@ $email = $_SESSION['User_Email'];
     </tr>
     <tr>
         <td align ="center">
-            <img src = "../Images/BIgCal.png" height = "10%" >
+            <img src ="../../public/images/BIgCal.png" height = "10%" >
         </td>
     </tr>
     <tr>
@@ -366,7 +367,7 @@ $email = $_SESSION['User_Email'];
     </tr>
     <tr>
         <td align ="center">
-            <img src = "../Images/BIgCal.png" height = "10%" >
+            <img src ="../../public/images/BIgCal.png" height = "10%" >
         </td>
     </tr>
     <tr>
@@ -463,7 +464,7 @@ $email = $_SESSION['User_Email'];
     </tr>
     <tr>
         <td align ="center">
-            <img src = "../Images/BIgCal.png" height = "10%" >
+            <img src ="../../public/images/BIgCal.png" height = "10%" >
         </td>
     </tr>
     <tr>

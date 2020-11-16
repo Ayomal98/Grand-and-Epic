@@ -1,6 +1,6 @@
 <!-- This page is to show the availability of tables when customers select time slots -->
 <?php
-include("../Templates/connection.php");
+include("../../config/connection.php");
 $mealPeriod = $_POST['mealPeriod'];
 $breakfastPeriod = $_POST['breakfastPeriod'];
 $lunchPeriod = $_POST['lunchPeriod'];

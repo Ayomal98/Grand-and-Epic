@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="background: url('../Images/pexels-agung-pandit-wiguna-2788488.jpg');width:100%;height:100%;background-size:cover">
+<body style="background:url('../../images/pexels-agung-pandit-wiguna-2788488.jpg');width:100%;height:100%;background-size:cover">
     <div class="events-booking-form">
         <form action="" method="post">
             <h2 style="position:absolute;top:50px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>

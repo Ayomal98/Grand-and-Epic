@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panaromic Rooms</title>
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="page-wrapper">
         <div class="header-container-SuperiorRooms" id="header-container">
-            <?php include("sticky-nav.php"); ?>
-            <?php include("side-nav.php"); ?>
+            <?php include("../../public/includes/sticky-nav.php"); ?>
+            <?php include("../../public/includes/side-nav.php"); ?>
             <div class="text-container">
                 <span class="text1">Grand &</span>
                 <span class="text2">Epic
@@ -32,7 +32,7 @@
 
             <div class="room-container">
                 <div class="image-container">
-                    <img src="../Images/pexels-leonardo-rossatti-2598638.jpg" alt="Superior-Room Image">
+                    <img src="../../images/pexels-leonardo-rossatti-2598638.jpg" alt="Superior-Room Image">
                 </div>
                 <div class="room-details">
                     <h2 style="color:white;font-size:28px">Room-Details</h2>
@@ -49,9 +49,9 @@
         </div>
     </div>
 
-    <?php include("footer-footer.php"); ?>
-    <script src="../Javascript/script.js"></script>
-    <script src="../Javascript/sticky-nav.js"></script>
+    <?php include("../../public/includes/footer-footer.php"); ?>
+    <script src="../../public/Javascript/script.js"></script>
+    <script src="../../public/Javascript/sticky-nav.js"></script>
 </body>
 
 </html>

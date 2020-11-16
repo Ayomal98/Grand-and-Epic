@@ -7,7 +7,7 @@ $email = $_SESSION['User_Email'];
 <html>
 
 <head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 	<title>
 		Hotel Supervisor Manage Meals
 	</title>
@@ -17,7 +17,7 @@ $email = $_SESSION['User_Email'];
 <body bgcolor="black">
 
 	<center>
-		<img src="../Images/Logo.png" width="20%">
+		<img src="../../public/images/Logo.png" width="20%">
 
 		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
@@ -46,7 +46,7 @@ $email = $_SESSION['User_Email'];
 		<table width="100%">
 			<tr>
 				<td>
-					<img src="../Images/ayomal.png" height="40%">
+					<img src="../../public/images/ayomal.png" height="40%">
 				</td>
 			</tr>
 		</table>
@@ -134,7 +134,7 @@ $email = $_SESSION['User_Email'];
 
 	<!-- SEARCH -->
 	<?php
-	include("../Templates/connection.php");
+	include("../../config/connection.php");
 	if (isset($_POST['search'])) {
 		$Meals_ID = $_POST['Meals_ID'];
 
@@ -267,7 +267,7 @@ $email = $_SESSION['User_Email'];
 		</tr>
 
 			<?php
-				include("../Templates/connection.php");
+				include("../../config/connection.php");
 
 					$query = "SELECT * FROM meals";
 					$query_run = mysqli_query($con,$query);
@@ -305,7 +305,7 @@ $email = $_SESSION['User_Email'];
 
 
 <!-- Update -->
-<?php include("../Templates/connection.php");
+<?php include("../../config/connection.php");
 if (isset($_POST['update'])) {
 	$mealid = $_POST['mealid'];
 	$mealname = $_POST['mealname'];

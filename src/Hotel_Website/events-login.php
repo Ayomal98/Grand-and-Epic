@@ -1,4 +1,4 @@
-<?php include("../Templates/connection.php");
+<?php include("../../config/connection.php");
 session_start();
 $username = $_SESSION['First_Name'];
 $email = $_SESSION['User_Email'];
@@ -10,14 +10,14 @@ $email = $_SESSION['User_Email'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grand & Epic Hotel</title>
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="header-container-events" id="header-container">
-        <?php include("sticky-nav.php"); ?>
-        <?php include("side-nav-login.php"); ?>
+        <?php include("../../public/includes/sticky-nav.php"); ?>
+        <?php include("../../public/includes/side-nav-login.php"); ?>
 
         <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
         <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
@@ -43,7 +43,7 @@ $email = $_SESSION['User_Email'];
             <div class="wedding-party-wrapper">
                 <div class="wedding-wrapper">
                     <div class="card-img-wedding">
-                        <img src="../Images/pexels-dimitri-kuliuk-1488315.jpg" style="height: 55vh; width:100%" alt="">
+                        <img src="../../public/images/pexels-dimitri-kuliuk-1488315.jpg" style="height: 55vh; width:100%" alt="">
                     </div>
                     <div class="content-events-wrapper wedding">
                         <h2 style="font-weight: 1000;margin-top:20px;">Weddings & Parties</h2>
@@ -59,7 +59,7 @@ $email = $_SESSION['User_Email'];
                 </div>
                 <div class="party-wrapper">
                     <div class="card-img-party" id="img-party">
-                        <img src="../Images/pexels-jacob-morch-426976.jpg" style="height: 55vh; width:64%" alt="">
+                        <img src="../../public/images/pexels-jacob-morch-426976.jpg" style="height: 55vh; width:64%" alt="">
                     </div>
                     <div class="content-events-wrapper wedding">
                         <h2 style="margin-left:-90px;margin-top:20px;">Meetings & Conferences</h2>
@@ -73,9 +73,9 @@ $email = $_SESSION['User_Email'];
             </div>
         </div>
 
-        <?php include("footer-footer.php"); ?>
-        <script src="../Javascript/script.js"></script>
-        <script src="../Javascript/sticky-nav.js"></script>
+        <?php include("../../public/includes/footer-footer.php"); ?>
+        <script src="../../public/Javascript/script.js"></script>
+        <script src="../../public/Javascript/sticky-nav.js"></script>
 
         <script>
             function funcUserDetails() {

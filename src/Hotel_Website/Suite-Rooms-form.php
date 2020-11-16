@@ -197,32 +197,32 @@
         </div>
         <div class="meal-selection" style="display: flex;flex-direction:row">
             <div class="set-menu-meals-card n-1">
-                <div class><img src="src/br1.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
+                <div class><img src="../../public/images/br1.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
                 <div class="set-menu-card-text">String Hoppers With Chicken curry<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
 
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/mbr2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/mbr2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Noodles With Chicken Devilled curry<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/mbr5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/mbr5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Roti (3 pieces) with dhal curry<span style="display: block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/mbr4.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/mbr4.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Bran Pittu(2 pieces) with Fish curry<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/mbr1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%   " alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/mbr1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%   " alt=""></div>
                 <div class="set-menu-card-text">Milk Rice(4 pieces) with Lunu Miris<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
@@ -230,31 +230,31 @@
         </div>
         <div class="meal-selection" style="display: flex;flex-direction:row">
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/lu1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/lu1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Crabby Snacks<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/lu2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/lu2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Stuffed Cherry Peppers<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/lu3.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/lu3.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Baked Clams<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/lu4.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/lu4.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Indian Mint Yogur<span style="display: inline-block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/lu5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/lu5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Biscuits With Cheese and preserves<span style="display: block;font-weight:bolder;">$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
@@ -262,31 +262,31 @@
         </div>
         <div class="meal-selection" style="display: flex;flex-direction:row">
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/di1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/di1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Strawberry Panna Cotta<span>$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/di2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/di2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Pineapple pudding<span>$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/di3.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/di3.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Watalappan<span>$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/di4.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/di4.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Fruit Triffle<span>$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>
             </div>
             <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="src/di5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-image"><img src="../../public/images/di5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Red Velvet pudding<span>$1.49/LKR 275.00</span>
                     <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                 </div>

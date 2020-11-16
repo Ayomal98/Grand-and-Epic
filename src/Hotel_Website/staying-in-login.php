@@ -47,7 +47,7 @@ $email = $_SESSION['User_Email'];
                 <div class="card-rooms">
                     <h2 class="card-room-header">Superior Rooms</h2>
                     <div class="card-room-img">
-                        <img class="img-superior-rooms" src="../../public/src/images/CBB-Superior-Room-530X420.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
+                        <img class="img-superior-rooms" src="../../public/images/CBB-Superior-Room-530X420.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
                     <div class="card-room-para" style="color:white;">In the heart of Sri Lanka, accommodation of the most indulgent kind awaits you at our Superior Rooms. Set in the Grand Wings you can relax in the comforts.</div>
                     <div class="view-book-wrapper">
@@ -58,7 +58,7 @@ $email = $_SESSION['User_Email'];
                 <div class="card-rooms">
                     <h2 class="card-room-header">Panaromic Rooms</h2>
                     <div class="card-room-img">
-                        <img class="img-panaromic-rooms" src="../Images/content2.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
+                        <img class="img-panaromic-rooms" src="../../public/images/content2.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
                     <div class="card-room-para">The Panoramic Rooms at Grand & Epic will provide do live up to their name. Your own private balcony will serve as your vantage point – any time. The views over the lake and the Dambulla rock are constant, yet ever changing.</div>
                     <div class="view-book-wrapper">
@@ -70,7 +70,7 @@ $email = $_SESSION['User_Email'];
                 <div class="card-rooms">
                     <h2 class="card-room-header">Suite Rooms</h2>
                     <div class="card-room-img">
-                        <img class="img-panaromic-rooms" src="../Images/suite-image.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
+                        <img class="img-panaromic-rooms" src="../../public/images/suite-image.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
                     <div class="card-room-para" style="color:white;">Wide views across the historic land of Sri Lanka, resort facilities of an exceptional kind and enough room for you to relax at complete ease – our suites are, indeed, rather special.</div>
                     <div class="view-book-wrapper">
@@ -80,8 +80,8 @@ $email = $_SESSION['User_Email'];
                 </div>
             </div>
         </div>
-        <?php include("footer-footer.php"); ?>
-        <script src="../Javascript/script.js"></script>
+        <?php include("../../public/includes/footer-footer.php"); ?>
+        <script src="../../public/Javascript/script.js"></script>
         <script src="../Javascript/sticky-nav.js"></script>
         <script>
             function funcUserDetails() {
