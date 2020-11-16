@@ -6,7 +6,7 @@ $email = $_SESSION['User_Email'];
 <html>
 
 <head>
-    <link rel="stylesheet" href="../Css/employee.css">
+    <link rel="stylesheet" href="../../public/css/employee.css">
     <title>
         Hotel Manager Manage Staff
     </title>
@@ -16,7 +16,7 @@ $email = $_SESSION['User_Email'];
 <body bgcolor="black">
 
     <center>
-        <img src="../Images/Logo.png" width="20%">
+        <img src="../../public/images/Logo.png" width="20%">
 
         <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
         <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
@@ -59,7 +59,7 @@ $email = $_SESSION['User_Email'];
                 <td>
                 </td>
                 <td>
-                    <img src="../Images/ayomal.png" height="40%">
+                    <img src="../../public/images/ayomal.png" height="40%">
                 </td>
             </tr>
         </table>
@@ -149,7 +149,7 @@ $email = $_SESSION['User_Email'];
     </form>
 
     <?php
-    include("../Templates/connection.php");
+    include("../../config/connection.php");
     if (isset($_POST['search'])) {
         $Employee_ID = $_POST['Employee_ID'];
 
@@ -486,7 +486,7 @@ $email = $_SESSION['User_Email'];
             <th>User Role</th>
 		</tr>
 
-		<?php include("../Templates/connection.php");
+		<?php include("../../config/cconnection.php");
 
 		$query = "SELECT * FROM employee";
 		$query_run = mysqli_query($con, $query);
