@@ -1,0 +1,93 @@
+body {
+  background-image: url('../Images/bg1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+  font-family:sans-serif;
+}
+bg1.jpg
+
+.breakfast{
+	position:absolute;
+  top:0px;
+  right:0;
+  left:100px;
+  text-align: center;
+    }
+
+.lunch{
+	position:absolute;
+  top:400px;
+  right:0;
+  left:100px;
+  text-align: center;
+}
+
+.dinner{
+  position:absolute;
+  top:800px;
+  right:0;
+  left:100px;
+  text-align: center;
+}
+	
+.row {
+  position:absolute;
+  top:100px;
+  right:0;
+  left:0px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.column {
+  float: left;
+  width: 12.5%;
+  padding: 20px;
+   }
+   
+   .button1{
+	position: absolute;
+  top:320px;
+  left:500;
+	background-color: black; 
+  border: none;
+  color:white ;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  font-family: "Lucida Console";
+}
+.button1:hover {
+  background-color: white;
+  border: 2px solid black;
+  color:black;
+}
+
+   .button2{
+	position: absolute;
+  top:320px;
+  left: 700;
+	background-color: black; 
+  border: none;
+  color:white ;
+  padding:  6px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  font-family: "Lucida Console";
+}
+.button2:hover {
+  background-color: white;
+  border: 2px solid black;
+  color:black;
+}

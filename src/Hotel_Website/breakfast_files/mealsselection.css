@@ -1,0 +1,33 @@
+.img1.{
+	padding: 100px;
+	position: relative;
+	top: 100px;
+	left:50;
+}
+
+.button1{
+	position: relative;
+	top:50px;
+	left:0;
+	background-color: black; 
+	border: none;
+	color:white ;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	transition-duration: 0.4s;
+}
+.button1:hover {
+	background-color: white;
+	border: 2px solid black;
+	color:black;
+}
+
+.img2.{
+	padding: 100px;
+	position: absolute;
+	top: 200px;
+	left:100;
+}

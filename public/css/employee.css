@@ -1,0 +1,269 @@
+
+body {
+	font-family: "Lato", sans-serif;
+	position: relative;  
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 36%;
+  width: 240px;
+  position: relative;
+  z-index: 1;
+  top: -250px;
+  left: -5px;
+  background-color: black;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: blue;
+  color: black;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+  font-family: lato;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 5px;}
+  .sidenav a {font-size: 18px;}
+}
+.top-right{
+	position: absolute;
+	top: 0px;
+	right: 6px;
+	
+}
+.mySlides{
+	display:none;
+	width: 800px;
+	position: absolute;
+	left: 15px;
+	top: 700px;
+}
+
+.display-left{
+	position: absolute;
+	left: 15px;
+	top: 850px;
+	height: 80px;
+	width: 20px;
+	opacity: 0.7;
+}
+
+.display-right{
+	position: absolute;
+	left: 795px;
+	top: 850px;
+	height: 80px;
+	width: 20px;
+	opacity: 0.7;
+}
+.bottom-right{
+	position: absolute;
+	top: 700px;
+	right: 15px;
+	height: 200px;
+	width: 650px;
+}
+input[type=text]{
+	width: 80%;
+	padding: 5px 29px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+	display: block;
+}
+input[type=email]{
+	width: 80%;
+	padding: 5px 29px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+	display: block;
+}
+input[type=date]{
+	width: 80%;
+	padding: 5px 26px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	display: block;
+	color: black;
+}
+input[type=tel]{
+	width: 80%;
+	padding: 5px 30px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+	display: block;
+}
+
+input[type=password]{
+	width: 80%;
+	padding: 5px 30px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+	display: block;
+}
+
+textarea[name=Message]{
+	width: 80%;
+	padding: 5px 30px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+
+form[type=typeform]{
+	width: 80%;
+	padding: 5px 30px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+}
+
+input[type=int]{
+	width: 80%;
+	padding: 5px 29px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+	display: block;
+}
+
+input[type=float]{
+	width: 80%;
+	padding: 5px 29px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+	display: block;
+}
+
+input[type=file]{
+	width: 87%;
+	padding: 5px 30px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: blue;
+}
+
+.button{
+	background-color: blue;
+	font-size: 20px;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+}
+.button:hover {
+	background-color: black;
+}
+
+select {
+	width: 80%;
+	padding: 5px 30px;
+	box-sizing: border-box;
+	font-size: 20px;
+	color: black;
+}
+
+.retrieve{
+	Display:flex;
+}
+
+#user-detail-container{
+	background-color: #f0f0f0;
+	position: absolute;
+	width: 150px;
+	height: 90px;
+	top: 100px;
+	right: 30px;
+	border-radius: 10px;
+	color: black;
+	font-weight: bolder;
+	padding: 10px;
+	border: none;
+	display: none;
+}
+
+.dtablescroll{
+	font-size:18px;
+	width: 52%;
+	top:249px;
+	position:relative;
+	border:1px solid white;
+	max-height:70%;
+	overflow:auto;
+	float:left;
+}
+
+.dbtablescroll{
+	font-size: 18px; 
+	width:50%; 
+	top:300px; 
+	position:relative; 
+	border: 1px solid white;
+	max-height: 100%;
+	overflow: auto;
+	float: left;
+}
+
+

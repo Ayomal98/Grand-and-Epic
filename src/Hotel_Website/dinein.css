@@ -1,0 +1,68 @@
+.h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 28px;
+    color: white;
+    text-align: center;
+}
+
+body {
+    background-image: url('src/dinein.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    
+  }
+
+  .wrap{
+    max-width: 1500px;
+    border-radius: 20px;
+    margin: auto;
+    background: rgba(0,0,0,0);
+    box-sizing: border-box;
+    /*padding:100px;*/
+    color: #fff;
+    /*margin-top: 100px;*/
+    /*margin-left: auto;
+  margin-right: auto;
+  align-content: center;*/
+  }
+
+  input[type=submit]{
+    width: 350px;
+    box-sizing: border-box;
+    padding: 10px 0;
+    position:absolute;
+    margin-top: 30px;
+    outline: none;
+    border: none;
+    background: #000508;
+    opacity: 0.7;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #fff;
+    }
+
+input[type=submit]:hover{
+    background: #003366;
+    opacity: 0.7;
+}
+
+input[type=text],[type=date],[type=time],[type=select]{
+    width: 200px;
+    box-sizing: border-box;
+    padding: 12px 5px;
+    background:#FFFCCD;
+    outline: none;
+    border: none;
+    color:black;
+    border-radius: 5px;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.main{
+    align-content: center;
+    Display:flex;
+    Justify content: center;
+    Align-items:center;
+}
