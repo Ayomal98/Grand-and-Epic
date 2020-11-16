@@ -6,7 +6,7 @@ $email = $_SESSION['User_Email'];
 <html>
 
 <head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 	<title>
 		Supervisor Dashboard
 	</title>
@@ -15,7 +15,7 @@ $email = $_SESSION['User_Email'];
 
 <body bgcolor="black">
 	<center>
-		<img src="../Images/Logo.png" width="20%">
+		<img src="../../public/images/Logo.png" width="20%">
 		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
@@ -30,18 +30,10 @@ $email = $_SESSION['User_Email'];
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-			<a href="SupervisorDashboard.php">
-				<font size="4 px">Dashboard</font>
-			</a>
-			<a href="SupervisorAssignEmployeeTasks.php">
-				<font size="4 px">Assign Employee Tasks</font>
-			</a>
-			<a href="SupervisorManageMeals.php">
-				<font size="4 px">Manage Set Menu</font>
-			</a>
-			<a href="SupervisorLeaveRequest.php">
-				<font size="4 px">Request a Leave</font>
-			</a>
+			<a href="SupervisorAssignEmployeeTasks.php"><font size="4 px">Assign Employee Tasks</font></a>
+			<a href="SupervisorManageMeals.php"><font size="4 px">Manage Meals</font></a>
+			<a href="SupervisorManageSetMenus.php"><font size="4 px">Manage Set Menu</font></a>
+			<a href="SupervisorLeaveRequest.php"><font size="4 px">Request a Leave</font></a>
 		</div>
 	</div>
 	<div class="top-right">
@@ -50,7 +42,7 @@ $email = $_SESSION['User_Email'];
 				<td>
 				</td>
 				<td>
-					<img src="../Images/ayomal.png" height="40%">
+					<img src="../../public/images/ayomal.png" height="40%">
 				</td>
 			</tr>
 		</table>
@@ -76,7 +68,7 @@ $email = $_SESSION['User_Email'];
 	<table style="position:absolute; top : 270px; width:350px;">
 		<tr>
 			<td>
-				<img src="../Images/Employee.png" height="40%">
+				<img src="../../public/images/Employee.png" height="40%">
 			</td>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">Supervisor Dashboard</p>
@@ -106,7 +98,7 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/roomService.png" height="75%">
+							<img src="../../public/images/roomService.png" height="75%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">15</p>
@@ -114,7 +106,7 @@ $email = $_SESSION['User_Email'];
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../Images/cutlery.png" height="50%">
+							<img src="../../public/images/cutlery.png" height="50%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">18</p>
@@ -122,7 +114,7 @@ $email = $_SESSION['User_Email'];
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../Images/tie.png" height="50%">
+							<img src="../../public/images/tie.png" height="50%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">2</p>
@@ -136,20 +128,20 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/breakfast.png" height="50%">
+							<img src="../../public/images/breakfast.png" height="50%">
 						</td>
 						<td rowspan="3" align="center">
-							<img src="../Images/meal.png" height="60%">
+							<img src="../../public/images/meal.png" height="60%">
 						</td>
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../Images/lunch.png" height="40%">
+							<img src="../../public/images/lunch.png" height="40%">
 						</td>
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../Images/dinner.png" height="50%">
+							<img src="../../public/images/dinner.png" height="50%">
 						</td>
 					</tr>
 				</table>
@@ -160,10 +152,10 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/setmenuSmall.png" height="50%">
+							<img src="../../public/images/setmenuSmall.png" height="50%">
 						</td>
 						<td align="center">
-							<img src="../Images/setMenuBig.png" height="100%">
+							<img src="../../public/images/setMenuBig.png" height="100%">
 						</td>
 					</tr>
 				</table>
@@ -173,10 +165,10 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/leave.png" height="50%">
+							<img src="../../public/images/leave.png" height="50%">
 						</td>
 						<td align="center">
-							<img src="../Images/leaveBig.png" height="35%">
+							<img src="../../public/images/leaveBig.png" height="35%">
 						</td>
 					</tr>
 				</table>
@@ -188,10 +180,10 @@ $email = $_SESSION['User_Email'];
 
 	<div class="bottom-left">
 		<div class="display">
-			<img class="mySlides" src="../Images/img17.jpg">
-			<img class="mySlides" src="../Images/img18.jpg">
-			<img class="mySlides" src="../Images/img19.jpg">
-			<img class="mySlides" src="../Images/img20.jpg">
+			<img class="mySlides" src="../../public/images/img17.jpg">
+			<img class="mySlides" src="../../public/images/img18.jpg">
+			<img class="mySlides" src="../../public/images/img19.jpg">
+			<img class="mySlides" src="../../public/images/img20.jpg">
 
 			<button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
 			<button class="display-right" onclick="plusDivs(1)">&#10095;</button>

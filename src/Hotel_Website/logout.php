@@ -1,5 +1,5 @@
 <?php
 session_destroy();
 unset($_SESSION['First_Name']);
-header('location:../index.php');
+header('location:../Hotel_Website/index.php');
 ?>
