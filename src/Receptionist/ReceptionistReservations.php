@@ -5,7 +5,7 @@ $email = $_SESSION['User_Email'];
 ?>
 <html>
 	<head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 		<title>
 		Receptionist Reservations
         </title>
@@ -14,7 +14,7 @@ $email = $_SESSION['User_Email'];
 	<body bgcolor = "black">
 
 	<center>
-    <img src="../Images/Logo.png" width="20%">
+    <img src="../../public/images/Logo.png" width="20%">
     <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
@@ -41,7 +41,7 @@ $email = $_SESSION['User_Email'];
 		<td>
 		</td>
 		<td>
-			<img src = "../Images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "40%" >
 		</td>
 		</tr>
 	</table>
@@ -67,7 +67,7 @@ $email = $_SESSION['User_Email'];
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
             <td>
-                <img src = "../Images/room.png" height = "65%">
+                <img src = "../../public/images/room.png" height = "65%">
             </td>
 		<td>
 			<p style = "font-family :Lato; font-size:22px; color :white;">Reservations</p>		
@@ -90,7 +90,7 @@ $email = $_SESSION['User_Email'];
 				<tr>
 				
 				<td align="center">
-                    <img src = "../Images/BIgCal.png" height = "10%">
+                    <img src = "../../public/images/BIgCal.png" height = "10%">
 				</td>
 				</tr>
 				<tr>

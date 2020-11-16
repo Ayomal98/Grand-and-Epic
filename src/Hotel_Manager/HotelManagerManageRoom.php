@@ -5,7 +5,7 @@ $email = $_SESSION['User_Email'];
 ?>
 <html>
 	<head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 		<title>
         Hotel Manager Manage Rooms
         </title>
@@ -14,7 +14,7 @@ $email = $_SESSION['User_Email'];
 	<body bgcolor = "black">
 
 	<center>
-    <img src="../Images/Logo.png" width="20%">
+    <img src="../../public/images/Logo.png" width="20%">
     
     <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
@@ -45,7 +45,7 @@ $email = $_SESSION['User_Email'];
 		<td>
 		</td>
 		<td>
-			<img src = "../Images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "40%" >
 		</td>
 		</tr>
 	</table>
@@ -71,7 +71,7 @@ $email = $_SESSION['User_Email'];
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
 		<td>
-			<img src = "../Images/room.png" height = "60%" >
+			<img src = "../../public/images/room.png" height = "60%" >
 		</td>
 		<td>
 			<p style = "font-family :Lato; font-size:22px; color :white;">Current Room Types</p>		
@@ -98,7 +98,7 @@ $email = $_SESSION['User_Email'];
 			<table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../Images/Superior.png" height = "80%">
+					<img src = "../../public/images/Superior.png" height = "80%">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="0" placeholder="Description" style="font-size: 20px;"></textarea>
@@ -110,7 +110,7 @@ $email = $_SESSION['User_Email'];
             <table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../Images/Panora.png" height = "60%">
+					<img src = "../../public/images/Panora.png" height = "60%">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"></textarea>
@@ -121,7 +121,7 @@ $email = $_SESSION['User_Email'];
             <table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../Images/suite.png" height = "80%">
+					<img src = "../../public/images/suite.png" height = "80%">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"></textarea>

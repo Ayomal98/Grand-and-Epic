@@ -5,7 +5,7 @@ $email = $_SESSION['User_Email'];
 ?>
 <html>
 	<head>
-	<link rel="stylesheet" href="../../public/css/employee.css"">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 		<title>
 		Manager Booking Details
         </title>
