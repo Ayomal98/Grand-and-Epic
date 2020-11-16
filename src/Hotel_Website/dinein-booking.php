@@ -1,5 +1,5 @@
 <!-- This page contains about the actual booking(insert query) for the dinein-booking -->
-<?php include("../Templates/connection.php");
+<?php include("../../config/connection.php");
 $boolTrue = TRUE;
 $boolFalse = False;
 $timeperiod = '';

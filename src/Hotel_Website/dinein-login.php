@@ -10,17 +10,17 @@ $email = $_SESSION['User_Email'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grand & Epic</title>
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../../public/Css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="header-container-dinein" id="header-container">
         <!--to include the sticky nav bar -->
-        <?php include("sticky-nav.php"); ?>
+        <?php include("../../public/includes/sticky-nav.php"); ?>
 
         <!--to include the side nav bar -->
-        <?php include("side-nav-login.php"); ?>
+        <?php include("../../public/includes/side-nav-login.php"); ?>
 
 
         <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
@@ -51,8 +51,8 @@ $email = $_SESSION['User_Email'];
         </div>
         <button class="book" style="color:black;background-color:goldenrod;padding:15px;margin-top:10px;"><a href="dinein-booking-form.php" target="_blank">Book Now</a></button>
         <div class="img-dinein-container">
-            <img src="../Images/pexels-lee-hnetinka-1679825.jpg" alt="">
-            <img src="../Images/pexels-mat-brown-1395964.jpg" alt="">
+            <img src="../../public/Images/pexels-lee-hnetinka-1679825.jpg" alt="">
+            <img src="../../public/Images/pexels-mat-brown-1395964.jpg" alt="">
         </div>
         <div class="dine-in-details">
             <div><i class="fa fa-columns"><span style="display:inline-block">No.Of Tables</span><span style="display: block;margin-left:35px;">15</span></i></div>
@@ -62,9 +62,9 @@ $email = $_SESSION['User_Email'];
 
         </div>
     </div>
-    <?php include("footer-footer.php"); ?>
-    <script src="../Javascript/script.js"></script>
-    <script src="../Javascript/sticky-nav.js"></script>
+    <?php include("../../public/includes/footer-footer.php"); ?>
+    <script src="../../public/Javascript/script.js"></script>
+    <script src="../../public/Javascript/sticky-nav.js"></script>
     <script>
         function funcUserDetails() {
             document.getElementById('user-detail-container').style.display = "block";

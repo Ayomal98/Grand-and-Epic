@@ -1,7 +1,7 @@
 <!-- This page containes about the queries of both update and delete queries for the dinein booking -->
 
 
-<?php include("../Templates/connection.php");
+<?php include("../../config/connection.php");
 include("./myreservations.php");
 //query to delete the dinein bookig
 if (isset($_POST['Delete'])) {

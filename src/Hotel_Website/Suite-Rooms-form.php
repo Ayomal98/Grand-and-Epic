@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suite Room Form</title>
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 

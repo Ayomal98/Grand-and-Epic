@@ -1,6 +1,6 @@
 <!-- This page is for update form of the dinein-booking -->
 <?php include("time-inclusion.php");
-include("../Templates/connection.php");
+include("../../config/connection.php");
 $dinein_id;
 $table_no;
 $customer_email;
