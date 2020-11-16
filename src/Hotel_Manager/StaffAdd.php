@@ -1,4 +1,4 @@
-<?php include("../Templates/connection.php");
+<?php include("../../config/connection.php");
 if(isset($_POST['ADD'])){
     
     $empID=$_POST['empID'];

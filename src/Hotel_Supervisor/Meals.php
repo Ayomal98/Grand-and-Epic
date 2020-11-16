@@ -1,5 +1,5 @@
 <!-- Insert New Meal -->
-<?php include("../Templates/connection.php");
+<?php include("../../config/connection.php");
 if(isset($_POST['insert'])){
 
     $mealid=$_POST['mealid'];  

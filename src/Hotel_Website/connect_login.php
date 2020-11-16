@@ -18,22 +18,18 @@ if (isset($_POST['Submit'])) {
                 $_SESSION['username'] = $row['First_Name'];
                 $_SESSION["User_Email"] = $row["Email"];
                 header('Location:../Hotel_Manager/HotelManagerDashboard.php');
-            } elseif ($row["User_Role"] == "Supervisor") {
+            } elseif ($row["User_Role"] == "Hotel Supervisor") {
                 $_SESSION['username'] = $row['First_Name'];
                 $_SESSION["User_Email"] = $row["Email"];
                 header('Location:../Hotel_Supervisor/SupervisorDashboard.php');
             } elseif ($row["User_Role"] == "Employee") {
                 $_SESSION['username'] = $row['First_Name'];
                 $_SESSION["User_Email"] = $row["Email"];
-                header('Location:../Employees/EmployeeDashboard.php');
+                header('Location:../Employee/EmployeeDashboard.php');
             } elseif ($row["User_Role"] == "Receptionist") {
                 $_SESSION['username'] = $row['First_Name'];
                 $_SESSION["User_Email"] = $row["Email"];
                 header('Location:../Receptionist/ReceptionistDashboard.php');
-            } elseif ($row["User_Role"] == "Hotel Supervisor") {
-                $_SESSION['username'] = $row['First_Name'];
-                $_SESSION["User_Email"] = $row["Email"];
-                header('Location:../Employee/EmployeeDashboard.php');
             }
         }
     } elseif ($usertype == 'Customer') {
