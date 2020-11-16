@@ -14,9 +14,9 @@
     <div class="bg-modal">
         <div class="modal-content">
             <div class="close">+</div>
-            <img src="Images/download.png" alt="" class="customer-logo">
+            <img src="../../public/Images/download.png" alt="" class="customer-logo">
             <h3 class="login-heading">Log-IN</h3>
-            <form action="Hotel_Website/connect_login.php" method="POST" id="login-form">
+            <form action="./connect_login.php" method="POST" id="login-form">
                 <div class="user-selection">
                     <label for="User type">User Type</label>
                     <select name="User-Type" id="" class="user-type" required>
@@ -24,12 +24,7 @@
                         <option value="Employee">Staff</option>
                     </select>
                 </div>
-<<<<<<< HEAD
                 <input type="text" name="email" placeholder="Email" class="inputs" id="login-customer-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                <span id="valid-invalidity"></span>
-=======
-                <input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" class="inputs" required>
->>>>>>> aa343214f299f5100baa68ba394797cb1643a1ab
                 <input type="password" name="password" placeholder="Password" class="inputs" required>
                 <a href=""><span style="font-weight: bold; color:black;">Forgot your password ?</span></a><br />
                 <input type="submit" value="Submit" name="Submit" class="log-btn submit">
@@ -43,7 +38,7 @@
             <div class="close-signup">+</div>
             <i class="fas fa-user-plus" style="font-size:65px;margin-left:5px;margin-bottom:5px;padding:5px;text-align:center;"></i>
             <h3 class="login-heading">Sign-Up</h3>
-            <form action="Hotel_Website/Connect_signup.php" method="POST">
+            <form action="./Connect_signup.php" method="POST">
                 <input type="text" name="firstname" placeholder="First Name" class="inputs" pattern="[A-Za-z]{1,32}" required>
                 <input type="text" name="lastname" placeholder="Last Name" class="inputs" pattern="[A-Za-z]{1,32}" required>
                 <input type="text" name="email" placeholder="Email" class="inputs" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>

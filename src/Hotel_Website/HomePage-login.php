@@ -10,15 +10,15 @@ $email = $_SESSION['User_Email'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grand & Epic Hotel</title>
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../../public/Css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="header-container" id="header-container">
-        <?php include("sticky-nav.php"); ?>
+        <?php include("../../public/includes/sticky-nav.php"); ?>
 
-        <?php include("side-nav-login.php"); ?>
+        <?php include("../../public/includes/side-nav-login.php"); ?>
 
         <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
         <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
@@ -83,9 +83,9 @@ $email = $_SESSION['User_Email'];
             </div>
         </div>
         </div>
-        <?php include("footer-footer.php"); ?>
-        <script src="../Javascript/script.js"></script>
-        <script src="../Javascript/sticky-nav.js"></script>
+        <?php include("../../public/includes/footer-footer.php"); ?>
+        <script src="../../public/Javascript/script.js"></script>
+        <script src="../../public/Javascript/sticky-nav.js"></script>
         <script>
             function funcUserDetails() {
                 document.getElementById('user-detail-container').style.display = "block";
