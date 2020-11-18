@@ -80,14 +80,18 @@
 		<legend style="color:white; font-size: 20px">Add Co-admins</legend>
 		<form action="co-adminadd.php" method="POST">
 			<table style="color:white; font-size: 20px; width:88%;">
+					<tr>
+                        <td align="left">Employee ID:</td>
+                        <td align="center"><input type="text" name="empID" size="20" class="inputs" form="manager_form" required></td>
+                    </tr>
 
 				<tr>
 					<td align="left">First Name:</td>
-					<td align="center"><input type="text" name="empFname" size="20" class="inputs" required></td>
+					<td align="center"><input type="text" pattern="[A-Za-z]+" name="empFname" size="20" class="inputs" required></td>
 				</tr>
 				<tr>
 					<td align="left">Last Name:</td>
-					<td align="center"><input type="text" name="empSname" size="50" class="inputs" required></td>
+					<td align="center"><input type="text" pattern="[A-Za-z]+" name="empSname" size="50" class="inputs" required></td>
 				</tr>
 				<tr>
 					<td align="left">Password:</td>
@@ -95,11 +99,11 @@
 				</tr>
 				<tr>
 					<td align="left">Email Address:</td>
-					<td align="center"><input type="email" name="empEmail" size="50" class="inputs" required></td>
+					<td align="center"><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="empEmail" size="50" class="inputs" required></td>
 				</tr>
 				<tr>
 					<td align="left">Contact No:</td>
-					<td align="center"><input type="tel" name="empContact" size="20" class="inputs" required></td>
+					<td align="center"><input type="tel" pattern="[0][1-9][0-9]{8}" name="empContact" size="20" class="inputs" required></td>
 				</tr>
 			</table>
 			<br>
@@ -224,15 +228,13 @@
 	</fieldset>
 	<!--search-->
 	</form>-->
-	<form action="" method="POST">
-		<fieldset style=" position:absolute; top:750px; width: 35%;right:5%;">
-			<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
-
-
-			<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
-			<input type="submit" class="button" name="search" value="Search by ID"></td>
-		</fieldset>
-	</form>
+	<form action="" method="POST" >
+						<fieldset style=" position:absolute; top:750px; left:900px; width: 35%; right:5%;">
+						<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
+								<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
+								<input type="submit" class="button" name="search" value="Search by ID"></td>
+						</fieldset>
+				</form>
 
 
 	<?php
@@ -246,8 +248,8 @@
 		while ($row = mysqli_fetch_array($query_run)) {
 	?>
 			<form action="" method="POST">
-				<fieldset style=" position:relative; top:900px;right:500 px; width: 52%;">
-					<table align="center" style="color:white; font-size: 20px; width:88%;">
+			<fieldset style=" position:absolute; top:900px;left:900px; width: 35%;">
+					<table align="center" style="color:white; font-size: 20px; width:95%;">
 						<tr>
 							<td>Employee ID</td>
 							<td><input type="int" name="Employee_ID" value="<?php echo $row['Employee_ID'] ?>" /></td>
@@ -269,7 +271,7 @@
 							<td><input type="text" name="Contact_No" value="<?php echo $row['Contact_No'] ?>" /></td>
 						</tr>
 						<tr>
-							<td align="right">
+						<td align="center" style="width:40%;">
 								<input type="submit" class="button" name="update" value="UPDATE">
 								<input type="submit" class="button" name="delete" value="DELETE">
 							</td>
