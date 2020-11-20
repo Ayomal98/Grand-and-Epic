@@ -75,7 +75,7 @@ body {
   .sidenav a {font-size: 18px;}
 }
 .top-right{
-	position: absolute;
+	position: relative;
 	top: 0px;
 	right: 20px;
 	

@@ -9,10 +9,15 @@ if (isset($_POST['ADD'])) {
     $userrole = 'Hotel Manager';
 
     $sql = "INSERT into employee (First_Name,Last_Name,Email,Password,Contact_No,User_Role) VALUES ('" . $empFname . "','" . $empSname . "','" . $empEmail . "','" . $empPass . "','" . $empContact . "','" . $userrole . "')";
+    $query_run = mysqli_query($con,$sql);
 
-    if ($con->query($sql) === TRUE) {
-        header("location:AdminManageCoAdmins.php");
-    } else {
-        echo "record is not successful";
-    }
+    if ($query_run) {
+		echo "<script>
+		alert('Hotel Manager Has been Added');
+		window.location.href='AdminManageCoAdmins.php';
+		</script>";
+	} else {
+		echo '<script> alert("Data Not Added") </script>';
+	}
 }
+?>

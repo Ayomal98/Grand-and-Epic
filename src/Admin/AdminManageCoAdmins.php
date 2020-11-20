@@ -1,3 +1,8 @@
+<?php
+session_start();
+$username = $_SESSION['username'];
+$email = $_SESSION['User_Email'];
+?>
 <html>
 
 <head>
@@ -8,12 +13,10 @@
 	</title>
 </head>
 
-
 <body bgcolor="black">
-
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
-		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
 			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
@@ -50,7 +53,7 @@
 		<table width="100%">
 			<tr>
 				<td>
-					<p style="font-family :Lato; font-size:20px; color :white;">Logged in as</p>
+					
 				</td>
 				<td>
 					<img src="../../public/images/ayomal.png" height="40%">
@@ -111,8 +114,8 @@
 				<tr>
 					<td align="right">
 						<input type="submit" name="ADD" class="button" value="  ADD  ">
+						<input type="reset" class="button" value="  Reset " name="reset" form="manager_form">
 					</td>
-
 				</tr>
 			</table>
 		</form>
