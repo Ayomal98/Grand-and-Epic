@@ -247,12 +247,12 @@ select {
 .dtablescroll{
 	font-size:18px;
 	width: 52%;
-	top:249px;
+	top: 249px;
 	position:relative;
 	border:1px solid white;
-	max-height:70%;
-	overflow:auto;
-	float:left;
+	max-height: 70%;
+	overflow: auto;
+	float: left;
 }
 
 .dbtablescroll{

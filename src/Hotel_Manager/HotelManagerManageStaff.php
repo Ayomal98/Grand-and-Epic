@@ -18,7 +18,7 @@ $email = $_SESSION['User_Email'];
     <center>
         <img src="../../public/images/Logo.png" width="20%">
 
-        <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+        <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
         <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
         <div id="user-detail-container">
             <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
@@ -94,6 +94,7 @@ $email = $_SESSION['User_Email'];
                         <td align="left">Employee Type:</td>
                         <td align="center">
                             <select name="empType" id="" class="inputs" form="manager_form" required>
+                                <option value disabled selected>Select the Employee Type</option>
                                 <option value="Employee">Employee</option>
                                 <option value="Receptionist">Receptionist</option>
                                 <option value="Supervisor">Supervisor</option>
@@ -114,11 +115,11 @@ $email = $_SESSION['User_Email'];
                     </tr>
                     <tr>
                         <td align="left">Password:</td>
-                        <td align="center"><input type="password" name="empPass" size="50" placeholder="Password" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="password" name="empPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  placeholder="Password" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">Email Address:</td>
-                        <td align="center"><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="empEmail" size="50" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="email" placeholder="Ex:abc@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="empEmail" size="50" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">Contact No:</td>
@@ -486,7 +487,7 @@ $email = $_SESSION['User_Email'];
             <th>User Role</th>
 		</tr>
 
-		<?php include("../../config/cconnection.php");
+		<?php include("../../config/connection.php");
 
 		$query = "SELECT * FROM employee";
 		$query_run = mysqli_query($con, $query);
