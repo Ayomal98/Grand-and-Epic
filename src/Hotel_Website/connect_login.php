@@ -2,9 +2,10 @@
 session_start();
 if (isset($_POST['Submit'])) {
     $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con,$_POST['password']);
+    $password = md5($_POST['password']);
     $usertype = mysqli_real_escape_string($con, $_POST['User-Type']);
     $query = '';
+
     if ($usertype == 'Employee') {
         $query = "SELECT First_Name,Email,Password,User_Role FROM employee WHERE Email='" . $email . "' AND Password='" . $password . "'";
         $result = mysqli_query($con, $query);
