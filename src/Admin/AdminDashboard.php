@@ -6,7 +6,7 @@ $email = $_SESSION['User_Email'];
 <html>
 
 <head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 	<title>
 		Admin Dashboard
 	</title>
@@ -15,7 +15,7 @@ $email = $_SESSION['User_Email'];
 
 <body bgcolor="black">
 	<center>
-		<img src="../Images/Logo.png" width="20%">
+		<img src="../../public/images/Logo.png" width="20%">
 		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
@@ -26,26 +26,26 @@ $email = $_SESSION['User_Email'];
 	</center>
 	<div class="sidenav">
 		<button class="dropdown-btn">Dashboard &#128317;
-			
+
 		</button>
 		<div class="dropdown-container">
 
 			<a href="AdminManageCoAdmins.php">Manage Co-admins</a>
-			<a href="AdminRespondToLeaveRequests.html">Respond to Leave Requests</a>
-			<a href="AdminViewBookings.html">View Booking Details</a>
-			<a href="AdminManageContent.html">Manage Content on Website</a>
-			<a href="AdminAddPromotion.html">Add Promotion</a>
-
+			<a href="AdminRespondToLeaveRequests.php">Respond to Leave Requests</a>
+			<a href="AdminViewBookings.php">View Booking Details</a>
+			<a href="AdminManageContent.ph">Manage Content on Website</a>
+			<a href="AdminAddPromotion.php">Add Promotion</a>
+			<a href="AdminViewStats.php">View Stats</a>
 		</div>
 	</div>
 	<div class="top-right">
 		<table width="100%">
 			<tr>
 				<td>
-					
+
 				</td>
 				<td>
-					<img src="../Images/ayomal.png" height="40%">
+					<img src="../../public/images/ayomal.png" height="40%">
 				</td>
 			</tr>
 		</table>
@@ -71,7 +71,7 @@ $email = $_SESSION['User_Email'];
 	<table style="position:absolute; top : 280px; width:350px;">
 		<tr>
 			<td>
-				<img src="../Images/Employee.png" height="40%">
+				<img src="../../public/images/Employee.png" height="40%">
 			</td>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">System-Administrator Dashboard</p>
@@ -101,7 +101,7 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/Emplo.png" height="70%">
+							<img src="../../public/images/Emplo.png" height="70%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">No. of<br>Co-Admins - 5</p>
@@ -115,16 +115,16 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/Calendar.png" height="50%">
+							<img src="../../public/images/Calendar.png" height="50%">
 						</td>
 						<td rowspan="2" align="center">
-							<img src="../Images/Duty.png" height="75%">
+							<img src="../../public/images/Duty.png" height="75%">
 						</td>
 					</tr>
 					<tr></tr>
 					<tr>
 						<td align="center">
-							<img src="../Images/hotel.png" height="50%">
+							<img src="../../public/images/hotel.png" height="50%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">12</p>
@@ -132,7 +132,7 @@ $email = $_SESSION['User_Email'];
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../Images/cutlery.png" height="50%">
+							<img src="../../public/images/cutlery.png" height="50%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">16</p>
@@ -140,7 +140,7 @@ $email = $_SESSION['User_Email'];
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../Images/tie.png" height="50%">
+							<img src="../../public/images/tie.png" height="50%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">2</p>
@@ -154,10 +154,10 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/webcontent.png" height="40%">
+							<img src="../../public/images/webcontent.png" height="40%">
 						</td>
 						<td align="center">
-							<img src="../Images/BigWebcontent.png" height="30%">
+							<img src="../../public/images/BigWebcontent.png" height="30%">
 						</td>
 					</tr>
 				</table>
@@ -167,7 +167,7 @@ $email = $_SESSION['User_Email'];
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../Images/discount.png" height="50%">
+							<img src="../../public/images/discount.png" height="50%">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
@@ -187,7 +187,7 @@ $email = $_SESSION['User_Email'];
 		</tr>
 		<tr>
 			<td align="center">
-				<img src="../Images/graph.png" height="100%">
+				<img src="../../public/images/graph.png" height="100%">
 			</td>
 		</tr>
 	</table>

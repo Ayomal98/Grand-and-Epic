@@ -19,7 +19,7 @@ $email = $_SESSION['User_Email'];
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
 
-		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
@@ -89,23 +89,24 @@ $email = $_SESSION['User_Email'];
 				<tr>
 					<td>Meal Plan: </td>
 					<td align="left">
-						<select id="types" name="mealplan" class="inputs" style="margin: 8px 85px;">
+						<select id="mptypes" name="mealplan" class="inputs" onchange="changeStatus()" style="margin: 8px 85px;">
+							<option value disabled selected>Select a Meal Plan</option>
 							<option value="Staying-in">Staying-in</option>
 							<option value="Events">Events</option>
 						</select>
 					</td>
 				</tr>
-				<tr>
+				<tr id="MealT">
 					<td>Meal Type: </td>
 					<td align="left">
-						<select id="types" name="mealtype" class="inputs" style="margin: 8px 85px;">
-							<option value="-">-</option>
+						<select id="mttypes" name="mealtype" class="inputs" style="margin: 8px 85px;">
+							<option value disabled selected>Select a Meal Type</option>
 							<option value="Breakfast">Breakfast</option>
 							<option value="Lunch">Lunch</option>
 							<option value="Dinner">Dinner</option>
 						</select>
 					</td>
-				</tr>
+				</tr> 
 				<tr>
 					<td>Meal Image: </td>
 					<td align="center"><input type="file" accept="image/*" name="mealimage" id="fileToUpload" size="20"></td>
@@ -131,6 +132,7 @@ $email = $_SESSION['User_Email'];
 			<input type="submit" class="button" name="search" value="Search by ID">
 		</fieldset>
 	</form>
+
 
 	<!-- SEARCH -->
 	<?php
@@ -161,7 +163,8 @@ $email = $_SESSION['User_Email'];
 						<tr>
 							<td>Meal Plan: </td>
 							<td>
-								<select id="types" name="mealplan" class="inputs" style="margin: 8px 2px;">
+								<select id="mptypes" name="mealplan" class="inputs" onchange="changeStatus()" style="margin: 8px 2px;">
+									<option value disabled selected>Select a Meal Plan</option>
 									<option value="Staying-in"
 										<?php
 										if($row["Meal_Plan"]=='Staying-in')
@@ -182,45 +185,37 @@ $email = $_SESSION['User_Email'];
 								</select>
 							</td>
 						</tr>
-						<tr>
+						<tr id="MealT">
 							<td>Meal Type:</td>
 							<td>
-								<select id="types" name="mealtype" class="inputs">
-								<option value="-"
-										<?php
-										if($row["Meal_Type"]=='-')
-										{
-											echo "selected";
-										}
-										?>	
-									>-</option>
+								<select id="mttypes" name="mealtype" class="inputs" style="margin: 8px 2px;">
+									<option value disabled selected>Select a Meal Type</option>
+										<option value="Breakfast"
+											<?php
+											if($row["Meal_Type"]=='Breakfast')
+											{
+												echo "selected";
+											}
+											?>	
+										>Breakfast</option>
 
-									<option value="Breakfast"
-										<?php
-										if($row["Meal_Type"]=='Breakfast')
-										{
-											echo "selected";
-										}
-										?>	
-									>Breakfast</option>
+										<option value="Lunch"
+											<?php
+											if($row["Meal_Type"]=='Lunch')
+											{
+												echo "selected";
+											}
+											?>	
+										>Lunch</option>
 
-									<option value="Lunch"
-										<?php
-										if($row["Meal_Type"]=='Lunch')
-										{
-											echo "selected";
-										}
-										?>	
-									>Lunch</option>
-
-									<option value="Dinner"
-										<?php
-										if($row["Meal_Type"]=='Dinner')
-										{
-											echo "selected";
-										}
-										?>	
-									>Dinner</option>
+										<option value="Dinner"
+											<?php
+											if($row["Meal_Type"]=='Dinner')
+											{
+												echo "selected";
+											}
+											?>	
+										>Dinner</option>
 								</select>
 							</td>
 						</tr>
@@ -294,11 +289,23 @@ $email = $_SESSION['User_Email'];
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
 		}
-
 		function funcCloseUserDetails() {
 			document.getElementById('user-detail-container').style.display = "none";
 		}
+
+		// Display second dropdown if Staying-in is selected from first dropdown
+		function changeStatus()
+		{
+			var status = document.getElementById("mptypes");
+			if(status.value == "Events"){
+				document.getElementById("MealT").style.visibility = "hidden";
+			}
+			else{
+				document.getElementById("MealT").style.visibility = "visible";
+			}
+		}
 	</script>
+
 </body>
 
 </html>

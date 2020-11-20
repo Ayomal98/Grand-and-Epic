@@ -1,37 +1,48 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 	<title>
 		Admin Manage Co-admins
 	</title>
 </head>
 
+
 <body bgcolor="black">
 
 	<center>
-		<img src="../Images/Logo.png" width="20%">
+		<img src="../../public/images/Logo.png" width="20%">
+		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+		<div id="user-detail-container">
+			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
+			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+			<hr style="color:teal">
+			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
+		</div>
 	</center>
 	<div class="sidenav">
 		<button class="dropdown-btn">Manage Co-admins &#128317;
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-			<a href="AdminDashboard.html">
+			<a href="AdminDashboard.php">
 				<font size="4 px">Dashboard</font>
 			</a>
-			<a href="AdminRespondToLeaveRequests.html">
+			<a href="AdminRespondToLeaveRequests.php">
 				<font size="4px">Respond to Leave Requests</font>
 			</a>
-			<a href="AdminViewBookings.html">
+			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
 			</a>
-			<a href="AdminManageContent.html">
+			<a href="AdminManageContent.php">
 				<font size="4 px">Manage Content on web-site</font>
 			</a>
-			<a href="AdminAddPromotion.html">
+			<a href="AdminAddPromotion.php">
 				<font size="4 px">Add promotion</font>
+			</a>
+			<a href="AdminViewStats.php">
+				<font size="4 px">View Stats</font>
 			</a>
 		</div>
 	</div>
@@ -42,7 +53,7 @@
 					<p style="font-family :Lato; font-size:20px; color :white;">Logged in as</p>
 				</td>
 				<td>
-					<img src="../Images/ayomal.png" height="40%">
+					<img src="../../public/images/ayomal.png" height="40%">
 				</td>
 			</tr>
 		</table>
@@ -69,14 +80,18 @@
 		<legend style="color:white; font-size: 20px">Add Co-admins</legend>
 		<form action="co-adminadd.php" method="POST">
 			<table style="color:white; font-size: 20px; width:88%;">
+					<tr>
+                        <td align="left">Employee ID:</td>
+                        <td align="center"><input type="text" name="empID" size="20" class="inputs" form="manager_form" required></td>
+                    </tr>
 
 				<tr>
 					<td align="left">First Name:</td>
-					<td align="center"><input type="text" name="empFname" size="20" class="inputs" required></td>
+					<td align="center"><input type="text" pattern="[A-Za-z]+" name="empFname" size="20" class="inputs" required></td>
 				</tr>
 				<tr>
 					<td align="left">Last Name:</td>
-					<td align="center"><input type="text" name="empSname" size="50" class="inputs" required></td>
+					<td align="center"><input type="text" pattern="[A-Za-z]+" name="empSname" size="50" class="inputs" required></td>
 				</tr>
 				<tr>
 					<td align="left">Password:</td>
@@ -84,11 +99,11 @@
 				</tr>
 				<tr>
 					<td align="left">Email Address:</td>
-					<td align="center"><input type="email" name="empEmail" size="50" class="inputs" required></td>
+					<td align="center"><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="empEmail" size="50" class="inputs" required></td>
 				</tr>
 				<tr>
 					<td align="left">Contact No:</td>
-					<td align="center"><input type="tel" name="empContact" size="20" class="inputs" required></td>
+					<td align="center"><input type="tel" pattern="[0][1-9][0-9]{8}" name="empContact" size="20" class="inputs" required></td>
 				</tr>
 			</table>
 			<br>
@@ -103,35 +118,35 @@
 		</form>
 	</fieldset>
 
-							
-							<?php include("../Templates/connection.php");
-							if (isset($_POST['search'])) {
-								$id = $_POST['id'];
-								$query = "SELECT * FROM 'employee' where Employee_ID='$id' ";
-								$query_run = mysqli_query($connection, $query);
-								while ($row = mysqli_fetch_array($query_run)) 
-								if ($query_run) {
-									echo "<script>
+
+	<?php include("../../config/connection.php");
+	if (isset($_POST['search'])) {
+		$id = $_POST['id'];
+		$query = "SELECT * FROM 'employee' where Employee_ID='$id' ";
+		$query_run = mysqli_query($connection, $query);
+		while ($row = mysqli_fetch_array($query_run))
+			if ($query_run) {
+				echo "<script>
 											alert('Hotel Manager Has been Deleted');
 											window.location.href='AdminManageCoAdmins.php';
 											</script>";
-								} else {
-									echo '<script> alert("Hotel Manager has been not deleted") </script>';
-								}{
-							?>
-        <tr>
-            <td><?php echo $row['First_name']; ?> </td>
-            <td><?php echo $row['Last_name']; ?> </td>
-            <td><?php echo $row['Email']; ?> </td>
-            <td><?php echo $row['Password']; ?> </td>
-            <td><?php echo $row['Contact_No']; ?> </td>
-			<td><?php echo $row['User_Role']; ?> </td>
+			} else {
+				echo '<script> alert("Hotel Manager has been not deleted") </script>';
+			} {
+	?>
+			<tr>
+				<td><?php echo $row['First_name']; ?> </td>
+				<td><?php echo $row['Last_name']; ?> </td>
+				<td><?php echo $row['Email']; ?> </td>
+				<td><?php echo $row['Password']; ?> </td>
+				<td><?php echo $row['Contact_No']; ?> </td>
+				<td><?php echo $row['User_Role']; ?> </td>
+			</tr>
+	<?php }
+	} ?>
 	</tr>
-    <?php }
-							} ?>
-					</tr>
-					
-                    <!--<tr>
+
+	<!--<tr>
                         <td align="left">First Name:</td>
                         <td align="center"><input type="text" name="empFname" size="20" class="inputs" form="manager_form" required></td>
                     </tr>
@@ -173,71 +188,68 @@
 		<input type = "submit" name="search" value="Search by ID">
 		<div class="retrieve">
 		<table align="center" style = "color:white; font-size: 20px; width:88%; top:200px">-->
-		
+
+	<tr>
+		<th>First Name</th>
+		<th>Last name</th>
+		<th>Email</th>
+		<th>Contact Number</th>
+	</tr> <br>
+
+	<?php
+	include("../../config/connection.php");
+	if (isset($_POST['add'])) {
+		$Employee_ID = $_POST['Employee_ID'];
+
+		$query = "SELECT * FROM employee where Employee_ID='$Employee_ID' ";
+		$query_run = mysqli_query($con, $query);
+
+
+		while ($row = mysqli_fetch_array($query_run))
+			if ($query_run) {
+				echo '<script type="text/javascript">alert("Data Updated")</script>';
+			} else {
+				echo '<script type="text/javascript">alert("Data Updated")</script>';
+			} {
+	?>
 			<tr>
-				<th>First Name</th>
-				<th>Last name</th>
-				<th>Email</th>
-				<th>Contact Number</th>
-			</tr> <br>
+				<td align="center"><?php echo $row['First_Name']; ?> </td>
+				<td align="center"><?php echo $row['Last_Name']; ?> </td>
+				<td align="center"><?php echo $row['Email']; ?> </td>
+				<td align="center"><?php echo $row['Contact_No']; ?> </td>
+			</tr>
 
-			<?php
-			include("../Templates/connection.php");
-			if (isset($_POST['add'])) {
-				$Employee_ID = $_POST['Employee_ID'];
-
-				$query = "SELECT * FROM employee where Employee_ID='$Employee_ID' ";
-				$query_run = mysqli_query($con, $query);
-			
-
-				while ($row = mysqli_fetch_array($query_run))
-				if ($query_run) {
-					echo '<script type="text/javascript">alert("Data Updated")</script>';
-				} else {
-					echo '<script type="text/javascript">alert("Data Updated")</script>';
-				}
-				{
-			?>
-						   <tr>
-            <td align="center"><?php echo $row['First_Name']; ?> </td>
-            <td align="center"><?php echo $row['Last_Name']; ?> </td>
-            <td align="center"><?php echo $row['Email']; ?> </td>
-            <td align="center"><?php echo $row['Contact_No']; ?> </td>
-	</tr>
-
-						<?php
-					}
-				}
-						?>
-				</table>
-				</div>
-				</fieldset>
-				<!--search-->
+	<?php
+		}
+	}
+	?>
+	</table>
+	</div>
+	</fieldset>
+	<!--search-->
 	</form>-->
 	<form action="" method="POST" >
-	<fieldset style=" position:absolute; top:750px; width: 35%;right:5%;">
-			<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
-			
-				
-					<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
-					<input type="submit" class="button" name="search" value="Search by ID"></td>
-			</fieldset>
-			</form>
-		
+						<fieldset style=" position:absolute; top:750px; left:900px; width: 35%; right:5%;">
+						<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
+								<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
+								<input type="submit" class="button" name="search" value="Search by ID"></td>
+						</fieldset>
+				</form>
 
-			<?php
-			include("../Templates/connection.php");
-			if (isset($_POST['search'])) {
-				$Employee_ID = $_POST['Employee_ID'];
 
-				$query = "SELECT * FROM employee where Employee_ID='$Employee_ID' ";
-				$query_run = mysqli_query($con, $query);
+	<?php
+	include("../../config/connection.php");
+	if (isset($_POST['search'])) {
+		$Employee_ID = $_POST['Employee_ID'];
 
-				while ($row = mysqli_fetch_array($query_run)) {
-			?>
-					<form action="" method="POST">
-                <fieldset style=" position:relative; top:900px;right:500 px; width: 52%;">
-					<table align="center" style="color:white; font-size: 20px; width:88%;">
+		$query = "SELECT * FROM employee where Employee_ID='$Employee_ID' ";
+		$query_run = mysqli_query($con, $query);
+
+		while ($row = mysqli_fetch_array($query_run)) {
+	?>
+			<form action="" method="POST">
+			<fieldset style=" position:absolute; top:900px;left:900px; width: 35%;">
+					<table align="center" style="color:white; font-size: 20px; width:95%;">
 						<tr>
 							<td>Employee ID</td>
 							<td><input type="int" name="Employee_ID" value="<?php echo $row['Employee_ID'] ?>" /></td>
@@ -259,87 +271,98 @@
 							<td><input type="text" name="Contact_No" value="<?php echo $row['Contact_No'] ?>" /></td>
 						</tr>
 						<tr>
-					<td align="right">
-						<input type="submit" class="button" name="update" value="UPDATE">
-						<input type="submit" class="button" name="delete" value="DELETE">
-					</td>
+						<td align="center" style="width:40%;">
+								<input type="submit" class="button" name="update" value="UPDATE">
+								<input type="submit" class="button" name="delete" value="DELETE">
+							</td>
 
-				</tr>
+						</tr>
 					</table>
 				</fieldset>
-				</form>
+			</form>
 
 
-			<?php
-				}
-			}
-			?>
-		</table>
-			
+	<?php
+		}
+	}
+	?>
+	</table>
 
-</body>
 
-</html>
-<!--vew-->
-<table align="right" style="color:white; font-size: 17px; width:35%; top:750px; left:25px; position:absolute; border: 1px solid white;">
+	<!--vew-->
+	<table align="right" style="color:white; font-size: 17px; width:35%; top:750px; left:25px; position:absolute; border: 1px solid white;">
 		<tr>
-			<th colspan="6"><h4>Employee Details</h2></th>
+			<th colspan="6">
+				<h4>Employee Details</h2>
+			</th>
 		</tr>
 		<tr>
 			<th>Employee ID</th>
 			<th>First Name</th>
 			<th>Last Name</th>
-		    <th>Email Address</th>
+			<th>Email Address</th>
 			<th>Contact No</th>
 		</tr>
 
-		<?php include("../Templates/connection.php");
+		<?php include("../../config/connection.php");
 
 		$query = "SELECT * FROM employee";
 		$query_run = mysqli_query($con, $query);
-			while($row=mysqli_fetch_array($query_run))
-			{
+		while ($row = mysqli_fetch_array($query_run)) {
 
 		?>
-				<tr>
+			<tr>
 				<td><?php echo $row["Employee_ID"]; ?></td>
-			    <td><?php echo $row["First_Name"]; ?></td>
-			    <td><?php echo $row["Last_Name"]; ?></td>
-			    <td><?php echo $row["Email"]; ?></td>
-			    <td><?php echo $row["Contact_No"]; ?></td>
-				</tr>
+				<td><?php echo $row["First_Name"]; ?></td>
+				<td><?php echo $row["Last_Name"]; ?></td>
+				<td><?php echo $row["Email"]; ?></td>
+				<td><?php echo $row["Contact_No"]; ?></td>
+			</tr>
 		<?php
-			}
+		}
 		?>
 
 	</table>
-<?php
-include("../Templates/connection.php");
-if (isset($_POST['update'])) {
-	$First_name = $_POST['First_Name'];
-	$Last_Name = $_POST['Last_Name'];
-	$Email = $_POST['Email'];
-	$Password = $_POST['Password'];
-	$Contact_No = $_POST['Contact_No'];
-	$query = "UPDATE employee SET First_Name='$First_name',Last_Name='$Last_Name',Email='$Email',Contact_No='$Contact_No' WHERE Employee_ID='$_POST[Employee_ID]' AND User_Role='Hotel Manager'";
-	$query_run = mysqli_query($con, $query);
-	if ($query_run) {
-		echo '<script type="text/javascript">alert("Data Updated")</script>';
-	} else {
-		echo '<script type="text/javascript">alert("Data Updated")</script>';
+	<?php
+	include("../../config/connection.php");
+	if (isset($_POST['update'])) {
+		$First_name = $_POST['First_Name'];
+		$Last_Name = $_POST['Last_Name'];
+		$Email = $_POST['Email'];
+		$Password = $_POST['Password'];
+		$Contact_No = $_POST['Contact_No'];
+		$query = "UPDATE employee SET First_Name='$First_name',Last_Name='$Last_Name',Email='$Email',Contact_No='$Contact_No' WHERE Employee_ID='$_POST[Employee_ID]' AND User_Role='Hotel Manager'";
+		$query_run = mysqli_query($con, $query);
+		if ($query_run) {
+			echo '<script type="text/javascript">alert("Data Updated")</script>';
+		} else {
+			echo '<script type="text/javascript">alert("Data Not Updated")</script>';
+		}
 	}
-}
 
-if (isset($_POST['delete'])) {
-	$query = "DELETE FROM employee where Employee_ID='$_POST[Employee_ID]' AND User_Role='Hotel Manager'";
-	$query_run = mysqli_query($con, $query);
-	if ($query_run) {
-		echo "<script>
+	if (isset($_POST['delete'])) {
+		$query = "DELETE FROM employee where Employee_ID='$_POST[Employee_ID]' AND User_Role='Hotel Manager'";
+		$query_run = mysqli_query($con, $query);
+		if ($query_run) {
+			echo "<script>
                 alert('Hotel Manager Has been Deleted');
                 window.location.href='AdminManageCoAdmins.php';
                 </script>";
-	} else {
-		echo '<script> alert("Hotel Manager has been not deleted") </script>';
+		} else {
+			echo '<script> alert("Hotel Manager has been not deleted") </script>';
+		}
 	}
-}
-?>
+	?>
+
+	<script>
+		function funcUserDetails() {
+			document.getElementById('user-detail-container').style.display = "block";
+		}
+
+		function funcCloseUserDetails() {
+			document.getElementById('user-detail-container').style.display = "none";
+		}
+	</script>
+</body>
+
+</html>
