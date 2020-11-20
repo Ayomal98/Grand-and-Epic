@@ -5,11 +5,11 @@ if(isset($_POST['ADD'])){
     $empFname=$_POST['empFname'];
     $empSname=$_POST['empSname'];
     $empEmail=$_POST['empEmail'];    
-    $empPass=$_POST['empPass'];    
+    $password=sha1($_POST['password']);    
     $empContact=$_POST['empContact'];
     $empType=$_POST['empType'];
 
-    $sql="INSERT into employee(Employee_ID,First_Name,Last_Name,Email,Password,Contact_No,User_Role) VALUES ('".$empID."','".$empFname."','".$empSname."','".$empEmail."','".$empPass."','".$empContact."','".$empType."')";
+    $sql="INSERT into employee(Employee_ID,First_Name,Last_Name,Email,Password,Contact_No,User_Role) VALUES ('".$empID."','".$empFname."','".$empSname."','".$empEmail."','".$password."','".$empContact."','".$empType."')";
     $query_run = mysqli_query($con,$sql);
 
     if ($query_run) {
