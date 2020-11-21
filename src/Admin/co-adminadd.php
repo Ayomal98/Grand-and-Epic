@@ -15,15 +15,16 @@ if (isset($_POST['ADD'])) {
     $query_run = mysqli_query($con,$sql);
 
     if ($query_run) {
-		echo "<script>
-		alert('Hotel Manager Has been Added');
-		window.location.href='AdminManageCoAdmins.php';
-        </script>";
+		//echo "<script>
+		//alert('Hotel Manager Has been Added');
+		//window.location.href='AdminManageCoAdmins.php';
+        //</script>";
          //sending the reservation confirmation mail to the customer
        require '../../config/PHPMailer/src/Exception.php';
        require '../../config/PHPMailer/src/PHPMailer.php';
        require '../../config/PHPMailer/src/SMTP.php';
        $mail = new PHPMailer(true);
+
 
        try {
            //Server settings
@@ -34,22 +35,24 @@ if (isset($_POST['ADD'])) {
            $mail->Username   = 'grandandepic20@gmail.com';                     // SMTP username
            $mail->Password   = 'grand&epicIs05';                               // SMTP password
            $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-           $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+           $mail->Port       = 587; 
+                                         // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
            //Recipients
            $mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
-           $mail->addAddress($empEmail);     // Add a recipient            
+           $mail->addAddress($empEmail);     // Add a recipient  
+                  
 
            // Content
            $mail->isHTML(true);                                  // Set email format to HTML
            $mail->Subject = "Added";
-           $mail->Body    = "Dear Mr.{$empFname}, <br><p>Your reservation has been successfully completed.Here are the reservation details.</p><b style=\"margin-left:30px\">Your Password {$rePass}</b> <br> <b style=\"margin-left:30px\">Your Employee ID: {$empID}</b>";
+           $mail->Body    = "Dear Mr.{$empFname}, <br><p>Your reservation has been successfully completed.Here are the reservation details.</p><b style=\"margin-left:30px\">Your Password </b> <br> <b style=\"margin-left:30px\">Your Employee ID: {$empID}</b>";
            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
            $mail->send();
-           echo 'Message has been sent';
+           
+           echo '<script> alert("Message sent. Mailer Error: {$mail->ErrorInfo}") </script>';
        } catch (Exception $e) {
-           echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo '<script> alert("Message could not be sent. Mailer Error: {$mail->ErrorInfo}") </script>';
        }
       } else {
 		echo '<script> alert("Data Not Added") </script>';

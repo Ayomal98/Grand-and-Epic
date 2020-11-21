@@ -1,9 +1,10 @@
 
 body {
+	
 	font-family: "Lato", sans-serif;
 	position: relative;  
     top:0;
-    bottom:0;
+    bottom:0px;
     left:0;
     right:0;
 
@@ -11,7 +12,7 @@ body {
 
 /* Fixed sidenav, full height */
 .sidenav {
-  height: 36%;
+  height: 18%;
   width: 270px;
   position: relative;
   z-index: 1;
