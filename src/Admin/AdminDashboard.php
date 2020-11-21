@@ -29,7 +29,6 @@ $email = $_SESSION['User_Email'];
 
 		</button>
 		<div class="dropdown-container">
-
 			<a href="AdminManageCoAdmins.php">Manage Co-admins</a>
 			<a href="AdminRespondToLeaveRequests.php">Respond to Leave Requests</a>
 			<a href="AdminViewBookings.php">View Booking Details</a>

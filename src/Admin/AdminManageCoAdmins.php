@@ -7,10 +7,11 @@ $email = $_SESSION['User_Email'];
 
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
-	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
+	
 	<title>
 		Admin Manage Co-admins
 	</title>
+	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
 <body bgcolor="black">
@@ -79,13 +80,13 @@ $email = $_SESSION['User_Email'];
 		}
 	</script>
 
-	<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
+	<fieldset style=" position:absolute; top:320px; width: 75%; left:160px">
 		<legend style="color:white; font-size: 20px">Add Co-admins</legend>
 		<form action="co-adminadd.php" method="POST">
 			<table style="color:white; font-size: 20px; width:88%;">
 					<tr>
                         <td align="left">Employee ID:</td>
-                        <td align="center"><input type="text" name="empID" size="20" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="text" name="empID" size="4" class="inputs" required></td>
                     </tr>
 
 				<tr>
@@ -232,7 +233,7 @@ $email = $_SESSION['User_Email'];
 	<!--search-->
 	</form>-->
 	<form action="" method="POST" >
-						<fieldset style=" position:absolute; top:750px; left:900px; width: 35%; right:5%;">
+						<fieldset style=" position:absolute; top:790px; left:900px; width: 35%; right:5%;">
 						<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
 								<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
 								<input type="submit" class="button" name="search" value="Search by ID"></td>
@@ -293,7 +294,7 @@ $email = $_SESSION['User_Email'];
 
 
 	<!--vew-->
-	<table align="right" style="color:white; font-size: 17px; width:35%; top:750px; left:25px; position:absolute; border: 1px solid white;">
+	<table align="right" style="color:white; font-size: 17px; width:35%; top:790px; left:25px; position:absolute; border: 1px solid white;">
 		<tr>
 			<th colspan="6">
 				<h4>Employee Details</h2>
