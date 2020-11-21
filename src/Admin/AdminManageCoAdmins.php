@@ -193,12 +193,12 @@ $email = $_SESSION['User_Email'];
 		<div class="retrieve">
 		<table align="center" style = "color:white; font-size: 20px; width:88%; top:200px">-->
 
-	<tr>
+	<!--<tr>
 		<th>First Name</th>
 		<th>Last name</th>
 		<th>Email</th>
 		<th>Contact Number</th>
-	</tr> <br>
+	</tr> <br>-->
 
 	<?php
 	include("../../config/connection.php");
@@ -231,7 +231,7 @@ $email = $_SESSION['User_Email'];
 	</div>
 	</fieldset>
 	<!--search-->
-	</form>-->
+	</form>
 	<form action="" method="POST" >
 						<fieldset style=" position:absolute; top:790px; left:900px; width: 35%; right:5%;">
 						<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
