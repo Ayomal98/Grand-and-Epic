@@ -11,10 +11,16 @@ $email = $_SESSION['User_Email'];
 	<title>
 		Admin Manage Co-admins
 	</title>
+	<style>
+		body{
+			height : 1500px;
+		}
+		</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body bgcolor="black">
+<body bgcolor="black" >
+	
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
 		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
@@ -26,7 +32,7 @@ $email = $_SESSION['User_Email'];
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Manage Co-admins &#128317;
+		<button class="dropdown-btn">Manage Co-admins(H.M)
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
@@ -80,7 +86,7 @@ $email = $_SESSION['User_Email'];
 		}
 	</script>
 
-	<fieldset style=" position:absolute; top:320px; width: 75%; left:160px">
+	<fieldset style=" position:absolute; top:270px; width: 75%; left:160px">
 		<legend style="color:white; font-size: 20px">Add Co-admins</legend>
 		<form action="co-adminadd.php" method="POST">
 			<table style="color:white; font-size: 20px; width:88%;">
@@ -233,13 +239,12 @@ $email = $_SESSION['User_Email'];
 	<!--search-->
 	</form>
 	<form action="" method="POST" >
-						<fieldset style=" position:absolute; top:790px; left:900px; width: 35%; right:5%;">
+						<fieldset style=" position:absolute; top:790px; left:750px; width: 45%; right:5%;">
 						<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
 								<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
 								<input type="submit" class="button" name="search" value="Search by ID"></td>
 						</fieldset>
 				</form>
-
 
 	<?php
 	include("../../config/connection.php");
@@ -252,7 +257,7 @@ $email = $_SESSION['User_Email'];
 		while ($row = mysqli_fetch_array($query_run)) {
 	?>
 			<form action="" method="POST">
-			<fieldset style=" position:absolute; top:900px;left:900px; width: 35%;">
+			<fieldset style=" position:absolute; top:950px;left:750px; width: 45%;">
 					<table align="center" style="color:white; font-size: 20px; width:95%;">
 						<tr>
 							<td>Employee ID</td>
@@ -292,9 +297,8 @@ $email = $_SESSION['User_Email'];
 	?>
 	</table>
 
-
-	<!--vew-->
-	<table align="right" style="color:white; font-size: 17px; width:35%; top:790px; left:25px; position:absolute; border: 1px solid white;">
+	<!--view-->
+	<table align="right" style="color:white; font-size: 17px; width:40%; top:790px; left:25px; position:absolute; border: 1px solid white;">
 		<tr>
 			<th colspan="6">
 				<h4>Employee Details</h2>
@@ -327,6 +331,7 @@ $email = $_SESSION['User_Email'];
 		?>
 
 	</table>
+	
 	<?php
 	include("../../config/connection.php");
 	if (isset($_POST['update'])) {
@@ -367,6 +372,7 @@ $email = $_SESSION['User_Email'];
 			document.getElementById('user-detail-container').style.display = "none";
 		}
 	</script>
+	
 </body>
 
 </html>
