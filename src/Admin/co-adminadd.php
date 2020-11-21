@@ -48,6 +48,7 @@ if (isset($_POST['ADD'])) {
            $mail->Subject = "Added";
            $mail->Body    = "Dear Mr.{$empFname}, <br><p>Your reservation has been successfully completed.Here are the reservation details.</p><b style=\"margin-left:30px\">Your Password </b> <br> <b style=\"margin-left:30px\">Your Employee ID: {$empID}</b>";
            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+          
            $mail->send();
            
            echo '<script> alert("Message sent. Mailer Error: {$mail->ErrorInfo}") </script>';

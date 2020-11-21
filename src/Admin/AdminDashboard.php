@@ -7,16 +7,23 @@ $email = $_SESSION['User_Email'];
 
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
+	
 	<title>
-		Admin Dashboard
+		Admin Manage Co-admins
 	</title>
+	<style>
+		body{
+			height : 1500px;
+		}
+		</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body bgcolor="black">
+<body bgcolor="black" >
+	
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
-		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
 			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
@@ -25,26 +32,38 @@ $email = $_SESSION['User_Email'];
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Dashboard &#128317;
-
+		<button class="dropdown-btn">Admin Dashboard
+			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-			<a href="AdminManageCoAdmins.php">Manage Co-admins</a>
-			<a href="AdminRespondToLeaveRequests.php">Respond to Leave Requests</a>
-			<a href="AdminViewBookings.php">View Booking Details</a>
-			<a href="AdminManageContent.ph">Manage Content on Website</a>
-			<a href="AdminAddPromotion.php">Add Promotion</a>
-			<a href="AdminViewStats.php">View Stats</a>
+			<a href="AdminManageCoAdmins.php">
+				<font size="4 px">Manage Co-admins(H.M)</font>
+			</a>
+			<a href="AdminRespondToLeaveRequests.php">
+				<font size="4px">Respond to Leave Requests</font>
+			</a>
+			<a href="AdminViewBookings.php">
+				<font size="4 px">View Booking Details</font>
+			</a>
+			<a href="AdminManageContent.php">
+				<font size="4 px">Manage Content on web-site</font>
+			</a>
+			<a href="AdminAddPromotion.php">
+				<font size="4 px">Add promotion</font>
+			</a>
+			<a href="AdminViewStats.php">
+				<font size="4 px">View Stats</font>
+			</a>
 		</div>
 	</div>
 	<div class="top-right">
 		<table width="100%">
 			<tr>
 				<td>
-
+					
 				</td>
 				<td>
-					<img src="../../public/images/ayomal.png" height="40%">
+				<img src="../../public/images/Uvini.png" height="25%">
 				</td>
 			</tr>
 		</table>
