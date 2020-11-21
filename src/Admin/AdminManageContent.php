@@ -7,40 +7,46 @@ $email = $_SESSION['User_Email'];
 
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
-	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
+	
 	<title>
-		Admin Manage Content on Website
+		Admin Manage Co-admins
 	</title>
+	<style>
+		body{
+			height : 1500px;
+		}
+		</style>
+	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body bgcolor="black">
-
+<body bgcolor="black" >
+	
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
-		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in  $username"; ?></P>
+			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Manage Content on Website &#128317;
+		<button class="dropdown-btn">Manage Contents
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
 			<a href="AdminDashboard.php">
 				<font size="4 px">Dashboard</font>
 			</a>
-			<a href="AdminManageCoAdmins.php">
-				<font size="4px">Manage Co-admins</font>
-			</a>
 			<a href="AdminRespondToLeaveRequests.php">
-				<font size="4 px">Respond to Leave Requests</font>
+				<font size="4px">Respond to Leave Requests</font>
 			</a>
 			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
+			</a>
+			<a href="AdminManageCoAdmins.php">
+				<font size="4 px">Manage Co-Admins</font>
 			</a>
 			<a href="AdminAddPromotion.php">
 				<font size="4 px">Add promotion</font>
@@ -54,7 +60,10 @@ $email = $_SESSION['User_Email'];
 		<table width="100%">
 			<tr>
 				<td>
-					<img src="../../public/images/ayomal.png" height="40%">
+					
+				</td>
+				<td>
+				<img src="../../public/images/Uvini.png" height="25%">
 				</td>
 			</tr>
 		</table>
@@ -76,6 +85,7 @@ $email = $_SESSION['User_Email'];
 			});
 		}
 	</script>
+
 	<form>
 		<fieldset style=" position:absolute; top:280px; width: 98%;">
 			<legend style="color:white; font-size: 30px">Add New Post</legend>

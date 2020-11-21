@@ -63,7 +63,7 @@ $email = $_SESSION['User_Email'];
 					
 				</td>
 				<td>
-					<img src="../../public/images/ayomal.png" height="40%">
+				<img src="../../public/images/Uvini.png" height="25%">
 				</td>
 			</tr>
 		</table>
