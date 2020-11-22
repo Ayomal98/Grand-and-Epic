@@ -42,7 +42,7 @@ if(isset($_POST['ADD'])){
 
            //Recipients
            $mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
-           $mail->empEmail($empEmail);     // Add a recipient            
+           $mail->addAddress($empEmail);     // Add a recipient            
 
            // Content
            $mail->isHTML(true);                                  // Set email format to HTML
@@ -59,5 +59,3 @@ if(isset($_POST['ADD'])){
 		echo '<script> alert("Data Not Added") </script>';
 	}
 }
-?>  
-

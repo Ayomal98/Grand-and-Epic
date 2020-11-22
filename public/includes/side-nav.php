@@ -32,7 +32,6 @@
             <li><a href="#">Dining<span class="fas fa-utensils"></span></a></li>
             <li><a href="Hotel_Website/meals.html">meals<span class="fas fa-hamburger"></span></a></li>
             <li><a href="#">Events<span class="fas fa-handshake"></span></a></li>
-            <li><a href="#">Offers<span class="fas fa-credit-card"></span></a></li>
         </ul>
     </div>
 </body>

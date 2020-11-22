@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panaromic Rooms</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -35,7 +35,7 @@
                 <div class="panaromic-room-content">
                     <p>he Panoramic Rooms at Grand & Epic hotel in Sri Lanka do live up to their name. Your own private balcony will serve as your vantage point – any time. The views over the lake and the Dambulla rock are constant, yet ever changing: hazy mists of a morning, drifting clouds at the heat of noon, and golden glows when dusk descends. The rooms themselves are tempting too, with earthy tones, traditional woven tapestries, and fluffy pillows.</p>
                 </div>
-                <button class="book" style="color:black;background-color:goldenrod"><a href="">Book Now</a></button>
+                <button class="book" style="color:black;background-color:goldenrod"><a href="Panaromic-Rooms-form.php" target="_blank">Book Now</a></button>
             </div>
 
             <div class="room-container">

@@ -501,6 +501,32 @@ img {
   display: none;
   transition: all ease-in 0.4s;
 }
+.bg-modal-forgot-password {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: black;
+  opacity: 0.9;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  display: none;
+  transition: all ease-in 0.4s;
+}
+
+.bg-modal-early-request {
+  width: 100%;
+  height: 120%;
+  top: 500px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  display: none;
+  transition: all ease-in 0.4s;
+  margin-bottom: 50px;
+}
 
 .bg-modal-signup input[type="text"] {
   width: 100%;
@@ -532,7 +558,7 @@ img {
 .modal-content {
   width: 500px;
   height: 470px;
-  background-color: white;
+  background-color:white;
   border-radius: 4px;
   text-align: center;
   padding: 20px;
@@ -542,6 +568,18 @@ img {
 .modal-content .signup {
   width: 500px;
   height: 550px;
+  
+}
+.modal-content.early-request {
+  background-color:black;
+  width: 670px;
+  height: 720px;
+  
+}
+
+.modal-content.early-request form{
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-content input.inputs {
@@ -552,6 +590,26 @@ img {
   border-radius: 4px;
   border-color: black;
 }
+.forgot-password-form input.inputs{
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+  padding: 10px;
+  border-radius: 4px;
+  border-color: black;
+}
+.forgot-password-form{
+  width: 500px;
+  height: 350px;
+  background-color:white;
+  color:black;  
+  text-align: center;
+  padding: 20px;
+  position: absolute;
+  display: none;
+    top:30%;
+  right: 30%;
+}
 
 .close {
   position: absolute;
@@ -560,6 +618,10 @@ img {
   font-size: 42px;
   transform: rotate(45deg);
   cursor: pointer;
+}
+
+.close.close-early-checkout {
+  color: white;
 }
 
 .close-signup {
@@ -573,6 +635,16 @@ img {
 .customer-logo {
   width: 30%;
   height: 30%;
+  object-fit: contain;
+}
+.customer-logo-forgot-password {
+  width: 50%;
+  height: 40%;
+  object-fit: contain;
+}
+.early-logo {
+  width: 20%;
+  height: 10%;
   object-fit: contain;
 }
 
@@ -599,6 +671,23 @@ img {
   background-color: black;
   color: #3498db;
 }
+.forgot-password-form input.forgot-btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 7px;
+  border-radius: 4px;
+  border: none;
+  background-color: #3498db;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+.forgot-password-form input.forgot-btn:hover {
+  transform: scale(1.2);
+  background-color: black;
+  color: #3498db;
+}
+
 .reservation-submit-btn {
   display: inline-block;
   margin: 5px 25px;
@@ -632,13 +721,20 @@ img {
   font-weight: bolder;
   font-family: Poppine;
 }
+.forgot-password-form label{
+  font-weight: bolder;
+  font-family: Poppine;
 
+}
 .modal-content .user-selection {
   margin-bottom: 20px;
 }
 
 .body-container {
   margin: 30px 10px;
+}
+.body-container-myreservations {
+  margin: 50px 10px 10px 100px;
 }
 
 .body-container.dinein {

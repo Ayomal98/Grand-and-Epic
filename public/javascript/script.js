@@ -38,3 +38,15 @@ document.getElementById("btn-signup").addEventListener("click", function () {
 document.querySelector(".close-signup").addEventListener("click", function () {
   document.querySelector(".bg-modal-signup").style.display = "none";
 });
+
+//to display the forget password form
+function diplayForgetPassword(){
+  document.querySelector(".bg-modal").style.display="none";
+  document.querySelector(".bg-modal-forgot-password").style.display="block";
+  document.querySelector(".forgot-password-form").style.display="block";
+}
+
+//to close the forget password form
+function closeForgotForm(){
+  document.querySelector(".bg-modal-forgot-password").style.display="none";
+}

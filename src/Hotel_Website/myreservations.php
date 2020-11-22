@@ -47,42 +47,48 @@ $email = $_SESSION['User_Email'];
             </span>
         </div>
     </div>
-    <div class="body-container">
-        <h3>Upcoming Reservations</h2>
-            <div class="userBookings upcoming" id="user-bookings">
-                <div class="upcomig-reservation-box">
-                    <span style="font-weight: bold;font-size:20px;">Reservation-type : &nbsp; <span>Staying-in</span></span>
-                    <span style="font-weight: bold;font-size:20px;">Room Number : Suite-12</span>
-                    <span style="font-weight: bold;font-size:20px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
-                    <span style="font-weight: bold;font-size:20px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
-                    <span style="font-weight: bold;font-size:20px;">Check-Out Date: &nbsp;<span>21st of November 2020</span></span>
-                    <span style="font-weight: bold;font-size:20px;">Check-Out Time: &nbsp;<span>2.00 P.M</span></span>
-                    <span style="font-weight: bold;font-size:20px;">Amount Paid: Rs. 16,000/=</span>
-                    <span style="font-weight: bold;font-size:20px;">Amount left to paid: Rs.64,000/=</span>
-                    <div class="book-btn-container">
-                        <button class="book update" style="padding: 15px 20px 45px 20px;font-size:15px;margin-left:10px;width:40%;height:40%;text-align:center;">Request Early Checkouts</button>
-                        <button class="book delete" style="padding: 15px 20px 45px 20px;font-size:15px;width:40%;height:40%;text-align:center;margin-top:12px;">Cancel Reservation</button>
-                    </div>
-                </div>
-                <?php
-                $table_no;
-                $date;
-                $time;
-                $numguests;
-                preg_match_all("/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i", $email, $matches); //to convert text type email into email type
-                $email1 = ($matches[0][0]);
-                $query = "SELECT Dinein_ID,Table_No,Date,Time,Num_Guests FROM dinein_booking WHERE Customer_Email ='$email1' ";
+    <div class="body-container-myreservations">
+        <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:750px;"></i>
+        <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
 
-                $result = mysqli_query($con, $query);
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $dinein_id = $row['Dinein_ID'];
-                        $table_no = $row['Table_No'];
-                        $_SESSION['table_no'] = $table_no;
-                        $date = $row['Date'];
-                        $time = $row['Time'];
-                        $numguests = $row['Num_Guests'];
-                        echo "<div class=\"upcomig-reservation-box\">
+        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:120px;cursor:pointer;">
+    </div>
+    <h3><u>Upcoming Reservations</u></h3>
+    <div class="userBookings upcoming" id="user-bookings">
+        <div class="upcomig-reservation-box">
+            <span style="font-weight: bold;font-size:20px;">Room Number : Suite-12</span>
+            <span style="font-weight: bold;font-size:20px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:20px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:20px;">Check-Out Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:20px;">Check-Out Time: &nbsp;<span>2.00 P.M</span></span>
+            <span style="font-weight: bold;font-size:20px;">Amount Paid: Rs. 16,000/=</span>
+            <span style="font-weight: bold;font-size:20px;">Amount left to paid: Rs.64,000/=</span>
+            <div class="book-btn-container">
+                <button class="book update" style="padding: 15px 20px 45px 20px;font-size:15px;margin-left:10px;width:40%;height:40%;text-align:center;" id="btn-early-checkout">Request Early Checkouts</button>
+                <button class="book delete" style="padding: 15px 20px 45px 20px;font-size:15px;width:40%;height:40%;text-align:center;margin-top:12px;">Cancel Reservation</button>
+            </div>
+        </div>
+        <?php include("./request-early-checkout-form.php") ?>
+        <!-- Including the early-checkout request form -->
+        <?php
+        $table_no;
+        $date;
+        $time;
+        $numguests;
+        preg_match_all("/[\._a-zA-Z0-9-]+@[\._a-zA-Z0-9-]+/i", $email, $matches); //to convert text type email into email type
+        $email1 = ($matches[0][0]);
+        $query = "SELECT Dinein_ID,Table_No,Date,Time,Num_Guests FROM dinein_booking WHERE Customer_Email ='$email1' ";
+
+        $result = mysqli_query($con, $query);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $dinein_id = $row['Dinein_ID'];
+                $table_no = $row['Table_No'];
+                $_SESSION['table_no'] = $table_no;
+                $date = $row['Date'];
+                $time = $row['Time'];
+                $numguests = $row['Num_Guests'];
+                echo "<div class=\"upcomig-reservation-box\">
                             <form action=\"update-delete-dinein.php\" method=\"POST\" id=\"showData\">
                                 <div style=\"margin-top:-25px;margin-bottom:5px;display:flex;flex-direction:row\">
                                     <div style=\"display:inline-block;\">    
@@ -114,10 +120,11 @@ $email = $_SESSION['User_Email'];
                                 </div>    
                             </form>
                             </div>";
-                    }
-                }
-                ?>
-            </div>
+            }
+        }
+        ?>
+        <h3>Past Reservations</h3>
+    </div>
     </div>
     </div>
     <?php include("../../public/includes/footer-footer.php"); ?>
@@ -138,6 +145,15 @@ $email = $_SESSION['User_Email'];
         //     const request=new XMLHttpRequest();
         //     request.open('post','update-delete-dinein.php')
         // })
+
+        //to display the early checkout form
+        document.getElementById('btn-early-checkout').addEventListener("click", function() {
+            document.querySelector(".bg-modal-early-request").style.display = "flex";
+        })
+        //to close the early checkout form
+        document.querySelector(".close-early-checkout").addEventListener("click", function() {
+            document.querySelector(".bg-modal-early-request").style.display = "none";
+        })
     </script>
 </body>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
 </head>
 
@@ -13,7 +13,7 @@
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-section image">
-                    <img src="../Images/Hotel-logo.png" alt="" class="logo-hotel" style="width:55%;height:50%;background-position:center;">
+                    <img src="../images/Hotel-logo.png" alt="" class="logo-hotel" style="width:55%;height:50%;background-position:center;">
                 </div>
                 <div class="footer-section about">
                     <h1 class="logo-text"><span style="color:thistle;font-size:34px">GRAND</span>&nbsp;<span style="font-size: 25px;">& Epic</span></h1><br>

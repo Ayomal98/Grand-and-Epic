@@ -23,7 +23,7 @@
                 </span>
             </div>
             <?php include('./login-signup-template.php'); ?>
-
+            <?php include('./forgotpassword.php'); ?>
         </div>
         <div class="body-container">
             <h3>Bookings</h3><br />
@@ -54,31 +54,25 @@
                 <span class="fas fa-user" id="customer-icon"></span>
                 <div class="box-heading">Loyalty Offer</div>
                 <div class="box-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, ex assumenda dolor aliquid, sequi recusandae voluptas </div>
-                <a href="">
-                    <box class="link">Read more</box>
-                </a>
+
             </div>
             <div class="box">
                 <span class="fab fa-cc-visa" id="creditcard-icon"></span>
                 <div class="box-heading">Credit-Card Offer</div>
                 <div class="box-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, ex assumenda dolor aliquid, sequi recusandae voluptas </div>
-                <a href="">
-                    <box class="link">Read more</box>
-                </a>
+
             </div>
             <div class="box">
                 <span class="fas fa-hourglass-end" id="lastmin-icon"></span>
                 <div class="box-heading">Last-Miniute Offer</div>
                 <div class="box-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, ex assumenda dolor aliquid, sequi recusandae voluptas </div>
-                <a href="">
-                    <box class="link">Read more</box>
-                </a>
             </div>
         </div>
     </div>
     <?php include("../../public/includes/footer-index.php"); ?>
     <script src="../../public/javascript/script.js"></script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
+
 </body>
 
 </html>

@@ -25,8 +25,8 @@
                     </select>
                 </div>
                 <input type="text" name="email" placeholder="Email" class="inputs" id="login-customer-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                <input type="password" name="password" placeholder="Password" class="inputs" required>
-                <a href=""><span style="font-weight: bold; color:black;">Forgot your password ?</span></a><br />
+                <input type="password" name="password" placeholder="Password" class="inputs" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                <a href="#" onclick="diplayForgetPassword()"><span style="font-weight: bold; color:black;">Forgot your password ?</span></a><br />
                 <input type="submit" value="Submit" name="Submit" class="log-btn submit">
                 <input type="reset" value="Cancel" name="Cancel" class="log-btn cancel">
 
@@ -42,7 +42,7 @@
                 <input type="text" name="firstname" placeholder="First Name" class="inputs" pattern="[A-Za-z]{1,32}" required>
                 <input type="text" name="lastname" placeholder="Last Name" class="inputs" pattern="[A-Za-z]{1,32}" required>
                 <input type="text" name="email" placeholder="Email" class="inputs" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                <input type="password" name="password" placeholder="Password" class="inputs" required>
+                <input type="password" name="password" placeholder="Password" class="inputs" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                 <input type="text" name="contactNum" placeholder="Contact-number" pattern="[0][0-9]{9}" class="inputs" required>
                 <input type="submit" value="Submit" name="Submit" class="log-btn submit">
                 <input type="reset" value="Cancel" name="Cancel" class="log-btn cancel">
