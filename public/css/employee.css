@@ -12,7 +12,7 @@ body {
 
 /* Fixed sidenav, full height */
 .sidenav {
-  height: 18%;
+	height:250px;
   width: 270px;
   position: relative;
   z-index: 1;
