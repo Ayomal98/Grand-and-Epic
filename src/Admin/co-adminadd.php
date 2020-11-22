@@ -15,10 +15,10 @@ if (isset($_POST['ADD'])) {
     $query_run = mysqli_query($con,$sql);
 
     if ($query_run) {
-		//echo "<script>
-		//alert('Hotel Manager Has been Added');
-		//window.location.href='AdminManageCoAdmins.php';
-        //</script>";
+	echo "<script>
+		alert('Hotel Manager Has been Added');
+		window.location.href='AdminManageCoAdmins.php';
+        </script>";
          //sending the reservation confirmation mail to the customer
        require '../../config/PHPMailer/src/Exception.php';
        require '../../config/PHPMailer/src/PHPMailer.php';
