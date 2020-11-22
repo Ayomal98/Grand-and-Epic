@@ -80,16 +80,16 @@ $email = $_SESSION['User_Email'];
 	<table style="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;">
 		<tr>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;">Assign Employee Tasks</p>
+				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a></p>
 			</th>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;">Manage Meals</p>
+				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorManageMeals.php">Manage Meals</a></p>
 			</th>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;">Manage Set Menu</p>
+				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorManageSetMenus.php">Manage Set Menu</a></p>
 			</th>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;">Request a Leave</p>
+				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorLeaveRequest.php">Request a Leave</a></p>
 			</th>
 		</tr>
 		<tr>
