@@ -190,6 +190,15 @@ $email = $_SESSION['User_Email'];
 							<td>
 								<select id="mttypes" name="mealtype" class="inputs" style="margin: 8px 2px;">
 									<option value disabled selected>Select a Meal Type</option>
+										<option value="None"
+											<?php
+											if($row["Meal_Type"]=='None')
+											{
+												echo "selected";
+											}
+											?>	
+										>None</option>
+
 										<option value="Breakfast"
 											<?php
 											if($row["Meal_Type"]=='Breakfast')

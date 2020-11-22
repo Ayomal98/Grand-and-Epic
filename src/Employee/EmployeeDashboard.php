@@ -85,13 +85,13 @@ $email = $_SESSION['User_Email'];
 	<table style ="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;" >
 		<tr>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Request a Leave</p>		
+			<p style = "font-family :Lato; font-size:20px;"><a href="EmployeeLeaveRequest.php">Request a Leave</a></p>		
 		</th>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">View Duty Roaster</p>		
+			<p style = "font-family :Lato; font-size:20px;"><a href="EmployeeDutyRoaster.php">View Duty Roaster</a></p>		
 		</th>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">View Customer Feedback</p>		
+			<p style = "font-family :Lato; font-size:20px;"><a href="EmloyeeViewCustomerFeedback.php">View Customer Feedback</a></p>		
 		</th>
 		</tr>
 		<tr>
