@@ -1,3 +1,4 @@
+<!-- This page consists of staying in page for not logged in customers -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +22,7 @@
                 </span>
             </div>
             <?php include('login-signup-template.php'); ?>
+            <?php include('forgotpassword.php'); ?>
         </div>
         <div class="body-container accomodations">
             <div class="accomodation-wrapper">

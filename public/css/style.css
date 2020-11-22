@@ -1545,27 +1545,30 @@ form.staying-in-form > label {
   flex-direction: column;
   margin: 70px 30px;
 }
-.event-meal-selection-btn-before {
-  display: none;
-}
-.event-meal-selection-btn-before.after {
+.event-meal-selection-btn{
   display: inline-block;
   position: absolute;
   top: 500px;
-  padding: 8px;
+  padding: 15px;
   left: 50%;
   cursor: pointer;
-}
-
-.event-meal-selection-btn-before.after:hover {
   background-color: #b88b4a;
+  border: none;
   color: white;
+}
+.cancel-evt-btn{
+  left: 40%;
+  padding: 15px 20px;
+}
+.event-meal-selection-btn:hover {
+  background-color:white;
+  color:#b88b4a;
   transition: 0.7;
 }
 
 .cancel-evt-btn:hover {
-  background-color: #b88b4a;
-  color: white;
+  background-color: white;
+  color:#b88b4a;
   transition: 0.7;
 }
 
@@ -1861,6 +1864,16 @@ span.suite-icon-label {
   border-radius: 50%;
   right:6%;
   font-size: 14px;
+  top: 133%
+}
+.amount-set-menu{
+  border: none;
+  background-color: #3498db ;
+  color: white;
+  max-width: 60%;
+  height: 60px;
+  padding: 15px;
+  font-size: 25px;
 }
 .customize-type:selected{
   background-color: #b88b4a ;

@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Events Booking Form</title>
     <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="background:url('../../images/pexels-agung-pandit-wiguna-2788488.jpg');width:100%;height:100%;background-size:cover">
+<body style="background:url('../../public/images/pexels-agung-pandit-wiguna-2788488.jpg');width:100%;height:100%;background-size:cover">
     <div class="events-booking-form">
         <form action="" method="post">
             <h2 style="position:absolute;top:50px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
@@ -19,18 +19,13 @@
                 <input type="number" name="number-of-guests" placeholder="No-Guests" style="padding:10px;margin:10px;width:130px;" min="30" max="250" step="1" style="width:110px;" required>
             </div>
             <div class="events-booking-wrapper">
-                <label for="type-of-reservation" style="font-size:25px;position:absolute;top:210px;left:30%">Reservation Type</label>
-                <i class="fas fa-glass-cheers" style="position: absolute;top:185px;left:35%"></i>
-                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:210px;left:42%;padding:5px;">
+                <label for="type-of-reservation" style="font-size:25px;position:absolute;top:210px;left:40%">Reservation Type</label>
+                <i class="fas fa-glass-cheers" style="position: absolute;top:190px;left:45%"></i>
+                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:210px;left:52%;padding:5px;">
                     <option value="Weddings">Wedding</option>
                     <option value="Parties">Party</option>
                 </select>
-                <label for="type-of-meal" style="position: absolute;top:210px;left:52%;font-size:25px" ">Type Of Meal</label>
-                <i class=" fas fa-utensils" style="position: absolute;top:185px;left:55%"></i>
-                    <select name=" meal-type" id="std-cus-meal" style="position:absolute;top:210px;left:62%;padding:5px " onclick="mealSelection()">
-                        <option value="Set-Menu">Set Menu</option>
-                        <option value="Customized">Customized</option>
-                    </select>
+
             </div>
             <div class="date-time-details">
                 <div class="date-container">
@@ -59,23 +54,47 @@
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:65%">Champaigne Tables</label>
                 <input type="checkbox" name="DJ-Music" id="" style="font-size: 20px;position:absolute;top:445px;left:73%;cursor:pointer">
             </div>
-            <label for=""></label><input type="button" value="See-Price" id="See-Price" name="See-Price-btn" onclick="seePrice()" style="position: absolute;top:90px;right:140px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;">
+
             <div class="payment-cancel-btns">
-                <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:100px;left:140px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;">
+                <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:100px;left:140px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
                 <div class="payment-cancel-btns">
-                    <input type="submit" value="Book-Now" name="Book-btn" id="book-btn" class="book-evt-btn" style="display:inline-block; position: absolute;top:500px;padding:8px;left:50%;cursor:pointer">
-                    <a href="meal-selection.html"><input type="button" id="meal-btn" value="Meal-Selection" name="Meal-btn" class="event-meal-selection-btn-before"></a>
-                    <input type="reset" value="Cancel" name="Cancel-btn" class="cancel-evt-btn" style="position: absolute;top:500px; padding:8px;left:40%;cursor:pointer">
+                    <a href="meal-selection.php"><input type="button" id="meal-btn" value="Proceed to Meal-Selection" name="Meal-btn" class="event-meal-selection-btn"></a>
+                    <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
-                <div class="payment-shower" style="display: none;" id="payment-shower">
-                    <div class="close">+</div>
-                    <h1 style="font-size:22px;text-align:center;margin-right:8px;">Payment & Reservation Details</h1>
-                    <h2 style="font-size:15px;font-weight:lighter;margin-right:10px;margin-top:20px;margin-left:-75px;">Starting Time : <span style="font-weight: bold;"> 1.30 P.M. </span></h2>
-                    <h2 style="font-size:15px;font-weight:lighter;margin-left:-90px;margin-top:20px;">Ending Time:<span style="font-weight: bold;">6.30 P.M.</span></h2>
-                    <h2 style="font-size:15px;font-weight:lighter;margin-left:-95px;margin-top:20px;">Number Of Guests:<span style="font-weight: bold;">60</span></h2>
-                    <h2 style="font-size:15px;font-weight:lighter;margin-left:-40px;margin-top:20px;">Price For Location:<span style="font-weight: bold;">Rs.50,000/=</span></h2>
-                    <h2 style="font-size:15px;font-weight:lighter;margin-left:-55px;margin-top:20px;">Price For Meal:<span style="font-weight: bold;"> Rs.30,000/=</span></h2>
-                    <h2 style="font-size:15px;font-weight:lighter;margin-left:-45px;margin-top:20px;">Advance amount :<span style="font-weight: bold;"> Rs.16,000/=</span></h2>
+                <div class="check-availability-shower" style="display:none;background-color:white;left:2.5%;top:25%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
+                    <div><i class="fas fa-times-circle" style="position:absolute;top:5%;left:90%;color:black;font-size:20px;cursor:pointer" onclick="closeAvailability()"></i></div>
+                    <div style="text-align: center;"><i class="fas fa-less-than" style="color:black;position:absolute;left:15%;top:15%"></i><span style="color: black;font-weight:bolder;font-size:25px;position:absolute;top:12%;left:25%">26th November</span><i class="fas fa-greater-than" style="color:black;position:absolute;left:75%;top:15%"></i></div>
+                    <table border="1px solid black" style="background-color: black;position:absolute;top:30%;left:10%;border-radius:5px;">
+                        <thead>
+                            <tr>
+                                <th style="padding:5px">Starting Time</th>
+                                <th style="padding:5px">Ending Time</th>
+                                <th style="padding:5px">Availability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 5px;">8.00 A.M</td>
+                                <td style="padding: 5px;">11.00 A.M</td>
+                                <td style="padding: 5px 10px;"><i class="fa fa-times" aria-hidden="true"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px;">12.00 P.M</td>
+                                <td style="padding: 5px;">3.00 P.M</td>
+                                <td style="padding: 5px 10px;"><i class="fa fa-times" aria-hidden="true"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px;">3.00 P.M</td>
+                                <td style="padding: 5px;">12.00 A.M</td>
+                                <td style="padding: 5px 10px;"><i class="fas fa-check"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="color: black;position:absolute;right:8%;top:82%"><i class="fa fa-times"><span style="margin-left: 10px;">Not Available</span></i></div>
+                    <div style="color: black;position:absolute;right:16%;top:92%"><i class="fas fa-check"><span style="margin-left: 5px;">Available</span></i></div>
+                    <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
                 </div>
         </form>
     </div>
@@ -94,32 +113,13 @@
         today = yy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("min", today);
 
-        //--    for displaying the meal button according to the selection of meal type --
-        function mealSelection() {
-            var mealType = document.getElementById('std-cus-meal').value;
-            if (mealType == 'Customized') {
-                document.getElementById('book-btn').setAttribute('style', 'display:none');
-                document.getElementById('meal-btn').classList.add("after");
-            }
-
-            if (mealType == 'Set-Menu') {
-                document.getElementById('meal-btn').className = "event-meal-selection-btn-before";
-                document.getElementById('book-btn').setAttribute('style', 'display:block');
-            }
-
+        //to show the check availability
+        function checkAvailability() {
+            document.getElementById('check-availability-shower').style.display = 'block';
         }
 
-        function seePrice() {
-            document.getElementById('payment-shower').setAttribute('style', 'display-flex');
-            document.getElementById('payment-shower').style.borderRadius = ' 10px';
-            document.getElementById('payment-shower').style.padding = ' 5px';
-        }
-        document.querySelector(".close").addEventListener("click", function() {
-            document.querySelector(".payment-shower").style.display = "none";
-        });
-
-        function displayCalender() {
-            document.getElementById('date-picker').style.display = 'block';
+        function closeAvailability() {
+            document.getElementById('check-availability-shower').style.display = 'none';
         }
     </script>
 </body>

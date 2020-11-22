@@ -71,7 +71,7 @@ $email = $_SESSION['User_Email'];
             </div>
             <div class="box">
                 <span class="fab fa-cc-visa" id="creditcard-icon"></span>
-                <div class="box-heading">Credit-Card Offer</div>
+                <div class="box-heading">Seasonal Offer</div>
                 <div class="box-content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, ex assumenda dolor aliquid, sequi recusandae voluptas </div>
                 <box class="link">Read more</box>
             </div>

@@ -31,9 +31,9 @@
                 <li><a href="Superior-Rooms-login.php">Superior Rooms</a></li>
             </ul>
             <li><a href="dinein-login.php">Dining<span class="fas fa-utensils"></span></a></li>
-            <li><a href="../../src/Hotel_Website/meals-login.php">meals<span class="fas fa-hamburger"></span></a></li>
-            <li><a href="../../src/Hotel_Website/events-login.php">Events<span class="fas fa-handshake"></span></a></li>
-            <li><a href="../../src/Hotel_Website/myreservations.php">My Reservations<span class="fa fa-user"></span></a></li>
+            <li><a href="meals-login.php">meals<span class="fas fa-hamburger"></span></a></li>
+            <li><a href="events-login.php">Events<span class="fas fa-handshake"></span></a></li>
+            <li><a href="myreservations.php">My Reservations<span class="fa fa-user"></span></a></li>
         </ul>
     </div>
 </body>

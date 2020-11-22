@@ -1,3 +1,4 @@
+<!-- This page consists of staying in page for logged in customers -->
 <?php
 session_start();
 $username = $_SESSION['First_Name'];

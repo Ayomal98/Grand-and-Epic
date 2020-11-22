@@ -44,6 +44,9 @@
                         <a href="#" style="color:white">
                             <li>Events &nbsp;<span class="fas fa-handshake"></span></li>
                         </a>
+                        <a href="../../public/includes/Terms_and_Conditions - Grand and Epic.pdf" style="color:white" download>
+                            <li>Terms & Conditions &nbsp;<span class="class=" fa fa-gavel""></span></li>
+                        </a>
                     </ul>
                 </div>
             </div>
