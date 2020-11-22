@@ -11,11 +11,7 @@ $email = $_SESSION['User_Email'];
 	<title>
 		Admin Manage Co-admins
 	</title>
-	<style>
-		body{
-			height : 1500px;
-		}
-		</style>
+	
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -121,7 +117,7 @@ $email = $_SESSION['User_Email'];
 				<tr>
 					<td align="right">
 						<input type="submit" name="ADD" class="button" value="  ADD  ">
-						<input type="reset" class="button" value="  Reset " name="reset" form="manager_form">
+						<input type="reset" class="button" value="  RESET " name="reset">
 					</td>
 				</tr>
 			</table>
@@ -258,7 +254,7 @@ $email = $_SESSION['User_Email'];
 	?>
 			<form action="" method="POST">
 			<fieldset style=" position:absolute; top:950px;left:750px; width: 45%;">
-					<table align="center" style="color:white; font-size: 20px; width:95%;">
+					<table align="left" style="color:white; font-size: 20px; width:110%;">
 						<tr>
 							<td>Employee ID</td>
 							<td><input type="int" name="Employee_ID" value="<?php echo $row['Employee_ID'] ?>" /></td>
@@ -280,8 +276,9 @@ $email = $_SESSION['User_Email'];
 							<td><input type="text" name="Contact_No" value="<?php echo $row['Contact_No'] ?>" /></td>
 						</tr>
 						<tr>
-						<td align="center" style="width:40%;">
+						<td align="center" style="width:50%;">
 								<input type="submit" class="button" name="update" value="UPDATE">
+								<input type="reset" class="button" value="  RESET " name="reset">
 								<input type="submit" class="button" name="delete" value="DELETE">
 							</td>
 
@@ -298,7 +295,7 @@ $email = $_SESSION['User_Email'];
 	</table>
 
 	<!--view-->
-	<table align="right" style="color:white; font-size: 17px; width:40%; top:790px; left:25px; position:absolute; border: 1px solid white;">
+	<table align="right" style="color:white; font-size: 17px; width:40%; top:790px; left:25px; position:absolute; border: 1px solid white; margin-bottom:50px">
 		<tr>
 			<th colspan="6">
 				<h4>Employee Details</h2>
