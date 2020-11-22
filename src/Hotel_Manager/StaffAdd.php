@@ -9,7 +9,8 @@ if(isset($_POST['ADD'])){
     $empID=$_POST['empID'];
     $empFname=$_POST['empFname'];
     $empSname=$_POST['empSname'];
-    $empEmail=$_POST['empEmail'];    
+    $empEmail=$_POST['empEmail'];   
+    $rePass=$_POST['empPass'];
     $empPass=md5($_POST['empPass']);    
     $empContact=$_POST['empContact'];
     $empType=$_POST['empType'];
@@ -42,12 +43,12 @@ if(isset($_POST['ADD'])){
 
            //Recipients
            $mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
-           $mail->empEmail($empEmail);     // Add a recipient            
+           $mail->addAddress($empEmail);     // Add a recipient            
 
            // Content
            $mail->isHTML(true);                                  // Set email format to HTML
-           $mail->Subject = "Added";
-           $mail->Body    = "Dear Mr.{$empFname}, <br><p>Your reservation has been successfully completed.Here are the reservation details.</p><b style=\"margin-left:30px\">Your Password {$empPass}</b> <br> <b style=\"margin-left:30px\">Your Employee ID: {$empID}</b>";
+           $mail->Subject = "Account has been Created - Grand & Epic";
+           $mail->Body    = "Dear {$empFname}, <p>Welcome to Grand & Epic Family.<p><p>Your data have successfully been added to the Company's System.Here are the Sign-In details.</p><b style=\"margin-left:30px\">Your Password: {$rePass}</b> <br> <b style=\"margin-left:30px\">Your Employee ID: {$empID}</b>";
            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
            $mail->send();
