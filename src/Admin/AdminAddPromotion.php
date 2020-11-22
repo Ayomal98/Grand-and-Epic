@@ -221,7 +221,7 @@ $email = $_SESSION['User_Email'];
 		</table>
 	</table>
 
-	<table style="position:absolute; top : 1000px; width:350px;width : 86%;">
+	<table style="position:absolute; top : 1000px; width:350px;width : 86%;margin-bottom:50px">
 		<tr>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">To View Booking Analysis</p>

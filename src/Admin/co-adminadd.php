@@ -56,7 +56,9 @@ if (isset($_POST['ADD'])) {
         echo '<script> alert("Message could not be sent. Mailer Error: {$mail->ErrorInfo}") </script>';
        }
       } else {
-		echo '<script> alert("Data Not Added") </script>';
+        echo "<script> alert('Data Not Added. Enter a valid ID') ;
+        window.location.href='AdminManageCoAdmins.php';
+        </script>";
 	}
 }
 ?>  
