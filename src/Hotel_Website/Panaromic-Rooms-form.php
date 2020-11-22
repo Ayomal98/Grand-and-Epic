@@ -120,6 +120,22 @@
                                 <i class="fa fa-home" aria-hidden="true"></i>
                                 <span class="suite-icon-label">Room 14</span>
                             </div>
+                            <div class="suite-icon">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="suite-icon-label">Room 15</span>
+                            </div>
+                            <div class="suite-icon">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="suite-icon-label">Room 16</span>
+                            </div>
+                            <div class="suite-icon">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="suite-icon-label">Room 17</span>
+                            </div>
+                            <div class="suite-icon">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="suite-icon-label">Room 18</span>
+                            </div>
                         </div>
                         <div class="suite-icons-main">
                             <div class="suite-icon main">

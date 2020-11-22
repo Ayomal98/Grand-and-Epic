@@ -34,13 +34,15 @@ if (isset($_POST['Submit'])) {
             }
         }
     } elseif ($usertype == 'Customer') {
-        $query = "SELECT First_Name,Email, Password FROM customer WHERE Email=' $email ' AND Password='" . $password . "' ";
+        $query = "SELECT First_Name,Email, Password FROM customer WHERE Email='" . $email . "' AND Password='" . $password . "' ";
         $result = mysqli_query($con, $query);
         if (mysqli_num_rows($result) == 1) {
             $row = mysqli_fetch_array($result);
             $_SESSION["First_Name"] = $row["First_Name"];
             $_SESSION["User_Email"] = $row["Email"];
             header('Location:HomePage-login.php');
+        } else {
+            echo $password;
         }
     }
 }
