@@ -22,8 +22,8 @@
     <div class="side-nav" id="side-nav">
         <ul>
             <a href="#" class="btn-close" onclick="closeSlideMenu()">&times;</a><br />
-            <li> <a href="index.php">Home<span class="fas fa-home"></span></a></li>
-            <li><a href="staying-in.php" class="staying-btn">Staying-In<span class="fas fa-hotel"></span>
+            <li> <a href="index.php"><span class="fas fa-home"><pre>Home</pre></span></a></li>
+            <li><a href="staying-in.php" class="staying-btn"><span class="fas fa-hotel"><pre>Staying-In</pre></span>
                     <span class="fas fa-caret-down" id="toggle-btn" onclick="showStayingIn()"></span>
                 </a></li>
             <ul class="stayingin-show" id="stayingin-show">
@@ -31,9 +31,9 @@
                 <li><a href="Panaromic-Rooms.php">Panaromic Rooms</a></li>
                 <li><a href="Superior-Rooms.php">Superior Rooms</a></li>
             </ul>
-            <li><a href="dinein.php">Dining<span class="fas fa-utensils"></span></a></li>
-            <li><a href="meals.php">Meals<span class="fas fa-hamburger"></span></a></li>
-            <li><a href="events.php">Events<span class="fas fa-handshake"></span></a></li>
+            <li><a href="dinein.php"><span class="fas fa-utensils"><pre>Dine-In</pre></span></a></li>
+            <li><a href="meals.php"><span class="fas fa-hamburger"><pre>Meals</pre></span></a></li>
+            <li><a href="events.php"><span class="fas fa-handshake"><pre>Events</pre></span></a></li>
         </ul>
     </div>
 </body>

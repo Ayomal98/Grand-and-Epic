@@ -12,8 +12,8 @@
         <ul>
             <li> <a href="HomePage-login.php">Home</a></li>
             <li><a href="staying-in-login.php">Staying-In</a></li>
-            <li><a href="dinein-login.php">Dining</a></li>
-            <li><a href="meals-login.php">meals</a></li>
+            <li><a href="dinein-login.php">Dine-In</a></li>
+            <li><a href="meals-login.php">Meals</a></li>
             <li><a href="events-login.php">Events</a></li>
             <li><a href="myreservations.php">My Reservations</a></li>
         </ul>
