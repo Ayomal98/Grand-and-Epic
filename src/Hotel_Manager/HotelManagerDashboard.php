@@ -83,19 +83,22 @@ $email = $_SESSION['User_Email'];
 	<table style ="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;" >
 		<tr>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Manage Staff</p>		
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="HotelManagerManageStaff.php">Manage Staff</a></p>		
 		</th>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Booking Details</p>		
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="ManagerBookingDetails.php">Booking Details</a></p>		
 		</th>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Request a Leave</p>		
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="HotelManagerPromotions.php">Promotions</a></p>		
+        </th>
+		<th style ="border: 1px solid white;">
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="HotelManagerCustomerFeedback.php">Customer Feedback</a></p>		
+		</th>
+		<th style ="border: 1px solid white;">
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="HotelManagerManageRoom.php">Manage Rooms</a></p>		
         </th>
         <th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Promotions</p>		
-        </th>
-        <th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Customer Feedback</p>		
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="HotelManagerEarlyCheckOuts.php">Early Check-Outs</a></p>		
 		</th>
 		</tr>
 		<tr>
@@ -136,44 +139,57 @@ $email = $_SESSION['User_Email'];
 			
 		</td>
 		<td style ="border: 1px solid white;" >
+
 				<table width= "100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Calendar.png" height = "50%" >
+					<img src = "../../public/images/discount.png" height = "50%" >
 				</td>
 				<td align ="center">
-					<img src = "../../public/images/BIgCal.png" height = "10%" >
+					<p style = "font-family :Lato; font-size:20px; color :white;">Existing <br>Promotions -03</p>		
+				</td>
+				</tr>
+				</table>
+
+		</td>
+    <td style ="border: 1px solid white;" >
+				<table width= "100%">
+				<tr>
+				<td align ="center">
+					<img src = "../../public/images/Feedback.png" height = "50%" >
+				</td>
+				<td align ="center">
+					<img src = "../../public/images/Feed.png" height = "90%" >
+				</td>
+				</tr>
+			</table>    
+	</td>
+	<td style ="border: 1px solid white;" >
+				<table width= "100%">
+				<tr>
+				<td align ="center">
+					<img src = "../../public/images/room.png" height = "50%" >
+				</td>
+				<td align ="center">
+					<p style = "font-family :Lato; font-size:20px; color :white;">Current <br>Room Types - 3</p>	
 				</td>
 				</tr>
 			</table>
 				
         </td>
-        <td style ="border: 1px solid white;" >
-            <table width= "100%">
-            <tr>
-            <td align ="center">
-                <img src = "../../public/images/discount.png" height = "50%" >
-            </td>
-            <td align ="center">
-                <p style = "font-family :Lato; font-size:20px; color :white;">Existing <br>Promotions -03</p>		
-            </td>
-            </tr>
-        </table>
-            
-    </td>
-    <td style ="border: 1px solid white;" >
-        <table width= "100%">
-        <tr>
-        <td align ="center">
-            <img src = "../../public/images/Feedback.png" height = "50%" >
+	<td style ="border: 1px solid white;" >
+				<table width= "100%">
+				<tr>
+				<td align ="center">
+					<img src = "../../public/images/check-out.png" height = "20%" >
+				</td>
+				<td align ="center">
+					<img src = "../../public/images/clock.png" height = "10%" >
+				</td>
+				</tr>
+			</table>
+				
         </td>
-        <td align ="center">
-            <img src = "../../public/images/Feed.png" height = "90%" >
-        </td>
-        </tr>
-    </table>
-        
-</td>
 		</tr>	
     </table>
 
