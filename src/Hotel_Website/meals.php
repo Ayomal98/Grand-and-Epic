@@ -106,7 +106,7 @@
     </div>
     <!-- set menu shower container for the events users -->
 
-    <div class="body-container set-menu" id="body-container-set-menu">
+    <!-- <div class="body-container set-menu" id="body-container-set-menu">
 
         <h1 style="text-align: center;font-size:40px;margin-top:-100px">Set Menu For Events </h1>
         <div class="set-menu-breakfast-area">
@@ -184,7 +184,7 @@
             </div>
             <div class="amount-set-menu" style="position: absolute;top:555%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Customize menu shower container -->
 

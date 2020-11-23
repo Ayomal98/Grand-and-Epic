@@ -2,6 +2,7 @@
 session_start();
 $username = $_SESSION['First_Name'];
 $email = $_SESSION['User_Email'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,7 @@ $email = $_SESSION['User_Email'];
 
 <body>
     <div class="header-container" id="header-container">
-        <?php include("../../public/includes/sticky-nav.php"); ?>
+        <?php include("../../public/includes/sticky-nav-login.php"); ?>
 
         <?php include("../../public/includes/side-nav-login.php"); ?>
 
@@ -26,7 +27,9 @@ $email = $_SESSION['User_Email'];
             <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
             <p style="margin-bottom: 10px;"><?php echo "Logged in as $username"; ?></P>
             <hr style="color:teal">
-            <a href="logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:5px;margin-left:85px;padding:5px;background-color:black;color:white;border-radius:5px;"></a>
+
+            <a href="logout.php"> <input type="submit" value="Log-out" name="logout-btn" style="margin-top:5px;margin-left:85px;padding:5px;background-color:black;color:white;border-radius:5px;"></a>
+
 
         </div>
         <div class="text-container">
@@ -46,7 +49,7 @@ $email = $_SESSION['User_Email'];
                 <div class="card-content">
                     <h class="card-header">Staying-In</h>
                     <p class="card-para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta architecto aliquid unde, ipsa laboriosam, dolorem mollitia quae provident molestiae placeat pariatur. Reiciendis, doloribus quaerat! Vitae dignissimos cupiditate sint ut eius?</p>
-                    <a href="Hotel_Website/Staying-in.php" class="card-link">Read more</a>
+                    <a href="staying-in-login.php" class="card-link">Read more</a>
                 </div>
             </div>
 
@@ -55,7 +58,7 @@ $email = $_SESSION['User_Email'];
                 <div class="card-content">
                     <h class="card-header">Dine-In</h>
                     <p class="card-para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta architecto aliquid unde, ipsa laboriosam, dolorem mollitia quae provident molestiae placeat pariatur. Reiciendis, doloribus quaerat! Vitae dignissimos cupiditate sint ut eius?</p>
-                    <a href="" class="card-link">Read more</a>
+                    <a href="dinein-login.php" class="card-link">Read more</a>
                 </div>
             </div>
         </div>

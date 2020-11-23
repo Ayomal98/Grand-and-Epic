@@ -516,6 +516,7 @@ img {
 }
 
 .bg-modal-early-request {
+  opacity: 0.98;
   width: 100%;
   height: 120%;
   top: 500px;
@@ -526,6 +527,21 @@ img {
   display: none;
   transition: all ease-in 0.4s;
   margin-bottom: 50px;
+  background-color: grey;
+}
+.bg-modal-customer-feedback {
+  opacity: 0.98;
+  width: 100%;
+  height: 120%;
+  top: 720px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  display: none;
+  transition: all ease-in 0.4s;
+  margin-bottom: 50px;
+  background-color: grey;
 }
 
 .bg-modal-signup input[type="text"] {
@@ -573,7 +589,7 @@ img {
 .modal-content.early-request {
   background-color:black;
   width: 670px;
-  height: 720px;
+  height: 640px;
   
 }
 
@@ -976,24 +992,12 @@ form.reservation-form {
   align-items: center;
 }
 
-.accomodations .room-container .card-rooms {
+
+.accomodations .room-container .card-rooms{
   width: 65%;
   height: 95vh;
   display: flex;
-  background: #fff;
-  margin: 40px 80px;
-  padding: 0px;
-  border-radius: 10px;
-  border: none;
-  border-radius: 4px;
-  justify-content: center;
-  flex-direction: column;
-}
-.accomodations .room-container .card-rooms:nth-child(odd) {
-  width: 65%;
-  height: 95vh;
-  display: flex;
-  background: #686868;
+  background: #b88b4a;
   margin: 40px 80px;
   padding: 0px;
   border: none;
@@ -1005,12 +1009,12 @@ form.reservation-form {
 
 .accomodations .room-container .card-rooms .card-room-header {
   text-align: center;
-  font-size: 30px;
+  font-size: 33px;
   width: 100%;
   font-family: poppine;
   font-weight: bolder;
-  margin-top: -70px;
-  margin-bottom: 20px;
+  margin-top: -40px;
+  margin-bottom: 0px;
 }
 
 .accomodations .room-container .card-rooms .card-room-img .img-superior-rooms {
@@ -1020,7 +1024,7 @@ form.reservation-form {
   margin-left: 75px;
   background-size: cover;
   margin-bottom: 5px;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .accomodations .room-container .card-rooms .card-room-img .img-panaromic-rooms {
@@ -1030,7 +1034,7 @@ form.reservation-form {
   margin-left: 75px;
   background-size: cover;
   margin-bottom: 5px;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 /* footer styling*/
@@ -1890,6 +1894,20 @@ span.suite-icon-label {
     height: 40vh;
     border-radius: 10px;
     margin-right: 10px;
+}
+.upcomig-reservation-box.past{
+  Padding: 45px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    border: none;
+    width: 60vh;
+    height: 40vh;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top:10px;
+    margin-left:-510px;
 }
 
 

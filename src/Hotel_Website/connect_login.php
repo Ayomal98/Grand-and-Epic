@@ -32,6 +32,11 @@ if (isset($_POST['Submit'])) {
                 $_SESSION["User_Email"] = $row["Email"];
                 header('Location:../Receptionist/ReceptionistDashboard.php');
             }
+        } else {
+            echo "<script>
+            alert('Your Login Credentials are invalid! Please Try Again');
+            window.location.href='index.php';
+            </script>";
         }
     } elseif ($usertype == 'Customer') {
         $query = "SELECT First_Name,Email, Password FROM customer WHERE Email='" . $email . "' AND Password='" . $password . "' ";
@@ -42,7 +47,10 @@ if (isset($_POST['Submit'])) {
             $_SESSION["User_Email"] = $row["Email"];
             header('Location:HomePage-login.php');
         } else {
-            echo $password;
+            echo "<script>
+            alert('Your Login Credentials are invalid! Please Try Again');
+            window.location.href='index.php';
+            </script>";
         }
     }
 }

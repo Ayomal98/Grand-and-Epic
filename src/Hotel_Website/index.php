@@ -33,7 +33,7 @@
                     <div class="card-content">
                         <h class="card-header">Staying-In</h>
                         <p class="card-para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta architecto aliquid unde, ipsa laboriosam, dolorem mollitia quae provident molestiae placeat pariatur. Reiciendis, doloribus quaerat! Vitae dignissimos cupiditate sint ut eius?</p>
-                        <a href="Hotel_Website/Staying-in.php" class="card-link">Read more</a>
+                        <a href="staying-in.php" class="card-link">Read more</a>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@
                     <div class="card-content">
                         <h class="card-header">Dine-In</h>
                         <p class="card-para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta architecto aliquid unde, ipsa laboriosam, dolorem mollitia quae provident molestiae placeat pariatur. Reiciendis, doloribus quaerat! Vitae dignissimos cupiditate sint ut eius?</p>
-                        <a href="" class="card-link">Read more</a>
+                        <a href="dinein.php" class="card-link">Read more</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-    <?php include("../../public/includes/footer-index.php"); ?>
+    <?php include("../../public/includes/footer-footer.php"); ?>
     <script src="../../public/javascript/script.js"></script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
 

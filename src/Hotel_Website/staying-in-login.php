@@ -18,7 +18,7 @@ $email = $_SESSION['User_Email'];
 <body>
     <div class="page-wrapper">
         <div class="header-container-accomodations" id="header-container">
-            <?php include("../../public/includes/sticky-nav.php"); ?>
+            <?php include("../../public/includes/sticky-nav-login.php"); ?>
             <?php include("../../public/includes/side-nav-login.php"); ?>
             <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
             <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
@@ -83,7 +83,7 @@ $email = $_SESSION['User_Email'];
         </div>
         <?php include("../../public/includes/footer-footer.php"); ?>
         <script src="../../public/Javascript/script.js"></script>
-        <script src="../Javascript/sticky-nav.js"></script>
+        <script src="../../public/Javascript/sticky-nav.js"></script>
         <script>
             function funcUserDetails() {
                 document.getElementById('user-detail-container').style.display = "block";

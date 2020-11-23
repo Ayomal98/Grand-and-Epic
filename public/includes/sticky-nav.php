@@ -10,12 +10,11 @@
 <body>
     <div class="sticky-navbar" id="sticky-navbar">
         <ul>
-            <li> <a href="HomePage-login.php">Home</a></li>
-            <li><a href="staying-in-login.php">Staying-In</a></li>
-            <li><a href="dinein-login.php">Dining</a></li>
-            <li><a href="meals-login.php">meals</a></li>
-            <li><a href="events-login.php">Events</a></li>
-            <li><a href="myreservations.php">My Reservations</a></li>
+            <li> <a href="index.php">Home</a></li>
+            <li><a href="staying-in.php">Staying-In</a></li>
+            <li><a href="dinein.php">Dining</a></li>
+            <li><a href="meals.php">meals</a></li>
+            <li><a href="events.php">Events</a></li>
         </ul>
     </div>
 </body>

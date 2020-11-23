@@ -17,7 +17,7 @@ $email = $_SESSION['User_Email'];
 
 <body>
     <div class="header-container" id="header-container">
-        <?php include("../../public/includes/sticky-nav.php"); ?>
+        <?php include("../../public/includes/sticky-nav-login.php"); ?>
 
         <?php include("../../public/includes/side-nav-login.php"); ?>
         <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
@@ -115,86 +115,6 @@ $email = $_SESSION['User_Email'];
         </div>
     </div>
     <!-- set menu shower container for the events users -->
-
-    <div class="body-container set-menu" id="body-container-set-menu">
-
-        <h1 style="text-align: center;font-size:40px;margin-top:-100px">Set Menu For Events </h1>
-        <div class="set-menu-breakfast-area">
-            <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Set Menu 1</h3>
-            <div class="set-menu-meals-card">
-                <div class><img src="../../public/images/br1.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
-                <div class="set-menu-card-text">String Hoppers
-                </div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/br2.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
-                <div class="set-menu-card-text">Pol Sambol</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/br3.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Sri Lankan Coconut Milk Gravy</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/br4.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
-                <div class="set-menu-card-text">Fish curry</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/br5.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
-                <div class="set-menu-card-text">Sweet Onion Relish</div>
-            </div>
-            <div class="amount-set-menu" style="position: absolute;top:425%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
-
-        </div>
-
-        <div class="set-menu-lunch-area">
-            <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Set Menu 2</h3>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/lu1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Fried Rice</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/lu2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Devilled Chicken Curry</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/lu3.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Vegetable Salad with Mayonise</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/lu4.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Dhal curry</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/lu5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Fish Cutlet with Tomato Sauce</div>
-            </div>
-            <div class="amount-set-menu" style="position: absolute;top:492%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
-        </div>
-        <div class="set-menu-dinner-area">
-            <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Set Menu 3</h3>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/di1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Pasta</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/di2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Chicken Gravy</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/di3.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Tomato Sauce</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/di4.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Potato Chips</div>
-            </div>
-            <div class="set-menu-meals-card">
-                <div class="set-menu-card-image"><img src="../../public/images/di5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                <div class="set-menu-card-text">Mayonise</div>
-            </div>
-            <div class="amount-set-menu" style="position: absolute;top:555%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
-        </div>
-    </div>
 
 
     <!-- Customize menu shower container -->

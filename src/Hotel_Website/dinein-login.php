@@ -17,7 +17,7 @@ $email = $_SESSION['User_Email'];
 <body>
     <div class="header-container-dinein" id="header-container">
         <!--to include the sticky nav bar -->
-        <?php include("../../public/includes/sticky-nav.php"); ?>
+        <?php include("../../public/includes/sticky-nav-login.php"); ?>
 
         <!--to include the side nav bar -->
         <?php include("../../public/includes/side-nav-login.php"); ?>

@@ -12,7 +12,9 @@
         <div class="modal-content early-request">
             <div class="close close-early-checkout">+</div>
             <img src="../../public/Images/early-checkout.jpg" alt="" class="early-logo">
-            <h3 class="login-heading" style="color:white">Request Early Checkout</h3>
+            <u>
+                <h3 class="login-heading" style="color:white">Request Early Checkout</h3>
+            </u>
             <form action="" method="post">
                 <div class="early-reservation-id">
                     <label for="" style="color:white">Reservation ID</label>
