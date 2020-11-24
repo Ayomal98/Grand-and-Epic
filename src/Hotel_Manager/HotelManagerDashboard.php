@@ -207,29 +207,43 @@ $email = $_SESSION['User_Email'];
         </tr>
     </table>
 	
-	<div class="bottom-right">
-		<form style= "color:white; font-size:20px;">
-			<fieldset>
-			<legend><font size = "10px">User Profile</font></legend>
-			<label for="fname">First Name  :    </label>
-			<input type="text" id="fname" name="fname">
-			<label for="lname">Last Name   :    </label>
-			<input type="text" id="lname" name="lname">
-			<label for="email">Email Add  :   </label>
-			<input type="email" id="email" name="email">
-			<label for="password">Password     :    </label>
-			<input type="password" id="password" name="password" placeholder="Password">
-			<label for="tel">TP Number     :      </label>
-			<input type="tel" id="tel" name="tel">
-			<br>
-			<table>
-				<td>
-					<input type="button" class="button" value="UPDATE PROFILE">
+  <!-- USER PROFILE -->
+	<form>
+		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
+			<table align="center" style="color:white; font-size: 20px; width:88%;">
+				<tr>
+					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
+				</tr>
+				<tr>
+					<td>Supervisor ID:</td>
+					<td><input type="text" id="id" name="id"></td>
+				</tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" id="fname" name="fname"></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" id="lname" name="lname"></td>
+				</tr>
+				<tr>
+					<td>Email Address:</td>
+					<td><input type="email" id="email" name="email"></td>
+				</tr>
+				<tr>
+					<td>Password: </td>
+					<td><input type="password" id="password" name="password" placeholder="Password"></td>
+				</tr>
+				<tr>
+					<td>TP Number: </td>
+					<td><input type="tel" id="tel" name="tel"></td>
+				</tr>
+				<tr>
+					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
+				</tr>
 			</table>
-			</fieldset>
 		</form>
 		
-	</div>
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
