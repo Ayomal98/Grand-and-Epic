@@ -15,12 +15,15 @@ if(isset($_POST['insert'])){
       $query_run = mysqli_query($con,$query);
 
       if ($query_run) {
-      echo "<script>
-      alert('New Food item Has been Added');
-      window.location.href='SupervisorManageMeals.php';
-      </script>";
+        echo "<script>
+        alert('New Food item Has been Added');
+        window.location.href='SupervisorManageMeals.php';
+        </script>";
       }else {
-      echo '<script> alert("Data Not Added") </script>';
+        echo "<script>
+        alert('Food item Not Added');
+        window.location.href='SupervisorManageMeals.php';
+        </script>";
       }
 
     }else{
@@ -29,12 +32,15 @@ if(isset($_POST['insert'])){
       $query_run = mysqli_query($con,$query);
 
       if ($query_run) {
-      echo "<script>
-      alert('New Food item Has been Added');
-      window.location.href='SupervisorManageMeals.php';
-      </script>";
+        echo "<script>
+        alert('New Food item Has been Added');
+        window.location.href='SupervisorManageMeals.php';
+        </script>";
       }else {
-      echo '<script> alert("Data Not Added") </script>';
+        echo "<script>
+        alert('Food item Not Added');
+        window.location.href='SupervisorManageMeals.php';
+        </script>";
       }
     }
     
