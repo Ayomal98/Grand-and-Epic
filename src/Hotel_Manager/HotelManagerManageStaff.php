@@ -1,7 +1,12 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+
+include("../../public/includes/session.php");
+
+checkSession();
+	if(!isset($_SESSION['First_Name'])){
+		header('Location:../Hotel_Website/HomePage-login.php');
+	}
+
 ?>
 <html>
 
@@ -22,7 +27,10 @@ $email = $_SESSION['User_Email'];
         <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
         <div id="user-detail-container">
             <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-            <p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+            <p style="margin-top: 2px; color:black">
+            <?php 
+				echo "Logged in as " . $_SESSION['First_Name'] ."(Staff)</P>";
+			?>
             <hr style="color:teal">
             <a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
         </div>
@@ -46,7 +54,7 @@ $email = $_SESSION['User_Email'];
                 <font size="4 px">Customer Feedback</font>
             </a>
             <a href="HotelManagerManageRoom.php">
-                <font size="4 px">Manage Room</font>
+                <font size="4 px">Manage Rooms</font>
             </a>
             <a href="HotelManagerEarlyCheckOuts.php">
                 <font size="4 px">Early Check-Outs</font>
@@ -115,7 +123,7 @@ $email = $_SESSION['User_Email'];
                     </tr>
                     <tr>
                         <td align="left">Password:</td>
-                        <td align="center"><input type="password" name="empPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="password" name="empPass" title="Your Password Should contain minimum of 8 characters, the first character should should be uppercase & should include special characters as well" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">Email Address:</td>
@@ -308,7 +316,29 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E005</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">S001</p>
+            </td>
+            <td style="border: 1px solid white;">
+                <p style="font-family :Lato; font-size:15px; color :white;">Hasini Vidushanka</p>
+            </td>
+            <td style="border: 1px solid white;">
+                <p style="font-family :Lato; font-size:15px; color :white;">Supervisor</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid white;">
+                <p style="font-family :Lato; font-size:15px; color :white;">R001</p>
+            </td>
+            <td style="border: 1px solid white;">
+                <p style="font-family :Lato; font-size:15px; color :white;">Anushka De Silva</p>
+            </td>
+            <td style="border: 1px solid white;">
+                <p style="font-family :Lato; font-size:15px; color :white;">Receptionist</p>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid white;">
+                <p style="font-family :Lato; font-size:15px; color :white;">E001</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Shehan Gunawardena</p>
@@ -319,7 +349,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E006</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E002</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Nuwangi Dewage</p>
@@ -330,7 +360,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E007</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E003</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Savindi Karunaratne</p>
@@ -341,7 +371,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E008</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E004 </p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Harini Munasinghe</p>
@@ -352,7 +382,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E009</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E005</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Thenuri Sakalasooriya</p>
@@ -363,7 +393,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E010</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E006</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Sewumi Dissanayike</p>
@@ -374,7 +404,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E011</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E007</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Sachini Samarasinghe</p>
@@ -385,7 +415,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E012</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E008</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Ravinath Mahadurage</p>
@@ -396,7 +426,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E013</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E009</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Thisaru Silva</p>
@@ -407,7 +437,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E014</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E010</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Kavindi Sachinthanee</p>
@@ -418,7 +448,7 @@ $email = $_SESSION['User_Email'];
         </tr>
         <tr>
             <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E015</p>
+                <p style="font-family :Lato; font-size:15px; color :white;">E011</p>
             </td>
             <td style="border: 1px solid white;">
                 <p style="font-family :Lato; font-size:15px; color :white;">Hashara Kumarasinghe</p>
@@ -427,28 +457,7 @@ $email = $_SESSION['User_Email'];
                 <p style="font-family :Lato; font-size:15px; color :white;">Dine-In Area</p>
             </td>
         </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E015</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Nilmani Kulaweera</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Dine-In Area</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E015</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Sachinika Mahadurage</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Dine-In Area</p>
-            </td>
-        </tr>
+        
     </table>
     <script>
         function funcUserDetails() {

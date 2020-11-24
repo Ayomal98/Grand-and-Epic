@@ -1,7 +1,12 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+
+include("../../public/includes/session.php");
+
+checkSession();
+	if(!isset($_SESSION['First_Name'])){
+		header('Location:../Hotel_Website/HomePage-login.php');
+	}
+
 ?>
 <html>
 	<head>
@@ -20,7 +25,10 @@ $email = $_SESSION['User_Email'];
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+			<p style="margin-top: 2px; color:black">
+			<?php 
+				echo "Logged in as " . $_SESSION['First_Name'] ."(Staff)</P>";
+			?>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
@@ -35,7 +43,7 @@ $email = $_SESSION['User_Email'];
 				<a href="ManagerBookingDetails.php"><font size = "4 px">Booking Details</font></a>
         		<a href="HotelManagerPromotions.php"><font size = "4 px">Promotions</font></a>
 				<a href="HotelManagerCustomerFeedback.php"><font size = "4 px">Customer Feedback</font></a>
-				<a href="HotelManagerManageRoom.php"><font size = "4 px">Manage Room</font></a>
+				<a href="HotelManagerManageRoom.php"><font size = "4 px">Manage Rooms</font></a>
 				<a href="HotelManagerEarlyCheckOuts.php"><font size = "4 px">Early Check-Outs</font></a>
 				</div>
 		</div>
@@ -215,7 +223,7 @@ $email = $_SESSION['User_Email'];
 					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
 				</tr>
 				<tr>
-					<td>Supervisor ID:</td>
+					<td>Hotel Manager ID:</td>
 					<td><input type="text" id="id" name="id"></td>
 				</tr>
 				<tr>
