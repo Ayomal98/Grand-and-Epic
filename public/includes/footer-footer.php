@@ -1,3 +1,4 @@
+<!-- footer for the logged in user -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +14,7 @@
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-section image">
-                    <img src="../images/Hotel-logo.png" alt="" class="logo-hotel" style="width:55%;height:50%;background-position:center;">
+                    <img src="../../public/images/Hotel-logo.png" alt="" class="logo-hotel" style="width:55%;height:50%;background-position:center;">
                 </div>
                 <div class="footer-section about">
                     <h1 class="logo-text"><span style="color:thistle;font-size:34px">GRAND</span>&nbsp;<span style="font-size: 25px;">& Epic</span></h1><br>
@@ -32,23 +33,27 @@
                 <div class="footer-section link">
                     <h2>Quick Links</h2><br>
                     <ul>
-                        <a href="#" style="color:white;">
+                        <a href="HomePage-login.php" style="color:white;">
                             <li>Home &nbsp;<span class="fas fa-home"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="staying-in-login.php" style="color:white">
                             <li>Staying-in &nbsp;<span class="fas fa-utensils"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="dinein-login.php" style="color:white">
                             <li>Dine-in &nbsp;<span class="fas fa-hamburger"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="events-login.php" style="color:white">
                             <li>Events &nbsp;<span class="fas fa-handshake"></span></li>
+                        </a>
+                        <a href="../../public/includes/Terms_and_Conditions - Grand and Epic.pdf" style="color:white" download>
+                            <li>Terms & Conditions &nbsp;<span class=" fa fa-gavel""></span></li>
                         </a>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">&copy; codeby.com | Designed by 2nd year Undergraduates </div>
-        </div>
+            <div class=" footer-bottom">&copy; codeby.com | Designed by 2nd year Undergraduates
+                </div>
+            </div>
     </footer>
 </body>
 

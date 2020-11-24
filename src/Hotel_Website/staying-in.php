@@ -1,3 +1,4 @@
+<!-- This page consists of staying in page for not logged in customers -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +22,7 @@
                 </span>
             </div>
             <?php include('login-signup-template.php'); ?>
+            <?php include('forgotpassword.php'); ?>
         </div>
         <div class="body-container accomodations">
             <div class="accomodation-wrapper">
@@ -36,10 +38,10 @@
                     <div class="card-room-img">
                         <img class="img-superior-rooms" src="../../public/images/CBB-Superior-Room-530X420.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
-                    <div class="card-room-para" style="color:white;">In the heart of Sri Lanka, accommodation of the most indulgent kind awaits you at our Superior Rooms. Set in the Grand Wings you can relax in the comforts.</div>
+                    <div class="card-room-para" style="color:white;">&nbsp; &nbsp; In the heart of Sri Lanka, accommodation of the most indulgent kind awaits you at our Superior Rooms. Set in the Grand Wings you can &nbsp; &nbsp; relax in the comforts.</div>
                     <div class="view-book-wrapper">
-                        <button class="view"><a href="Superior-Rooms.php">View Room</a></button>
-                        <button class="book"><a href="">Book Now</a></button>
+                        <button class="view" style="border:none"><a href="Superior-Rooms.php">View Room</a></button>
+                        <button class="book" style="border:none"><a href="Superior-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
                 </div>
                 <div class="card-rooms">
@@ -47,10 +49,10 @@
                     <div class="card-room-img">
                         <img class="img-panaromic-rooms" src="../../public/images/content2.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
-                    <div class="card-room-para">The Panoramic Rooms at Grand & Epic will provide do live up to their name. Your own private balcony will serve as your vantage point – any time. The views over the lake and the Dambulla rock are constant, yet ever changing.</div>
+                    <div class="card-room-para" style="color:white;">&nbsp; &nbsp;The Panoramic Rooms at Grand & Epic will provide do live up to their name. Your own private balcony will serve as your vantage point – &nbsp; &nbsp; any time. The views over the lake and the Dambulla rock are constant, yet ever changing.</div>
                     <div class="view-book-wrapper">
-                        <button class="view"><a href="Panaromic-Rooms.php">View Room</a></button>
-                        <button class="book"><a href="">Book Now</a></button>
+                        <button class="view" style="border:none"><a href="Panaromic-Rooms.php">View Room</a></button>
+                        <button class="book" style="border:none"><a href="Panaromic-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
 
                 </div>
@@ -59,10 +61,10 @@
                     <div class="card-room-img">
                         <img class="img-panaromic-rooms" src="../../public/images/suite-image.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
-                    <div class="card-room-para" style="color:white;">Wide views across the historic land of Sri Lanka, resort facilities of an exceptional kind and enough room for you to relax at complete ease – our suites are, indeed, rather special.</div>
+                    <div class="card-room-para" style="color:white;">&nbsp; &nbsp;Wide views across the historic land of Sri Lanka, resort facilities of an exceptional kind and enough room for you to relax at complete &nbsp; &nbsp; ease – our suites are, indeed, rather special.</div>
                     <div class="view-book-wrapper">
-                        <button class="view"><a href="Suite-Rooms.php">View Room</a></button>
-                        <button class="book"><a href="">Book Now</a></button>
+                        <button class="view" style="border:none"><a href="Suite-Rooms.php">View Room</a></button>
+                        <button class="book" style="border:none"><a href="Suite-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
                 </div>
             </div>

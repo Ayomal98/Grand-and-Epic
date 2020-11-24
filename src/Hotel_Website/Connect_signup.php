@@ -5,12 +5,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 if (isset($_POST['Submit'])) {
-  $firstName = mysqli_real_escape_String($con, $_POST['firstname']);
-  $lastName = mysqli_real_escape_String($con, $_POST['lastname']);
+  $firstName = $_POST['firstname'];
+  $lastName = $_POST['lastname'];
   $email = $_POST['email'];
   $password = md5($_POST['password']);
-  $tpN = mysqli_real_escape_String($con, $_POST['contactNum']);
-  $sql = "INSERT INTO customer (First_Name,Last_Name,Email,Password,Contact_No) VALUES (' $firstName ','$lastName ',' $email ','$password ',' $tpN ')";
+  $tpN = $_POST['contactNum'];
+  $sql = "INSERT INTO customer (First_Name,Last_Name,Email,Password,Contact_No) VALUES ('" . $firstName . "','" . $lastName . "','" . $email . "','" . $password . "','" . $tpN . "')";
   if ($con->query($sql) === TRUE) {
     echo "<script>
             alert('Your Account has been successfully created');
@@ -39,7 +39,7 @@ if (isset($_POST['Submit'])) {
       // Content
       $mail->isHTML(true);                                  // Set email format to HTML
       $mail->Subject = 'Account has been created';
-      $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+      $mail->Body    = 'Welcome to the Grand & Epic Family';
       $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
       $mail->send();

@@ -34,10 +34,10 @@ $email = $_SESSION['User_Email'];
 		</button>
 
 		<div class="dropdown-container">
-			<a href="SupervisorDashboard.php"><font size="4 px">Dashboard</font></a>
-			<a href="SupervisorAssignEmployeeTasks.php"><font size="4 px">Assign Employee Tasks</font></a>
-			<a href="SupervisorManageMeals.php"><font size="4 px">Manage Meals</font></a>
-			<a href="SupervisorLeaveRequest.php"><font size="4 px">Request a Leave</font></a>
+			<a href="SupervisorDashboard.php">Dashboard</a>
+			<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
+			<a href="SupervisorManageMeals.php">Manage Meals</a>
+			<a href="SupervisorLeaveRequest.php">Request a Leave</a>
 		</div>
 
 	</div>

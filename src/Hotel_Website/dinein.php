@@ -1,11 +1,4 @@
-<?php
-include("../../public/includes/session.php");
-checkSession();
-if (!isset($_SESSION['First_Name'])) {
-    header('Location:index.php');
-}
-
-?>
+<!-- This page consists of dinein booking for the not logged in users -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,26 +13,17 @@ if (!isset($_SESSION['First_Name'])) {
 <body>
     <div class="header-container-dinein" id="header-container">
         <!--to include the sticky nav bar -->
-        <?php include("../../public/includes/sticky-nav-login.php"); ?>
+        <?php include("../../public/includes/sticky-nav.php"); ?>
 
         <!--to include the side nav bar -->
-        <?php include("../../public/includes/side-nav-login.php"); ?>
+        <?php include("../../public/includes/side-nav.php"); ?>
 
-
-        <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
-        <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
-        <div id="user-detail-container">
-            <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-            <p style="margin-bottom: 10px;"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
-            <hr style="color:teal">
-            <a href="logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:5px;margin-left:85px;padding:5px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
-
-        </div>
         <div class="text-container">
             <span class="text1">Grand &</span>
             <span class="text2">Epic
             </span>
         </div>
+        <?php include('login-signup-template.php'); ?>
     </div>
     <div class="body-container dinein">
         <h3>Dining</h3>
@@ -52,7 +36,7 @@ if (!isset($_SESSION['First_Name'])) {
             <div style="color:#B88B4A;">Lunch Time &emsp; 12.00 P.M to 2.00 P.M</div>
             <div style="color:#B88B4A;">Dinner Time &emsp; 7.30 P.M to 9.30 P.M</div>
         </div>
-        <button class="book" style="color:black;background-color:goldenrod;padding:15px;margin-top:10px;"><a href="dinein-booking-form.php" target="_blank">Book Now</a></button>
+        <button class="book" style="color:black;background-color:goldenrod;padding:15px;margin-top:10px;"><a href="dinein-booking-form-nl.php" target="_blank">Book Now</a></button>
         <div class="img-dinein-container">
             <img src="../../public/Images/pexels-lee-hnetinka-1679825.jpg" alt="">
             <img src="../../public/Images/pexels-mat-brown-1395964.jpg" alt="">
@@ -68,15 +52,6 @@ if (!isset($_SESSION['First_Name'])) {
     <?php include("../../public/includes/footer-footer.php"); ?>
     <script src="../../public/Javascript/script.js"></script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
-    <script>
-        function funcUserDetails() {
-            document.getElementById('user-detail-container').style.display = "block";
-        }
-
-        function funcCloseUserDetails() {
-            document.getElementById('user-detail-container').style.display = "none";
-        }
-    </script>
 </body>
 
 </html>

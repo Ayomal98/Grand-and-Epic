@@ -1,11 +1,4 @@
-<!-- This page consists for meals(set menu for the logged in customers) -->
-<?php
-include("../../public/includes/session.php");
-checkSession();
-if (!isset($_SESSION['First_Name'])) {
-    header('Location:index.php');
-}
-?>
+<!-- This page consists for meals(set menu for the not logged in customers) -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,24 +12,19 @@ if (!isset($_SESSION['First_Name'])) {
 
 <body>
     <div class="header-container" id="header-container">
-        <?php include("../../public/includes/sticky-nav-login.php"); ?>
+        <?php include("../../public/includes/sticky-nav.php"); ?>
 
-        <?php include("../../public/includes/side-nav-login.php"); ?>
-        <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
-        <div id="user-detail-container">
-            <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-            <p style="margin-bottom: 10px;"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
-            <hr style="color:teal">
-            <a href="logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:5px;margin-left:85px;padding:5px;background-color:black;color:white;border-radius:5px;"></a>
-
-        </div>
+        <?php include("../../public/includes/side-nav.php"); ?>
         <div class="text-container">
             <span class="text1">Grand &</span>
             <span class="text2">Epic
             </span>
         </div>
     </div>
-    <!-- set menu shower container -->
+    <?php include('login-signup-template.php'); ?>
+    <?php include('forgotpassword.php'); ?>
+
+    <!-- set menu shower container for the staying in users -->
     <div class="body-container set-menu" id="body-container-set-menu">
         <div class="all-in-price">All in one for Rs.1200/=<span style="font-weight:bold;font-size:15px;color:black">&nbsp-For Fullboard Customers Only</span></div>
         <h1 style="text-align: center;font-size:40px;margin-top:-10px;padding:20px;">Set Menu For Staying-In </h1>
@@ -64,7 +52,7 @@ if (!isset($_SESSION['First_Name'])) {
                 <div class="set-menu-card-image"><img src="../../public/images/br5.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
                 <div class="set-menu-card-text">Sweet Onion Relish</div>
             </div>
-            <div class="amount-set-menu" style="position: absolute;top:197%;right:20%"><span> Whole Plate For Rs.400/=</span></div>
+            <div class="amount-set-menu" style="position: absolute;top:207%;right:20%"><span> Whole Plate For Rs.400/=</span></div>
         </div>
 
         <div class="set-menu-lunch-area">
@@ -89,7 +77,7 @@ if (!isset($_SESSION['First_Name'])) {
                 <div class="set-menu-card-image"><img src="../../public/images/lu5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Fish Cutlet with Tomato Sauce</div>
             </div>
-            <div class="amount-set-menu" style="position: absolute;top:265%;right:20%"><span> Whole Plate For Rs.600/=</span></div>
+            <div class="amount-set-menu" style="position: absolute;top:280%;right:20%"><span> Whole Plate For Rs.600/=</span></div>
         </div>
         <div class="set-menu-dinner-area">
             <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Dinner Menu</h3>
@@ -113,11 +101,90 @@ if (!isset($_SESSION['First_Name'])) {
                 <div class="set-menu-card-image"><img src="../../public/images/di5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Mayonise</div>
             </div>
-            <div class="amount-set-menu" style="position: absolute;top:330%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
+            <div class="amount-set-menu" style="position: absolute;top:350%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
         </div>
     </div>
     <!-- set menu shower container for the events users -->
 
+    <!-- <div class="body-container set-menu" id="body-container-set-menu">
+
+        <h1 style="text-align: center;font-size:40px;margin-top:-100px">Set Menu For Events </h1>
+        <div class="set-menu-breakfast-area">
+            <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Set Menu 1</h3>
+            <div class="set-menu-meals-card">
+                <div class><img src="../../public/images/br1.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
+                <div class="set-menu-card-text">String Hoppers
+                </div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/br2.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
+                <div class="set-menu-card-text">Pol Sambol</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/br3.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Sri Lankan Coconut Milk Gravy</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/br4.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
+                <div class="set-menu-card-text">Fish curry</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/br5.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
+                <div class="set-menu-card-text">Sweet Onion Relish</div>
+            </div>
+            <div class="amount-set-menu" style="position: absolute;top:425%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
+
+        </div>
+
+        <div class="set-menu-lunch-area">
+            <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Set Menu 2</h3>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/lu1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Fried Rice</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/lu2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Devilled Chicken Curry</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/lu3.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Vegetable Salad with Mayonise</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/lu4.png" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Dhal curry</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/lu5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Fish Cutlet with Tomato Sauce</div>
+            </div>
+            <div class="amount-set-menu" style="position: absolute;top:492%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
+        </div>
+        <div class="set-menu-dinner-area">
+            <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Set Menu 3</h3>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/di1.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Pasta</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/di2.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Chicken Gravy</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/di3.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Tomato Sauce</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/di4.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Potato Chips</div>
+            </div>
+            <div class="set-menu-meals-card">
+                <div class="set-menu-card-image"><img src="../../public/images/di5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                <div class="set-menu-card-text">Mayonise</div>
+            </div>
+            <div class="amount-set-menu" style="position: absolute;top:555%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
+        </div>
+    </div> -->
 
     <!-- Customize menu shower container -->
 
@@ -380,15 +447,7 @@ if (!isset($_SESSION['First_Name'])) {
     <?php include("../../public/includes/footer-footer.php"); ?>
     <script src="../../public/Javascript/script.js"></script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
-    <script>
-        function funcUserDetails() {
-            document.getElementById('user-detail-container').style.display = "block";
-        }
 
-        function funcCloseUserDetails() {
-            document.getElementById('user-detail-container').style.display = "none";
-        }
-    </script>
 </body>
 
 </html>

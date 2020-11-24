@@ -1,28 +1,31 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+include("../../public/includes/session.php");
+checkSession();
+if (!isset($_SESSION['First_Name'])) {
+	header('Location:../Hotel_Website/index.php');
+}
+
 ?>
 <html>
 
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
-	
+
 	<title>
 		Admin Manage Co-admins
 	</title>
-	
+
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body bgcolor="black" >
-	
+<body bgcolor="black">
+
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
 		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+			<p style="margin-top: 2px; color:black"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
@@ -56,10 +59,10 @@ $email = $_SESSION['User_Email'];
 		<table width="100%">
 			<tr>
 				<td>
-					
+
 				</td>
 				<td>
-				<img src="../../public/images/Uvini.png" height="25%">
+					<img src="../../public/images/Uvini.png" height="25%">
 				</td>
 			</tr>
 		</table>
@@ -86,10 +89,10 @@ $email = $_SESSION['User_Email'];
 		<legend style="color:white; font-size: 20px">Add Co-admins</legend>
 		<form action="co-adminadd.php" method="POST">
 			<table style="color:white; font-size: 20px; width:88%;">
-					<tr>
-                        <td align="left">Employee ID:</td>
-                        <td align="center"><input type="text" name="empID" size="4" class="inputs" required></td>
-                    </tr>
+				<tr>
+					<td align="left">Employee ID:</td>
+					<td align="center"><input type="text" name="empID" size="4" class="inputs" required></td>
+				</tr>
 
 				<tr>
 					<td align="left">First Name:</td>
@@ -234,13 +237,13 @@ $email = $_SESSION['User_Email'];
 	</fieldset>
 	<!--search-->
 	</form>
-	<form action="" method="POST" >
-						<fieldset style=" position:absolute; top:790px; left:750px; width: 45%; right:5%;">
-						<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
-								<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
-								<input type="submit" class="button" name="search" value="Search by ID"></td>
-						</fieldset>
-				</form>
+	<form action="" method="POST">
+		<fieldset style=" position:absolute; top:790px; left:750px; width: 45%; right:5%;">
+			<legend style="color:white; font-size: 20px">Update and Delete Co-Admins</legend>
+			<input type="text" name="Employee_ID" placeholder="Enter id to Search" /></td>
+			<input type="submit" class="button" name="search" value="Search by ID"></td>
+		</fieldset>
+	</form>
 
 	<?php
 	include("../../config/connection.php");
@@ -253,7 +256,7 @@ $email = $_SESSION['User_Email'];
 		while ($row = mysqli_fetch_array($query_run)) {
 	?>
 			<form action="" method="POST">
-			<fieldset style=" position:absolute; top:950px;left:750px; width: 45%;">
+				<fieldset style=" position:absolute; top:950px;left:750px; width: 45%;">
 					<table align="left" style="color:white; font-size: 20px; width:110%;">
 						<tr>
 							<td>Employee ID</td>
@@ -276,7 +279,7 @@ $email = $_SESSION['User_Email'];
 							<td><input type="text" name="Contact_No" value="<?php echo $row['Contact_No'] ?>" /></td>
 						</tr>
 						<tr>
-						<td align="center" style="width:50%;">
+							<td align="center" style="width:50%;">
 								<input type="submit" class="button" name="update" value="UPDATE">
 								<input type="reset" class="button" value="  RESET " name="reset">
 								<input type="submit" class="button" name="delete" value="DELETE">
@@ -328,7 +331,7 @@ $email = $_SESSION['User_Email'];
 		?>
 
 	</table>
-	
+
 	<?php
 	include("../../config/connection.php");
 	if (isset($_POST['update'])) {
@@ -369,7 +372,7 @@ $email = $_SESSION['User_Email'];
 			document.getElementById('user-detail-container').style.display = "none";
 		}
 	</script>
-	
+
 </body>
 
 </html>

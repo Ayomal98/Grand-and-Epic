@@ -31,10 +31,10 @@ $email = $_SESSION['User_Email'];
 				<i class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-                <a href="SupervisorDashboard.php"><font size = "4 px">Dashboard</font></a>
+                <a href="SupervisorDashboard.php">Dashboard</a>
                 <a href="SupervisorManageMeals.php">Manage Meals</a>
                 <a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
-                <a href="SupervisorLeaveRequest.php"><font size = "4 px">Request a leave</font></a>
+                <a href="SupervisorLeaveRequest.php">Request a leave</a>
 			</div>
 		</div>
 
