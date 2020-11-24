@@ -120,6 +120,14 @@
                                 <i class="fa fa-home" aria-hidden="true"></i>
                                 <span class="suite-icon-label">Room 14</span>
                             </div>
+                            <div class="suite-icon">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="suite-icon-label">Room 15</span>
+                            </div>
+                            <div class="suite-icon">
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                <span class="suite-icon-label">Room 16</span>
+                            </div>
                         </div>
                         <div class="suite-icons-main">
                             <div class="suite-icon main">
@@ -131,6 +139,10 @@
                                 <span class="suite-icon-label-main">Not Available</span>
                             </div>
                         </div>
+                    </div>
+                    <div class="select-rooms">
+                        <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:20px;">Selection Of Room</label>
+                        <input type="text" name="" id="" style="padding:10px;" placeholder="Enter a Room Number">
                     </div>
                     <div class="form-page-fields">
                         <div class="reservation-type-fields" style="margin-left:-170px;margin-top:70px;width:250%">
@@ -399,7 +411,7 @@
                 </fieldset>
 
             </div>
-            <input type="submit" value="Previous" id="previous-meal" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;" onclick="PaymentToMeals()">
+            <input type="submit" value="Previous" id="previous-meal-btn" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;">
             <input type="submit" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;" value="Book Now">
 
         </div>
@@ -469,11 +481,15 @@
             document.getElementById('form-page-mealuser').style.display = 'none';
         }
 
-        //from payment to meal
-        function PaymentToMeals() {
+        //adding event listener for the showing from payment page to meals page
+        document.getElementById("previous-meal-btn").addEventListener('click', PaymentToMeals);
+
+        function PaymentToMeals(e) {
+            e.preventDefault();
             document.getElementById('form-page-paymentuser').style.display = 'none';
-            document.getElementById('form-page-mealuser').style.display = 'block';
             document.getElementById('suite-rooms-form-container-room-detail').style.display = 'none';
+            document.getElementById('form-page-mealuser').style.display = 'block';
+            e.preventDefault();
         }
     </script>
 </body>

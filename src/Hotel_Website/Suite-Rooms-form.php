@@ -171,28 +171,28 @@
         <div class="day-selector">
             <h4 style="margin-right: 80px;
                         font-size: 30px;
-    width: 1800px;
+    width: 1810px;
     margin-left:10px;color: #b88b4a;">Day 1</h4>
             <hr>
             <h4 style="margin-right: 80px;
     font-size: 30px;
-    width: 1800px;
+    width: 1810px;
     margin-left:10px;">Day 2</h4>
         </div>
         <div class="meal-type-selector">
             <h4 style="margin-right: 20px;
-                        font-size: 30px;
-    width: 1800px;
+                        font-size: 25px;
+    width: 1810px;
     margin-left:10px;color:white;">Breakfast</h4>
             <hr>
             <h4 style="margin-right: 20px;
-                        font-size: 30px;
-    width: 1800px;
+                        font-size: 25px;
+    width: 1810px;
     margin-left:10px">Lunch</h4>
             <hr>
             <h4 style="margin-right: 20px;
-                        font-size: 30px;
-    width: 1800px;
+                        font-size: 25px;
+    width: 1810px;
     margin-left:10px">Dinner</h4>
         </div>
         <div class="meal-selection" style="display: flex;flex-direction:row">

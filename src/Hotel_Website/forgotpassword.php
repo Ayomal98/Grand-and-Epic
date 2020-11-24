@@ -12,7 +12,6 @@ if (isset($_POST["resendEmail"])) {
 
     $emailaddress = $_POST["email"];
     $usertype = $_POST["User-Type"];
-    echo $usertype;
     if ($usertype == 'Customer') {
         $customercode = uniqid(true);
         $query = "INSERT into reset_password_customer (code,email) VALUES ('$customercode','$emailaddress')";

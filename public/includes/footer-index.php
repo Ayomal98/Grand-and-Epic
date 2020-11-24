@@ -32,17 +32,20 @@
                 <div class="footer-section link">
                     <h2>Quick Links</h2><br>
                     <ul>
-                        <a href="#" style="color:white;">
+                        <a href="index.php" style="color:white;">
                             <li>Home &nbsp;<span class="fas fa-home"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="staying-in.php" style="color:white">
                             <li>Staying-in &nbsp;<span class="fas fa-utensils"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="dinein.php" style="color:white">
                             <li>Dine-in &nbsp;<span class="fas fa-hamburger"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="events.php" style="color:white">
                             <li>Events &nbsp;<span class="fas fa-handshake"></span></li>
+                        </a>
+                        <a href="../../public/includes/Terms_and_Conditions - Grand and Epic.pdf" style="color:white" download>
+                            <li>Terms & Conditions &nbsp;<span class="class=" fa fa-gavel""></span></li>
                         </a>
                     </ul>
                 </div>

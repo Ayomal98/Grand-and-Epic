@@ -1,32 +1,35 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+include("../../public/includes/session.php");
+checkSession();
+if (!isset($_SESSION['First_Name'])) {
+	header('Location:../Hotel_Website/index.php');
+}
+
 ?>
 <html>
 
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
-	
+
 	<title>
 		Admin Manage Co-admins
 	</title>
 	<style>
-		body{
-			height : 1500px;
+		body {
+			height: 1500px;
 		}
-		</style>
+	</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body bgcolor="black" >
-	
+<body bgcolor="black">
+
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
 		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+			<p style="margin-top: 2px; color:black"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
@@ -60,10 +63,10 @@ $email = $_SESSION['User_Email'];
 		<table width="100%">
 			<tr>
 				<td>
-					
+
 				</td>
 				<td>
-				<img src="../../public/images/Uvini.png" height="25%">
+					<img src="../../public/images/Uvini.png" height="25%">
 				</td>
 			</tr>
 		</table>

@@ -1,7 +1,12 @@
-<?php include("../../config/connection.php");
-session_start();
-$username = $_SESSION['First_Name'];
-$email = $_SESSION['User_Email'];
+<?php
+
+include("../../public/includes/session.php");
+checkSession();
+if (!isset($_SESSION['First_Name'])) {
+    header('Location:index.php');
+}
+include("../../config/connection.php");
+$email = $_SESSION["User_Email"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,13 +35,13 @@ $email = $_SESSION['User_Email'];
 
 <body>
     <div class="header-container-userReservations" id="header-container">
-        <?php include("../../public/includes/sticky-nav.php"); ?>
+        <?php include("../../public/includes/sticky-nav-login.php"); ?>
         <?php include("../../public/includes/side-nav-login.php"); ?>
         <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
         <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
         <div id="user-detail-container">
             <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-            <p style="margin-bottom: 10px;"><?php echo "Logged in as $username"; ?></P>
+            <p style="margin-bottom: 10px;"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
             <hr style="color:teal">
             <a href="logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:5px;margin-left:85px;padding:5px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 
@@ -50,22 +55,22 @@ $email = $_SESSION['User_Email'];
     <div class="body-container-myreservations">
         <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:750px;"></i>
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
-
-        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:120px;cursor:pointer;">
+        <input type="button" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;">
+        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
     </div>
     <h3><u>Upcoming Reservations</u></h3>
     <div class="userBookings upcoming" id="user-bookings">
         <div class="upcomig-reservation-box">
-            <span style="font-weight: bold;font-size:20px;">Room Number : Suite-12</span>
-            <span style="font-weight: bold;font-size:20px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-Out Date: &nbsp;<span>21st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-Out Time: &nbsp;<span>2.00 P.M</span></span>
-            <span style="font-weight: bold;font-size:20px;">Amount Paid: Rs. 16,000/=</span>
-            <span style="font-weight: bold;font-size:20px;">Amount left to paid: Rs.64,000/=</span>
+            <span style="font-weight: bold;font-size:15px;">Room Number : Suite-12</span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Amount Paid: Rs. 16,000/=</span>
+            <span style="font-weight: bold;font-size:15px;">Amount left to paid: Rs.64,000/=</span>
             <div class="book-btn-container">
-                <button class="book update" style="padding: 15px 20px 45px 20px;font-size:15px;margin-left:10px;width:40%;height:40%;text-align:center;" id="btn-early-checkout">Request Early Checkouts</button>
-                <button class="book delete" style="padding: 15px 20px 45px 20px;font-size:15px;width:40%;height:40%;text-align:center;margin-top:12px;">Cancel Reservation</button>
+                <button class="book update" style="padding: 15px 15px 45px 15px;font-size:15px;margin-left:10px;width:40%;height:40%;text-align:center;" id="btn-early-checkout">Request Early Checkouts</button>
+                <button class="book delete" style="padding: 15px 15px 45px 15px;font-size:15px;width:40%;height:40%;text-align:center;margin-top:12px;" id="cancel-stayingin">Cancel Reservation</button>
             </div>
         </div>
         <?php include("./request-early-checkout-form.php") ?>
@@ -123,13 +128,33 @@ $email = $_SESSION['User_Email'];
             }
         }
         ?>
-        <h3>Past Reservations</h3>
+        <br>
     </div>
+    <div style="margin-bottom: 50px;">
+        <u>
+            <h3 style="text-align: center;">Past Reservations</h3>
+        </u>
+        <div class="upcomig-reservation-box past" style="margin-left: 10px;">
+            <span style="font-weight: bold;font-size:15px;">Room Number : Panaromic-13</span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Date: &nbsp;<span>22st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Amount Paid: Rs. 16,000/=</span>
+            <span style="font-weight: bold;font-size:15px;">Amount left to paid: Rs.64,000/=</span>
+            <div class="book-btn-container">
+                <button class="book update" style="padding: 15px 15px px 15px;font-size:12px;margin-left:50px;width:40%;height:40%;text-align:center;" id="btn-feedback">Provide Feedback</button>
+
+            </div>
+        </div>
+
     </div>
-    </div>
+    <?php include('customerfeedback-form.php'); ?>
+
+
     <?php include("../../public/includes/footer-footer.php"); ?>
     <script src="../../public/Javascript/script.js"></script>
-    <script src="../../public/Javascript/sticky-nav.js"></script>
+
     <script>
         function funcUserDetails() {
             document.getElementById('user-detail-container').style.display = "block";
@@ -149,12 +174,31 @@ $email = $_SESSION['User_Email'];
         //to display the early checkout form
         document.getElementById('btn-early-checkout').addEventListener("click", function() {
             document.querySelector(".bg-modal-early-request").style.display = "flex";
+            document.querySelector(".sticky-navbar").style.display = "none";
         })
         //to close the early checkout form
         document.querySelector(".close-early-checkout").addEventListener("click", function() {
             document.querySelector(".bg-modal-early-request").style.display = "none";
+            document.querySelector(".sticky-navbar").style.display = "flex";
+            document.querySelector(".stickyblack-nav").style.display = "inline";
+        })
+
+        //to show a popup when cancel reservation clicked on 
+
+        //to show the pop up for the customer feedack
+        document.getElementById('btn-feedback').addEventListener("click", function() {
+            document.querySelector(".bg-modal-customer-feedback").style.display = "flex";
+            document.querySelector(".sticky-navbar").style.display = "none";
+        })
+        //to close the customer feedback form
+        document.getElementById('close-early-checkout').addEventListener("click", function() {
+            document.querySelector(".bg-modal-customer-feedback").style.display = "none";
+            document.querySelector(".sticky-navbar").style.display = "flex";
+            document.querySelector(".stickyblack-nav").style.display = "inline";
         })
     </script>
+    <script src="../../public/Javascript/sticky-nav.js"></script>
+
 </body>
 
 </html>

@@ -1,5 +1,8 @@
 <?php include("../../config/connection.php");
 
+if (!isset($_GET["customercode"])) {
+    echo "<script>alert('Your password has not been updated successfully')</script>";
+}
 //to get the customer code
 if (isset($_GET["customercode"])) {
     $customercode = $_GET["customercode"];
@@ -19,18 +22,22 @@ if (isset($_GET["customercode"])) {
             // mysqli_query($con, $update);
             $updatePasswordQuery = mysqli_query($con, "UPDATE customer SET Password = '$password' WHERE Email='$email'");
             $deleteRequest = "DELETE FROM reset_password_customer WHERE code='$customercode' AND email='$email'";
-            mysqli_query($con, $deleteRequest);
+            if ($updatePasswordQuery) {
+                mysqli_query($con, $deleteRequest);
+                echo "<script>alert('Your password has been updated successfully')</script>";
+            }
+
             //  $result=mysqli_fetch_assoc($updatePasswordQuery);
             //  if($result){
             //      echo correct;
             // //  }
-            if ($updatePasswordQuery) {
-                echo $email . "<br>";
-                echo $password . "<br>";
-                exit();
-            } else {
-                exit("something went wrong");
-            }
+            // if ($updatePasswordQuery) {
+            //     echo $email . "<br>";
+            //     echo $password . "<br>";
+            //     exit();
+            // } else {
+            //     exit("something went wrong");
+            // }
         }
     }
 }
