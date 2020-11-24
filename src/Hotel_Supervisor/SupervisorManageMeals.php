@@ -1,7 +1,11 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+include("../../public/includes/session.php");
+
+checkSession();
+	if(!isset($_SESSION['First_Name'])){
+		header('Location:../Hotel_Website/HomePage-login.php');
+		
+	}
 ?>
 
 <html>
@@ -23,7 +27,9 @@ $email = $_SESSION['User_Email'];
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+				<?php 
+					echo "<br><p class=\"logged-in-msg\">You are Logged in as " . $_SESSION['First_Name']. " (Staff)</p>"; 
+				?>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
@@ -142,116 +148,122 @@ $email = $_SESSION['User_Email'];
 
 		$query = "SELECT * FROM meals where Meals_ID='$Meals_ID' ";
 		$query_run = mysqli_query($con, $query);
+		if (mysqli_num_rows($query_run) == 1) {
 
-		while ($row = mysqli_fetch_array($query_run)) {
+			while ($row = mysqli_fetch_array($query_run)) {
 	?>
-			<form action="" method="POST" enctype="multipart/form-data">
-				<fieldset style=" position:absolute; top:920px; width: 45%; right:0%">
-					<table style="color:white; font-size: 20px; width:95%;">
-						<tr style="border: 1px solid white;">
-							<td>Meal ID:</td>
-							<td><input type="text" name="mealid" value="<?php echo $row['Meals_ID'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Meal Name:</td>
-							<td><input type="text" name="mealname" value="<?php echo $row['Meals_Name'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Price:</td>
-							<td><input type="float" pattern="[0-9]+" name="price" value="<?php echo $row['Price'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Meal Plan: </td>
-							<td>
-								<select id="mptypes" name="mealplan" class="inputs" onchange="changeStatus()" style="margin: 8px 2px;">
-									<option value disabled selected>Select a Meal Plan</option>
-									<option value="Staying-in"
-										<?php
-										if($row["Meal_Plan"]=='Staying-in')
-										{
-											echo "selected";
-										}
-										?>	
-									>Staying-in</option>
-
-									<option value="Events"
-										<?php
-										if($row["Meal_Plan"]=='Events')
-										{
-											echo "selected";
-										}
-										?>	
-									>Events</option>
-								</select>
-							</td>
-						</tr>
-						<tr id="MealT">
-							<td>Meal Type:</td>
-							<td>
-								<select id="mttypes" name="mealtype" class="inputs" style="margin: 8px 2px;">
-									<option value disabled selected>Select a Meal Type</option>
-										<option value="None"
+				<form action="" method="POST" enctype="multipart/form-data">
+					<fieldset style=" position:absolute; top:920px; width: 45%; right:0%">
+						<table style="color:white; font-size: 20px; width:95%;">
+							<tr style="border: 1px solid white;">
+								<td>Meal ID:</td>
+								<td><input type="text" name="mealid" value="<?php echo $row['Meals_ID'] ?>" /></td>
+							</tr>
+							<tr>
+								<td>Meal Name:</td>
+								<td><input type="text" name="mealname" value="<?php echo $row['Meals_Name'] ?>" /></td>
+							</tr>
+							<tr>
+								<td>Price:</td>
+								<td><input type="float" pattern="[0-9]+" name="price" value="<?php echo $row['Price'] ?>" /></td>
+							</tr>
+							<tr>
+								<td>Meal Plan: </td>
+								<td>
+									<select id="mptypes" name="mealplan" class="inputs" onchange="changeStatus()" style="margin: 8px 2px;">
+										<option value disabled selected>Select a Meal Plan</option>
+										<option value="Staying-in"
 											<?php
-											if($row["Meal_Type"]=='None')
+											if($row["Meal_Plan"]=='Staying-in')
 											{
 												echo "selected";
 											}
 											?>	
-										>None</option>
+										>Staying-in</option>
 
-										<option value="Breakfast"
+										<option value="Events"
 											<?php
-											if($row["Meal_Type"]=='Breakfast')
+											if($row["Meal_Plan"]=='Events')
 											{
 												echo "selected";
 											}
 											?>	
-										>Breakfast</option>
+										>Events</option>
+									</select>
+								</td>
+							</tr>
+							<tr id="MealT">
+								<td>Meal Type:</td>
+								<td>
+									<select id="mttypes" name="mealtype" class="inputs" style="margin: 8px 2px;">
+										<option value disabled selected>Select a Meal Type</option>
+											<option value="None"
+												<?php
+												if($row["Meal_Type"]=='None')
+												{
+													echo "selected";
+												}
+												?>	
+											>None</option>
 
-										<option value="Lunch"
-											<?php
-											if($row["Meal_Type"]=='Lunch')
-											{
-												echo "selected";
-											}
-											?>	
-										>Lunch</option>
+											<option value="Breakfast"
+												<?php
+												if($row["Meal_Type"]=='Breakfast')
+												{
+													echo "selected";
+												}
+												?>	
+											>Breakfast</option>
 
-										<option value="Dinner"
-											<?php
-											if($row["Meal_Type"]=='Dinner')
-											{
-												echo "selected";
-											}
-											?>	
-										>Dinner</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>Meal Image:</td>
-							<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal_Image']) . '" alt="Image" style="width: 250px; height: 200px" >' ?></td>
-						</tr>
-						<tr>
-							<td>Update Meal Image:</td>
-							<td>
-								<input type="file" accept="image/*" name="mealimage" id="fileToUpload">
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td style="position:relative;left:50px;">
-								<input type="submit" class="button" name="update" value="Update Meal">
-								<input type="submit" class="button" name="delete" value="Delete Meal">
-							</td>
-						</tr>
-					</table>
-				</fieldset>
-			</form>
+											<option value="Lunch"
+												<?php
+												if($row["Meal_Type"]=='Lunch')
+												{
+													echo "selected";
+												}
+												?>	
+											>Lunch</option>
+
+											<option value="Dinner"
+												<?php
+												if($row["Meal_Type"]=='Dinner')
+												{
+													echo "selected";
+												}
+												?>	
+											>Dinner</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Meal Image:</td>
+								<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal_Image']) . '" alt="Image" style="width: 250px; height: 200px" >' ?></td>
+							</tr>
+							<tr>
+								<td>Update Meal Image:</td>
+								<td>
+									<input type="file" accept="image/*" name="mealimage" id="fileToUpload">
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td style="position:relative;left:50px;">
+									<input type="submit" class="button" name="update" value="Update Meal">
+									<input type="submit" class="button" name="delete" value="Delete Meal">
+									<input type="reset" class="button" name="reset" value="Reset"></a>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
 
 	<?php
 
-		}
+			}
+		} else {
+			echo "<script>alert('ID you entered doesn\'t Exist.Please Try Again!')</script>";
+			echo "<script>window.location.href='SupervisorManageMeals.php'</script>";
+        }
 	}
 	?>
 
