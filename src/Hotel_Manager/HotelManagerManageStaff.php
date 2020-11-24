@@ -29,8 +29,8 @@ $email = $_SESSION['User_Email'];
 
     </center>
     <div class="sidenav">
-        <button class="dropdown-btn">Manage Staff 
-        <i class="fa fa-caret-down"></i>
+        <button class="dropdown-btn">Manage Staff
+            <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
             <a href="HotelManagerDashboard.php">
@@ -81,7 +81,7 @@ $email = $_SESSION['User_Email'];
             });
         }
     </script>
-<!-- ADD -->
+    <!-- ADD -->
     <fieldset style=" position:absolute; top:270px; width: 75%; left:160px">
         <legend style="color:white; font-size: 20px">Manage Staff</legend>
         <table style="color:white; font-size: 20px; width: 100%;">
@@ -103,7 +103,7 @@ $email = $_SESSION['User_Email'];
                     </tr>
                     <tr>
                         <td align="left">Employee ID:</td>
-                        <td align="center"><input type="text" name="empID" size="20" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="text" name="empID" placeholder="Ex:E001" size="20" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">First Name:</td>
@@ -115,7 +115,7 @@ $email = $_SESSION['User_Email'];
                     </tr>
                     <tr>
                         <td align="left">Password:</td>
-                        <td align="center"><input type="password" name="empPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  placeholder="Password" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="password" name="empPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">Email Address:</td>
@@ -123,7 +123,7 @@ $email = $_SESSION['User_Email'];
                     </tr>
                     <tr>
                         <td align="left">Contact No:</td>
-                        <td align="center"><input type="tel" pattern="[0][1-9][0-9]{8}"name="empContact" size="20" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="tel" pattern="[0][1-9][0-9]{8}" name="empContact" size="20" class="inputs" form="manager_form" required></td>
                     </tr>
                 </table>
 
@@ -140,9 +140,9 @@ $email = $_SESSION['User_Email'];
 
     </fieldset>
 
-   <!-- Search -->
+    <!-- Search -->
     <form action="" method="POST">
-        <fieldset style=" position:absolute; top:751px; width: 45%;right:0%;">
+        <fieldset style=" position:absolute; top:746px; width: 45%;right:0%;">
             <legend style="color:white; font-size: 20px">Update and Delete Employees</legend>
             <input type="text" name="Employee_ID" placeholder="Enter id to Search" />
             <input type="submit" name="search" value="Search by ID" class="button">
@@ -156,101 +156,91 @@ $email = $_SESSION['User_Email'];
 
         $query = "SELECT * FROM employee where Employee_ID='$Employee_ID' ";
         $query_run = mysqli_query($con, $query);
-
-        while ($row = mysqli_fetch_array($query_run)) {
+        if (mysqli_num_rows($query_run) == 1) {
+            while ($row = mysqli_fetch_array($query_run)) {
     ?>
-            <form action="" method="POST">
-                <fieldset style=" position:absolute; top:915px; width:45%;right:0%;">
-                    <table align="center" style="color:white; font-size: 21px; width:100%;">
-                        <tr>
-                            <td width="300 px" style="display: none;"> First Name:</td>
-                            <td width="300 px"><input type="text" style="display:none" name="Employee_ID" value="<?php echo $row['Employee_ID']; ?>" /></td>
-                        </tr>
-                        <tr>
-                            <td width="300 px">First Name:</td>
-                            <td width="300 px"><input type="text" name="First_Name" value="<?php echo $row['First_Name']; ?>" /></td>
-                        </tr>
-                        <tr>
-                            <td>Last Name:</td>
-                            <td><input type="text" name="Last_Name" value="<?php echo $row['Last_Name']; ?>" /></td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td><input type="email" name="Email" value="<?php echo $row['Email']; ?>" /></td>
-                        </tr>
-                        <tr>
-                            <td>Contact No:</td>
-                            <td><input type="tel" name="Contact_No" value="<?php echo $row['Contact_No']; ?>" /></td>
-                        </tr>
-                        <tr>
-                            <td>User Role:</td>
-                            <td>
-								<select id="types" name="User_Role" class="inputs">
-								    <option value="-"
-										<?php
-										if($row["User_Role"]=='-')
-										{
-											echo "selected";
-										}
-										?>	
-									>-</option>
+                <form action="" method="POST">
+                    <fieldset style=" position:absolute; top:914px; width:45%;right:0%;">
+                        <table align="center" style="color:white; font-size: 21px; width:100%;">
+                            <tr>
+                                <td width="300 px" style="display: none;"> First Name:</td>
+                                <td width="300 px"><input type="text" style="display:none" name="Employee_ID" value="<?php echo $row['Employee_ID']; ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td width="300 px">First Name:</td>
+                                <td width="300 px"><input type="text" name="First_Name" value="<?php echo $row['First_Name']; ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Last Name:</td>
+                                <td><input type="text" name="Last_Name" value="<?php echo $row['Last_Name']; ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td><input type="email" name="Email" value="<?php echo $row['Email']; ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>Contact No:</td>
+                                <td><input type="tel" name="Contact_No" value="<?php echo $row['Contact_No']; ?>" /></td>
+                            </tr>
+                            <tr>
+                                <td>User Role:</td>
+                                <td>
+                                    <select id="types" name="User_Role" class="inputs">
+                                        <option value="-" <?php
+                                                            if ($row["User_Role"] == '-') {
+                                                                echo "selected";
+                                                            }
+                                                            ?>>-</option>
 
-                                    <option value="Hotel Manager"
-										<?php
-										if($row["User_Role"]=='Hotel Manager')
-										{
-											echo "selected";
-										}
-										?>	
-									>Hotel Manager</option>
+                                        <option value="Hotel Manager" <?php
+                                                                        if ($row["User_Role"] == 'Hotel Manager') {
+                                                                            echo "selected";
+                                                                        }
+                                                                        ?>>Hotel Manager</option>
 
-									<option value="Employee"
-										<?php
-										if($row["User_Role"]=='Employee')
-										{
-											echo "selected";
-										}
-										?>	
-									>Employee</option>
+                                        <option value="Employee" <?php
+                                                                    if ($row["User_Role"] == 'Employee') {
+                                                                        echo "selected";
+                                                                    }
+                                                                    ?>>Employee</option>
 
-									<option value="Receptionist"
-										<?php
-										if($row["User_Role"]=='Receptionist')
-										{
-											echo "selected";
-										}
-										?>	
-									>Receptionist</option>
+                                        <option value="Receptionist" <?php
+                                                                        if ($row["User_Role"] == 'Receptionist') {
+                                                                            echo "selected";
+                                                                        }
+                                                                        ?>>Receptionist</option>
 
-									<option value="Hotel Supervisor"
-										<?php
-										if($row["User_Role"]=='Hotel Supervisor')
-										{
-											echo "selected";
-										}
-										?>	
-									>Hotel Supervisor</option>
-								</select>
-							</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td style="position:relative;left:-5px; padding:10px;">
-                                <input type="submit" class="button" name="update" value="Update Employee"></a>
-                                <input type="submit" class="button" name="delete" value="Delete Employee"></a>
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </form>
+                                        <option value="Hotel Supervisor" <?php
+                                                                            if ($row["User_Role"] == 'Hotel Supervisor') {
+                                                                                echo "selected";
+                                                                            }
+                                                                            ?>>Hotel Supervisor</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="position:relative;left:-5px; padding:10px;">
+                                    <input type="submit" class="button" name="update" value="Update"></a>
+                                    <input type="submit" class="button" name="delete" value="Delete"></a>
+                                    <input type="reset" class="button" name="reset" value="Reset"></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
     <?php
+            }
+        } else {
+            echo "<script>alert('ID you entered doesn\'t Exist.Please Try Again!')</script>";
+            echo "<script>window.location.href='HotelManagerManageStaff.php'</script>";
         }
     }
     ?>
     </table>
-   
 
-   <!-- Respond To Leave Requests -->
+
+    <!-- Respond To Leave Requests -->
     <table style="width:100%;position:absolute">
         <tr>
             <th rowspan="5">
@@ -297,8 +287,8 @@ $email = $_SESSION['User_Email'];
         </tr>
     </table>
 
-   <!-- Current Duty Toaster -->
-    <table style="border: 1px solid white;width:52%; position:absolute; top:1369px">
+    <!-- Current Duty Toaster -->
+    <table style="border: 1px solid white;width:52%; position:absolute; top:1365px">
         <tr>
             <td></td>
             <td align="center">
@@ -472,43 +462,44 @@ $email = $_SESSION['User_Email'];
 </body>
 
 </html>
- <!-- View Table-->
- <div class="dtablescroll">
- <table align="center"style="color:white;width:100%;font-size:17px;">
-		<tr>
-			<th colspan="6"><h4>Employee Details</h2></th>
-		</tr>
-		<tr>
-			<th>Employee ID</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-		    <th>Email Address</th>
-			<th>Contact No</th>
+<!-- View Table-->
+<div class="dtablescroll">
+    <table align="center" style="color:white;width:100%;font-size:17px;">
+        <tr>
+            <th colspan="6">
+                <h4>Employee Details</h2>
+            </th>
+        </tr>
+        <tr>
+            <th>Employee ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Contact No</th>
             <th>User Role</th>
-		</tr>
+        </tr>
 
-		<?php include("../../config/connection.php");
+        <?php include("../../config/connection.php");
 
-		$query = "SELECT * FROM employee";
-		$query_run = mysqli_query($con, $query);
-			while($row=mysqli_fetch_array($query_run))
-			{
+        $query = "SELECT * FROM employee";
+        $query_run = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_array($query_run)) {
 
-		?>
-				<tr>
-				<td><?php echo $row["Employee_ID"]; ?></td>
-			    <td><?php echo $row["First_Name"]; ?></td>
-			    <td><?php echo $row["Last_Name"]; ?></td>
-			    <td><?php echo $row["Email"]; ?></td>
-			    <td><?php echo $row["Contact_No"]; ?></td>
+        ?>
+            <tr>
+                <td><?php echo $row["Employee_ID"]; ?></td>
+                <td><?php echo $row["First_Name"]; ?></td>
+                <td><?php echo $row["Last_Name"]; ?></td>
+                <td><?php echo $row["Email"]; ?></td>
+                <td><?php echo $row["Contact_No"]; ?></td>
                 <td><?php echo $row["User_Role"]; ?></td>
-				</tr>
-		<?php
-			}
-		?>
+            </tr>
+        <?php
+        }
+        ?>
 
     </table>
-    </div>
+</div>
 <!-- Update -->
 <?php
 if (isset($_POST['update'])) {

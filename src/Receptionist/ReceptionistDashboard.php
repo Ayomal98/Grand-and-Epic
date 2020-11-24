@@ -16,7 +16,7 @@ $email = $_SESSION['User_Email'];
 	<center>
 	<img src="../../public/images/Logo.png" width="20%">
 
-	<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+	<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
@@ -80,12 +80,17 @@ $email = $_SESSION['User_Email'];
 	<table style ="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;" >
 		<tr>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Reservations & Customer Payments</p>		
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="ReceptionistReservations.php">Reservations</a></p>		
 		</th>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Room Details</p>		
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="ReceptionistRoomDetails.php">Room Details</a></p>		
 		</th>
-		
+		<th style ="border: 1px solid white;">
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="ReceptionistRequestLeave.php">Request a Leave</a></p>		
+		</th>
+		<th style ="border: 1px solid white;">
+			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="ReceptionistAcceptPayments.php">Accept Payments</a></p>		
+		</th>
 		</tr>
 		<tr>
 		<td style ="border: 1px solid white;">
@@ -96,15 +101,12 @@ $email = $_SESSION['User_Email'];
 					<img src = "../../public/images/Reservation.png" height = "50%" >
 				</td>
 				<td align ="center">
-					<img src = "../../public/images/Payment.png" height = "100%" >
+					<img src = "../../public/images/sheets.png" height = "18%" >
 				</td>
                 </tr>
                 <tr>
                     <td align ="center">
                         <p style = "font-family :Lato; font-size:20px; color :white;">Reservation Type</p>		
-                    </td>    
-                    <td align ="center">
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Payment Type</p>		
                     </td>    
                 </tr>
 			</table>
@@ -132,6 +134,40 @@ $email = $_SESSION['User_Email'];
              </table>
 			
 		</td>
+		<td style ="border: 1px solid white;">
+		
+		<table width="100%">
+			<tr>
+			<td align ="center">
+				<img src = "../../public/images/Calendar.png" height = "100%">
+			</td>
+			<td align="center">
+				<img src = "../../public/images/bigCal.png" height = "10%">
+			</td>
+			</tr>
+			
+		 </table>
+		
+	</td>
+	<td style ="border: 1px solid white;">
+		
+		<table width="100%">
+			<tr>
+			<td align ="center">
+					<img src = "../../public/images/Payment.png" height = "100%" >
+			</td>
+			<td align ="center">
+					<img src = "../../public/images/sheets.png" height = "18%" >
+				</td>
+			</tr>
+			<tr>
+				<td align ="center">
+					<p style = "font-family :Lato; font-size:20px; color :white;">Payment Type</p>		
+				</td>
+			</tr>
+		 </table>
+		
+	</td>
 		</tr>
 		
 	</table>
@@ -166,29 +202,42 @@ $email = $_SESSION['User_Email'];
 	</script>
 	</div>
 	
-	
-	<div class="bottom-right">
-		<form style= "color:white; font-size:20px;">
-			<fieldset>
-			<legend><font size = "10px">User Profile</font></legend>
-			<label for="fname">First Name  :    </label>
-			<input type="text" id="fname" name="fname">
-			<label for="lname">Last Name  :    </label>
-			<input type="text" id="lname" name="lname">
-			<label for="email">Email Add  :   </label>
-			<input type="email" id="email" name="email">
-			<label for="password">Password     :    </label>
-			<input type="password" id="password" name="password" placeholder="Password">
-			<label for="tel">TP Number     :      </label>
-			<input type="tel" id="tel" name="tel">
-			<br>
-			<table>
-				<td>
-					<input type="button" class="button" value="UPDATE PROFILE">
+  <!-- USER PROFILE -->	
+	<form>
+		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
+			<table align="center" style="color:white; font-size: 20px; width:88%;">
+				<tr>
+					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
+				</tr>
+				<tr>
+					<td>Supervisor ID:</td>
+					<td><input type="text" id="id" name="id"></td>
+				</tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" id="fname" name="fname"></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" id="lname" name="lname"></td>
+				</tr>
+				<tr>
+					<td>Email Address:</td>
+					<td><input type="email" id="email" name="email"></td>
+				</tr>
+				<tr>
+					<td>Password: </td>
+					<td><input type="password" id="password" name="password" placeholder="Password"></td>
+				</tr>
+				<tr>
+					<td>TP Number: </td>
+					<td><input type="tel" id="tel" name="tel"></td>
+				</tr>
+				<tr>
+					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
+				</tr>
 			</table>
-			</fieldset>
 		</form>
-	</div>
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
