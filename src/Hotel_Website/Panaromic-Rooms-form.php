@@ -5,11 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panaromic Room Form</title>
+    <style>
+        body {
+            background-image: url("../../public/images/suiteform.jpeg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
     <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="background:-webkit-linear-gradient(bottom,#bdc3c7, #2c0e50);">
+<body>
     <div class="suite-rooms-form-container room-detail" id="suite-rooms-form-container-room-detail">
         <div class="suite-form-header">
             <h3 style="font-weight: bolder;color:black">Room Details & Availability</h3>
@@ -145,7 +153,7 @@
                         </div>
                     </div>
                     <div class="select-rooms">
-                        <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:20px;">Selection Of Room</label>
+                        <label for="" style="font-weight:bolder;margin-bottom:10px;margin-top:10px;font-size:20px; font-family:sans-serif">Selection Of Room</label>
                         <input type="text" name="" id="" style="padding:10px;" placeholder="Enter a Room Number">
                     </div>
                     <div class="form-page-fields">
@@ -338,9 +346,11 @@
             <h3 style="display: none;" id="custom-meal" class="custom-meal">Customized Meals</h3>
             <h3 style="font-weight: bolder;color:black;">User & Payment Details</h3>
         </div>
-        <div class=" form-page-title" style="text-align: center;margin-top:10px;">
-            User & Payment Details
-        </div>
+        <u>
+            <div class=" form-page-title" style="text-align: center;margin-top:10px;color:black">
+                User & Payment Details
+            </div>
+        </u>
         <div class="form-page-fields-user">
             <div class="user-details">
                 <label for="User-Deatils" style="font-weight: bolder;margin-top:-40px;font-size:45px;color:white;margin-left:50px;">User Details</label>
@@ -384,9 +394,13 @@
             <h3>Customized Meals</h3>
             <h3 style="font-weight: bolder;color:black;">User & Payment Details</h3>
         </div>
-        <div class=" form-page-title" style="text-align: center;margin-top:10px;">
-            User & Payment Details
-        </div>
+
+        <u>
+            <div class=" form-page-title" style="text-align: center;margin-top:10px;font-weight:bolder;color:black">
+                User & Payment Details
+            </div>
+        </u>
+
         <div class="form-page-fields-user">
             <div class="user-details">
                 <label for="User-Deatils" style="font-weight: bolder;margin-top:-40px;font-size:45px;color:white;margin-left:50px;">User Details</label>
@@ -415,7 +429,7 @@
                 </fieldset>
 
             </div>
-            <input type="submit" value="Previous" id="previous-meal-btn" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;">
+            <input type="submit" value="Back" id="previous-meal-btn" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;">
             <input type="submit" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;" value="Book Now">
 
         </div>

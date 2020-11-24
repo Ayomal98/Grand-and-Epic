@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        <?php include("../../public/includes/footer-footer.php"); ?>
+        <?php include("../../public/includes/footer-index.php"); ?>
         <script src="../../public/Javascript/script.js"></script>
         <script src="../../public/Javascript/sticky-nav.js"></script>
 </body>

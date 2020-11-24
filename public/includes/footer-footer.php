@@ -14,7 +14,7 @@
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-section image">
-                    <img src="../../public/images/Hotel-logo.png" alt="" class="logo-hotel" style="width:55%;height:50%;background-position:center;">
+                    <img src="../../public/images/Hotel-logo.png" alt="" class="logo-hotel" style="width:340px;height:170px;padding-left:70px">
                 </div>
                 <div class="footer-section about">
                     <h1 class="logo-text"><span style="color:thistle;font-size:34px">GRAND</span>&nbsp;<span style="font-size: 25px;">& Epic</span></h1><br>

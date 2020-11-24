@@ -25,14 +25,19 @@
             <div class="suite-rooms-wrapper">
                 <h3>Suite Rooms</h3>
                 <div class="suite-room-content">
-                    <p>Wide views across the historic land of Sri Lanka, resort facilities of an exceptional kind and enough room for you to relax at complete ease – our suites are, indeed, rather special. You can choose to stay at the Dambulla or the Sigiriya Wing – either way, you have the balcony to contemplate the scenery from. Whether you are sipping drinks in your sitting room, snug in your bed, luxuriating in the Jacuzzi or snatching a rain shower.</p>
+                    <p style="text-align:center; font-family:Tahoma, Geneva, sans-serif">Life at the top can be very satisfying and so our suites are situated on
+                        the uppermost floor. The sights from your living space are sublime,
+                        offering undisturbed views of the unfurling landscape. The interiors are superbly
+                        designed, with subtle hues and lush tones conveying understated luxury. Chic accompaniments
+                        like your own Jacuzzi, a private dining area and cloistered patio make for a more sensual setting,
+                        combining the intimacy of home, with the unbridled indulgence of a five star sojourn.</p>
                 </div>
                 <button class="book" style="color:black;background-color:goldenrod"><a href="Suite-Rooms-form.php" target="_blank">Book Now</a></button>
             </div>
 
             <div class="room-container">
                 <div class="image-container">
-                    <img src="../../public/Images/pexels-lisa-fotios-2249055.jpg" alt="Superior-Room Image">
+                    <img src="../../public/images/suite.jpeg" alt="Superior-Room Image">
                 </div>
                 <div class="room-details">
                     <h2 style="color:white;font-size:28px">Room-Details</h2>
@@ -49,9 +54,9 @@
         </div>
     </div>
 
-    <?php include("../../public/includes/footer-footer.php"); ?>
+    <?php include("../../public/includes/footer-index.php"); ?>
     <script src="../../public/Javascript/script.js"></script>
-    <script src="../../publicJavascript/sticky-nav.js"></script>
+    <script src="../../public/Javascript/sticky-nav.js"></script>
 </body>
 
 </html>

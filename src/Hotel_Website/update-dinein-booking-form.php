@@ -114,7 +114,7 @@ while ($row = mysqli_fetch_assoc($sql_run)) {
             </div>
             <div class="dine-in-details-wrapper" style="display:flex;align-items:center;">
                 <div class="meal-container">
-                    <label for="Meal-type" id="meal-label-id" style="position: absolute;top:210px;left:30%">Meal Type</label>
+                    <label for="Meal-type" id="meal-label-id" style="position: absolute;top:210px;left:29%">Meal Type</label>
 
                     <label for="selected-meal-type" style="font-family:roboto;font-weight: bold;position:absolute;top:155px;left:330px">Selected Meal Type &nbsp; : </label><span style="font-weight: bolder;position:absolute;top:160px;left:530px;font-size:28px;">&nbsp;<?php echo $mealPeriod ?></span>
                     <label for="selected-meal-type" style="font-family:roboto;font-weight: bold;position:absolute;top:155px;left:700px">Selected Time Period &nbsp; : </label><span style="font-weight: bolder;position:absolute;top:160px;left:930px;font-size:28px;">&nbsp;<?php echo $time ?></span>

@@ -25,7 +25,14 @@
             <div class="panaromic-rooms-wrapper">
                 <h3>Panaromic Rooms</h3>
                 <div class="panaromic-room-content">
-                    <p>he Panoramic Rooms at Grand & Epic hotel in Sri Lanka do live up to their name. Your own private balcony will serve as your vantage point – any time. The views over the lake and the Dambulla rock are constant, yet ever changing: hazy mists of a morning, drifting clouds at the heat of noon, and golden glows when dusk descends. The rooms themselves are tempting too, with earthy tones, traditional woven tapestries, and fluffy pillows.</p>
+                    <p style="text-align:center; font-family:Tahoma, Geneva, sans-serif">Climb on to your comfortable bed,
+                        look at the mountains and feel nice about having it so close.
+                        Either sleep off as the wind sing you a rhythmic lullaby, or step
+                        into your own private balcony with a cup of coffee and hear the wind even more clearly,
+                        incidentally taking you to a very pleasant state of mind.The rooms provide an experience that is as inviting as it is relaxing.
+                        Combining spacious, perfectly designed interiors, with a host of luxurious amenities and offering exceptional views of the surrounding
+                        sea scape, from a private balcony and terrace. Come indulge in a living space that feels as intimate as home, yet offers all
+                        the trimmings of a five start getaway</p>
                 </div>
                 <button class="book" style="color:black;background-color:goldenrod"><a href="Panaromic-Rooms-form.php" target="_blank">Book Now</a></button>
             </div>
@@ -49,7 +56,7 @@
         </div>
     </div>
 
-    <?php include("../../public/includes/footer-footer.php"); ?>
+    <?php include("../../public/includes/footer-index.php"); ?>
     <script src="../../public/Javascript/script.js"></script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
 </body>

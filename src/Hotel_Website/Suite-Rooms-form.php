@@ -5,11 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suite Room Form</title>
+    <style>
+        body {
+            background-image: url("../../public/images/suite-form-img.jpeg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
     <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="background:-webkit-linear-gradient(bottom,#bdc3c7, #2c0e50);">
+
+<body>
     <div class="suite-rooms-form-container room-detail" id="suite-rooms-form-container-room-detail">
         <div class="suite-form-header">
             <h3 style="font-weight: bolder;color:black">Room Details & Availability</h3>
@@ -121,7 +130,7 @@
                                 <span class="suite-icon-label">Room 14</span>
                             </div>
                         </div>
-                        <div class="suite-icons-main">
+                        <div class="suite-icons-main suite">
                             <div class="suite-icon main">
                                 <i class="fa fa-home" aria-hidden="true"></i>
                                 <span class="suite-icon-label-main">Available</span>

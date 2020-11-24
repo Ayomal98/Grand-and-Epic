@@ -20,7 +20,7 @@ if (!isset($_SESSION['First_Name'])) {
         <div class="page-wrapper">
             <div class="header-container-SuperiorRooms" id="header-container">
                 <?php include("../../public/includes/sticky-nav-login.php"); ?>
-                <?php include("../../public/includes/side-nav.php"); ?>
+                <?php include("../../public/includes/side-nav-login.php"); ?>
                 <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
                 <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
                 <div id="user-detail-container">
@@ -40,7 +40,15 @@ if (!isset($_SESSION['First_Name'])) {
                 <div class="superior-rooms-wrapper">
                     <h3>Superior Rooms</h3>
                     <div class="superior-room-content">
-                        <p>Grand & Epic provide you joy & In the heart of historic Sigiriya, accommodation of the most indulgent kind awaits you at our Superior Rooms. Set in the Dambulla Wing you can relax in the comforts they offer and enjoy views either of the Sigiriya Rock or the lush jungle, and the Dambulla Rock in the distance. After a day of exploring – or even just idling, it is a perfect refuge to return to a long shower.</p>
+                        <p style="text-align:center; font-family:Tahoma, Geneva, sans-serif">Imagine having the view of a beautiful mountain every breathing minute of your day.
+                            Or wait, why imagine? Live in our Superior stay. It also makes the sitting and dining areas and the balcony,
+                            the perfect places to dine, wine, and ponder with a freewheeling state of mind.The superior rooms
+                            are exceptional in every way
+                            and you’ll notice this the moment you step in. Trappings like
+                            your own Jacuzzi and carefully appointed lighting, add a sensual
+                            touch to the overall ambiance. Underscored by exceptional style, the interiors are as
+                            expansive as they are inviting, with meticulous attention to detail, offering a seamless
+                            combination of functionality and bespoke luxury.</p>
                     </div>
                     <button class="book" style="color:black;background-color:goldenrod"><a href="Superior-Rooms-form.php" target="_blank">Book Now</a></button>
                 </div>

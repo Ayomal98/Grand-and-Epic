@@ -1619,6 +1619,9 @@ form.staying-in-form > label {
 .suite-form-details form{
   display: flex;
   width: 100%;
+  
+  background: #000;
+  opacity: 0.75;
 }
 
 .suite-form-details form .form-page{
@@ -1730,7 +1733,17 @@ span.suite-icon-label {
   opacity: 0.8;
 }
 .suite-icons-main {
-  margin-top: -270px;
+  margin-top: -350px;
+  margin-left: 500px;
+  display: flex;
+}
+.suite-icons-main.Superior {
+  margin-top: -300px;
+  margin-left: 500px;
+  display: flex;
+}
+.suite-icons-main.suite {
+  margin-top: -289px;
   margin-left: 500px;
   display: flex;
 }
@@ -1961,6 +1974,7 @@ span.suite-icon-label {
   width: 1200px;
   background: gray;
   border: none;
+  opacity: 0.94;
 }
 
 .form-page-fields-payment{

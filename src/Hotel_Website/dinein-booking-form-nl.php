@@ -90,7 +90,7 @@
             </div>
             <div class="dine-in-details-wrapper" style="display:flex;align-items:center;">
                 <div class="meal-container">
-                    <label for="Meal-type" id="meal-label-id" style="position: absolute;top:210px;left:30%">Meal Type</label>
+                    <label for="Meal-type" id="meal-label-id" style="position: absolute;top:210px;left:29%">Meal Type</label>
 
                     <select name="Meal-Period" id="time-period" onchange="mealShow()">
                         <option value="Breakfast">Breakfast</option>

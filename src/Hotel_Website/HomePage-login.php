@@ -74,7 +74,7 @@ if (!isset($_SESSION['First_Name'])) {
                 <div class="box-content">We value customers as our best asset. Therefore if you have booked our hotel 6 times, you will get a <b>50% off on your 7th booking.</b> Hurry up and witness the amazing oppurtuinity </div>
             </div>
             <div class="box">
-                <span class="fab fa-cc-visa" id="creditcard-icon"></span>
+                <span class="fas fa-gifts" id="creditcard-icon"></span>
                 <div class="box-heading">Seasonal Offer</div>
                 <div class="box-content">We are providing some attractive discounts from your complete amount of stay as the seasonal promotions during the christmas season, School vacations etc. Stay tuned for more interesting updates. </div>
             </div>

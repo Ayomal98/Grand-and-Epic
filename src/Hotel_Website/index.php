@@ -48,28 +48,27 @@
             </div>
 
         </div>
-        <h2>Offers</h2>
-        <div class="offers-container">
-            <div class="box">
-                <span class="fas fa-user" id="customer-icon"></span>
-                <div class="box-heading">Loyalty Offer</div>
-                <div class="box-content">We value customers as our best asset. Therefore if you have booked our hotel 6 times, you will get a <b>50% off on your 7th booking.</b> Hurry up and witness the amazing oppurtuinity </div>
+        <h3>Offers</h2>
+            <div class="offers-container">
+                <div class="box">
+                    <span class="fas fa-user" id="customer-icon"></span>
+                    <div class="box-heading">Loyalty Offer</div>
+                    <div class="box-content">We value customers as our best asset. Therefore if you have booked our hotel 6 times, you will get a <b>50% off on your 7th booking.</b> Hurry up and witness the amazing oppurtuinity </div>
 
+                </div>
+                <div class="box">
+                    <span class="fas fa-gifts" id="creditcard-icon"></span>
+                    <div class="box-heading">Seasonal Offer</div>
+                    <div class="box-content">We are providing some attractive discounts from your complete amount of stay as the seasonal promotions during the christmas season, School vacations etc. Stay tuned for more interesting updates. </div>
+                </div>
+                <div class="box">
+                    <span class="fas fa-hourglass-end" id="lastmin-icon"></span>
+                    <div class="box-heading">Last-Miniute Offer</div>
+                    <div class="box-content">Worried for last minute bookings? Not anymore. There will be special discounts to the last minute bookings. Do not let your idea of a sudden espace fade from you. We are here to help. </div>
+                </div>
             </div>
-            <div class="box">
-                <span class="fab fa-cc-visa" id="creditcard-icon"></span>
-                <div class="box-heading">Seasonal Offer</div>
-                <div class="box-content">We are providing some attractive discounts from your complete amount of stay as the seasonal promotions during the christmas season, School vacations etc. Stay tuned for more interesting updates. </div>
-
-            </div>
-            <div class="box">
-                <span class="fas fa-hourglass-end" id="lastmin-icon"></span>
-                <div class="box-heading">Last-Miniute Offer</div>
-                <div class="box-content">Worried for last minute bookings? Not anymore. There will be special discounts to the last minute bookings. Do not let your idea of a sudden espace fade from you. We are here to help. </div>
-            </div>
-        </div>
     </div>
-    <?php include("../../public/includes/footer-footer.php"); ?>
+    <?php include("../../public/includes/footer-index.php"); ?>
     <script src="../../public/javascript/script.js"></script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
 

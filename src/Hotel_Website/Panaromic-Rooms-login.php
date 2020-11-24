@@ -20,7 +20,7 @@ if (!isset($_SESSION['First_Name'])) {
     <div class="page-wrapper">
         <div class="header-container-SuperiorRooms" id="header-container">
             <?php include("../../public/includes/sticky-nav-login.php"); ?>
-            <?php include("../../public/includes/side-nav.php"); ?>
+            <?php include("../../public/includes/side-nav-login.php"); ?>
             <span class="fa fa-user" style="position:absolute;top:20px;right:40px;font-size:60px;color:white"><span class="far fa-caret-square-down" style="font-size:20px;margin-left:10px;" onclick="funcUserDetails()"></span></span>
             <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
             <div id="user-detail-container">
@@ -40,7 +40,14 @@ if (!isset($_SESSION['First_Name'])) {
             <div class="panaromic-rooms-wrapper">
                 <h3>Panaromic Rooms</h3>
                 <div class="panaromic-room-content">
-                    <p>he Panoramic Rooms at Grand & Epic hotel in Sri Lanka do live up to their name. Your own private balcony will serve as your vantage point – any time. The views over the lake and the Dambulla rock are constant, yet ever changing: hazy mists of a morning, drifting clouds at the heat of noon, and golden glows when dusk descends. The rooms themselves are tempting too, with earthy tones, traditional woven tapestries, and fluffy pillows.</p>
+                    <p style="text-align:center; font-family:Tahoma, Geneva, sans-serif">Climb on to your comfortable bed,
+                        look at the mountains and feel nice about having it so close.
+                        Either sleep off as the wind sing you a rhythmic lullaby, or step
+                        into your own private balcony with a cup of coffee and hear the wind even more clearly,
+                        incidentally taking you to a very pleasant state of mind.The rooms provide an experience that is as inviting as it is relaxing.
+                        Combining spacious, perfectly designed interiors, with a host of luxurious amenities and offering exceptional views of the surrounding
+                        sea scape, from a private balcony and terrace. Come indulge in a living space that feels as intimate as home, yet offers all
+                        the trimmings of a five start getaway</p>
                 </div>
                 <button class="book" style="color:black;background-color:goldenrod"><a href="Panaromic-Rooms-form.php" target="_blank">Book Now</a></button>
             </div>

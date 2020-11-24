@@ -13,7 +13,7 @@
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-section image">
-                    <img src="../images/Hotel-logo.png" alt="" class="logo-hotel" style="width:55%;height:60%;background-position:center;">
+                    <img src="../../public/images/Hotel-logo.png" alt="" class="logo-hotel" style="width:340px;height:170px;padding-left:70px">
                 </div>
                 <div class="footer-section about">
                     <h1 class="logo-text"><span style="color:thistle;font-size:34px">GRAND</span>&nbsp;<span style="font-size: 25px;">& Epic</span></h1><br>
@@ -45,7 +45,7 @@
                             <li>Events &nbsp;<span class="fas fa-handshake"></span></li>
                         </a>
                         <a href="../../public/includes/Terms_and_Conditions - Grand and Epic.pdf" style="color:white" download>
-                            <li>Terms & Conditions &nbsp;<span class="class=" fa fa-gavel""></span></li>
+                            <li>Terms & Conditions &nbsp;<span class=" fa fa-gavel"></span></li>
                         </a>
                     </ul>
                 </div>

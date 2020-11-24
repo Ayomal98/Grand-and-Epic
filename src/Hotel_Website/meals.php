@@ -28,7 +28,7 @@
     <div class="body-container set-menu" id="body-container-set-menu">
         <div class="all-in-price">All in one for Rs.1200/=<span style="font-weight:bold;font-size:15px;color:black">&nbsp-For Fullboard Customers Only</span></div>
         <h1 style="text-align: center;font-size:40px;margin-top:-10px;padding:20px;">Set Menu For Staying-In </h1>
-        <p style="text-align: center;font-size:20px;">This menu is for the staying in customers which will be sufficient for one person only</p>
+        <p style="text-align: center;font-size:20px;">Please note that this menu is for the staying in customers which will be sufficient for one person only</p>
         <div class="set-menu-breakfast-area">
             <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Breakfast Menu</h3>
             <div class="set-menu-meals-card">
@@ -52,7 +52,7 @@
                 <div class="set-menu-card-image"><img src="../../public/images/br5.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
                 <div class="set-menu-card-text">Sweet Onion Relish</div>
             </div>
-            <div class="amount-set-menu" style="position: absolute;top:207%;right:20%"><span> Whole Plate For Rs.400/=</span></div>
+            <div class="amount-set-menu" style="position: absolute;top:200%;right:20%"><span> Whole Plate For Rs.400/=</span></div>
         </div>
 
         <div class="set-menu-lunch-area">
@@ -77,7 +77,7 @@
                 <div class="set-menu-card-image"><img src="../../public/images/lu5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Fish Cutlet with Tomato Sauce</div>
             </div>
-            <div class="amount-set-menu" style="position: absolute;top:280%;right:20%"><span> Whole Plate For Rs.600/=</span></div>
+            <div class="amount-set-menu" style="position: absolute;top:270%;right:20%"><span> Whole Plate For Rs.600/=</span></div>
         </div>
         <div class="set-menu-dinner-area">
             <h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">Dinner Menu</h3>
@@ -101,7 +101,7 @@
                 <div class="set-menu-card-image"><img src="../../public/images/di5.jpg" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                 <div class="set-menu-card-text">Mayonise</div>
             </div>
-            <div class="amount-set-menu" style="position: absolute;top:350%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
+            <div class="amount-set-menu" style="position: absolute;top:333%;right:20%"><span> Whole Plate For Rs.800/=</span></div>
         </div>
     </div>
     <!-- set menu shower container for the events users -->
