@@ -1,6 +1,5 @@
 
 body {
-	
 	font-family: "Lato", sans-serif;
 	position: relative;  
     top:0;
@@ -12,8 +11,8 @@ body {
 
 /* Fixed sidenav, full height */
 .sidenav {
-  height: 18%;
-  width: 270px;
+  height: 250px;
+  width: 250px;
   position: relative;
   z-index: 1;
   top: -250px;
@@ -78,7 +77,7 @@ body {
 .top-right{
 	position: absolute;
 	top: 0px;
-	right: 30px;
+	right: 20px;
 	
 }
 .mySlides{
@@ -92,7 +91,7 @@ body {
 .display-left{
 	position: absolute;
 	left: 15px;
-	top: 850px;
+	top: 950px;
 	height: 80px;
 	width: 20px;
 	opacity: 0.7;
@@ -101,7 +100,7 @@ body {
 .display-right{
 	position: absolute;
 	left: 795px;
-	top: 850px;
+	top: 950px;
 	height: 80px;
 	width: 20px;
 	opacity: 0.7;
@@ -120,7 +119,6 @@ input[type=text]{
 	box-sizing: border-box;
 	font-size: 20px;
 	color: black;
-	display: block;
 }
 input[type=email]{
 	width: 80%;
