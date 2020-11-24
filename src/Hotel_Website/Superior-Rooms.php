@@ -27,7 +27,7 @@
                 <div class="superior-room-content">
                     <p>Grand & Epic provide you joy & In the heart of historic Sigiriya, accommodation of the most indulgent kind awaits you at our Superior Rooms. Set in the Dambulla Wing you can relax in the comforts they offer and enjoy views either of the Sigiriya Rock or the lush jungle, and the Dambulla Rock in the distance. After a day of exploring – or even just idling, it is a perfect refuge to return to a long shower.</p>
                 </div>
-                <button class="book" style="color:black;background-color:goldenrod"><a href="">Book Now</a></button>
+                <button class="book" style="color:black;background-color:goldenrod"><a href="Superior-Rooms-form.php" target="_blank">Book Now</a></button>
             </div>
 
             <div class="room-container">

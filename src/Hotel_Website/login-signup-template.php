@@ -21,7 +21,7 @@
                     <label for="User type">User Type</label>
                     <select name="User-Type" id="" class="user-type" required>
                         <option value="Customer" selected>Customer</option>>
-                        <option value="Employee">Staff</option>
+                        <option value="Staff">Staff</option>
                     </select>
                 </div>
                 <input type="text" name="email" placeholder="Email" class="inputs" id="login-customer-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>

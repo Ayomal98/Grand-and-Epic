@@ -1,7 +1,12 @@
-<?php include("../../config/connection.php");
-session_start();
-$username = $_SESSION['First_Name'];
-$email = $_SESSION['User_Email'];
+<?php
+
+include("../../public/includes/session.php");
+checkSession();
+if (!isset($_SESSION['First_Name'])) {
+    header('Location:index.php');
+}
+include("../../config/connection.php");
+$email = $_SESSION["User_Email"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +41,7 @@ $email = $_SESSION['User_Email'];
         <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
         <div id="user-detail-container">
             <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-            <p style="margin-bottom: 10px;"><?php echo "Logged in as $username"; ?></P>
+            <p style="margin-bottom: 10px;"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
             <hr style="color:teal">
             <a href="logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:5px;margin-left:85px;padding:5px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 
@@ -56,16 +61,16 @@ $email = $_SESSION['User_Email'];
     <h3><u>Upcoming Reservations</u></h3>
     <div class="userBookings upcoming" id="user-bookings">
         <div class="upcomig-reservation-box">
-            <span style="font-weight: bold;font-size:20px;">Room Number : Suite-12</span>
-            <span style="font-weight: bold;font-size:20px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-Out Date: &nbsp;<span>21st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
-            <span style="font-weight: bold;font-size:20px;">Amount Paid: Rs. 16,000/=</span>
-            <span style="font-weight: bold;font-size:20px;">Amount left to paid: Rs.64,000/=</span>
+            <span style="font-weight: bold;font-size:15px;">Room Number : Suite-12</span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Amount Paid: Rs. 16,000/=</span>
+            <span style="font-weight: bold;font-size:15px;">Amount left to paid: Rs.64,000/=</span>
             <div class="book-btn-container">
-                <button class="book update" style="padding: 15px 20px 45px 20px;font-size:15px;margin-left:10px;width:40%;height:40%;text-align:center;" id="btn-early-checkout">Request Early Checkouts</button>
-                <button class="book delete" style="padding: 15px 20px 45px 20px;font-size:15px;width:40%;height:40%;text-align:center;margin-top:12px;" id="cancel-stayingin">Cancel Reservation</button>
+                <button class="book update" style="padding: 15px 15px 45px 15px;font-size:15px;margin-left:10px;width:40%;height:40%;text-align:center;" id="btn-early-checkout">Request Early Checkouts</button>
+                <button class="book delete" style="padding: 15px 15px 45px 15px;font-size:15px;width:40%;height:40%;text-align:center;margin-top:12px;" id="cancel-stayingin">Cancel Reservation</button>
             </div>
         </div>
         <?php include("./request-early-checkout-form.php") ?>
@@ -130,15 +135,15 @@ $email = $_SESSION['User_Email'];
             <h3 style="text-align: center;">Past Reservations</h3>
         </u>
         <div class="upcomig-reservation-box past" style="margin-left: 10px;">
-            <span style="font-weight: bold;font-size:20px;">Room Number : Panaromic-13</span>
-            <span style="font-weight: bold;font-size:20px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-Out Date: &nbsp;<span>22st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:20px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
-            <span style="font-weight: bold;font-size:20px;">Amount Paid: Rs. 16,000/=</span>
-            <span style="font-weight: bold;font-size:20px;">Amount left to paid: Rs.64,000/=</span>
+            <span style="font-weight: bold;font-size:15px;">Room Number : Panaromic-13</span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Date: &nbsp;<span>22st of November 2020</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Amount Paid: Rs. 16,000/=</span>
+            <span style="font-weight: bold;font-size:15px;">Amount left to paid: Rs.64,000/=</span>
             <div class="book-btn-container">
-                <button class="book update" style="padding: 15px 20px 45px 20px;font-size:15px;margin-left:50px;width:40%;height:40%;text-align:center;" id="btn-feedback">Provide Feedback</button>
+                <button class="book update" style="padding: 15px 15px px 15px;font-size:12px;margin-left:50px;width:40%;height:40%;text-align:center;" id="btn-feedback">Provide Feedback</button>
 
             </div>
         </div>

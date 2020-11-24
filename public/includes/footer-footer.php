@@ -1,3 +1,4 @@
+<!-- footer for the logged in user -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,16 +33,16 @@
                 <div class="footer-section link">
                     <h2>Quick Links</h2><br>
                     <ul>
-                        <a href="#" style="color:white;">
+                        <a href="HomePage-login.php" style="color:white;">
                             <li>Home &nbsp;<span class="fas fa-home"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="staying-in-login.php" style="color:white">
                             <li>Staying-in &nbsp;<span class="fas fa-utensils"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="dinein-login.php" style="color:white">
                             <li>Dine-in &nbsp;<span class="fas fa-hamburger"></span></li>
                         </a>
-                        <a href="#" style="color:white">
+                        <a href="events-login.php" style="color:white">
                             <li>Events &nbsp;<span class="fas fa-handshake"></span></li>
                         </a>
                         <a href="../../public/includes/Terms_and_Conditions - Grand and Epic.pdf" style="color:white" download>

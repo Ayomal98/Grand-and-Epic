@@ -436,7 +436,7 @@ img {
   background-color: #f0f0f0;
   position: absolute;
   width: 160px;
-  height: 95px;
+  height: 115px;
   top: 100px;
   right: 30px;
   border-radius: 10px;
@@ -778,8 +778,8 @@ img {
 }
 
 .card {
-  width: 120%;
-  height: 50vh;
+  width: 130%;
+  height: 55vh;
   display: flex;
   background: #fff;
   margin: 20px 30px;
@@ -804,7 +804,7 @@ img {
 }
 
 .card-content {
-  padding: 10% 5%;
+  padding: 5% 5%;
   box-sizing: border-box;
   width: 60%;
   background: #b88b4a;
@@ -817,7 +817,7 @@ img {
   font-size: 30px;
   text-transform: capitalize;
   line-height: 0.91;
-  margin: 3vmin 0 3.5vmin;
+  margin: -20px 0px 15px 0px ;
   color: #000;
   font-family: Poppins;
 }
@@ -829,6 +829,7 @@ img {
   margin-bottom: 2.5vmin;
   color: #000;
   font-family: Poppins;
+  margin-top: 10px;
 }
 
 .card-link {
@@ -841,6 +842,7 @@ img {
   cursor: pointer;
   opacity: 0.7;
   transition: 0.3s ease;
+  margin-top: 15px;
 }
 
 .prevnext {
@@ -1869,8 +1871,8 @@ span.suite-icon-label {
   width: 145px;
   border-radius: 50%;
   right:6%;
-  font-size: 14px;
-  top: 133%
+  font-size: 12px;
+  top: 138%
 }
 .amount-set-menu{
   border: none;

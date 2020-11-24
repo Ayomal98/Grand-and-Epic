@@ -50,7 +50,9 @@ $email = $_SESSION['User_Email'];
                     <div class="card-room-img">
                         <img class="img-superior-rooms" src="../../public/images/CBB-Superior-Room-530X420.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
-                    <div class="card-room-para" style="color:white;">In the heart of Sri Lanka, accommodation of the most indulgent kind awaits you at our Superior Rooms. Set in the Grand Wings you can relax in the comforts.</div>
+                    <div class="card-room-para" style="color:white;">In the heart of upcountry, accommodation of the most indulgent kind awaits you at our Superior Rooms. Set in the mountain
+                        Wings you can relax in the comforts they offer and enjoy views.
+                        After a day of exploring – or even just idling, it is a perfect refuge to return to a long shower.</div>
                     <div class="view-book-wrapper">
                         <button class="view"><a href="Superior-Rooms-login.php">View Room</a></button>
                         <button class="book"><a href="">Book Now</a></button>
@@ -61,7 +63,9 @@ $email = $_SESSION['User_Email'];
                     <div class="card-room-img">
                         <img class="img-panaromic-rooms" src="../../public/images/content2.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
-                    <div class="card-room-para">The Panoramic Rooms at Grand & Epic will provide do live up to their name. Your own private balcony will serve as your vantage point – any time. The views over the lake and the Dambulla rock are constant, yet ever changing.</div>
+                    <div class="card-room-para" style="color: white;">The Panoramic Rooms at Grand & Epic will provide do live up to their name.
+                        Your own private balcony will serve as your vantage point – any time. The views over the mountains
+                        are constant, yet ever changing. The rooms themselves are tempting too, with earthy tones, traditional woven tapestries, and fluffy pillows.</div>
                     <div class="view-book-wrapper">
                         <button class="view"><a href="Panaromic-Rooms-login.php">View Room</a></button>
                         <button class="book"><a href="">Book Now</a></button>
@@ -73,7 +77,11 @@ $email = $_SESSION['User_Email'];
                     <div class="card-room-img">
                         <img class="img-panaromic-rooms" src="../../public/images/suite-image.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
-                    <div class="card-room-para" style="color:white;">Wide views across the historic land of Sri Lanka, resort facilities of an exceptional kind and enough room for you to relax at complete ease – our suites are, indeed, rather special.</div>
+                    <div class="card-room-para" style="color:white;">For a ‘beyond the ordinary’ holiday in Sri Lanka,
+                        suites at Grand and Epic offer you the ultimate in creature comforts. Panoramic views of mountains greet you from everywhere.
+                        Stretch on the living room sofa and watch a favourite movie,
+                        the four poster bed may also beckon for a quiet read, the spectacular views are just right for that pre-dinner drink,
+                        but then, there is the Jacuzzi tempting you in too.</div>
                     <div class="view-book-wrapper">
                         <button class="view"><a href="Suite-Rooms-login.php">View Room</a></button>
                         <button class="book"><a href="">Book Now</a></button>

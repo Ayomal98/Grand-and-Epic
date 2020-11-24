@@ -132,10 +132,6 @@
                                 <i class="fa fa-home" aria-hidden="true"></i>
                                 <span class="suite-icon-label">Room 17</span>
                             </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 18</span>
-                            </div>
                         </div>
                         <div class="suite-icons-main">
                             <div class="suite-icon main">
@@ -147,6 +143,10 @@
                                 <span class="suite-icon-label-main">Not Available</span>
                             </div>
                         </div>
+                    </div>
+                    <div class="select-rooms">
+                        <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:20px;">Selection Of Room</label>
+                        <input type="text" name="" id="" style="padding:10px;" placeholder="Enter a Room Number">
                     </div>
                     <div class="form-page-fields">
                         <div class="reservation-type-fields" style="margin-left:-170px;margin-top:70px;width:250%">
@@ -193,17 +193,17 @@
         </div>
         <div class="meal-type-selector">
             <h4 style="margin-right: 20px;
-                        font-size: 30px;
+                        font-size: 25px;
     width: 1800px;
     margin-left:10px;color:white;">Breakfast</h4>
             <hr>
             <h4 style="margin-right: 20px;
-                        font-size: 30px;
+                        font-size: 25px;
     width: 1800px;
     margin-left:10px">Lunch</h4>
             <hr>
             <h4 style="margin-right: 20px;
-                        font-size: 30px;
+                        font-size: 25px;
     width: 1800px;
     margin-left:10px">Dinner</h4>
         </div>
@@ -357,7 +357,7 @@
                 <div style="margin-top:-15px;font-weight:bolder"><label for="Payment-Deatils" style="font-size:45px;color:white;" ;>Payment Details</label></div>
                 <fieldset style="width: 380px;height:400px;margin-top:80px;background-color:white;border-radius:10px;border:none;padding:10px;">
                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;"><u>Price For the Rooms</u></div>
-                    <label for="">Superior Room x 2 =</label><label for="" style="font-weight:bolder">&nbsp;Rs.50,000/=</label>
+                    <label for="">Panaromic Room x 2 =</label><label for="" style="font-weight:bolder">&nbsp;Rs.40,000/=</label>
                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:10px;"><u>Price For Meals</u></div>
                     <label for="" style="font-weight:bolder;text-align:center;margin-left:50px;margin-bottom:20px;">Set Menu</label><br>
                     <label for="" style="margin-top:20px;margin-left:10px;">Day 1</label><label for="">&nbsp; Rs.1200 /=</label><br>
@@ -415,7 +415,7 @@
                 </fieldset>
 
             </div>
-            <input type="submit" value="Previous" id="previous-meal" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;" onclick="PaymentToMeals()">
+            <input type="submit" value="Previous" id="previous-meal-btn" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;">
             <input type="submit" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;" value="Book Now">
 
         </div>
@@ -485,11 +485,15 @@
             document.getElementById('form-page-mealuser').style.display = 'none';
         }
 
-        //from payment to meal
-        function PaymentToMeals() {
+        //adding event listener for the showing from payment page to meals page
+        document.getElementById("previous-meal-btn").addEventListener('click', PaymentToMeals);
+
+        function PaymentToMeals(e) {
+            e.preventDefault();
             document.getElementById('form-page-paymentuser').style.display = 'none';
-            document.getElementById('form-page-mealuser').style.display = 'block';
             document.getElementById('suite-rooms-form-container-room-detail').style.display = 'none';
+            document.getElementById('form-page-mealuser').style.display = 'block';
+            e.preventDefault();
         }
     </script>
 </body>
