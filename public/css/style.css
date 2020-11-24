@@ -918,6 +918,13 @@ img {
   padding: 10px;
 }
 
+.box-specials{
+  color: black;
+  font-size:10px;
+  margin-left:-80px;
+  margin-top:7px;
+  margin-left:-270px;
+}
 .box:hover {
   transform: scale(1.05);
   background-color: #000;
@@ -941,6 +948,13 @@ img {
   color: antiquewhite;
 }
 
+.box:hover .box-specials{
+  color: white;
+  font-size:10px;
+  margin-left:-80px;
+  margin-top:7px;
+  margin-left:-270px;
+}
 #customer-icon {
   font-size: 50px;
   top: 10px;

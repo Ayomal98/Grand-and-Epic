@@ -75,8 +75,11 @@ if (!isset($_SESSION['First_Name'])) {
             </div>
             <div class="box">
                 <span class="fas fa-gifts" id="creditcard-icon"></span>
-                <div class="box-heading">Seasonal Offer</div>
+                <div class="box-heading" style="margin-top: 50px;">Seasonal Offer</div>
                 <div class="box-content">We are providing some attractive discounts from your complete amount of stay as the seasonal promotions during the christmas season, School vacations etc. Stay tuned for more interesting updates. </div>
+                <div style="margin-left:-130px;font-size:20px;margin-top:-10px"><b>Available Only For Suit Rooms</b></div>
+                <div class="box-specials"><b>*Valid Until 25th Of December</b></div>
+                <input type="button" value="Apply Now" style="padding: 8px 8px;border:none;border-radius:5px;margin-top:-33px;background-color:white;margin-left:310px;cursor:pointer;font-weight:bolder">
             </div>
             <div class="box">
                 <span class="fas fa-hourglass-end" id="lastmin-icon"></span>

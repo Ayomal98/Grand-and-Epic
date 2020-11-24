@@ -28,8 +28,8 @@
             <div class="accomodation-wrapper">
                 <h3>Accomodations</h3>
                 <div class="icons-check-in-out" style="text-align:center;padding:10px;">
-                    <span class="fas fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check In : &nbsp; 12.30 P.M</span>
-                    <span class="fas fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check Out : &nbsp; 2.00 P.M </span>
+                    <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check In : &nbsp; 12.30 P.M</span>
+                    <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check Out : &nbsp; 2.00 P.M </span>
                 </div>
             </div>
             <div class="room-container">

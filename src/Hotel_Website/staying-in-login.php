@@ -1,8 +1,10 @@
 <!-- This page consists of staying in page for logged in customers -->
 <?php
-session_start();
-$username = $_SESSION['First_Name'];
-$email = $_SESSION['User_Email'];
+include("../../public/includes/session.php");
+checkSession();
+if (!isset($_SESSION['First_Name'])) {
+    header('Location:index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +26,7 @@ $email = $_SESSION['User_Email'];
             <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
             <div id="user-detail-container">
                 <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-                <p style="margin-bottom: 10px;"><?php echo "Logged in as $username"; ?></P>
+                <p style="margin-bottom: 10px;"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
                 <hr style="color:teal">
                 <a href="logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:5px;margin-left:85px;padding:5px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 
@@ -40,8 +42,8 @@ $email = $_SESSION['User_Email'];
             <div class="accomodation-wrapper">
                 <h3>Accomodations</h3>
                 <div class="icons-check-in-out" style="text-align:center;padding:10px;">
-                    <span class="fas fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check In : &nbsp; 12.30 P.M</span>
-                    <span class="fas fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check Out : &nbsp; 2.00 P.M </span>
+                    <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check In : &nbsp; 12.30 P.M</span>
+                    <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check Out : &nbsp; 2.00 P.M </span>
                 </div>
             </div>
             <div class="room-container">

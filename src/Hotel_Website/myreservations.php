@@ -160,14 +160,38 @@ $email = $_SESSION["User_Email"];
             <h3 style="text-align: center;">Past Reservations</h3>
         </u>
         <div class="upcomig-reservation-box past" style="margin-left: 10px;">
-            <span style="font-weight: bold;font-size:15px;">Staying-in ID : 48</span>
+            <div style="display:flex;margin-top:-40px;margin-bottom:10px">
+                <span style="font-weight: bold;font-size:15px;margin-right:35px">Staying-in ID : 48</span>
+                <span style="font-weight: bold;font-size:15px;">Room Number : Panaromic 13</span>
+            </div>
+            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px">
+                <tr>
+                    <th>Check-In Date</th>
+                    <th>Check-In Time</th>
+                    <th>Check-Out Date</th>
+                    <th>Check-Out Time</th>
+                </tr>
+                <tr>
+                    <td style="padding-left:5px">20th November 2020</td>
+                    <td style="padding-left:5px">8.30 A.M.</td>
+                    <td style="padding-left:5px">23th November 2020</td>
+                    <td style="padding-left:5px">12.30 P.M.</td>
+                </tr>
+            </table>
+            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px;width:30%;margin-left:27%">
+                <tr>
+                    <th style="padding: 5px;">Total Amount </th>
+                    <td style="padding: 5px;">Rs.60,000/=</td>
+                </tr>
+            </table>
+            <!-- <span style="font-weight: bold;font-size:15px;">Staying-in ID : 48</span>
             <span style="font-weight: bold;font-size:15px;">Room Number : Panaromic-13</span>
             <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
             <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
             <span style="font-weight: bold;font-size:15px;">Check-Out Date: &nbsp;<span>22st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
+            <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span> -->
             <div class="book-btn-container">
-                <button class="book update" style="padding: 15px 15px 20px 15px;font-size:15px;margin-left:50px;width:40%;height:40%;text-align:center;" id="btn-feedback">Provide Feedback</button>
+                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px" id="btn-feedback">Provide Feedback</button>
 
             </div>
         </div>
