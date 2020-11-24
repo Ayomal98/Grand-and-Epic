@@ -123,7 +123,7 @@ checkSession();
                     </tr>
                     <tr>
                         <td align="left">Password:</td>
-                        <td align="center"><input type="password" name="empPass" title="Your Password Should contain minimum of 8 characters, the first character should should be uppercase & should include special characters as well" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="password" name="empPass" title="Your Password Should contain minimum of 8 characters, the first character should should be uppercase & should include special characters as well"pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Password" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">Email Address:</td>
@@ -141,7 +141,7 @@ checkSession();
             <tr>
                 <td align="right">
                     <input type="submit" class="button" value="  Add Employee " name="ADD" form="manager_form">
-                    <input type="reset" class="button" value="  Reset " name="reset" form="manager_form">
+                    <input type="reset" class="button" value="  Reset Details " name="reset" form="manager_form">
                 </td>
             </tr>
         </table>

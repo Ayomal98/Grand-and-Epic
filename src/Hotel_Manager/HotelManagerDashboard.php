@@ -202,7 +202,7 @@ checkSession();
     </table>
 
 	
-    <table style ="position:absolute; top : 1450px; left:150px;">
+    <table style ="position:absolute; top : 1300px; left:150px;">
         <tr>
             <th>
                 <p style = "font-family :Lato; font-size:20px; color :white;">Bookings Overview of the Year</p>	
