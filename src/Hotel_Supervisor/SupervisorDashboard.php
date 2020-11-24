@@ -1,7 +1,11 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+include("../../public/includes/session.php");
+
+checkSession();
+	if(!isset($_SESSION['First_Name'])){
+		header('Location:../Hotel_Website/HomePage-login.php');
+		
+	}
 ?>
 <html>
 
@@ -20,7 +24,9 @@ $email = $_SESSION['User_Email'];
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+				<?php 
+					echo "<br><p class=\"logged-in-msg\">You are Logged in as " . $_SESSION['First_Name']. " (Staff)</p>"; 
+				?>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
@@ -30,10 +36,10 @@ $email = $_SESSION['User_Email'];
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-			<a href="SupervisorAssignEmployeeTasks.php"><font size="4 px">Assign Employee Tasks</font></a>
-			<a href="SupervisorManageMeals.php"><font size="4 px">Manage Meals</font></a>
-			<a href="SupervisorManageSetMenus.php"><font size="4 px">Manage Set Menu</font></a>
-			<a href="SupervisorLeaveRequest.php"><font size="4 px">Request a Leave</font></a>
+			<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
+			<a href="SupervisorManageMeals.php">Manage Meals</a>
+			<a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
+			<a href="SupervisorLeaveRequest.php">Request a Leave</a>
 		</div>
 	</div>
 	<div class="top-right">
@@ -178,67 +184,42 @@ $email = $_SESSION['User_Email'];
 	</table>
 
 
-	<div class="bottom-left">
-		<div class="display">
-			<img class="mySlides" src="../../public/images/img17.jpg">
-			<img class="mySlides" src="../../public/images/img18.jpg">
-			<img class="mySlides" src="../../public/images/img19.jpg">
-			<img class="mySlides" src="../../public/images/img20.jpg">
-
-			<button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
-			<button class="display-right" onclick="plusDivs(1)">&#10095;</button>
-		</div>
-
-		<script>
-			var slideIndex = 1;
-			showDivs(slideIndex);
-
-			function plusDivs(n) {
-				showDivs(slideIndex += n);
-			}
-
-			function showDivs(n) {
-				var i;
-				var x = document.getElementsByClassName("mySlides");
-				if (n > x.length) {
-					slideIndex = 1
-				}
-				if (n < 1) {
-					slideIndex = x.length
-				}
-				for (i = 0; i < x.length; i++) {
-					x[i].style.display = "none";
-				}
-				x[slideIndex - 1].style.display = "block";
-			}
-		</script>
-	</div>
-
-
-	<div class="bottom-right">
-		<form style="color:white; font-size:20px;">
-			<fieldset>
-				<legend>
-					<font size="10px">User Profile</font>
-				</legend>
-				<label for="fname">First Name : </label>
-				<input type="text" id="fname" name="fname">
-				<label for="lname">Last Name : </label>
-				<input type="text" id="lname" name="lname">
-				<label for="email">Email Add : </label>
-				<input type="email" id="email" name="email">
-				<label for="password">Password : </label>
-				<input type="password" id="password" name="password" placeholder="Password">
-				<label for="tel">TP Number : </label>
-				<input type="tel" id="tel" name="tel">
-				<br>
-				<table>
-					<td>
-						<input type="button" class="button" value="UPDATE PROFILE">
-				</table>
-			</fieldset>
+	<form>
+		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
+			<table align="center" style="color:white; font-size: 20px; width:88%;">
+				<tr>
+					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
+				</tr>
+				<tr>
+					<td>Supervisor ID:</td>
+					<td><input type="text" id="id" name="id"></td>
+				</tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" id="fname" name="fname"></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" id="lname" name="lname"></td>
+				</tr>
+				<tr>
+					<td>Email Address:</td>
+					<td><input type="email" id="email" name="email"></td>
+				</tr>
+				<tr>
+					<td>Password: </td>
+					<td><input type="password" id="password" name="password" placeholder="Password"></td>
+				</tr>
+				<tr>
+					<td>TP Number: </td>
+					<td><input type="tel" id="tel" name="tel"></td>
+				</tr>
+				<tr>
+					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
+				</tr>
+			</table>
 		</form>
-	</div>
+
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";

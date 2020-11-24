@@ -1,7 +1,12 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+
+include("../../public/includes/session.php");
+
+checkSession();
+	if(!isset($_SESSION['First_Name'])){
+		header('Location:../Hotel_Website/HomePage-login.php');
+	}
+
 ?>
 <html>
 	<head>
@@ -19,7 +24,10 @@ $email = $_SESSION['User_Email'];
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+			<p style="margin-top: 2px; color:black">
+			<?php 
+				echo "Logged in as " . $_SESSION['First_Name'] ."(Staff)</P>";
+			?>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
         </div>

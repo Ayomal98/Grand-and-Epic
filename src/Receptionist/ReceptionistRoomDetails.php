@@ -1,11 +1,16 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+
+include("../../public/includes/session.php");
+
+checkSession();
+	if(!isset($_SESSION['First_Name'])){
+		header('Location:../Hotel_Website/HomePage-login.php');
+	}
+
 ?>
 <html>
 	<head>
-	<link rel="stylesheet" href="../Css/employee.css">
+	<link rel="stylesheet" href="../../public/css/employee.css">
 		<title>
 		Receptionist Room Details
         </title>
@@ -14,12 +19,17 @@ $email = $_SESSION['User_Email'];
 	<body bgcolor = "black">
 
 	<center>
-    <img src="../Images/Logo.png" width="20%">
-    <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:100px;top:10px;" onclick="funcUserDetails()"></span>
+    <img src="../../public/images/Logo.png" width="20%">
+
+    <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
+
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+			<p style="margin-top: 2px; color:black">
+            <?php 
+				echo "Logged in as " . $_SESSION['First_Name'] ."(Staff)</P>";
+			?>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
@@ -41,7 +51,7 @@ $email = $_SESSION['User_Email'];
 		<td>	
 		</td>
 		<td>
-			<img src = "../Images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "40%" >
 		</td>
 		</tr>
 	</table>
@@ -67,7 +77,7 @@ $email = $_SESSION['User_Email'];
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
             <td>
-                <img src = "../Images/room.png" height = "65%">
+                <img src = "../../public/images/room.png" height = "65%">
             </td>
 		<td>
 			<p style = "font-family :Lato; font-size:22px; color :white;">Room Details</p>		
@@ -90,7 +100,7 @@ $email = $_SESSION['User_Email'];
 				<tr>
 				
 				<td align="center">
-                    <img src = "../Images/BIgCal.png" height = "10%">
+                    <img src = "../../public/images/BIgCal.png" height = "10%">
 				</td>
 				</tr>
 				<tr>

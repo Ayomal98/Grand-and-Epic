@@ -1,7 +1,11 @@
 <?php
-session_start();
-$username = $_SESSION['username'];
-$email = $_SESSION['User_Email'];
+include("../../public/includes/session.php");
+
+checkSession();
+	if(!isset($_SESSION['First_Name'])){
+		header('Location:../Hotel_Website/HomePage-login.php');
+		
+	}
 ?>
 
 <html>
@@ -21,7 +25,9 @@ $email = $_SESSION['User_Email'];
 		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as $username"; ?></P>
+                <?php 
+                    echo "<br><p class=\"logged-in-msg\">You are Logged in as " . $_SESSION['First_Name']. " (Staff)</p>"; 
+                ?>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
@@ -31,10 +37,10 @@ $email = $_SESSION['User_Email'];
 				<i class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-                <a href="SupervisorDashboard.php"><font size = "4 px">Dashboard</font></a>
+                <a href="SupervisorDashboard.php">Dashboard</a>
                 <a href="SupervisorManageMeals.php">Manage Meals</a>
                 <a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
-                <a href="SupervisorLeaveRequest.php"><font size = "4 px">Request a leave</font></a>
+                <a href="SupervisorLeaveRequest.php">Request a leave</a>
 			</div>
 		</div>
 
