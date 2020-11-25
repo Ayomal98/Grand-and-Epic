@@ -352,16 +352,17 @@
             </div>
             <div class="payment-details">
                 <div style="margin-top:-15px;font-weight:bolder"><label for="Payment-Deatils" style="font-size:45px;color:white;" ;>Payment Details</label></div>
-                <fieldset style="width: 380px;height:400px;margin-top:80px;background-color:white;border-radius:10px;border:none;padding:10px;">
+                <fieldset style="width: 450px;height:420px;margin-top:78px;background-color:white;border-radius:10px;border:none;padding:10px;">
                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;"><u>Price For the Rooms</u></div>
-                    <label for="">Superior Room x 2 =</label><label for="" style="font-weight:bolder">&nbsp;Rs.50,000/=</label>
+                    <label for="">Suite Room x 2 </label><label for="" style="font-weight:bolder;position:absolute;right:16%;top:31.5%;font-size:23px">&nbsp;Rs.50,000/=</label>
                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:10px;"><u>Price For Meals</u></div>
                     <label for="" style="font-weight:bolder;text-align:center;margin-left:50px;margin-bottom:20px;">Set Menu</label><br>
-                    <label for="" style="margin-top:20px;margin-left:10px;">Day 1</label><label for="">&nbsp; Rs.1200 /=</label><br>
+                    <label for="" style="margin-top:20px;margin-left:10px;">Day 1</label><label for="">&nbsp; Rs.1000 /=</label><br>
                     <label for="" style="margin-top:20px;margin-left:10px;">Day 2</label><label for="">&nbsp; Rs.5000 /=</label><br>
                     <div class="total-amount" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:20px;"><u>Total Amount</u></div>
-                    <label for="">Total Amount for the Booking <br><br></label><span style="font-weight: bolder;text-align:center;margin-left:100px;font-size:28px;"> Rs.56,200/=</span>
-
+                    <label for="">Total Amount for the Booking <br><br></label><span style="font-weight: bolder;position:absolute;right:16%;top:59.5%;font-size:23px"> Rs.56,200/=</span>
+                    <div class="total-amount" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:-5px;"><u>Advance Amount</u></div>
+                    <label for="" style="font-weight:bold">Total Amount * 20 % <br><br></label><span style="position: absolute;right:14%;top:70.5%;font-size:28px;font-weight:bolder">Rs.11,200/=</span>
                 </fieldset>
 
             </div>
@@ -398,17 +399,18 @@
             </div>
             <div class="payment-details">
                 <div style="margin-top:-15px;font-weight:bolder"><label for="Payment-Deatils" style="font-size:45px;color:white;" ;>Payment Details</label></div>
-                <fieldset style="width: 380px;height:400px;margin-top:80px;background-color:white;border-radius:10px;border:none;padding:10px;">
+                <fieldset style="width: 450px;height:450px;margin-top:80px;background-color:white;border-radius:10px;border:none;padding:10px;">
                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;"><u>Price For the Rooms</u></div>
-                    <label for="">Superior Room x 2 =</label><label for="" style="font-weight:bolder">&nbsp;Rs.50,000/=</label>
+                    <label for="">Suite Room x 2 </label><label for="" style="font-weight:bolder;position:absolute;top:31%;right:15%">&nbsp;Rs.50,000/=</label>
                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:10px;"><u>Price For Meals</u></div>
                     <label for="" style="font-weight:bolder;text-align:center;margin-left:50px;margin-bottom:20px;">Customized Menu</label><br>
                     <label for="" style="margin-top:20px;margin-left:10px;">Day 1</label><label for="">&nbsp; Rs.3000 /=</label><br>
                     <label for="" style="margin-top:20px;margin-left:10px;">Day 2</label><label for="">&nbsp; Rs.5000 /=</label><br>
-                    <label for="total amount meals" style="font-weight: bolder;font-size:20px;">Total Amount for Meals =</label>&nbsp;<span style="font-weight: bolder;"> Rs.8000/=</span>
+                    <label for="total amount meals" style="font-weight: bolder;font-size:20px;">Total Amount for Meals </label>&nbsp;<span style="font-weight: bolder;position:absolute;top:49.5%;right:15%"> Rs.8000/=</span>
                     <div class="total-amount" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:20px;"><u>Total Amount</u></div>
-                    <label for="">Total Amount for the Booking <br><br></label><span style="font-weight: bolder;text-align:center;margin-left:100px;font-size:28px;"> Rs.58,000/=</span>
-
+                    <label for="">Total Amount for the Booking <br><br></label><span style="font-weight: bolder;position:absolute;top:60%;right:15%"> Rs.58,000/=</span>
+                    <div class="total-amount" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:-5px;"><u>Advance Amount</u></div>
+                    <label for="" style="font-weight:bold">Total Amount * 20 % <br><br></label><span style="position: absolute;right:14%;top:70.5%;font-size:28px;font-weight:bolder">Rs.11,600/=</span>
                 </fieldset>
 
             </div>

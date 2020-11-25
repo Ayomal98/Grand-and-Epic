@@ -324,7 +324,7 @@
 
     <div style="display:none;position:absolute;top:10px;background-color: black;opacity:0.96;width:100%;height:100%;justify-content:center;align-items:center;height:100vh" id="mealCart">
 
-        <div style="position: absolute;width:600px;height:500px;background-color:white">
+        <div style="position: absolute;width:650px;height:500px;background-color:white">
             <i class="fas fa-times-circle" style="position:absolute;top:3%;right:8%;color:black;font-size:25px;cursor:pointer;color:white;width:20px;height:40px;color:black" onclick="closeFoodCart()"></i>
             <h2 style="text-align: center;font-weight:bolder;font-size:33px;color:black">Selected Meals</h3>
                 <table border="1px solid black" style="margin-left: 6.0%;border-radius:5px">
@@ -371,7 +371,7 @@
         </div>
     </div>
     <div style="display:none;position:absolute;top:10px;background-color: black;opacity:0.95;width:100%;height:100%;justify-content:center;align-items:center;height:100vh" id="payments">
-        <div style="position: absolute;width:600px;height:560px;background-color:white">
+        <div style="position: absolute;width:650px;height:650px;background-color:white">
             <i class="fas fa-times-circle" style="position:absolute;top:5%;right:8%;color:black;font-size:25px;cursor:pointer;color:white;width:20px;height:40px;color:black" onclick="closePayments()"></i>
             <u>
                 <h2 style="text-align: center;font-weight:bolder;font-size:33px;color:black">Payment Details</h3>
@@ -383,16 +383,16 @@
                 </u>
 
                 <h3 style="margin-left:20px;margin-top:30px">From 7 P.M to 11 P.M</h4>
-                    <h4 style="position: absolute;top:30%;left:65%">Rs.60,000/=</h4>
+                    <h4 style="position: absolute;top:25%;left:65%;">Rs.60,000/=</h4>
                     <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
-                    <h4 style="position: absolute;top:37%;left:65%">Rs.50,000/=</h4>
+                    <h4 style="position: absolute;top:32%;left:65%;">Rs.50,000/=</h4>
             </div>
             <div class="location-payment" style="margin-left:40px;margin-top:40px">
                 <u>
                     <h3>Price For the Meals</h3>
                 </u>
                 <h3 style="margin-left:20px;margin-top:30px">Total Amount for meals</h3>
-                <h4 style="position: absolute;top:57%;left:65%">Rs.20,000/=</h4>
+                <h4 style="position: absolute;top:50%;left:65%;">Rs.20,000/=</h4>
             </div>
 
             <div class="location-payment" style="margin-left:40px;margin-top:40px">
@@ -400,11 +400,17 @@
                     <h3>Total Amount</h3>
                 </u>
                 <h3 style="margin-left:20px;margin-top:30px">Total Amount for Booking</h3>
-                <h4 style="position: absolute;top:74%;left:65%;font-size:25px">Rs.130,000/=</h4>
+                <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">Rs.130,000/=</h4>
             </div>
-            <div style="margin-left:140px;margin-top:30px">
-                <input type="reset" value="Cancel" name="Cancel-btn" style="
-                            color: #f0f0f0;
+            <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                <u>
+                    <h3>Advance Amount</h3>
+                </u>
+                <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking * 20%</h3>
+                <h4 style="position: absolute;top:79%;left:65%;font-size:28px">Rs.26,000/=</h4>
+            </div>
+            <div style="margin-left:160px;margin-top:5px">
+                <input type="reset" value="Cancel" name="Cancel-btn" style="color: #f0f0f0;
                             background-color: goldenrod;
                             border: none;
                             padding: 10px;

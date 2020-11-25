@@ -31,6 +31,11 @@ $email = $_SESSION["User_Email"];
             })
         })
     </script> -->
+    <style>
+        option[value=""][disabled] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -59,6 +64,17 @@ $email = $_SESSION["User_Email"];
         <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
     </div>
     <h3><u>Upcoming Reservations</u></h3>
+
+    <div style="display:none;width: 400px;height:200px;position:absolute;top:110vh;background-color:black;left:40%;border-radius:10px;padding:5px">
+        <h3 style="color: white;padding-top:15px">Select Your Reservation Type</h3>
+        <div>
+            <select name="" id="">
+                <option value="" disabled selected>Select Your Reservation</option>
+                <option value="Staying-In">Staying In</option>
+                <option value="Staying-In">Events In</option>
+            </select>
+        </div>
+    </div>
     <div class="userBookings upcoming" id="user-bookings">
         <div class="upcomig-reservation-box">
             <span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">Room Number : Suite 12</span>
