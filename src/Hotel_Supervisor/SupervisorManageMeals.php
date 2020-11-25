@@ -276,7 +276,7 @@ checkSession();
 		<tr>
 			<th>Meal ID:</th>
 			<th>Meal Name:</th>
-			<th>Price:</th>
+			<th>Price(Rs):</th>
 			<th>Meal Plan:</th>
 			<th>Meal Type:</th>
 			<th>Meal Image:</th>
