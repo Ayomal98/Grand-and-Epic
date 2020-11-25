@@ -62,7 +62,7 @@
                     <div class="box-content">We are providing some attractive discounts from your complete amount of stay as the seasonal promotions during the christmas season, School vacations etc. Stay tuned for more interesting updates. </div>
                     <div style="margin-left:-130px;font-size:20px;margin-top:-10px"><b>Available Only For Suit Rooms</b></div>
                     <div class="box-specials"><b>*Valid Until 25th Of December</b></div>
-                    <input type="button" value="Apply Now" style="padding: 8px 8px;border:none;border-radius:5px;margin-top:-33px;background-color:white;margin-left:310px;cursor:pointer;font-weight:bolder">
+                    <a href="apply-promotions-suite.php" target="_blank"><input type="button" value="Apply Now" style="padding: 5px 5px;border:none;border-radius:5px;background-color:white;cursor:pointer;font-weight:bolder;position:absolute;top:84%;right:10%"></a>
                 </div>
 
                 <div class="box">
