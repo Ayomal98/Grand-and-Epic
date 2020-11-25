@@ -89,6 +89,7 @@ checkSession();
                         <td>Meal Type: </td>
                         <td>
                             <select id="types" name="mealtype" class="inputs">
+								<option value disabled selected>Select a Meal Type</option>
                                 <option value="Breakfast">Breakfast</option>
                                 <option value="Lunch">Lunch</option>
                                 <option value="Dinner">Dinner</option>
@@ -141,129 +142,70 @@ checkSession();
 	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:1300px; width:90%; left:50px;">
 			<legend style="color:white; font-size: 20px">Update and Delete Set Menu</legend>
-			<input type="text" name="Meals_ID" placeholder="Enter id to Search" />
+			<input type="text" name="Meals_ID" placeholder="Enter id to Search" /><br>
 			<input type="submit" class="button" name="search" value="Search by ID">
 		</fieldset>
 	</form>
 
 	<!-- SEARCH -->
-	<?php
-	include("../../config/connection.php");
-	if (isset($_POST['search'])) {
-		$setmenu_id = $_POST['setmenu_id'];
-
-		$query = "SELECT * FROM set_menu where setmenu_id='$setmenu_id' ";
-		$query_run = mysqli_query($con, $query);
-
-		while ($row = mysqli_fetch_array($query_run)) {
-	?>
 			<form action="" method="POST" enctype="multipart/form-data">
 				<fieldset style=" position:absolute; top:1420px; width: 90%; left:50px; ">
-					<table style="color:white; font-size: 20px; width:100%;">
-						<tr style="border: 1px solid white;">
-							<td>Meal ID:</td>
-							<td><input type="text" name="mealid" value="<?php echo $row['Meals_ID'] ?>" /></td>
+					<table style="color:white; font-size: 20px; width:94%;">
+						<tr>
+							<td>Set Menu ID:</td>
+							<td><input type="text" name="setmenuid" size="20" required></td>
 						</tr>
 						<tr>
-							<td>Meal Name:</td>
-							<td><input type="text" name="mealname" value="<?php echo $row['Meals_Name'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Price:</td>
-							<td><input type="float" pattern="[0-9]+" name="price" value="<?php echo $row['Price'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Meal Plan: </td>
-							<td>
-								<select id="types" name="mealplan" class="inputs" style="margin: 8px 2px;">
-									<option value="Staying-in"
-										<?php
-										if($row["Meal_Plan"]=='Staying-in')
-										{
-											echo "selected";
-										}
-										?>	
-									>Staying-in</option>
-
-									<option value="Events"
-										<?php
-										if($row["Meal_Plan"]=='Events')
-										{
-											echo "selected";
-										}
-										?>	
-									>Events</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>Meal Type:</td>
+							<td>Meal Type: </td>
 							<td>
 								<select id="types" name="mealtype" class="inputs">
-								<option value="-"
-										<?php
-										if($row["Meal_Type"]=='-')
-										{
-											echo "selected";
-										}
-										?>	
-									>-</option>
-
-									<option value="Breakfast"
-										<?php
-										if($row["Meal_Type"]=='Breakfast')
-										{
-											echo "selected";
-										}
-										?>	
-									>Breakfast</option>
-
-									<option value="Lunch"
-										<?php
-										if($row["Meal_Type"]=='Lunch')
-										{
-											echo "selected";
-										}
-										?>	
-									>Lunch</option>
-
-									<option value="Dinner"
-										<?php
-										if($row["Meal_Type"]=='Dinner')
-										{
-											echo "selected";
-										}
-										?>	
-									>Dinner</option>
+									<option value disabled selected>Select a Meal Type</option>
+									<option value="Breakfast">Breakfast</option>
+									<option value="Lunch">Lunch</option>
+									<option value="Dinner">Dinner</option>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td>Meal Image:</td>
-							<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal_Image']) . '" alt="Image" style="width: 250px; height: 200px" >' ?></td>
+							<td>Meal 01:</td>
+							<td><input type="text" name="meal1" size="20" required></td>
+							<td><input type="file" name="mealimage1" id="fileToUpload"></td>
 						</tr>
 						<tr>
-							<td>Update Meal Image:</td>
-							<td>
-								<input type="file" accept="image/*" name="mealimage" id="fileToUpload">
-							</td>
+							<td>Meal 02:</td>
+							<td><input type="text" name="meal2" size="20" required></td>
+							<td><input type="file" name="mealimage2" id="fileToUpload"></td>
+						</tr>
+						<tr>
+							<td>Meal 03:</td>
+							<td><input type="text" name="meal3" size="20" required></td>
+							<td><input type="file" name="mealimage3" id="fileToUpload"></td>
+						</tr>
+						<tr>
+							<td>Meal 04:</td>
+							<td><input type="text" name="meal4" size="20"></td>
+							<td><input type="file" name="mealimage4" id="fileToUpload"></td>
+						</tr>
+						<tr>
+							<td>Meal 05:</td>
+							<td><input type="text" name="meal5" size="20"></td>
+							<td><input type="file" name="mealimage5" id="fileToUpload"></td>
+						</tr>
+						<tr>
+							<td>Price for the Set Menu:</td>
+							<td><input type="text" name="price" size="50" required></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td style="position:relative;left:50px;">
+							<td style="position:relative; left:450px">
 								<input type="submit" class="button" name="update" value="Update Menu">
 								<input type="submit" class="button" name="delete" value="Delete Menu">
+								<input type="reset" class="button" name="reset" value="Reset Menu Details"></a>
 							</td>
 						</tr>
 					</table>
 				</fieldset>
 			</form>
-
-	<?php
-
-		}
-	}
-	?>
 
 	<!-- View Table-->
 	<div>
