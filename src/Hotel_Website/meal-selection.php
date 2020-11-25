@@ -9,7 +9,7 @@
 <body>
     <style>
         body {
-            background-image: url('../../public/images/dinnerbc.jpg');
+            background-image: url('../../public/images/events-meals-bg.jpeg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -17,12 +17,18 @@
             color: black;
             font-weight: lighter;
         }
+
+        figcaption {
+            color: white;
+        }
     </style>
 
     <h1 style="text-align:center;color: white;margin-left:-5px;"><u>MEAL SELECTION</u></h1>
     <input type="button" value="View Cart" class="button1 cart" onclick="showMeals()">
     <i class="fas fa-shopping-cart" style="position: absolute;left:1280px;top:45px;size: 40px;color:white;cursor: pointer;"></i>
     <input type="button" value="Proceed to Payment" class="button1 Payment" onclick="showPayments()">
+
+    <a href="events-booking-form.php"><input type="button" value="Back" class="button1 Payment" style="padding: 15px;position:absolute;top:5%;width:10%;left:10px"></a>
     <div class="main">
         <div class="row">
             <div class="column">

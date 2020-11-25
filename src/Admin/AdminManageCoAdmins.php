@@ -131,27 +131,31 @@ if (!isset($_SESSION['First_Name'])) {
 	<?php include("../../config/connection.php");
 	if (isset($_POST['search'])) {
 		$id = $_POST['id'];
-		$query = "SELECT * FROM 'employee' where Employee_ID='$id' ";
+		$query = "SELECT * FROM 'employee' where Employee_ID='$id' AND User_Role='Hotel Manager' ";
 		$query_run = mysqli_query($connection, $query);
-		while ($row = mysqli_fetch_array($query_run))
-			if ($query_run) {
-				echo "<script>
+		if (mysqli_num_rows($query_run)) {
+			while ($row = mysqli_fetch_array($query_run))
+				if ($query_run) {
+					echo "<script>
 											alert('Hotel Manager Has been Deleted');
 											window.location.href='AdminManageCoAdmins.php';
 											</script>";
-			} else {
-				echo '<script> alert("Hotel Manager has been not deleted") </script>';
-			} {
+				} else {
+					echo '<script> alert("Hotel Manager has been not deleted") </script>';
+				} {
 	?>
-			<tr>
-				<td><?php echo $row['First_name']; ?> </td>
-				<td><?php echo $row['Last_name']; ?> </td>
-				<td><?php echo $row['Email']; ?> </td>
-				<td><?php echo $row['Password']; ?> </td>
-				<td><?php echo $row['Contact_No']; ?> </td>
-				<td><?php echo $row['User_Role']; ?> </td>
-			</tr>
+				<tr>
+					<td><?php echo $row['First_name']; ?> </td>
+					<td><?php echo $row['Last_name']; ?> </td>
+					<td><?php echo $row['Email']; ?> </td>
+					<td><?php echo $row['Password']; ?> </td>
+					<td><?php echo $row['Contact_No']; ?> </td>
+					<td><?php echo $row['User_Role']; ?> </td>
+				</tr>
 	<?php }
+		} else {
+			echo "Invalid Data";
+		}
 	} ?>
 	</tr>
 
@@ -250,48 +254,53 @@ if (!isset($_SESSION['First_Name'])) {
 	if (isset($_POST['search'])) {
 		$Employee_ID = $_POST['Employee_ID'];
 
-		$query = "SELECT * FROM employee where Employee_ID='$Employee_ID' ";
+		$query = "SELECT * FROM employee where Employee_ID='$Employee_ID' AND User_Role='Hotel Manager' ";
 		$query_run = mysqli_query($con, $query);
-
-		while ($row = mysqli_fetch_array($query_run)) {
+		if (mysqli_num_rows($query_run)) {
+			while ($row = mysqli_fetch_array($query_run)) {
 	?>
-			<form action="" method="POST">
-				<fieldset style=" position:absolute; top:950px;left:750px; width: 45%;">
-					<table align="left" style="color:white; font-size: 20px; width:110%;">
-						<tr>
-							<td>Employee ID</td>
-							<td><input type="int" name="Employee_ID" value="<?php echo $row['Employee_ID'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>First Name</td>
-							<td><input type="text" name="First_Name" value="<?php echo $row['First_Name'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Last Name</td>
-							<td><input type="float" name="Last_Name" value="<?php echo $row['Last_Name'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Email</td>
-							<td><input type="text" name="Email" value="<?php echo $row['Email'] ?>" /></td>
-						</tr>
-						<tr>
-							<td>Contact No</td>
-							<td><input type="text" name="Contact_No" value="<?php echo $row['Contact_No'] ?>" /></td>
-						</tr>
-						<tr>
-							<td align="center" style="width:50%;">
-								<input type="submit" class="button" name="update" value="UPDATE">
-								<input type="reset" class="button" value="  RESET " name="reset">
-								<input type="submit" class="button" name="delete" value="DELETE">
-							</td>
+				<form action="" method="POST">
+					<fieldset style=" position:absolute; top:950px;left:750px; width: 45%;">
+						<table align="left" style="color:white; font-size: 20px; width:110%;">
+							<tr>
+								<td>Employee ID</td>
+								<td><input type="int" name="Employee_ID" value="<?php echo $row['Employee_ID'] ?>" /></td>
+							</tr>
+							<tr>
+								<td>First Name</td>
+								<td><input type="text" name="First_Name" value="<?php echo $row['First_Name'] ?>" /></td>
+							</tr>
+							<tr>
+								<td>Last Name</td>
+								<td><input type="float" name="Last_Name" value="<?php echo $row['Last_Name'] ?>" /></td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td><input type="text" name="Email" value="<?php echo $row['Email'] ?>" /></td>
+							</tr>
+							<tr>
+								<td>Contact No</td>
+								<td><input type="text" name="Contact_No" value="<?php echo $row['Contact_No'] ?>" /></td>
+							</tr>
+							<tr>
+								<td align="center" style="width:50%;">
+									<input type="submit" class="button" name="update" value="UPDATE">
+									<input type="reset" class="button" value="  RESET " name="reset">
+									<input type="submit" class="button" name="delete" value="DELETE">
+								</td>
 
-						</tr>
-					</table>
-				</fieldset>
-			</form>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
 
 
 	<?php
+			}
+		} else {
+			echo "<script>alert('Invalid Data Searched')</script>";
+			echo "<script>		window.location.href='AdminManageCoAdmins.php';
+			</script>";
 		}
 	}
 	?>
@@ -314,7 +323,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 		<?php include("../../config/connection.php");
 
-		$query = "SELECT * FROM employee";
+		$query = "SELECT * FROM employee WHERE User_Role='Hotel Manager' ";
 		$query_run = mysqli_query($con, $query);
 		while ($row = mysqli_fetch_array($query_run)) {
 
@@ -344,8 +353,10 @@ if (!isset($_SESSION['First_Name'])) {
 		$query_run = mysqli_query($con, $query);
 		if ($query_run) {
 			echo '<script type="text/javascript">alert("Data Updated")</script>';
+			echo '<script>window.location.href="AdminManageCoAdmins.php"</script>';
 		} else {
 			echo '<script type="text/javascript">alert("Data Not Updated")</script>';
+			echo '<script>window.location.href="AdminManageCoAdmins.php"</script>';
 		}
 	}
 

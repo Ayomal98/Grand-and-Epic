@@ -44,8 +44,8 @@ if (isset($_POST['Update'])) {
   $checkAvailability = mysqli_query($con, $selectAvailability);
   if (mysqli_num_rows($checkAvailability) == 1) {
     echo "<script>
-          alert('Table you selected has been already reserved, Please try again !!');
-          window.location.href='dinein-booking-form.php';
+          alert('Table you selected has been already reserved, Please try another table !!');
+          window.location.href='myreservations.php';
           </script>";
   } else {
     $updatequery = "UPDATE dinein_booking SET Table_No='$tableno',Customer_email='$emailaddress',Num_Guests='$numguests',Meal_Period='$mealperiod',Date='$date',Time='$timeperiod' WHERE Dinein_ID=$dinein_id ";

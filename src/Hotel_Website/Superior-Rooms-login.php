@@ -65,7 +65,7 @@ if (!isset($_SESSION['First_Name'])) {
                             <div class="grid-room-container"><i class="fas fa-sort-amount-down"><span class="room-detail">Room Size</span><br><span class="Superior-values">229.93 SQ.FT</span></i></div>
                             <div class="grid-room-container"><i class="fas fa-bed"><span class="room-detail">Beds</span><br><span class="Superior-values">King Bed or Twin Bed</span></i></div>
                             <div class="grid-room-container"><i class="fas fa-binoculars"><span class="room-detail">Room View</span><br><span class="Superior-values">Garden View</span></i></div>
-                            <div class="grid-room-container"><i class="fas fa-dollar-sign"><span class="room-detail">Prices</span><br><span class="Superior-values">1 Triple Room:$200.00/=</span><br><span class="Superior-values">1 Double Room:$100.00/=</span></i></div>
+                            <div class="grid-room-container"><i class="fas fa-dollar-sign"><span class="room-detail">Prices</span><br><span class="Superior-values">1 Triple Room:$200.00</span><br><span class="Superior-values">1 Double Room:$100.00</span></i></div>
                         </div>
                     </div>
                 </div>

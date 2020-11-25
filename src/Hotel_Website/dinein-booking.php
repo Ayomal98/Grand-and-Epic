@@ -32,8 +32,8 @@ if (isset($_POST['confirm-book-btn'])) {
     $checkAvailability = mysqli_query($con, $selectAvailability);
     if (mysqli_num_rows($checkAvailability) == 1) {
         echo "<script>
-            alert('Table you selected has been already reserved, Please try again !!');
-            window.location.href='dinein-booking.php';
+            alert('Table you selected has been already reserved, Please try another table !!');
+            window.location.href='dinein-booking-form.php';
             </script>";
     } else {
         $query = "INSERT INTO dinein_booking (Table_No,Customer_email,Customer_Name,Num_Guests,Meal_Period,Date,Time) VALUES ('" . $tableno . "','$emailaddress','" . $customername . "','" . $numguests . "','" . $mealperiod . "','" . $date . "','" . $timeperiod . "') ";

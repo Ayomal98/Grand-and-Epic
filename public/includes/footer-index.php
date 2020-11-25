@@ -13,14 +13,14 @@
         <div class="footer">
             <div class="footer-content">
                 <div class="footer-section image">
-                    <img src="../../public/images/Hotel-logo.png" alt="" class="logo-hotel" style="width:340px;height:170px;padding-left:70px">
+                    <img src="../../public/images/Hotel-logo.png" alt="" class="logo-hotel" style="width:310px;height:170px;padding-left:70px;padding-bottom:20px">
                 </div>
                 <div class="footer-section about">
-                    <h1 class="logo-text"><span style="color:thistle;font-size:34px">GRAND</span>&nbsp;<span style="font-size: 25px;">& Epic</span></h1><br>
-                    <p style="color:white">Grand & Epic is a hotel which provides Hotel Services to the customers</p>
+                    <h1 class="logo-text"><span style="font-size:25px">GRAND</span>&nbsp;<span style="font-size: 25px;">& Epic</span></h1><br>
+                    <p style="color:white">Grand & Epic, No 11, Ella Rd, Badulla, Sri Lanka</p><br>
                     <div class="contact">
-                        <span><i class="fas fa-phone">&nbsp; +94 31-2258414</i></span><br>
-                        <span><i class="fas fa-envelope">&nbsp; grandepic@gmail.com</i></span>
+                        <span><i class="fas fa-phone">&nbsp; +94 31-2258414 / +94 31-2258415</i></span><br>
+                        <span><i class="fas fa-envelope">&nbsp; grandepic20@gmail.com</i></span>
                         <div class="socials">
                             <a href="#"><i class="fab fa-facebook" style="color:white"></i></a>
                             <a href="#"><i class="fab fa-instagram" style="color:white"></i></a>
@@ -33,19 +33,19 @@
                     <h2>Quick Links</h2><br>
                     <ul>
                         <a href="index.php" style="color:white;">
-                            <li>Home &nbsp;<span class="fas fa-home"></span></li>
+                            <li><span class="fas fa-home">&#8287;&#8287;&#8287; Home </span></li>
                         </a>
                         <a href="staying-in.php" style="color:white">
-                            <li>Staying-in &nbsp;<span class="fas fa-utensils"></span></li>
+                            <li><span class="fas fa-utensils">&#8287;&#8287;&#8287;&#8287;&#8287;Staying-in &nbsp;</span></li>
                         </a>
                         <a href="dinein.php" style="color:white">
-                            <li>Dine-in &nbsp;<span class="fas fa-hamburger"></span></li>
+                            <li><span class="fas fa-hamburger">&#8287;&#8287;&#8287;&#8287;Dine-in &nbsp;</span></li>
                         </a>
                         <a href="events.php" style="color:white">
-                            <li>Events &nbsp;<span class="fas fa-handshake"></span></li>
+                            <li><span class="fas fa-handshake">&#8287;&#8287;&#8287;&#8287;Events &nbsp;</span></li>
                         </a>
                         <a href="../../public/includes/Terms_and_Conditions - Grand and Epic.pdf" style="color:white" download>
-                            <li>Terms & Conditions &nbsp;<span class=" fa fa-gavel"></span></li>
+                            <li><span class=" fa fa-gavel">&#8287;&#8287;&#8287;&#8287;Terms & Conditions &nbsp;</span></li>
                         </a>
                     </ul>
                 </div>

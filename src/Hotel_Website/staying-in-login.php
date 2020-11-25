@@ -41,9 +41,24 @@ if (!isset($_SESSION['First_Name'])) {
         <div class="body-container accomodations">
             <div class="accomodation-wrapper">
                 <h3>Accomodations</h3>
-                <div class="icons-check-in-out" style="text-align:center;padding:10px;">
-                    <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check In : &nbsp; 12.30 P.M</span>
-                    <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black">Check Out : &nbsp; 2.00 P.M </span>
+                <div class="icons-check-in-out" style="text-align:center;padding:20px 20px 30px 20px;display:flex;flex-direction:row;justify-content:center;margin:30px 20px 10px 28px;border:1px solid black;width:96%;height:130px;background-color:#b88b4a;color:white;border:none;padding-bottom:5px">
+                    <div style="position:absolute;left:15%">
+                        <h1 style="margin-bottom: 15px;font-weight:bolder">Breakfast</h1>
+                        <div style="margin-bottom: 15px;">
+                            <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black;margin-bottom:5px;color:white">Check In : &nbsp; 8.30 A.M</span>
+                            <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black;margin-bottom:5px;color:white;margin-left:10px">Check Out : &nbsp; 9.00 A.M </span>
+                        </div>
+                    </div>
+                    <div style="position:absolute;left:45%">
+                        <h1 style="margin-bottom: 15px;">Lunch</h1>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;margin-bottom:5px;color:white">Check In : &nbsp; 12.00 P.M</span>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-left:10px">Check Out : &nbsp; 12.30 P.M </span>
+                    </div>
+                    <div style="position:absolute;left:75%">
+                        <h1 style="margin-bottom: 15px;">Dinner</h1>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-bottom:5px">Check In : &nbsp; 7.00 P.M</span>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-left:10px">Check Out : &nbsp; 7.30 P.M </span>
+                    </div>
                 </div>
             </div>
             <div class="room-container">
@@ -56,8 +71,8 @@ if (!isset($_SESSION['First_Name'])) {
                         Wings you can relax in the comforts they offer and enjoy views.
                         After a day of exploring – or even just idling, it is a perfect refuge to return to a long shower.</div>
                     <div class="view-book-wrapper">
-                        <button class="view"><a href="Superior-Rooms-login.php">View Room</a></button>
-                        <button class="book"><a href="">Book Now</a></button>
+                        <button class="view" style="border:none"><a href="Superior-Rooms-login.php">View Room</a></button>
+                        <button class="book"><a href="Superior-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
                 </div>
                 <div class="card-rooms">
@@ -69,13 +84,13 @@ if (!isset($_SESSION['First_Name'])) {
                         Your own private balcony will serve as your vantage point – any time. The views over the mountains
                         are constant, yet ever changing. The rooms themselves are tempting too, with earthy tones, traditional woven tapestries, and fluffy pillows.</div>
                     <div class="view-book-wrapper">
-                        <button class="view"><a href="Panaromic-Rooms-login.php">View Room</a></button>
-                        <button class="book"><a href="">Book Now</a></button>
+                        <button class="view" style="border:none"><a href="Panaromic-Rooms-login.php">View Room</a></button>
+                        <button class="book"><a href="Panaromic-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
 
                 </div>
                 <div class="card-rooms">
-                    <h2 class="card-room-header">Suite Rooms</h2>
+                    <h2 class="card-room-header" style="margin-top:10px">Suite Rooms</h2>
                     <div class="card-room-img">
                         <img class="img-panaromic-rooms" src="../../public/images/suite-image.jpg" title="Superior Room interior" alt="Interior of Superior Room at GRAND & EPIC">
                     </div>
@@ -85,8 +100,8 @@ if (!isset($_SESSION['First_Name'])) {
                         the four poster bed may also beckon for a quiet read, the spectacular views are just right for that pre-dinner drink,
                         but then, there is the Jacuzzi tempting you in too.</div>
                     <div class="view-book-wrapper">
-                        <button class="view"><a href="Suite-Rooms-login.php">View Room</a></button>
-                        <button class="book"><a href="">Book Now</a></button>
+                        <button class="view" style="border:none"><a href="Suite-Rooms-login.php">View Room</a></button>
+                        <button class="book"><a href="Suite-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
                 </div>
             </div>

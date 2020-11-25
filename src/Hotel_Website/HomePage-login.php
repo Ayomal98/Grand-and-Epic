@@ -83,7 +83,7 @@ if (!isset($_SESSION['First_Name'])) {
             </div>
             <div class="box">
                 <span class="fas fa-hourglass-end" id="lastmin-icon"></span>
-                <div class="box-heading">Last-Miniute Offer</div>
+                <div class="box-heading">Last-Minute Offer</div>
                 <div class="box-content">Worried for last minute bookings? Not anymore. There will be special discounts to the last minute bookings. Do not let your idea of a sudden espace fade from you. We are here to help. </div>
             </div>
         </div>

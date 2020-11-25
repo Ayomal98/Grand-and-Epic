@@ -52,10 +52,13 @@
                         </div>
                     </div>
                     <div class="time-checker">
-                        <label for="check-in-time">Check In Time</label>
-                        <input type="time" name="check-in-time" id="">
+
+                        <label for="check-in-time" style="margin-left:-20px">Check In Time</label>
+                        <input type="time" name="check-in-time" id="" style="margin-right:35px;margin-left:-5px">
+
                         <label for="check-out-time">Check Out Time</label>
-                        <input type="time" name="check-out-time" id="">
+                        <input type="time" name="check-out-time" id="" style="margin-right:10px;margin-left:-5px">
+
                     </div>
 
                     <div class="form-page-fields">
@@ -185,31 +188,16 @@
             <h3>User & Payment Details</h3>
         </div>
         <div class="day-selector">
-            <h4 style="margin-right: 80px;
-                        font-size: 30px;
-    width: 1800px;
-    margin-left:10px;color: #b88b4a;">Day 1</h4>
+            <h4 style="margin-right: 80px;font-size: 30px;width: 1800px;margin-left:10px;color: #b88b4a;">Day 1</h4>
             <hr>
-            <h4 style="margin-right: 80px;
-    font-size: 30px;
-    width: 1800px;
-    margin-left:10px;">Day 2</h4>
+            <h4 style="margin-right: 80px;font-size: 30px;width: 1800px;margin-left:10px;">Day 2</h4>
         </div>
         <div class="meal-type-selector">
-            <h4 style="margin-right: 20px;
-                        font-size: 30px;
-    width: 1800px;
-    margin-left:10px;color:white;">Breakfast</h4>
+            <h4 style="margin-right: 20px;font-size: 25px;width: 1800px; margin-left:10px;color:white;">Breakfast</h4>
             <hr>
-            <h4 style="margin-right: 20px;
-                        font-size: 30px;
-    width: 1800px;
-    margin-left:10px">Lunch</h4>
+            <h4 style="margin-right: 20px;font-size: 25px;width: 1800px; margin-left:10px">Lunch</h4>
             <hr>
-            <h4 style="margin-right: 20px;
-                        font-size: 30px;
-    width: 1800px;
-    margin-left:10px">Dinner</h4>
+            <h4 style="margin-right: 20px;font-size: 25px;width: 1800px;margin-left:10px">Dinner</h4>
         </div>
         <div class="meal-selection" style="display: flex;flex-direction:row">
             <div class="set-menu-meals-card n-1">

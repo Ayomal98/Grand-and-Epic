@@ -12,7 +12,7 @@
         <div class="modal-content early-request">
 
             <div class="close close-early-checkout" id="close-early-checkout">+</div>
-            <img src="../../public/Images/early-checkout.jpg" alt="" class="early-logo">
+            <img src="../../public/images/customer-feedback.png" alt="" class="early-logo">
             <u style="color: white;">
                 <h3 class="login-heading" style="color:white">Customer Feedback</h3>
             </u>

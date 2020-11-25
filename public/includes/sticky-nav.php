@@ -12,8 +12,8 @@
         <ul>
             <li> <a href="index.php">Home</a></li>
             <li><a href="staying-in.php">Staying-In</a></li>
-            <li><a href="dinein.php">Dining</a></li>
-            <li><a href="meals.php">meals</a></li>
+            <li><a href="dinein.php">Dine-In</a></li>
+            <li><a href="meals.php">Meals</a></li>
             <li><a href="events.php">Events</a></li>
         </ul>
     </div>
