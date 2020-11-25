@@ -1,6 +1,5 @@
 <!-- Insert New Meal -->
 <?php include("../../config/connection.php");
-include("../../public/includes/session.php");
 if(isset($_POST['insert'])){
 
     $mealid=$_POST['mealid'];  
