@@ -91,7 +91,7 @@ $email = $_SESSION['User_Email'];
             <div class="customer-details">
                 <input type="text" style="width:28%" name="customer-name" id="" placeholder="Customer Name" required>
                 <input type="text" style="width:45%" name="customer-email" id="" placeholder="Email address" required>
-                <input type="number" name="number-of-guests" placeholder="No-Guests" min="0" max="10" step="1" style="width:110px;" required>
+                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" style="width:110px;" required>
             </div>
             <div class="dine-in-details-wrapper" style="display:flex;align-items:center;">
                 <div class="meal-container">

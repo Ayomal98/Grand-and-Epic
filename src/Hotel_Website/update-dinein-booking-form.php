@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_assoc($sql_run)) {
             <div class="customer-details">
                 <input type="text" style="width:28%" name="customer-name" id="" placeholder="Customer Name" value="<?php echo $customer_name ?>" required>
                 <input type="text" style="width:45%" name="customer-email" id="" placeholder="Email address" value="<?php echo $customer_email ?> " required>
-                <input type="number" name="number-of-guests" placeholder="No-Guests" min="0" max="10" step="1" value="<?php echo $num_guests ?>" style="width:110px;" required>
+                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" value="<?php echo $num_guests ?>" style="width:110px;" required>
             </div>
             <div class="dine-in-details-wrapper" style="display:flex;align-items:center;">
                 <div class="meal-container">

@@ -39,23 +39,27 @@ if (isset($_POST['Update'])) {
   } else {
     $timeperiod = mysqli_real_escape_string($con, $_POST['dinner-times']);
   }
-  $updatequery = "UPDATE dinein_booking SET Table_No='$tableno',Customer_email='$emailaddress',Num_Guests='$numguests',Meal_Period='$mealperiod',Date='$date',Time='$timeperiod' WHERE Dinein_ID=$dinein_id ";
-  if ($con->query($updatequery) === TRUE) {
+  //to check the required booking has been already been booked
+  $selectAvailability = "SELECT * FROM dinein_booking where Time='$timeperiod' AND Date='$date' AND Table_No='$tableno'";
+  $checkAvailability = mysqli_query($con, $selectAvailability);
+  if (mysqli_num_rows($checkAvailability) == 1) {
     echo "<script>
+          alert('Table you selected has been already reserved, Please try again !!');
+          window.location.href='dinein-booking-form.php';
+          </script>";
+  } else {
+    $updatequery = "UPDATE dinein_booking SET Table_No='$tableno',Customer_email='$emailaddress',Num_Guests='$numguests',Meal_Period='$mealperiod',Date='$date',Time='$timeperiod' WHERE Dinein_ID=$dinein_id ";
+    if ($con->query($updatequery) === TRUE) {
+      echo "<script>
              alert('Your booking details has been Updated Successfully');
             window.location.href='HomePage-login.php';
           </script>";
-  } else {
-    echo "<script>
+    } else {
+      echo "<script>
     alert('Your booking details has not been Updated');
    window.location.href='HomePage-login.php';
  </script>";
+    }
+    /* Redirect browser */
   }
-  /* Redirect browser */
-}
-
-
-// mysqli_query($con, $deletequerybook);
-/*
-mysqli_query($con, $deletetablebook);
-*/
+} ?>
