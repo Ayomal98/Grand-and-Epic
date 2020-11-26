@@ -192,27 +192,23 @@ checkSession();
 				</tr>
 				<tr>
 					<td>Supervisor ID:</td>
-					<td><input type="text" id="id" name="id"></td>
+					<td><input type="text" id="id" name="id" value="S001"></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="fname" name="fname"></td>
+					<td><input type="text" id="fname" name="fname" value="Hasini"></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lname" name="lname"></td>
+					<td><input type="text" id="lname" name="lname" value="Vidushanka"></td>
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" id="email" name="email"></td>
-				</tr>
-				<tr>
-					<td>Password: </td>
-					<td><input type="password" id="password" name="password" placeholder="Password"></td>
+					<td><input type="email" id="email" name="email" value="hasinividushanka@gmail.com"></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" id="tel" name="tel"></td>
+					<td><input type="tel" id="tel" name="tel" value="0766065684"></td>
 				</tr>
 				<tr>
 					<td><input type="button" class="button" value="UPDATE PROFILE"></td>

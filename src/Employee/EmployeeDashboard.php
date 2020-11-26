@@ -150,67 +150,38 @@ if (!isset($_SESSION['First_Name'])) {
 	</table>
 
 
-	<div class="bottom-left">
-		<div class="display">
-			<img class="mySlides" src="../../public/images/img17.jpg">
-			<img class="mySlides" src="../../public/images/img18.jpg">
-			<img class="mySlides" src="../../public/images/img19.jpg">
-			<img class="mySlides" src="../../public/images/img20.jpg">
-
-			<button class="display-left" onclick="plusDivs(-1)">&#10094;</button>
-			<button class="display-right" onclick="plusDivs(1)">&#10095;</button>
-		</div>
-
-		<script>
-			var slideIndex = 1;
-			showDivs(slideIndex);
-
-			function plusDivs(n) {
-				showDivs(slideIndex += n);
-			}
-
-			function showDivs(n) {
-				var i;
-				var x = document.getElementsByClassName("mySlides");
-				if (n > x.length) {
-					slideIndex = 1
-				}
-				if (n < 1) {
-					slideIndex = x.length
-				}
-				for (i = 0; i < x.length; i++) {
-					x[i].style.display = "none";
-				}
-				x[slideIndex - 1].style.display = "block";
-			}
-		</script>
-	</div>
-
-
-	<div class="bottom-right">
-		<form style="color:white; font-size:20px;">
-			<fieldset>
-				<legend>
-					<font size="10px">User Profile</font>
-				</legend>
-				<label for="fname">First Name : </label>
-				<input type="text" id="fname" name="fname">
-				<label for="lname">Last Name : </label>
-				<input type="text" id="lname" name="lname">
-				<label for="email">Email Add : </label>
-				<input type="email" id="email" name="email">
-				<label for="password">Password : </label>
-				<input type="password" id="password" name="password" placeholder="Password">
-				<label for="tel">TP Number : </label>
-				<input type="tel" id="tel" name="tel">
-				<br>
-				<table>
-					<td>
-						<input type="button" class="button" value="UPDATE PROFILE">
-				</table>
-			</fieldset>
+	<form>
+		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
+			<table align="center" style="color:white; font-size: 20px; width:88%;">
+				<tr>
+					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
+				</tr>
+				<tr>
+					<td>Employee ID:</td>
+					<td><input type="text" id="id" name="id" value="E001"></td>
+				</tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" id="fname" name="fname" value="Shehan"></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" id="lname" name="lname" value="Gunawardena"></td>
+				</tr>
+				<tr>
+					<td>Email Address:</td>
+					<td><input type="email" id="email" name="email" value="heisenrberg52@gmail.com"></td>
+				</tr>
+				<tr>
+					<td>TP Number: </td>
+					<td><input type="tel" id="tel" name="tel" value="0701236956"></td>
+				</tr>
+				<tr>
+					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
+				</tr>
+			</table>
 		</form>
-	</div>
+
 
 	<script>
 		function funcUserDetails() {
