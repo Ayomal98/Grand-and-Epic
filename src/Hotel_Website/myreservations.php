@@ -17,20 +17,7 @@ $email = $_SESSION["User_Email"];
     <title>Grand & Epic</title>
     <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
-    <!-- <script>
-        $(document).ready(function() {
-            var table_no = "<?php echo $table_no; ?>";
-            var date = "<?php echo $date; ?>";
-            var time = "<?php echo $time; ?>";
-            var numguests = "<?php echo $numguests; ?>";
-            $('.book delete').click(function(e) {
-                console.log(table_no);
-                console.log(date);
-                console.log(time);
-                console.log(numguests);
-            })
-        })
-    </script> -->
+
     <style>
         option[value=""][disabled] {
             display: none;
@@ -62,6 +49,8 @@ $email = $_SESSION["User_Email"];
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
         <input type="button" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;">
         <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
+        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;">
+
     </div>
     <h3><u>Upcoming Reservations</u></h3>
 

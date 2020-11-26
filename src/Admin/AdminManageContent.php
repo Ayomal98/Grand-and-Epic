@@ -12,7 +12,7 @@ if (!isset($_SESSION['First_Name'])) {
 	<link rel="stylesheet" href="../../public/css/employee.css">
 
 	<title>
-		Admin Manage Co-admins
+		Admin Manage Content
 	</title>
 	<style>
 		body {

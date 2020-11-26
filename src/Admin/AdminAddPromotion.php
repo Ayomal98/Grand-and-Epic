@@ -12,7 +12,7 @@ if (!isset($_SESSION['First_Name'])) {
 	<link rel="stylesheet" href="../../public/css/employee.css">
 
 	<title>
-		Admin Manage Co-admins
+		Admin Add Promotions
 	</title>
 	<style>
 		body {
@@ -110,7 +110,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<p style="font-family :Lato; font-size:20px; color :white;">Last Minute Promotions</p>
 			</th>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;">Credit Card Promotions</p>
+				<p style="font-family :Lato; font-size:20px; color :white;">Seasonal Promotions</p>
 			</th>
 		</tr>
 
@@ -158,7 +158,7 @@ if (!isset($_SESSION['First_Name'])) {
 			<table width="100%">
 				<tr>
 					<td align="center">
-						<img src="../../public/images/credit.png" height="70%">
+						<img src="../../public/images/presents.jpeg" height="18%">
 					</td>
 					<td align="center">
 						<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
@@ -193,7 +193,7 @@ if (!isset($_SESSION['First_Name'])) {
 									<td align="left"><select id="types" name="typelist" form="typeform">
 											<option value="volvo">Loyalty Promotion</option>
 											<option value="saab">Last Minute Promotion</option>
-											<option value="opel">Credit Card Promotion</option>
+											<option value="opel">Seasonal Promotion</option>
 										</select>
 									</td>
 								</tr>

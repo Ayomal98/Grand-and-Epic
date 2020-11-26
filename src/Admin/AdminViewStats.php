@@ -12,7 +12,7 @@ if (!isset($_SESSION['First_Name'])) {
   <link rel="stylesheet" href="../../public/css/employee.css">
 
   <title>
-    Admin Manage Co-admins
+    Admin View Stats
   </title>
   <style>
     body {
@@ -59,6 +59,7 @@ if (!isset($_SESSION['First_Name'])) {
       </a>
     </div>
   </div>
+
   <div class="top-right">
     <table width="100%">
       <tr>
@@ -100,29 +101,7 @@ if (!isset($_SESSION['First_Name'])) {
       </td>
     </tr>
   </table>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
 
   <table style="position:absolute; top : 350px; left:850px;">
@@ -137,53 +116,9 @@ if (!isset($_SESSION['First_Name'])) {
       </td>
     </tr>
   </table>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
 
   <table style="position:absolute; top : 800px; left:850px;">
@@ -198,29 +133,7 @@ if (!isset($_SESSION['First_Name'])) {
       </td>
     </tr>
   </table>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
 
   <table style="position:absolute; top : 800px; left:850px;">
@@ -235,29 +148,7 @@ if (!isset($_SESSION['First_Name'])) {
       </td>
     </tr>
   </table>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
 
   <table style="position:absolute; top : 800px; left:0px;">
@@ -272,29 +163,7 @@ if (!isset($_SESSION['First_Name'])) {
       </td>
     </tr>
   </table>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
   <table style="position:absolute; top :1200px; left:0px;">
     <tr>
@@ -308,29 +177,7 @@ if (!isset($_SESSION['First_Name'])) {
       </td>
     </tr>
   </table>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
   <table style="position:absolute; top :1200px; left:850px;">
     <tr>
@@ -344,34 +191,12 @@ if (!isset($_SESSION['First_Name'])) {
       </td>
     </tr>
   </table>
-  <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
 
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      if (n > x.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = x.length
-      }
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      x[slideIndex - 1].style.display = "block";
-    }
-  </script>
   </div>
 
-  <div class=button1>
+  <button class="button1" style="position:absolute;top:12%;right:5%;color:white;background-color:blue;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer">
     <p><b>Generte Report</b></p>
-  </div>
+  </button>
   <script>
     function funcUserDetails() {
       document.getElementById('user-detail-container').style.display = "block";
@@ -381,7 +206,6 @@ if (!isset($_SESSION['First_Name'])) {
       document.getElementById('user-detail-container').style.display = "none";
     }
   </script>
-
 </body>
 
 </html>

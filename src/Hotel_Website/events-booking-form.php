@@ -86,7 +86,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 5px;">3.00 P.M</td>
+                                <td style="padding: 5px;">4.00 P.M</td>
                                 <td style="padding: 5px;">12.00 A.M</td>
                                 <td style="padding: 5px 10px;"><i class="fas fa-check"></i></td>
                             </tr>
