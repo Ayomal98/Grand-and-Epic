@@ -242,9 +242,9 @@ checkSession();
                         <tr>
                             <td></td>
                             <td style="position:relative;left:180px">
-                                <input type="submit" class="button" name="update" value="Update Promotion Type"></a>
-                                <input type="submit" class="button" name="delete" value="Delete Promotion Type"></a>
-                             
+                                <input type="submit" class="button" name="update" value="UPDATE"></a>
+                                <input type="submit" class="button" name="delete" value="DELETE"></a>
+								<input type="submit" class="button" name="delete" value="SEND TO ADMIN"></a>
                             </td>
                         </tr>
                     </table>

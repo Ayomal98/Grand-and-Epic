@@ -131,7 +131,7 @@ checkSession();
 				</td>
 				<td align="right">
 					<input type="button" class="button" value="CANCEL">
-					<input type="button" class="button" value="UPDATE">
+					<input type="button" class="button" value="PROVIDE REPLY">
 				</td>
 			</tr>
 		</table>

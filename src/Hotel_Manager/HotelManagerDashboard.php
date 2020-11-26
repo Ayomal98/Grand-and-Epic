@@ -224,27 +224,23 @@ checkSession();
 				</tr>
 				<tr>
 					<td>Hotel Manager ID:</td>
-					<td><input type="text" id="id" name="id"></td>
+					<td><input type="text" id="id" name="id" value="C001"></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="fname" name="fname"></td>
+					<td><input type="text" id="fname" name="fname" value="Bawanthi"></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lname" name="lname"></td>
+					<td><input type="text" id="lname" name="lname" value="Imasha"></td>
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" id="email" name="email"></td>
-				</tr>
-				<tr>
-					<td>Password: </td>
-					<td><input type="password" id="password" name="password" placeholder="Password"></td>
+					<td><input type="email" id="email" name="email" value="imashamdbv@gmail.com"></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" id="tel" name="tel"></td>
+					<td><input type="tel" id="tel" name="tel" value="0766669827"></td>
 				</tr>
 				<tr>
 					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
