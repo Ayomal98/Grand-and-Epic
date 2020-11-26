@@ -219,27 +219,23 @@ checkSession();
 				</tr>
 				<tr>
 					<td>Receptionist ID:</td>
-					<td><input type="text" id="id" name="id"></td>
+					<td><input type="text" id="id" name="id" value="R001"></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="fname" name="fname"></td>
+					<td><input type="text" id="fname" name="fname" value="Anushka"></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lname" name="lname"></td>
+					<td><input type="text" id="lname" name="lname" value="De Silva"></td>
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" id="email" name="email"></td>
-				</tr>
-				<tr>
-					<td>Password: </td>
-					<td><input type="password" id="password" name="password" placeholder="Password"></td>
+					<td><input type="email" id="email" name="email" value="anushka@gmail.com"></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" id="tel" name="tel"></td>
+					<td><input type="tel" id="tel" name="tel" value="0771122347"></td>
 				</tr>
 				<tr>
 					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
