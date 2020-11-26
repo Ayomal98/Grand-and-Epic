@@ -111,7 +111,7 @@ if (!isset($_SESSION['First_Name'])) {
                     </tr>
                     <tr>
                         <td align="left">Employee ID:</td>
-                        <td align="center"><input type="text" name="empID" placeholder="Ex:E001" size="20" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="text" name="empID" placeholder="Ex:S001/R001/E001" size="20" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">First Name:</td>
@@ -119,7 +119,7 @@ if (!isset($_SESSION['First_Name'])) {
                     </tr>
                     <tr>
                         <td align="left">Last Name:</td>
-                        <td align="center"><input type="text" pattern="[A-Za-z]+" name="empSname" size="50" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="text" pattern="^[A-Za-z ]+$" name="empSname" size="50" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">Password:</td>
@@ -149,6 +149,7 @@ if (!isset($_SESSION['First_Name'])) {
     </fieldset>
 
     <!-- Search -->
+    
     <form action="" method="POST">
         <fieldset style=" position:absolute; top:746px; width: 45%;right:0%;">
             <legend style="color:white; font-size: 20px">Update and Delete Employees</legend>
@@ -171,12 +172,12 @@ if (!isset($_SESSION['First_Name'])) {
                     <fieldset style=" position:absolute; top:914px; width:45%;right:0%;">
                         <table align="center" style="color:white; font-size: 21px; width:100%;">
                             <tr>
-                                <td width="300 px" style="display: none;"> First Name:</td>
-                                <td width="300 px"><input type="text" style="display:none" name="Employee_ID" value="<?php echo $row['Employee_ID']; ?>" /></td>
+                                <td width="200 px" style="display: none;"> First Name:</td>
+                                <td width="200 px"><input type="text" style="display:none" name="Employee_ID" value="<?php echo $row['Employee_ID']; ?>" /></td>
                             </tr>
                             <tr>
-                                <td width="300 px">First Name:</td>
-                                <td width="300 px"><input type="text" name="First_Name" value="<?php echo $row['First_Name']; ?>" /></td>
+                                <td width="200 px">First Name:</td>
+                                <td width="200 px"><input type="text" name="First_Name" value="<?php echo $row['First_Name']; ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Last Name:</td>
@@ -247,8 +248,8 @@ if (!isset($_SESSION['First_Name'])) {
     ?>
     </table>
 
-
     <!-- Respond To Leave Requests -->
+
     <table style="width:100%;position:absolute">
         <tr>
             <th rowspan="5">
@@ -296,6 +297,7 @@ if (!isset($_SESSION['First_Name'])) {
     </table>
 
     <!-- Current Duty Toaster -->
+
     <table style="border: 1px solid white;width:52%; position:absolute; top:1365px">
         <tr>
             <td></td>
@@ -471,7 +473,7 @@ if (!isset($_SESSION['First_Name'])) {
 </body>
 
 </html>
-<!-- View Table-->
+<!-- VIEW TABLE -->
 <div class="dtablescroll">
     <table align="center" style="color:white;width:100%;font-size:17px;">
         <tr>
@@ -490,7 +492,7 @@ if (!isset($_SESSION['First_Name'])) {
 
         <?php include("../../config/connection.php");
 
-        $query = "SELECT * FROM employee";
+        $query = "SELECT * FROM employee where User_Role!='Admin' AND User_Role!='Hotel Manager'";
         $query_run = mysqli_query($con, $query);
         while ($row = mysqli_fetch_array($query_run)) {
 
@@ -509,7 +511,7 @@ if (!isset($_SESSION['First_Name'])) {
 
     </table>
 </div>
-<!-- Update -->
+<!-- UPDATE -->
 <?php
 if (isset($_POST['update'])) {
     $First_Name = $_POST['First_Name'];
@@ -530,7 +532,7 @@ if (isset($_POST['update'])) {
     }
 }
 ?>
-<!-- delete -->
+<!-- DELETE -->
 <?php
 if (isset($_POST['delete'])) {
     $query = "DELETE FROM employee where Employee_ID='$_POST[Employee_ID]'";

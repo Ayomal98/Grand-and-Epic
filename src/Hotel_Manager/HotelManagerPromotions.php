@@ -95,7 +95,7 @@ checkSession();
 			<p style = "font-family :Lato; font-size:20px; color :white;">Last Minute Promotions</p>		
 		</th>
 		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Credit Card Promotions</p>		
+			<p style = "font-family :Lato; font-size:20px; color :white;">Seasonal Promotions</p>		
         </th>
 		</tr>
 		
@@ -127,7 +127,7 @@ checkSession();
             <table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/credit.png" height = "70%">
+					<img src = "../../public/images/Presents.png" height = "18%">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
@@ -213,10 +213,8 @@ checkSession();
                             <td>Promotion Type:</td>
                             <td>
 								<select id="types" name="PromotionType" class="inputs">
-								    <option value="-"
-										
-										?>	
-									-</option>
+
+									<option value disabled selected>Select the Promotion Type</option>
 
                                     <option value="Loylaty Promotion"
 										
@@ -228,7 +226,7 @@ checkSession();
 
 									<option value="Last Minute Promotion"
 										
-									>Last Minute Promotion"</option>
+									>Seasonal Promotion</option>
 
 								</select>
 							</td>
