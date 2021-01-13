@@ -45,19 +45,19 @@ if (!isset($_SESSION['First_Name'])) {
                     <div style="position:absolute;left:15%">
                         <h1 style="margin-bottom: 15px;font-weight:bolder">Breakfast</h1>
                         <div style="margin-bottom: 15px;">
-                            <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black;margin-bottom:5px;color:white">Check In : &nbsp; 8.30 A.M</span>
-                            <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black;margin-bottom:5px;color:white;margin-left:10px">Check Out : &nbsp; 9.00 A.M </span>
+                            <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black;margin-bottom:5px;color:white">Check In : &nbsp; 9.00 A.M</span>
+                            <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:black;margin-bottom:5px;color:white;margin-left:10px">Check Out : &nbsp; 8.00 A.M </span>
                         </div>
                     </div>
                     <div style="position:absolute;left:45%">
                         <h1 style="margin-bottom: 15px;">Lunch</h1>
-                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;margin-bottom:5px;color:white">Check In : &nbsp; 12.00 P.M</span>
-                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-left:10px">Check Out : &nbsp; 12.30 P.M </span>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;margin-bottom:5px;color:white">Check In : &nbsp; 2.00 P.M</span>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-left:10px">Check Out : &nbsp; 1.00 P.M </span>
                     </div>
                     <div style="position:absolute;left:75%">
                         <h1 style="margin-bottom: 15px;">Dinner</h1>
-                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-bottom:5px">Check In : &nbsp; 7.00 P.M</span>
-                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-left:10px">Check Out : &nbsp; 7.30 P.M </span>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-bottom:5px">Check In : &nbsp; 8.00 P.M</span>
+                        <span class="fa fa-clock-o" id="clock-icon" aria-hidden="true" style="display: block;color:white;margin-left:10px">Check Out : &nbsp; 7.00 P.M </span>
                     </div>
                 </div>
             </div>

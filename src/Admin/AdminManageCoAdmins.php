@@ -100,11 +100,11 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 				<tr>
 					<td align="left">Last Name:</td>
-					<td align="center"><input type="text" pattern="[A-Za-z]+" name="empSname" size="50" class="inputs" required></td>
+					<td align="center"><input type="text" pattern="^[A-Za-z ]+$" name="empSname" size="50" class="inputs" required></td>
 				</tr>
 				<tr>
 					<td align="left">Password:</td>
-					<td align="center"><input type="password" name="empPass" size="50" placeholder="Password" class="inputs" required></td>
+					<td align="center"><input type="password" name="empPass" size="50" placeholder="Password" class="inputs" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Your Password Should contain minimum of 8 characters, the first character should should be uppercase & should include special characters as well" required></td>
 				</tr>
 				<tr>
 					<td align="left">Email Address:</td>

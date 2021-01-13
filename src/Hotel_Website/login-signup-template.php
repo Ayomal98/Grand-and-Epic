@@ -27,9 +27,9 @@
                 </div>
                 <input type="text" name="email" placeholder="Email" class="inputs" id="login-customer-email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
                 <input type="password" name="password" placeholder="Password" class="inputs" title="Your Password Should contain minimum of 8 characters, the first character should should be uppercase & should include special characters as well" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-                <a href="#" onclick="diplayForgetPassword()"><span style="font-weight: bold; color:black;">Forgot your password ?</span></a><br />
                 <input type="submit" value="Submit" name="Submit" class="log-btn submit">
-                <input type="reset" value="Cancel" name="Cancel" class="log-btn cancel">
+                <input type="reset" value="Cancel" name="Cancel" class="log-btn cancel"><br />
+                <a href="#" onclick="diplayForgetPassword()"><span style="font-weight: bold; color:black;">Forgot your password ?</span></a>
 
             </form>
         </div>
