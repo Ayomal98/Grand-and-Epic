@@ -36,9 +36,10 @@ checkSession();
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-			<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
 			<a href="SupervisorManageMeals.php">Manage Meals</a>
 			<a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
+			<a href="SupervisorManageMealPackages.php">Manage Meal Packages</a>
+			<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
 			<a href="SupervisorLeaveRequest.php">Request a Leave</a>
 		</div>
 	</div>
@@ -86,49 +87,23 @@ checkSession();
 	<table style="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;">
 		<tr>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a></p>
-			</th>
-			<th style="border: 1px solid white;">
 				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorManageMeals.php">Manage Meals</a></p>
 			</th>
 			<th style="border: 1px solid white;">
 				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorManageSetMenus.php">Manage Set Menu</a></p>
 			</th>
 			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorManageMealPackages.php">Manage Meal Packages</a></p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a></p>
+			</th>
+			<th style="border: 1px solid white;">
 				<p style="font-family :Lato; font-size:20px;"><a href="SupervisorLeaveRequest.php">Request a Leave</a></p>
 			</th>
 		</tr>
 		<tr>
-			<td style="border: 1px solid white;">
 
-				<table width="100%">
-					<tr>
-						<td align="center">
-							<img src="../../public/images/roomService.png" height="75%">
-						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">15</p>
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<img src="../../public/images/cutlery.png" height="50%">
-						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">18</p>
-						</td>
-					</tr>
-					<tr>
-						<td align="center">
-							<img src="../../public/images/tie.png" height="50%">
-						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">2</p>
-						</td>
-					</tr>
-				</table>
-
-			</td>
 			<td style="border: 1px solid white;">
 
 				<table width="100%">
@@ -162,6 +137,61 @@ checkSession();
 						</td>
 						<td align="center">
 							<img src="../../public/images/setMenuBig.png" height="100%">
+						</td>
+					</tr>
+				</table>
+			</td>
+
+			<td style="border: 1px solid white;">
+
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/mpack1.png" height="50%">
+						</td>
+						<td rowspan="3" align="center">
+							<img src="../../public/images/mpack.png" height="90%">
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/mpack2.png" height="20%">
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/mpack3.png" height="30%">
+						</td>
+					</tr>
+				</table>
+
+			</td>
+
+
+			<td style="border: 1px solid white;">
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/roomService.png" height="75%">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 20px;">15</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/cutlery.png" height="50%">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 20px;">18</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/tie.png" height="50%">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 20px;">2</p>
 						</td>
 					</tr>
 				</table>
