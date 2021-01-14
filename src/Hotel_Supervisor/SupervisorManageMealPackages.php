@@ -13,7 +13,7 @@ checkSession();
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
 	<title>
-		Hotel Supervisor Manage Set Menu
+		Hotel Supervisor Manage Meal Packages
 	</title>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
@@ -35,14 +35,14 @@ checkSession();
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Manage Set Menu
+		<button class="dropdown-btn">Manage Meal Packages
 			<i class="fa fa-caret-down"></i>
 		</button>
 
 		<div class="dropdown-container">
 			<a href="SupervisorDashboard.php">Dashboard</a>
 			<a href="SupervisorManageMeals.php">Manage Meals</a>
-			<a href="SupervisorManageMealPackages.php">Manage Meal Packages</a>
+			<a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
 			<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
 			<a href="SupervisorLeaveRequest.php">Request a Leave</a>
 		</div>
@@ -78,24 +78,17 @@ checkSession();
 
 	<form action="Meals.php" method="POST" enctype="multipart/form-data">
 	<fieldset style = " position:absolute; top:280px; width:90%; left:50px;">
-        <legend style = "color:white; font-size: 20px">Add New Set Menu</legend>
+        <legend style = "color:white; font-size: 20px">Add New Meal Package</legend>
         
 				<table style = "color:white; font-size:20px; width:100%;">
 
 					<tr>
-						<td>Set Menu ID:</td>
-						<td><input type="text" name="setmenuid" size="20" required></td>
+						<td>Meal Package ID:</td>
+						<td><input type="text" name="mealpackid" size="20" required></td>
 					</tr>
 					<tr>
-                        <td>Meal Type: </td>
-                        <td>
-                            <select id="types" name="mealtype" class="inputs">
-								<option value disabled selected>Select a Meal Type</option>
-                                <option value="Breakfast">Breakfast</option>
-                                <option value="Lunch">Lunch</option>
-                                <option value="Dinner">Dinner</option>
-                            </select>
-                        </td>
+                        <td>Meal Package Name: </td>
+                        <td><input type="text" name="mealpackname" size="20"></td>
                     </tr>
                     <tr>
                         <td>Meal 01:</td>
@@ -123,7 +116,7 @@ checkSession();
 						<td><input type="file" name="mealimage5" id="fileToUpload"></td>
                     </tr>
                     <tr>
-                        <td>Price for the Set Menu:</td>
+                        <td>Price for the Meal Package:</td>
                         <td><input type="text" name="price" size="50" required></td>
                     </tr>
                 </table>
@@ -131,8 +124,8 @@ checkSession();
                 <table style = "color:white; font-size: 20px; width:86.5%;">
                     <tr>
                         <td align="right">
-                            <input type="submit" class="button" name="insertsm" value="Add a New Set Menu">
-							<input type="reset" class="button" value="Reset Menu Details" name="reset">
+                            <input type="submit" class="button" name="insertmp" value="Add a New Meal Package">
+							<input type="reset" class="button" value="Reset Package Details" name="reset">
                         </td>
                     </tr>
                 </table>
@@ -142,8 +135,8 @@ checkSession();
 
 	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:1300px; width:90%; left:50px;">
-			<legend style="color:white; font-size: 20px">Update and Delete Set Menu</legend>
-			<input type="text" name="Meals_ID" placeholder="Enter id to Search" /><br>
+			<legend style="color:white; font-size: 20px">Update and Delete Meal Package</legend>
+			<input type="text" name="MealPack_ID" placeholder="Enter id to Search" /><br>
 			<input type="submit" class="button" name="search" value="Search by ID">
 		</fieldset>
 	</form>
@@ -153,19 +146,12 @@ checkSession();
 				<fieldset style=" position:absolute; top:1420px; width: 90%; left:50px; ">
 					<table style="color:white; font-size: 20px; width:94%;">
 						<tr>
-							<td>Set Menu ID:</td>
-							<td><input type="text" name="setmenuid" size="20" required></td>
+							<td>Meal Package ID:</td>
+							<td><input type="text" name="mealpackid" size="20" required></td>
 						</tr>
 						<tr>
-							<td>Meal Type: </td>
-							<td>
-								<select id="types" name="mealtype" class="inputs">
-									<option value disabled selected>Select a Meal Type</option>
-									<option value="Breakfast">Breakfast</option>
-									<option value="Lunch">Lunch</option>
-									<option value="Dinner">Dinner</option>
-								</select>
-							</td>
+							<td>Meal Package Name: </td>
+							<td><input type="text" name="mealpackname" size="20"></td>
 						</tr>
 						<tr>
 							<td>Meal 01:</td>
@@ -193,15 +179,15 @@ checkSession();
 							<td><input type="file" name="mealimage5" id="fileToUpload"></td>
 						</tr>
 						<tr>
-							<td>Price for the Set Menu:</td>
+							<td>Price for the Meal Package:</td>
 							<td><input type="text" name="price" size="50" required></td>
 						</tr>
 						<tr>
 							<td></td>
 							<td style="position:relative; left:450px">
-								<input type="submit" class="button" name="update" value="Update Menu">
-								<input type="submit" class="button" name="delete" value="Delete Menu">
-								<input type="reset" class="button" name="reset" value="Reset Menu Details"></a>
+								<input type="submit" class="button" name="update" value="Update Package">
+								<input type="submit" class="button" name="delete" value="Delete Package">
+								<input type="reset" class="button" name="reset" value="Reset Details"></a>
 							</td>
 						</tr>
 					</table>
@@ -212,11 +198,11 @@ checkSession();
 	<div>
 	<table style="position:absolute; left:50px; top:900px; border: 1px solid white; color:white; width:92%">
 		<tr>
-			<th colspan="13"><h2>Set Menu Details</h2></th>
+			<th colspan="13"><h2>Meal Package Details</h2></th>
 		</tr>
 		<tr>
-			<th>Menu ID</th>
-			<th>Meal Type</th>
+			<th>Package ID</th>
+			<th>Package Name</th>
 			<th>Meal 01</th>
 			<th>Image 01</th>
 			<th>Meal 02</th>

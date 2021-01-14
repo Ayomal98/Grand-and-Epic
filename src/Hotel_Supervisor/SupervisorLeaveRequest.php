@@ -38,9 +38,10 @@ checkSession();
 				</button>
 				<div class="dropdown-container">
 				<a href="SupervisorDashboard.php">Dashboard</a>
-				<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
 				<a href="SupervisorManageMeals.php">Manage Meals</a>
 				<a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
+				<a href="SupervisorManageMealpackages.php">Manage Meal Packages</a>
+				<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
 				</div>
 		</div>
 		<div class = "top-right">

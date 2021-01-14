@@ -41,8 +41,9 @@ checkSession();
 
 		<div class="dropdown-container">
 			<a href="SupervisorDashboard.php">Dashboard</a>
-			<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
 			<a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
+			<a href="SupervisorManageMealPackages.php">Manage Meal Packages</a>
+			<a href="SupervisorAssignEmployeeTasks.php">Assign Employee Tasks</a>
 			<a href="SupervisorLeaveRequest.php">Request a Leave</a>
 		</div>
 
@@ -82,7 +83,7 @@ checkSession();
 			<table align="center" style="color:white; font-size: 20px; width:88%; ">
 				<tr>
 					<td>Meal ID:</td>
-					<td align="center"><input type="text" name="mealid" size="20" required></td>
+					<td align="center"><input type="text" name="mealid" placeholder="Ex:M001" size="20" required></td>
 				</tr>
 				<tr>
 					<td>Meal Name:</td>
@@ -91,16 +92,6 @@ checkSession();
 				<tr>
 					<td>Price:</td>
 					<td align="center"><input type="text" pattern="[0-9]+" name="price" size="50" required></td>
-				</tr>
-				<tr>
-					<td>Meal Plan: </td>
-					<td align="left">
-						<select id="mptypes" name="mealplan" class="inputs" onchange="changeStatus()" style="margin: 8px 85px;">
-							<option value disabled selected>Select a Meal Plan</option>
-							<option value="Staying-in">Staying-in</option>
-							<option value="Events">Events</option>
-						</select>
-					</td>
 				</tr>
 				<tr id="MealT">
 					<td>Meal Type: </td>
@@ -132,7 +123,7 @@ checkSession();
 	</form>
 
 	<form action="" method="POST">
-		<fieldset style=" position:absolute; top:800px; width: 45%; right:0%;">
+		<fieldset style=" position:absolute; top:700px; width: 45%; right:0%;">
 			<legend style="color:white; font-size: 20px">Update and Delete Meals</legend>
 			<input type="text" name="Meals_ID" placeholder="Enter id to Search" />
 			<input type="submit" class="button" name="search" value="Search by ID">
@@ -153,7 +144,7 @@ checkSession();
 			while ($row = mysqli_fetch_array($query_run)) {
 	?>
 				<form action="" method="POST" enctype="multipart/form-data">
-					<fieldset style=" position:absolute; top:920px; width: 45%; right:0%">
+					<fieldset style=" position:absolute; top:820px; width: 45%; right:0%">
 						<table style="color:white; font-size: 20px; width:95%;">
 							<tr style="border: 1px solid white;">
 								<td>Meal ID:</td>
@@ -167,44 +158,11 @@ checkSession();
 								<td>Price:</td>
 								<td><input type="float" pattern="[0-9]+" name="price" value="<?php echo $row['Price'] ?>" /></td>
 							</tr>
-							<tr>
-								<td>Meal Plan: </td>
-								<td>
-									<select id="mptypes" name="mealplan" class="inputs" onchange="changeStatus()" style="margin: 8px 2px;">
-										<option value disabled selected>Select a Meal Plan</option>
-										<option value="Staying-in"
-											<?php
-											if($row["Meal_Plan"]=='Staying-in')
-											{
-												echo "selected";
-											}
-											?>	
-										>Staying-in</option>
-
-										<option value="Events"
-											<?php
-											if($row["Meal_Plan"]=='Events')
-											{
-												echo "selected";
-											}
-											?>	
-										>Events</option>
-									</select>
-								</td>
-							</tr>
 							<tr id="MealT">
 								<td>Meal Type:</td>
 								<td>
 									<select id="mttypes" name="mealtype" class="inputs" style="margin: 8px 2px;">
 										<option value disabled selected>Select a Meal Type</option>
-											<option value="None"
-												<?php
-												if($row["Meal_Type"]=='None')
-												{
-													echo "selected";
-												}
-												?>	
-											>None</option>
 
 											<option value="Breakfast"
 												<?php
@@ -261,7 +219,7 @@ checkSession();
 
 			}
 		} else {
-			echo "<script>alert('ID you entered doesn\'t Exist.Please Try Again!')</script>";
+			echo "<script>alert('ID you entered doesn't Exist.Please Try Again!')</script>";
 			echo "<script>window.location.href='SupervisorManageMeals.php'</script>";
         }
 	}
@@ -277,7 +235,6 @@ checkSession();
 			<th>Meal ID:</th>
 			<th>Meal Name:</th>
 			<th>Price(Rs):</th>
-			<th>Meal Plan:</th>
 			<th>Meal Type:</th>
 			<th>Meal Image:</th>
 		</tr>
@@ -295,7 +252,6 @@ checkSession();
 							<td><?php echo $row['Meals_ID'] ?></td>
 							<td><?php echo $row['Meals_Name'] ?></td>
 							<td><?php echo $row['Price'] ?></td>
-							<td><?php echo $row['Meal_Plan'] ?></td>
 							<td><?php echo $row['Meal_Type'] ?></td>
 							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
 						</tr>
@@ -313,18 +269,6 @@ checkSession();
 		function funcCloseUserDetails() {
 			document.getElementById('user-detail-container').style.display = "none";
 		}
-
-		// Display second dropdown if Staying-in is selected from first dropdown
-		function changeStatus()
-		{
-			var status = document.getElementById("mptypes");
-			if(status.value == "Events"){
-				document.getElementById("MealT").style.visibility = "hidden";
-			}
-			else{
-				document.getElementById("MealT").style.visibility = "visible";
-			}
-		}
 	</script>
 
 </body>
@@ -338,13 +282,12 @@ if (isset($_POST['update'])) {
 	$mealid = $_POST['mealid'];
 	$mealname = $_POST['mealname'];
 	$price = $_POST['price'];
-	$mealplan = $_POST['mealplan'];
 	$mealtype = $_POST['mealtype'];
 	$mealimage = addslashes(file_get_contents($_FILES["mealimage"]["tmp_name"]));
 
 	if($mealimage=="")
 	{
-		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Plan='$mealplan',Meal_Type='$mealtype' where Meals_ID='$_POST[mealid]'";
+		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Type='$mealtype' where Meals_ID='$_POST[mealid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
@@ -357,7 +300,7 @@ if (isset($_POST['update'])) {
 		}
 	}
 	else{
-		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Plan='$mealplan',Meal_Type='$mealtype',Meal_Image='$mealimage' where Meals_ID='$_POST[mealid]'";
+		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Type='$mealtype',Meal_Image='$mealimage' where Meals_ID='$_POST[mealid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
@@ -370,14 +313,15 @@ if (isset($_POST['update'])) {
 		}
 	}
 }
+?>
 
 
 
 // Delete
+<?php include("../../config/connection.php");
 if (isset($_POST['delete'])) {
 	$mealname = $_POST['mealname'];
 	$price = $_POST['price'];
-	$mealplan = $_POST['mealplan'];
 	$mealtype = $_POST['mealtype'];
 	$mealimage = addslashes(file_get_contents($_FILES["mealimage"]["tmp_name"]));
 	$delete_query = "DELETE from meals where Meals_ID='$_POST[mealid]'";
@@ -391,3 +335,4 @@ if (isset($_POST['delete'])) {
 		echo '<script> alert("Data Not Deleted") </script>';
 	}
 }
+?>

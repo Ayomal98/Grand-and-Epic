@@ -40,6 +40,7 @@ checkSession();
                 <a href="SupervisorDashboard.php">Dashboard</a>
                 <a href="SupervisorManageMeals.php">Manage Meals</a>
                 <a href="SupervisorManageSetMenus.php">Manage Set Menu</a>
+                <a href="SupervisorManageMealPackages.php">Manage Meal Packages</a>
                 <a href="SupervisorLeaveRequest.php">Request a leave</a>
 			</div>
 		</div>
