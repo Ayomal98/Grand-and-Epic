@@ -10,7 +10,10 @@ if (isset($_POST['Submit'])) {
   $email = $_POST['email'];
   $password = md5($_POST['password']);
   $tpN = $_POST['contactNum'];
+  $userType = 'Customer';
   $sql = "INSERT INTO customer (First_Name,Last_Name,Email,Password,Contact_No) VALUES ('" . $firstName . "','" . $lastName . "','" . $email . "','" . $password . "','" . $tpN . "')";
+  $login_sql = "INSERT INTO login_table(Email,Password,User_Type) VALUES('$email','$password','$userType')"; //insert query for the login
+  mysqli_query($con, $login_sql);
   if ($con->query($sql) === TRUE) {
     echo "<script>
             alert('Your Account has been successfully created');
