@@ -1,19 +1,15 @@
+<!-- This page contains the retrival of tables initially-->
+
 <?php include("../../config/connection.php");
-// include("dinein-booking.php");
-$number_of_tables = 15;
-// $showTablesQuery = "SELECT Table_No,Time,isBooked FROM tables";
-// $showBookingsQuery = "SELECT Table_No,Time,Date FROM dinein_booking ";
-// $resultBooked = mysqli_query($con, $showBookingsQuery);
-// if (mysqli_num_rows($resultBooked) > 0) {
-//     while ($row = mysqli_fetch_assoc($resultBooked)) {
-//         $table_no = $row['Table_No'];
-//         if ($date === $row['Date'] && $timeperiod == $row['Time'])
-//             echo "<div class=\"dot not-avb\"><span>$table_no</span></div>";
-//     }
-// }
-
-// $result = mysqli_query($con, $showTablesQuery);
-
-for ($x = 1; $x <= $number_of_tables; $x++) {
-    echo "<div class=\"dot \"><span>$x</span></div>";
+$tableDisplayQuery = "SELECT * FROM tables";  //query to display the table details
+$tableResult = mysqli_query($con, $tableDisplayQuery);
+while ($row = mysqli_fetch_assoc($tableResult)) {     //to display details  of table section result
+    $no_Of_Customers = $row["No_Customers"];
+    $table_No = $row["Table_No"];
+    echo "<div>
+            <div class=\"dot \">
+                <span>$table_No</span>
+            </div>
+            <div style=\"margin-left:-40px\">Customers Allowed : $no_Of_Customers </div>
+          </div>";
 }

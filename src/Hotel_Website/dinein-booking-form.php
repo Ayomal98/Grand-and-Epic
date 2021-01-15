@@ -136,9 +136,9 @@ $email = $_SESSION['User_Email'];
                 <div class="table-showing-container">
                     <?php include("showtables.php"); ?>
                 </div>
-                <input type="button" value="Check-Availability" name="check-availability" class="check-availability-btn"><i class="fas fa-check" style="position:absolute;top:66%;right:42%;"></i></input>
+                <input type="button" value="Check-Availability" name="check-availability" class="check-availability-btn"><i class="fas fa-check" style="position:absolute;top:66%;right:23.5%;"></i></input>
                 <div style="display:flex;flex-direction:column">
-                    <br><input type="number" name="table-no" placeholder="Table-No" style="position:absolute;top:75%;right:32%;width:180px; height:40px;padding:10px" min="1" max="<?php echo $number_of_tables; ?>"><br>
+                    <br><input type="number" name="table-no" placeholder="Table-No" style="position:absolute;top:75%;right:22%;width:180px; height:40px;padding:10px" min="1" max="<?php echo $number_of_tables; ?>"><br>
                     <div class="dot not-avb"></div><span style="margin-top: -35px;margin-left:150px;">Not Available</span><br>
                     <div class="dot"></div><span style="margin-top: -35px;margin-left:150px;">Available</span><br>
                 </div>

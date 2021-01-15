@@ -726,7 +726,7 @@ img {
 .check-availability-btn{
   position: absolute;
   top:65%;
-  right:33%;
+  right:23%;
   width:160px; 
   height:30px;
   padding:5px;
@@ -1257,7 +1257,7 @@ form.staying-in-form > label {
   background-image: url("../Images/pexels-daria-shevtsova-3794739.jpg");
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 110vh;
 }
 
 .dine-in-form {
@@ -1270,6 +1270,7 @@ form.staying-in-form > label {
   opacity: 0.8;
   padding: 15px 40px;
   width: 130vh;
+  margin-top:-10px;
 }
 .customer-details {
   display: flex;

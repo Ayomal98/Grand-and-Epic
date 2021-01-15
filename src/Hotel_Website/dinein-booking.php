@@ -37,8 +37,8 @@ if (isset($_POST['confirm-book-btn'])) {
             </script>";
     } else {
         $query = "INSERT INTO dinein_booking (Table_No,Customer_email,Customer_Name,Num_Guests,Meal_Period,Date,Time) VALUES ('" . $tableno . "','$emailaddress','" . $customername . "','" . $numguests . "','" . $mealperiod . "','" . $date . "','" . $timeperiod . "') ";
-        $insertTablesQuery = "INSERT INTO tables (Table_No,Time,Date,isBooked) VALUES ('" . $tableno . "','" . $timeperiod . "','" . $date . "','" . $boolTrue . "')";
-        mysqli_query($con, $insertTablesQuery);
+        // $insertTablesQuery = "INSERT INTO tables (Table_No,Time,Date,isBooked) VALUES ('" . $tableno . "','" . $timeperiod . "','" . $date . "','" . $boolTrue . "')";
+        // mysqli_query($con, $insertTablesQuery);
         if ($con->query($query) === TRUE) {
 
             echo "<script>
