@@ -91,7 +91,7 @@ $email = $_SESSION['User_Email'];
             <div class="customer-details">
                 <input type="text" style="width:28%" name="customer-name" id="" placeholder="Customer Name" required>
                 <input type="text" style="width:45%" name="customer-email" id="" placeholder="Email address" required>
-                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" style="width:110px;" required>
+                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" style="width:110px;" id="number-of-guest" required>
             </div>
             <div class="dine-in-details-wrapper" style="display:flex;align-items:center;">
                 <div class="meal-container">
@@ -138,7 +138,8 @@ $email = $_SESSION['User_Email'];
                 </div>
                 <input type="button" value="Check-Availability" name="check-availability" class="check-availability-btn"><i class="fas fa-check" style="position:absolute;top:66%;right:23.5%;"></i></input>
                 <div style="display:flex;flex-direction:column">
-                    <br><input type="number" name="table-no" placeholder="Table-No" style="position:absolute;top:75%;right:22%;width:180px; height:40px;padding:10px" min="1" max="<?php echo $number_of_tables; ?>"><br>
+                    <br><input type="number" name="table-no" placeholder="Table-No" id="table-no" style="position:absolute;top:75%;right:22%;width:180px; height:40px;padding:10px" min="1" max="15"><br>
+                    <div id="table-availability-checker"></div>
                     <div class="dot not-avb"></div><span style="margin-top: -35px;margin-left:150px;">Not Available</span><br>
                     <div class="dot"></div><span style="margin-top: -35px;margin-left:150px;">Available</span><br>
                 </div>
@@ -185,6 +186,25 @@ $email = $_SESSION['User_Email'];
         }
         today = yy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("min", today);
+    </script>
+
+    <script>
+        let Guests_evt = document.getElementById("number-of-guest");
+        let no_Guests = 0;
+        let table_no = document.getElementById("table-no");
+        Guests_evt.addEventListener("input", (e) => {
+            no_Guests = e.target.value
+        })
+        table_no.addEventListener("input", (e) => {
+            let inputValue = e.target.value;
+            let tableValues = <?php echo json_encode($tableParticipant); ?>;
+            console.log(no_Guests)
+            if (no_Guests < tableValues[inputValue]) {
+                console.log("Please select another table");
+            } else {
+                console.log("Selected table is sufficient enough");
+            }
+        })
     </script>
 </body>
 
