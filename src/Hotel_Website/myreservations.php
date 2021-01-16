@@ -103,8 +103,10 @@ $email = $_SESSION["User_Email"];
                 <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
             </div>
         </div>
-        <?php include("./request-early-checkout-form.php") ?>
         <!-- Including the early-checkout request form -->
+        <?php include("./request-early-checkout-form.php") ?>
+
+        <!-- Including the customer edit profile form -->
         <?php include("./customer-edit-profile-form.php") ?>
         <?php
         $table_no;
@@ -190,12 +192,6 @@ $email = $_SESSION["User_Email"];
                     <td style="padding: 5px;">Rs.60,000/=</td>
                 </tr>
             </table>
-            <!-- <span style="font-weight: bold;font-size:15px;">Staying-in ID : 48</span>
-            <span style="font-weight: bold;font-size:15px;">Room Number : Panaromic-13</span>
-            <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>21st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
-            <span style="font-weight: bold;font-size:15px;">Check-Out Date: &nbsp;<span>22st of November 2020</span></span>
-            <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span> -->
             <div class="book-btn-container">
                 <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px" id="btn-feedback">Provide Feedback</button>
 
@@ -253,7 +249,11 @@ $email = $_SESSION["User_Email"];
 
         //to open the edit profile for the user
         function editProfile() {
+            document.querySelector('.bg-modal-edit').style.display = "flex";
+        }
 
+        function closeEdit() {
+            document.querySelector('.bg-modal-edit').style.display = "none";
         }
     </script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
