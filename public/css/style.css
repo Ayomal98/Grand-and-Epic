@@ -36,9 +36,22 @@ h3 {
   text-align: center;
   font-size: 36px;
 }
+
 img {
   max-width: 100%;
   max-width: 100%;
+}
+
+input{
+  border:none;
+}
+
+select{
+  border: none;
+}
+
+input:focus{
+  outline: none;
 }
 
 .page-wrapper {
@@ -726,10 +739,10 @@ img {
 .check-availability-btn{
   position: absolute;
   top:65%;
-  right:23%;
-  width:160px; 
-  height:30px;
-  padding:5px;
+  right:25.5%;
+  width:170px; 
+  height:35px;
+  padding:10px;
   background-color: #3498db;
   color: #fff;
   border: none;

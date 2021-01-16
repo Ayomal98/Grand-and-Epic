@@ -89,9 +89,9 @@ $email = $_SESSION['User_Email'];
         <form action="dinein-booking.php" class="dine-in-form" method="post">
             <h2 style="font-size:40px;">Reservation for Dine-in</h2>
             <div class="customer-details">
-                <input type="text" style="width:28%" name="customer-name" id="" placeholder="Customer Name" required>
-                <input type="text" style="width:45%" name="customer-email" id="" placeholder="Email address" required>
-                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" style="width:110px;" id="number-of-guest" required>
+                <input type="text" style="width:28%;" name="customer-name" id="" placeholder="Customer Name" required>
+                <input type="text" style="width:45%;" name="customer-email" id="" placeholder="Email address" required>
+                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" style="width:110px;padding:3px" id="number-of-guest" required>
             </div>
             <div class="dine-in-details-wrapper" style="display:flex;align-items:center;">
                 <div class="meal-container">
@@ -108,27 +108,27 @@ $email = $_SESSION['User_Email'];
                     <label for="Time-Period">Time Period</label>
                     <div class="breakfast-time-period-selection">
 
-                        <select name="breakfast-times" id="breakfast-times">
+                        <select name="breakfast-times" id="breakfast-times" style="padding:5px">
                             <?php echo getBreakfastTime(); ?>
                         </select>
 
                     </div>
                     <div class=" lunch-time-period-selection">
-                        <select name="lunch-times" id="lunch-times">
+                        <select name="lunch-times" id="lunch-times" style="padding:5px">
                             <?php echo getLunchTime(); ?>
                         </select>
 
                     </div>
                     <div class="dinner-time-period-selection">
 
-                        <select name="dinner-times" id="dinner-times">
+                        <select name="dinner-times" id="dinner-times" style="padding:5px">
                             <?php echo getDinnerTime(); ?>
                         </select>
                     </div>
                 </div>
 
                 <div class="date-container">
-                    <input type="date" name="Dine-in-date" min="" id="datefield">
+                    <input type="date" name="Dine-in-date" min="" id="datefield" style="padding:5px">
                 </div>
             </div>
 
@@ -136,12 +136,12 @@ $email = $_SESSION['User_Email'];
                 <div class="table-showing-container">
                     <?php include("showtables.php"); ?>
                 </div>
-                <input type="button" value="Check-Availability" name="check-availability" class="check-availability-btn"><i class="fas fa-check" style="position:absolute;top:66%;right:23.5%;"></i></input>
+                <input type="button" value="Check-Availability" name="check-availability" class="check-availability-btn"><i class="fas fa-check" style="position:absolute;top:66.4%;right:26.2%;"></i></input>
                 <div style="display:flex;flex-direction:column">
-                    <br><input type="number" name="table-no" placeholder="Table-No" id="table-no" style="position:absolute;top:75%;right:22%;width:180px; height:40px;padding:10px" min="1" max="15"><br>
-                    <div id="table-availability-checker"></div>
-                    <div class="dot not-avb"></div><span style="margin-top: -35px;margin-left:150px;">Not Available</span><br>
-                    <div class="dot"></div><span style="margin-top: -35px;margin-left:150px;">Available</span><br>
+                    <br><input type="number" name="table-no" placeholder="Table-No" id="table-no" style="position:absolute;top:75%;right:25%;width:180px; height:40px;padding:10px" min="1" max="15"><br>
+                    <div class="dot not-avb"></div><span style="margin-top: -35px;margin-left:160px;">Not Available</span><br>
+                    <div class="dot"></div><span style="margin-top: -35px;margin-left:160px;">Available</span><br>
+                    <div id="table-availability-checker" style="position:absolute;color:red;top:82%;right:25%"></div>
                 </div>
             </div>
             <div class="btn-wrapper" style="display: inline-block;margin:auto 10px;">
@@ -192,6 +192,7 @@ $email = $_SESSION['User_Email'];
         let Guests_evt = document.getElementById("number-of-guest");
         let no_Guests = 0;
         let table_no = document.getElementById("table-no");
+        const guestsHandler = document.getElementById('table-availability-checker');
         Guests_evt.addEventListener("input", (e) => {
             no_Guests = e.target.value
         })
@@ -199,9 +200,11 @@ $email = $_SESSION['User_Email'];
             let inputValue = e.target.value;
             let tableValues = <?php echo json_encode($tableParticipant); ?>;
             console.log(no_Guests)
-            if (no_Guests < tableValues[inputValue]) {
-                console.log("Please select another table");
+            if (no_Guests > tableValues[inputValue]) {
+                guestsHandler.innerHTML = "Please Select another table"
+                console.log("*Please select another table");
             } else {
+                guestsHandler.innerHTML = "";
                 console.log("Selected table is sufficient enough");
             }
         })

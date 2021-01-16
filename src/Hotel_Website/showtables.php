@@ -9,9 +9,9 @@ while ($row = mysqli_fetch_assoc($tableResult)) {     //to display details  of t
     $table_No = $row["Table_No"];
     $tableParticipant += array($table_No => $no_Of_Customers);
     echo "<div>
-            <div class=\"dot \">
-                <span>$table_No</span>
-            </div>
-            <div style=\"margin-left:-40px\">Customers Allowed : $no_Of_Customers </div>
-          </div>";
+                <div class=\"dot \">
+                    <span>$table_No</span>
+                </div>
+                <div style=\"margin-left:-40px;\">Guests Allowed : $no_Of_Customers </div>
+            </div>";
 }
