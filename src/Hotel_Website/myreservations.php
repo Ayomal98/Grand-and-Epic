@@ -49,7 +49,7 @@ $email = $_SESSION["User_Email"];
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
         <input type="button" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;">
         <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
-        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;">
+        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;" onclick="editProfile()">
 
     </div>
     <h3><u>Upcoming Reservations</u></h3>
@@ -105,6 +105,7 @@ $email = $_SESSION["User_Email"];
         </div>
         <?php include("./request-early-checkout-form.php") ?>
         <!-- Including the early-checkout request form -->
+        <?php include("./customer-edit-profile-form.php") ?>
         <?php
         $table_no;
         $date;
@@ -249,6 +250,11 @@ $email = $_SESSION["User_Email"];
             document.querySelector(".sticky-navbar").style.display = "flex";
             document.querySelector(".stickyblack-nav").style.display = "inline";
         })
+
+        //to open the edit profile for the user
+        function editProfile() {
+
+        }
     </script>
     <script src="../../public/Javascript/sticky-nav.js"></script>
 
