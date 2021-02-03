@@ -14,7 +14,6 @@
         <div class="header-container" id="header-container">
 
             <?php include("../../public/includes/sticky-nav.php"); ?>
-
             <?php include("../../public/includes/side-nav.php"); ?>
 
             <div class="text-container">

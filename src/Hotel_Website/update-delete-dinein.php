@@ -9,6 +9,8 @@ if (isset($_POST['Delete'])) {
   $table_no = $_POST['table_no'];
   $date = $_POST['date'];
   $time = $_POST['time'];
+  echo $time;
+  phpinfo();
   echo "<script> console.log($table_no);</script>";
   $deletequerybook = "DELETE FROM dinein_booking WHERE Table_No=' $table_no ' AND Date='$date' AND Time='$time'";
   if ($con->query($deletequerybook) === TRUE) {
