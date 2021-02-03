@@ -25,7 +25,7 @@ $email = $_SESSION["User_Email"];
     </style>
 </head>
 
-<body>
+<body id="main-body">
     <div class="header-container-userReservations" id="header-container">
         <?php include("../../public/includes/sticky-nav-login.php"); ?>
         <?php include("../../public/includes/side-nav-login.php"); ?>
@@ -49,7 +49,7 @@ $email = $_SESSION["User_Email"];
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
         <input type="button" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;">
         <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
-        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;" onclick="editProfile()">
+        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
 
     </div>
     <h3><u>Upcoming Reservations</u></h3>
@@ -249,11 +249,18 @@ $email = $_SESSION["User_Email"];
 
         //to open the edit profile for the user
         function editProfile() {
+            const position = document.getElementById('edit-cusdetails-btn').getBoundingClientRect();
+            const top = `${position.top}px`
+            console.log(top)
             document.querySelector('.bg-modal-edit').style.display = "flex";
+            document.querySelector('.bg-modal-edit').style.top = top;
+            document.getElementsByTagName("body")[0].style.overflowY = "hidden";
         }
 
         function closeEdit() {
             document.querySelector('.bg-modal-edit').style.display = "none";
+            document.getElementsByTagName("body")[0].style.overflowY = ""
+
         }
     </script>
     <script src="../../public/Javascript/sticky-nav.js"></script>

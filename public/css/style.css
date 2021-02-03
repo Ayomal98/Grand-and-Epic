@@ -11,9 +11,9 @@ html{
 }
 
 body {
-  overflow-x: hidden;
   font-family: Sans-serif;
   height: 100%;
+  overflow-x: hidden;
 }
 nav {
   display: flex;
@@ -567,7 +567,7 @@ input:focus{
   opacity: 0.98;
   width: 100%;
   height: 120%;
-  top: 720px;
+  top: 88px;
   position: absolute;
   justify-content: center;
   align-items: center;
