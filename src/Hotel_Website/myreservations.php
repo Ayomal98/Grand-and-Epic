@@ -250,10 +250,13 @@ $email = $_SESSION["User_Email"];
         //to open the edit profile for the user
         function editProfile() {
             const position = document.getElementById('edit-cusdetails-btn').getBoundingClientRect();
-            const top = `${position.top}px`
-            console.log(top)
+            // console.log(position.top)
+            // console.log(top)
             document.querySelector('.bg-modal-edit').style.display = "flex";
-            document.querySelector('.bg-modal-edit').style.top = top;
+            // if (position.top < 200) {
+            //     const top = `${position.top+400}px`
+            //     document.querySelector('.bg-modal-edit').style.top = top;
+            // }
             document.getElementsByTagName("body")[0].style.overflowY = "hidden";
         }
 

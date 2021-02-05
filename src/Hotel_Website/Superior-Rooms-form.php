@@ -199,6 +199,27 @@
             <hr>
             <h4 style="margin-right: 20px;font-size: 25px;width: 1800px;margin-left:10px">Dinner</h4>
         </div>
+        <?php
+        require_once('../../config/connection.php');
+        $meals = "SELECT * FROM meals WHERE Meal_Type='Breakfast'";
+        $result = mysqli_query($con, $meals);
+        if (mysqli_num_rows($result) > 0) {
+            echo '<div class="meal-selection" style="display: flex;flex-direction:row">';
+            while ($row = mysqli_fetch_assoc($result)) {
+                $mealName = $row["Meals_Name"];
+                $price = $row["Price"];
+                echo '
+                    <div class="set-menu-meals-card">   
+                        <div class="set-menu-card-image"><img src="data:image;base64, ' . base64_encode($row['Meal_Image']) . '" alt="Image" style="border-radius:10px 10px 0px 0px"></div>
+                        <div class="set-menu-card-text">' . $mealName . '<span style="display: inline-block;font-weight:bolder;">' . $price . '</span>
+                            <div class="add-to-cart" width: 85px; margin-top: 2px; margin-left: 25%;><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
+                        </div>
+                    </div>';
+            }
+        } else {
+            echo "Not Available";
+        }
+        ?>
         <div class="meal-selection" style="display: flex;flex-direction:row">
             <div class="set-menu-meals-card n-1">
                 <div class><img src="../../public/images/br1.jpg" style="border-radius:10px 10px 0px 0px;" alt=""></div>
