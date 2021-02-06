@@ -12,32 +12,13 @@ if (isset($_GET["customercode"])) {
         if (mysqli_num_rows($getCustomerEmailQuery)) {
             $row = mysqli_fetch_assoc($getCustomerEmailQuery);
             $email = $row["email"];
-            // if (mysqli_query($con, $sqlupdatePassword)) {
-            //     echo "password updated correctly";
-            //     $result=mysqli_fetch_assoc($sqlupdate)
-            // } else {
-            //     echo "no";
-            // }
-            // $update = "UPDATE customer SET Customer_ID='$num' WHERE Email='$email1'";
-            // mysqli_query($con, $update);
+            $updateLogin = mysqli_query($con, "UPDATE login_table SET Password='$password' WHERE Email='$email' ");
             $updatePasswordQuery = mysqli_query($con, "UPDATE customer SET Password = '$password' WHERE Email='$email'");
             $deleteRequest = "DELETE FROM reset_password_customer WHERE code='$customercode' AND email='$email'";
             if ($updatePasswordQuery) {
                 mysqli_query($con, $deleteRequest);
                 echo "<script>alert('Your password has been updated successfully')</script>";
             }
-
-            //  $result=mysqli_fetch_assoc($updatePasswordQuery);
-            //  if($result){
-            //      echo correct;
-            // //  }
-            // if ($updatePasswordQuery) {
-            //     echo $email . "<br>";
-            //     echo $password . "<br>";
-            //     exit();
-            // } else {
-            //     exit("something went wrong");
-            // }
         }
     }
 }
@@ -51,22 +32,10 @@ elseif (isset($_GET["employeecode"])) {
         if (mysqli_num_rows($getEmployeeEmailQuery)) {
             $row = mysqli_fetch_assoc($getEmployeeEmailQuery);
             $email = $row["email"];
-            // if (mysqli_query($con, $sqlupdatePassword)) {
-            //     echo "password updated correctly";
-            //     $result=mysqli_fetch_assoc($sqlupdate)
-            // } else {
-            //     echo "no";
-            // }
-            // $update = "UPDATE customer SET Customer_ID='$num' WHERE Email='$email1'";
-            // mysqli_query($con, $update);
+            $updateLogin = mysqli_query($con, "UPDATE login_table SET Password='$password' WHERE Email='$email' ");
             $updatePasswordQuery = mysqli_query($con, "UPDATE employee SET Password = '$password' WHERE Email='$email'");
             $deleteRequest = "DELETE FROM reset_password_employee WHERE code='$employeecode' AND email='$email'";
             mysqli_query($con, $deleteRequest);
-            //  $result=mysqli_fetch_assoc($updatePasswordQuery);
-            //  if($result){
-            //      echo correct;
-            // //  }
-
         }
     }
 }
