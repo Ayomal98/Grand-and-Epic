@@ -17,7 +17,6 @@ if (!isset($_SESSION['First_Name'])) {
 </head>
 
 <body bgcolor="black">
-
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
 
@@ -71,14 +70,14 @@ if (!isset($_SESSION['First_Name'])) {
 	</script>
 
 
-	<form>
+	<form method="post" action="">
 		<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
 			<legend style="color:white; font-size: 20px">Request a Leave</legend>
 
 			<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
 				<tr>
 					<td align="left">Employee ID:</td>
-					<td align="left"><input type="text" name="id" size="20"></td>
+					<td align="left"><input type="text" name="id" size="20" value=<?php echo $_SESSION["Employee_ID"]; ?>></td>
 				</tr>
 				<tr>
 					<td align="left">Leave Start Date:</td>
@@ -102,8 +101,8 @@ if (!isset($_SESSION['First_Name'])) {
 			<table style="color:white; font-size: 20px; width:81%;">
 				<tr>
 					<td align="right">
-						<input type="button" class="button" value="CANCEL">
-						<input type="button" class="button" value="SUBMIT">
+						<input type="reset" class="button" value="CANCEL">
+						<input type="submit" class="button" name="Submit" value="SUBMIT">
 					</td>
 
 				</tr>
@@ -122,6 +121,21 @@ if (!isset($_SESSION['First_Name'])) {
 			document.getElementById('user-detail-container').style.display = "none";
 		}
 	</script>
+
+	<?php
+	require_once('../../config/connection.php');
+	if (isset($_POST["Submit"])) {
+		$employeeID = $_SESSION['Employee_ID'];
+		$startDate = mysqli_real_escape_string($con, $_POST['startdate']);
+		$endDate = mysqli_real_escape_string($con, $_POST['enddate']);
+		$section = mysqli_real_escape_string($con, $_POST['section']);
+		$reason = mysqli_real_escape_string($con, $_POST['Message']);
+		$insertLR = "INSERT INTO leave_request(Employee_ID,Start_Date,End_Date,Section,Reason) VALUES ('$employeeID','$startDate','$endDate','$section','$reason')";
+		if (mysqli_query($con, $insertLR) < 0) {
+			echo "<script>alert('Your Leave Request has been sent')</script>";
+		};
+	}
+	?>
 
 </body>
 

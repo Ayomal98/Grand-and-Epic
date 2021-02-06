@@ -24,7 +24,7 @@ if (isset($_POST['Submit'])) {
             $rowEmployee = mysqli_fetch_assoc($resultEmployee);
             checkSession();
             $_SESSION["First_Name"] = $rowEmployee['First_Name'];
-            $_SESSION["Employee_ID"] = $row['Employee_ID'];
+            $_SESSION["Employee_ID"] = $rowEmployee['Employee_ID'];
             if ($rowEmployee["User_Role"] == "Hotel Manager") {
                 header('Location:../Hotel_Manager/HotelManagerDashboard.php');
             } elseif ($rowEmployee["User_Role"] == "Admin") {
