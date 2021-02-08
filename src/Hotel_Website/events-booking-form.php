@@ -11,7 +11,7 @@
 
 <body style="background:url('../../public/images/event-form.jpeg');width:100%;height:100%;background-size:cover">
     <div class="events-booking-form">
-        <form action="" method="post">
+        <form action="events-booking.php" method="post">
             <h2 style="position:absolute;top:50px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
             <div class="customer-details-events">
                 <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:10px;" required>
@@ -48,11 +48,11 @@
                 <i class="fas fa-icons" style="position:absolute;top:410px;left:35%;"></i>
                 <label for="" style="font-size: 25px;position:absolute;top:430px;left:27%;">Additional Features</label>
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:45%">DJ Music</label>
-                <input type="checkbox" name="DJ-Music" id="" style="font-size: 20px;position:absolute;top:443px;left:50%;cursor:pointer">
+                <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:443px;left:50%;cursor:pointer">
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:55%">Decorations</label>
-                <input type="checkbox" name="DJ-Music" id="" style="font-size: 20px;position:absolute;top:445px;left:61%;cursor:pointer">
+                <input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:445px;left:61%;cursor:pointer">
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:65%">Champaigne Tables</label>
-                <input type="checkbox" name="DJ-Music" id="" style="font-size: 20px;position:absolute;top:445px;left:74%;cursor:pointer">
+                <input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:445px;left:74%;cursor:pointer">
             </div>
 
             <div class="payment-cancel-btns">
@@ -96,6 +96,7 @@
                     <div style="color: black;position:absolute;right:16%;top:92%"><i class="fas fa-check"><span style="margin-left: 5px;">Available</span></i></div>
                     <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
                 </div>
+                <input type="submit" name="payment">
         </form>
     </div>
     <script>
