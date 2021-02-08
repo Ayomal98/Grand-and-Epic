@@ -10,8 +10,11 @@ if (isset($_POST['ADD'])) {
     $empPass = md5($_POST['empPass']);
     $empContact = $_POST['empContact'];
     $userrole = 'Hotel Manager';
+    $userType='Employee';
 
     $sql = "INSERT into employee (Employee_ID,First_Name,Last_Name,Email,Password,Contact_No,User_Role) VALUES ('" . $empID . "','" . $empFname . "','" . $empSname . "','" . $empEmail . "','" . $empPass . "','" . $empContact . "','" . $userrole . "')";
+    $sql = "INSERT into login_table (Email,Password,User_Type) VALUES ('" . $empEmail . "','" . $empPass . "','" . $userType . "')";
+
     $query_run = mysqli_query($con,$sql);
 
     if ($query_run) {
