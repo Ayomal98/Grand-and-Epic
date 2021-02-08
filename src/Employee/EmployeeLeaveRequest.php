@@ -82,11 +82,11 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 				<tr>
 					<td align="left">Leave Start Date:</td>
-					<td align="left"><input type="date" name="startdate" size="20"></td>
+					<td align="left"><input type="date" name="startdate" id="datefield" size="20"></td>
 				</tr>
 				<tr>
 					<td align="left">Leave End Date:</td>
-					<td align="left"><input type="date" name="enddate" size="20"></td>
+					<td align="left"><input type="date" name="enddate" id="endfield" size="20"></td>
 				</tr>
 				<tr>
 					<td align="left">Section:</td>
@@ -134,6 +134,8 @@ if (!isset($_SESSION['First_Name'])) {
 								<td style="border-right: 1px solid white;padding:15px 25px">' . $reason . '</td>
 							</tr>';
 				}
+			} else {
+				echo '<h2>No Leave Request Have been taken </h2>';
 			}
 			?>
 		</tbody>
@@ -151,6 +153,23 @@ if (!isset($_SESSION['First_Name'])) {
 	}
 </script>
 
+<script>
+	//--    for setting the current day as the minimum date for the time being --
+	var today = new Date();
+	var dd = today.getDate() + 1;
+	var mm = today.getMonth() + 1;
+	var yy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd;
+	}
+	if (mm < 10) {
+		mm = '0' + mm;
+	}
+	today = yy + '-' + mm + '-' + dd;
+	document.getElementById("datefield").setAttribute("min", today);
+</script>
+
+
 </html>
 
 <?php
@@ -166,6 +185,6 @@ if (isset($_POST["Submit"])) {
 		echo "<script>alert('Your Leave Request Has been sent')
 					  window.location.href='EmployeeLeaveRequest.php'
 			  </script>";
-	};
+	}
 }
 ?>
