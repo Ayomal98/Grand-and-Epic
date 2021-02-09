@@ -119,23 +119,26 @@ if (!isset($_SESSION['First_Name'])) {
 			<table width="100%">
 				<tr>
 					<td align="center">
+					
 						<img src="../../public/images/loyalty.png" height="70%">
 					</td>
 					
 					<?php include("../../config/connection.php");
-					?>
-						<?php
+				
 					$query = "SELECT Context FROM promotions WHERE Promotion_type='Loyalty'";
-					?>
-					<php
+					
 					$query_run = mysqli_query($con, $query);
 		while ($row = mysqli_fetch_array($query_run)) {
+			
+			
+					 echo '<td>'.  $row["Context"].'</td>'; 
+					
+					 
+		}
+		
 
 		?>
-					<td >
-					<?php echo $row["Context"]; ?>
-					  
-					</td>
+					
 				</tr>
 				<tr>
 					<td align="center">
