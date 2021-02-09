@@ -89,7 +89,7 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 
-	<table style="position:absolute; top : 180px; width : 350px;">
+	<table style="position:absolute; top : 205px; width : 350px;">
 		<tr>
 			<td>
 				<img src="../../public/images/Employee.png" height="40%">

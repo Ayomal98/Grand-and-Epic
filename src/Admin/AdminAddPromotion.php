@@ -66,7 +66,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 				</td>
 				<td>
-					<img src="../../public/images/Uvini.png" height="25%">
+					<img src="../../public/images/Uvini.png" width="60" height="60">
 				</td>
 			</tr>
 		</table>
@@ -92,7 +92,7 @@ if (!isset($_SESSION['First_Name'])) {
 	<table style="position:absolute; top : 240px; width:350px;">
 		<tr>
 			<td>
-				<img src="../../public/images/discount.png" height="40%">
+				<img src="../../public/images/discount.png" width="70" height="70">
 			</td>
 			<td>
 				<p style="font-family :Lato; font-size:22px; color :white;">Current Promotions</p>
@@ -158,7 +158,7 @@ if (!isset($_SESSION['First_Name'])) {
 			<table width="100%">
 				<tr>
 					<td align="center">
-						<img src="../../public/images/presents.jpeg" height="18%">
+						<img src="../../public/images/presents.jpeg" width="125" height="100">
 					</td>
 					<td align="center">
 						<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
@@ -175,7 +175,7 @@ if (!isset($_SESSION['First_Name'])) {
 		</td>
 		</tr>
 
-		<table style="position:absolute; top : 600px; width:350px;width : 97%;">
+		<table style="position:absolute; top : 650px; width:350px;width : 97%;">
 			<tr>
 				<td>
 					<p style="font-family :Lato; font-size:20px; color :white;">To Create a new Promotion</p>
@@ -185,7 +185,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</td>
 				<td>
 					<form>
-						<fieldset>
+						<fieldset >
 							<legend style="color:white; font-size: 20px">New Promotion</legend>
 							<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
 								<tr>
@@ -224,7 +224,7 @@ if (!isset($_SESSION['First_Name'])) {
 		</table>
 	</table>
 
-	<table style="position:absolute; top : 1000px; width:350px;width : 86%;margin-bottom:50px">
+	<table style="position:absolute; top : 1000px; width:350px;width : 86%;margin-bottom: 100px;">
 		<tr>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">To View Booking Analysis</p>
@@ -236,7 +236,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<p style="font-family :Lato; font-size:20px; color:cornflowerblue;">Booking Analysis Overview</p>
 			</td>
 			<td>
-				<img src="../../public/images/pie.png" height="100%">
+				<img src="../../public/images/pie.png" height="90%">
 			</td>
 			<script>
 				function funcUserDetails() {
