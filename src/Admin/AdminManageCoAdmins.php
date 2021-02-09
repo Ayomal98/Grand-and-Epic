@@ -56,13 +56,13 @@ if (!isset($_SESSION['First_Name'])) {
 		</div>
 	</div>
 	<div class="top-right">
-		<table width="100%">
+		<table width="10%">
 			<tr>
 				<td>
 
 				</td>
 				<td>
-					<img src="../../public/images/Uvini.png" height="25%">
+					<img src="../../public/images/Uvini.png" height="15%">
 				</td>
 			</tr>
 		</table>

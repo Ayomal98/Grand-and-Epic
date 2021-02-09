@@ -89,7 +89,7 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 
-	<table style="position:absolute; top : 280px; width:350px;">
+	<table style="position:absolute; top : 180px; width : 350px;">
 		<tr>
 			<td>
 				<img src="../../public/images/Employee.png" height="40%">
@@ -202,7 +202,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 	</table>
 
-	<table style="position:absolute; top:800px; left:200px;">
+	<table style="position:absolute; top:1100px; left:200px;">
 		<tr>
 			<th>
 				<p style="font-size:30px; color:white;">Booking Overview of the Year</p>
