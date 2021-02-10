@@ -100,28 +100,43 @@
             </div>
         </div>
         <div class="meal-section" id="meal-section" style="display: none;">
-            <h1>This contains the meal packages for the events</h1>
+            <h1 style="text-align: center;color:white;margin-top:10px"><u>Meal Selection</u></h1>
+            <input type="button" value="View Cart" class="button-event cart" onclick="showMeals()">
+            <i class="fas fa-shopping-cart" style="position: absolute;left:1270px;top:45px;size: 40px;color:white;cursor: pointer;"></i>
+            <input type="button" value="Proceed to Payment" class="button-event payment" onclick="showPayments()">
+            <input type="button" value="Back" class="button-event payment" style="padding: 15px;position:absolute;top:4%;width:10%;left:10px">
             <?php
             include('../../config/connection.php');
             $selectMeal = "SELECT * FROM events_meals_packages";
             $excecuteMeals = mysqli_query($con, $selectMeal);
             if (mysqli_num_rows($excecuteMeals) > 0) {
                 while ($row = mysqli_fetch_assoc($excecuteMeals)) {
-                    echo '<div style="color:white;">
-                                <h2 style="text-align:center">' . $row["Package_Name"] . '</h2>
-                                <div style="display:flex;flex-direction:row">
-                                <h4>' . $row["Meal1"] . '</h4>
-                                <img src="data:image;base64,' . base64_encode($row["Meal1_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
-                                <h4>' . $row["Meal2"] . '</h4>
-                                <img src="data:image;base64,' . base64_encode($row["Meal2_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
-                                <h4>' . $row["Meal3"] . '</h4>
-                                <img src="data:image;base64,' . base64_encode($row["Meal3_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
-                                <h4>' . $row["Meal4"] . '</h4>
-                                <img src="data:image;base64,' . base64_encode($row["Meal4_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
-                                <h4>' . $row["Meal5"] . '</h4>
-                                <img src="data:image;base64,' . base64_encode($row["Meal5_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
-                                <div style="font-size:10px">Price is' . $row["price"] . '</div>
+                    echo '  <div style="color:white;margin-top:20px" >
+                                <h3 style="text-align:center">' . $row["Package_Name"] . '</h2>
+                                <div style="display:flex;flex-direction:row;justify-content:space-evenly;margin-top:20px">
+                                    <div style="display:flex;flex-direction:column">
+                                        <img src="data:image;base64,' . base64_encode($row["Meal1_Image"]) . '" alt="Image" style="width:180px;height:144px;" >
+                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal1"] . '</h4>
+                                    </div>
+                                    <div style="display:flex;flex-direction:column">
+                                        <img src="data:image;base64,' . base64_encode($row["Meal2_Image"]) . '" alt="Image" style="width:180px;height:144px;">
+                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal2"] . '</h4>
+                                    </div>
+                                    <div style="display:flex;flex-direction:column">
+                                        <img src="data:image;base64,' . base64_encode($row["Meal3_Image"]) . '" alt="Image" style="width:180px;height:144px;">
+                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal3"] . '</h4>
+                                    </div>
+                                    <div style="display:flex;flex-direction:column">
+                                        <img src="data:image;base64,' . base64_encode($row["Meal4_Image"]) . '" alt="Image" style="width:180px;height:144px;">
+                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal4"] . '</h4>
+                                    </div>
+                                    <div style="display:flex;flex-direction:column">
+                                        <img src="data:image;base64,' . base64_encode($row["Meal5_Image"]) . '" alt="Image" style="width:180px;height:144px;">
+                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal5"] . '</h4>
+                                    </div>
                                 </div>
+                                <div class="amount-events" style="margin-top:25px;margin-left:1200px"><span> Whole Plate For Rs.' . $row["price"] . '/=</span></div>
+                                <div class="amount-events" style="margin-top:-25px;margin-left:400px"><span> Add to Cart</span></div>
                             </div>';
                 }
             }
