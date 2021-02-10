@@ -10,8 +10,8 @@
 </head>
 
 <body style="background:url('../../public/images/event-form.jpeg');width:100%;height:100%;background-size:cover">
-    <div class="events-booking-form">
-        <form action="events-booking.php" method="post">
+    <form action="events-booking.php" method="post">
+        <div class="events-booking-form" id="events-booking-form">
             <h2 style="position:absolute;top:50px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
             <div class="customer-details-events">
                 <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:10px;" required>
@@ -58,7 +58,7 @@
             <div class="payment-cancel-btns">
                 <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:100px;left:130px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
                 <div class="payment-cancel-btns">
-                    <a href="meal-selection.php"><input type="button" id="meal-btn" value="Proceed to Meal-Selection" name="Meal-btn" class="event-meal-selection-btn"></a>
+                    <input type="button" id="meal-btn" value="Proceed to Meal-Selection" name="Meal-btn" class="event-meal-selection-btn" onclick="closeMeal()">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
                 <div class="check-availability-shower" style="display:none;background-color:white;left:1.7%;top:25%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
@@ -97,8 +97,12 @@
                     <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
                 </div>
                 <input type="submit" name="payment">
-        </form>
-    </div>
+            </div>
+        </div>
+        <div class="meal-section" id="meal-section" style="display: none;">
+            <h1>This contains the meal packages for the events</h1>
+        </div>
+    </form>
     <script>
         //--    for setting the current day as the minimum date for the time being --
         var today = new Date();
@@ -121,6 +125,11 @@
 
         function closeAvailability() {
             document.getElementById('check-availability-shower').style.display = 'none';
+        }
+
+        function closeMeal() {
+            document.getElementById('events-booking-form').style.display = 'none';
+            document.getElementById('meal-section').style.display = 'block'
         }
     </script>
 </body>

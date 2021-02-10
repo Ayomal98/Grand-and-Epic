@@ -121,21 +121,17 @@ if (!isset($_SESSION['First_Name'])) {
 					<td align="center">
 						<img src="../../public/images/loyalty.png" height="70%">
 					</td>
-					
+
 					<?php include("../../config/connection.php");
 					?>
-						<?php
+					<?php
 					$query = "SELECT Context FROM promotions WHERE Promotion_type='Loyalty'";
 					?>
-					<php
-					$query_run = mysqli_query($con, $query);
-		while ($row = mysqli_fetch_array($query_run)) {
+					<php $query_run=mysqli_query($con, $query); while ($row=mysqli_fetch_array($query_run)) { ?>
+						<td>
+							<?php echo $row["Context"]; ?>
 
-		?>
-					<td >
-					<?php echo $row["Context"]; ?>
-					  
-					</td>
+						</td>
 				</tr>
 				<tr>
 					<td align="center">
@@ -168,7 +164,7 @@ if (!isset($_SESSION['First_Name'])) {
 			</table>
 		</td>
 		<td style="border: 1px solid white;">
-		
+
 			<table width="100%">
 				<tr>
 					<td align="center">
@@ -199,7 +195,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</td>
 				<td>
 					<form>
-						<fieldset >
+						<fieldset>
 							<legend style="color:white; font-size: 20px">New Promotion</legend>
 							<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
 								<tr>
