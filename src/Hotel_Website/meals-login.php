@@ -38,7 +38,24 @@ if (!isset($_SESSION['First_Name'])) {
     </div>
     <!-- set menu shower container -->
     <div class="body-container set-menu" id="body-container-set-menu">
-        <div class="all-in-price">All in one for Rs.1200/=<span style="font-weight:bold;font-size:15px;color:black">&nbsp-For Fullboard Customers Only</span></div>
+        <div class="all-in-price">
+            <?php
+            include('../../config/connection.php');
+            $getPrices = "SELECT Price from stayingin_setmenu";
+            $result = mysqli_query($con, $getPrices);
+            $prices = array();
+            $total = 0;
+            while ($row = mysqli_fetch_assoc($result)) {
+                array_push($prices, $row["Price"]);
+            }
+            foreach ($prices as $price) {
+                $total += $price;
+            }
+            $total = $total * 0.9;
+            echo 'All in one for ' . $total . '/=';
+            ?>
+            <span style="font-weight:bold;font-size:13.6px;color:black">&nbsp-For Fullboard Customers Only</span>
+        </div>
         <h1 style="text-align: center;font-size:40px;margin-top:-10px;padding:20px;">Set Menu For Staying-In </h1>
         <p style="text-align: center;font-size:20px;">This menu is for the staying in customers which will be sufficient for one person only</p>
         <div class="set-menu-breakfast-area">
