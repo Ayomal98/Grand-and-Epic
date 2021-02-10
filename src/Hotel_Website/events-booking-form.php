@@ -101,6 +101,28 @@
         </div>
         <div class="meal-section" id="meal-section" style="display: none;">
             <h1>This contains the meal packages for the events</h1>
+            <?php
+            include('../../config/connection.php');
+            $selectMeal = "SELECT * FROM events_meals_packages";
+            $excecuteMeals = mysqli_query($con, $selectMeal);
+            if (mysqli_num_rows($excecuteMeals) > 0) {
+                while ($row = mysqli_fetch_assoc($excecuteMeals)) {
+                    echo '<div>
+                                <h2 style="text-align:center">' . $row["Package_Name"] . '</h2>
+                                <h4>' . $row["Meal1"] . '</h4>
+                                <img src="data:image;base64,' . base64_encode($row["Meal1_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
+                                <h4>' . $row["Meal2"] . '</h4>
+                                <img src="data:image;base64,' . base64_encode($row["Meal2_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
+                                <h4>' . $row["Meal3"] . '</h4>
+                                <img src="data:image;base64,' . base64_encode($row["Meal3_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
+                                <h4>' . $row["Meal4"] . '</h4>
+                                <img src="data:image;base64,' . base64_encode($row["Meal4_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
+                                <h4>' . $row["Meal5"] . '</h4>
+                                <img src="data:image;base64,' . base64_encode($row["Meal5_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
+                              </div>';
+                }
+            }
+            ?>
         </div>
     </form>
     <script>
