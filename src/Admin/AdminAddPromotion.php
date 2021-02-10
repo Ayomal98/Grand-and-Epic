@@ -135,9 +135,13 @@ if (!isset($_SESSION['First_Name'])) {
 					
 					 
 		}
+		?>
 		
-
-		
+		</tr>
+		<tr>
+			<td align="center">
+				<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
+		<?php		
 	include("../../config/connection.php");
 	if (isset($_POST['update'])) {
 		$Context = $_POST['Context'];
@@ -157,10 +161,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 	?>
 					
-				</tr>
-				<tr>
-					<td align="center">
-						<input type="button" class="button" name="update" value="UPDATE PROMOTION">
+		
 					</td>
 					<td align="center">
 						<input type="button" class="button" value="DELETE PROMOTION">
