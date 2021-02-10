@@ -107,8 +107,9 @@
             $excecuteMeals = mysqli_query($con, $selectMeal);
             if (mysqli_num_rows($excecuteMeals) > 0) {
                 while ($row = mysqli_fetch_assoc($excecuteMeals)) {
-                    echo '<div>
+                    echo '<div style="color:white;">
                                 <h2 style="text-align:center">' . $row["Package_Name"] . '</h2>
+                                <div style="display:flex;flex-direction:row">
                                 <h4>' . $row["Meal1"] . '</h4>
                                 <img src="data:image;base64,' . base64_encode($row["Meal1_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
                                 <h4>' . $row["Meal2"] . '</h4>
@@ -119,7 +120,9 @@
                                 <img src="data:image;base64,' . base64_encode($row["Meal4_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
                                 <h4>' . $row["Meal5"] . '</h4>
                                 <img src="data:image;base64,' . base64_encode($row["Meal5_Image"]) . '" alt="Image" style="width: 100px; height: 60px" >
-                              </div>';
+                                <div style="font-size:10px">Price is' . $row["price"] . '</div>
+                                </div>
+                            </div>';
                 }
             }
             ?>
