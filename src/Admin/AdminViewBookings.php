@@ -102,7 +102,7 @@ if (!isset($_SESSION['First_Name'])) {
                 </tr>
                 <tr>
                     <td align="center">
-                        <img src="../../public/images/BIgCal.png" height="10%">
+                        <img src="../../public/images/BIgCal.png" height=200>
                     </td>
                 </tr>
                 <tr>
@@ -231,7 +231,7 @@ if (!isset($_SESSION['First_Name'])) {
                 </tr>
                 <tr>
                     <td align="center">
-                        <img src="../../public/images/BIgCal.png" height="10%">
+                        <img src="../../public/images/BIgCal.png" height=200>
                     </td>
                 </tr>
                 <tr>
@@ -329,7 +329,7 @@ if (!isset($_SESSION['First_Name'])) {
                 </tr>
                 <tr>
                     <td align="center">
-                        <img src="../../public/images/BIgCal.png" height="10%">
+                        <img src="../../public/images/BIgCal.png" height=200>
                     </td>
                 </tr>
                 <tr>

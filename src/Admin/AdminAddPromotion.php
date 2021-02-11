@@ -146,7 +146,6 @@ if (!isset($_SESSION['First_Name'])) {
 	if (isset($_POST['update'])) {
 		$Context = $_POST['Context'];
 
-	
 		$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
 		$query_run = mysqli_query($con, $query);
 		if ($query_run) {
