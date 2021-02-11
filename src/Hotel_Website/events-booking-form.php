@@ -7,10 +7,12 @@
     <title>Events Booking Form</title>
     <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
 </head>
 
 <body style="background:url('../../public/images/event-form.jpeg');width:100%;height:100%;background-size:cover">
-    <form action="events-booking.php" method="post">
+    <form action="events-booking.php" method="post" id="event-booking">
         <div class="events-booking-form" id="events-booking-form">
             <h2 style="position:absolute;top:50px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
             <div class="customer-details-events">
@@ -58,7 +60,7 @@
             <div class="payment-cancel-btns">
                 <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:100px;left:130px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
                 <div class="payment-cancel-btns">
-                    <input type="button" id="meal-btn" value="Proceed to Meal-Selection" name="Meal-btn" class="event-meal-selection-btn" onclick="closeMeal()">
+                    <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
                 <div class="check-availability-shower" style="display:none;background-color:white;left:1.7%;top:25%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
@@ -96,53 +98,18 @@
                     <div style="color: black;position:absolute;right:16%;top:92%"><i class="fas fa-check"><span style="margin-left: 5px;">Available</span></i></div>
                     <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
                 </div>
-                <input type="submit" name="payment">
+
+                <!-- <input type="submit" name="payment"> -->
             </div>
         </div>
-        <div class="meal-section" id="meal-section" style="display: none;">
-            <h1 style="text-align: center;color:white;margin-top:10px"><u>Meal Selection</u></h1>
-            <input type="button" value="View Cart" class="button-event cart" onclick="showMeals()">
-            <i class="fas fa-shopping-cart" style="position: absolute;left:1270px;top:45px;size: 40px;color:white;cursor: pointer;"></i>
-            <input type="button" value="Proceed to Payment" class="button-event payment" onclick="showPayments()">
-            <input type="button" value="Back" class="button-event payment" style="padding: 15px;position:absolute;top:4%;width:10%;left:10px">
-            <?php
-            include('../../config/connection.php');
-            $selectMeal = "SELECT * FROM events_meals_packages";
-            $excecuteMeals = mysqli_query($con, $selectMeal);
-            if (mysqli_num_rows($excecuteMeals) > 0) {
-                while ($row = mysqli_fetch_assoc($excecuteMeals)) {
-                    echo '  <div style="color:white;margin-top:20px" >
-                                <h3 style="text-align:center">' . $row["Package_Name"] . '</h2>
-                                <div style="display:flex;flex-direction:row;justify-content:space-evenly;margin-top:20px">
-                                    <div style="display:flex;flex-direction:column">
-                                        <img src="data:image;base64,' . base64_encode($row["Meal1_Image"]) . '" alt="Image" style="width:180px;height:144px;" >
-                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal1"] . '</h4>
-                                    </div>
-                                    <div style="display:flex;flex-direction:column">
-                                        <img src="data:image;base64,' . base64_encode($row["Meal2_Image"]) . '" alt="Image" style="width:180px;height:144px;">
-                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal2"] . '</h4>
-                                    </div>
-                                    <div style="display:flex;flex-direction:column">
-                                        <img src="data:image;base64,' . base64_encode($row["Meal3_Image"]) . '" alt="Image" style="width:180px;height:144px;">
-                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal3"] . '</h4>
-                                    </div>
-                                    <div style="display:flex;flex-direction:column">
-                                        <img src="data:image;base64,' . base64_encode($row["Meal4_Image"]) . '" alt="Image" style="width:180px;height:144px;">
-                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal4"] . '</h4>
-                                    </div>
-                                    <div style="display:flex;flex-direction:column">
-                                        <img src="data:image;base64,' . base64_encode($row["Meal5_Image"]) . '" alt="Image" style="width:180px;height:144px;">
-                                        <h4 style="text-align:center;margin-top:5px">' . $row["Meal5"] . '</h4>
-                                    </div>
-                                </div>
-                                <div class="amount-events" style="margin-top:25px;margin-left:1200px"><span> Whole Plate For Rs.' . $row["price"] . '/=</span></div>
-                                <div class="amount-events" style="margin-top:-25px;margin-left:400px"><span> Add to Cart</span></div>
-                            </div>';
-                }
-            }
-            ?>
-        </div>
     </form>
+
+    <!-- <div class="meal-section" id="meal-section" style="display: none;">
+        <h1 style="text-align: center;color:white;margin-top:10px"><u>Meal Selection</u></h1>
+        <input type="button" value="Proceed to Payment" class="button-event payment" onclick="showPayments()">
+        <input type="button" value="Back" class="button-event payment" style="padding: 15px;position:absolute;top:4%;width:10%;left:10px">
+        
+    </div> -->
     <script>
         //--    for setting the current day as the minimum date for the time being --
         var today = new Date();
@@ -157,20 +124,6 @@
         }
         today = yy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("min", today);
-
-        //to show the check availability
-        function checkAvailability() {
-            document.getElementById('check-availability-shower').style.display = 'block';
-        }
-
-        function closeAvailability() {
-            document.getElementById('check-availability-shower').style.display = 'none';
-        }
-
-        function closeMeal() {
-            document.getElementById('events-booking-form').style.display = 'none';
-            document.getElementById('meal-section').style.display = 'block'
-        }
     </script>
 </body>
 
