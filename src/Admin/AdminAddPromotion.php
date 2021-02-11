@@ -104,7 +104,7 @@ if (!isset($_SESSION['First_Name'])) {
 	<table style="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;">
 		<tr>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;">Customer Loyalty Promotions</p>
+				<p style="font-family :Lato; font-size:20px; color :white;">Loyalty Promotions</p>
 			</th>
 			<th style="border: 1px solid white;">
 				<p style="font-family :Lato; font-size:20px; color :white;">Last Minute Promotions</p>
