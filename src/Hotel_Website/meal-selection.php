@@ -27,7 +27,7 @@
     <input type="button" value="Proceed to Payment" class="button1 Payment" onclick="showPayments()">
 
     <a href="events-booking-form.php"><input type="button" value="Back" class="button1 Payment" style="padding: 15px;position:absolute;top:5%;width:10%;left:10px"></a>
-    <?php echo $_SESSION["Event_ID"]; ?>
+    <?php echo 'EMail is' . $_GET["events_id"] . ''; ?>
 
 
     <?php
@@ -37,7 +37,7 @@
     if (mysqli_num_rows($excecuteMeals) > 0) {
         while ($row = mysqli_fetch_assoc($excecuteMeals)) {
             echo '  <form action="events-booking.php" method="post">
-                            <div style="color:white;margin-top:20px" >
+                            <div style="color:white;margin-top:20px;background-color:black;opacity:0.9" >
                                 <h3 style="text-align:center">' . $row["Package_Name"] . '</h2>
                                 <div style="display:flex;flex-direction:row;justify-content:space-evenly;margin-top:20px">
                                     <div style="display:flex;flex-direction:column">
@@ -62,7 +62,9 @@
                                     </div>
                                 </div>
                                 <div class="amount-events" style="margin-top:25px;margin-left:1200px"><span> Whole Plate For Rs.' . $row["price"] . '/=</span></div>
-                                <input type="submit" value="ADD TO CART" name="ADD_CART" id="addCart">
+                                <input type="submit" value="Select the Package" name="Select_Meal" id="addCart" onsubmit="handleSubmit()">
+                                <input type="hidden" value=' . $row["Package_ID"] . ' name="packageID">
+                                <input type="hidden" value=' . $_GET["events_id"] . ' name="eventsID">
                             </div>
                             </form>';
         }
@@ -86,6 +88,11 @@
         function closePayments() {
             document.getElementById('payments').style.display = 'none';
         }
+
+        const cart = document.getElementById('addCart');
+        cart.addEventListener('submit', (e) => {
+            e.preventDefault();
+        })
     </script>
 </body>
 
