@@ -418,7 +418,7 @@
                             width: 110px;
                             cursor:pointer
                             ">
-                <input type="submit" value="Book-Now" style=" color: #f0f0f0;
+                <input type="submit" name="paymet" value="Book-Now" style=" color: #f0f0f0;
                             background-color: goldenrod;
                             border: none;
                             padding: 10px;

@@ -119,15 +119,16 @@ if (!isset($_SESSION['First_Name'])) {
 			<table width="100%">
 				<tr>
 					<td align="center">
-					
+
 						<img src="../../public/images/loyalty.png" height="70%">
 					</td>
-					
+
 					<?php include("../../config/connection.php");
-				
+
 					$query = "SELECT Context FROM promotions WHERE Promotion_type='Loyalty'";
-					
+
 					$query_run = mysqli_query($con, $query);
+<<<<<<< HEAD
 		while ($row = mysqli_fetch_array($query_run)) {
 			
 			
@@ -161,6 +162,39 @@ if (!isset($_SESSION['First_Name'])) {
 	?>
 					
 		
+=======
+					while ($row = mysqli_fetch_array($query_run)) {
+
+
+						echo '<td>' .  $row["Context"] . '</td>';
+					}
+
+
+
+					include("../../config/connection.php");
+					if (isset($_POST['update'])) {
+						$Context = $_POST['Context'];
+
+
+						$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
+						$query_run = mysqli_query($con, $query);
+						if ($query_run) {
+							echo '<script type="text/javascript">alert("Data Updated")</script>';
+							echo '<script>window.location.href="AdminAddPromotion.php"</script>';
+						} else {
+							echo '<script type="text/javascript">alert("Data Not Updated")</script>';
+							echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+						}
+					}
+
+
+					?>
+
+				</tr>
+				<tr>
+					<td align="center">
+						<input type="button" class="button" name="update" value="UPDATE PROMOTION">
+>>>>>>> 659e8c9effb0d50a03e58fea0ec6e0d13d47235c
 					</td>
 					<td align="center">
 						<input type="button" class="button" value="DELETE PROMOTION">
@@ -189,7 +223,7 @@ if (!isset($_SESSION['First_Name'])) {
 			</table>
 		</td>
 		<td style="border: 1px solid white;">
-		
+
 			<table width="100%">
 				<tr>
 					<td align="center">
@@ -220,7 +254,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</td>
 				<td>
 					<form>
-						<fieldset >
+						<fieldset>
 							<legend style="color:white; font-size: 20px">New Promotion</legend>
 							<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
 								<tr>

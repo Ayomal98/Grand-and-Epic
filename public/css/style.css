@@ -1933,7 +1933,7 @@ span.suite-icon-label {
   border-radius: 50%;
   right:6%;
   font-size: 12px;
-  top: 138%
+  top: 134%;
 }
 .amount-set-menu{
   border: none;
@@ -1943,6 +1943,16 @@ span.suite-icon-label {
   height: 60px;
   padding: 15px;
   font-size: 25px;
+}
+
+.amount-events{
+  border: none;
+  background-color: #3498db ;
+  color: white;
+  max-width: 280px;
+  height: 42px;
+  padding: 15px;
+  font-size: 20px;
 }
 .customize-type:selected{
   background-color: #b88b4a ;
@@ -2067,3 +2077,41 @@ display: none;
   margin-left: 730px;
   margin-top:-90px;
 }
+
+
+.button-event {
+	position: relative;
+	top: 20px;
+	left: 0;
+	background-color: darkgreen;
+	border: none;
+	color: white;
+	padding: 2px 8px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	transition-duration: 0.4s;
+	border-radius: 8px;
+	align-content: center;
+	cursor: pointer;
+  }
+
+  .button-event.cart {
+    position: relative;
+    top: -15px;
+    left: 1250px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 10%;
+    }
+    
+    
+  .button-event.payment {
+    position: relative;
+    top: -15px;
+    left: 900px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 10%;
+    }
