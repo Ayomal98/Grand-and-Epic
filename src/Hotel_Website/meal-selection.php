@@ -70,7 +70,68 @@
         }
     }
     ?>
+    <div style="display:none;position:absolute;top:10px;background-color: black;opacity:0.95;width:100%;height:100%;justify-content:center;align-items:center;height:100vh" id="payments">
+        <?php 
+        ?>
+        <div style="position: absolute;width:650px;height:650px;background-color:white">
+            <i class="fas fa-times-circle" style="position:absolute;top:5%;right:8%;color:black;font-size:25px;cursor:pointer;color:white;width:20px;height:40px;color:black" onclick="closePayments()"></i>
+            <u>
+                <h2 style="text-align: center;font-weight:bolder;font-size:33px;color:black">Payment Details</h3>
+            </u>
+            <h3 style="position: absolute;top:10%;left:65%;font-size:30px">Amount</h3>
+            <div class="location-payment" style="margin-left:40px;margin-top:70px">
+                <u>
+                    <h3>Price For the Location</h3>
+                </u>
 
+                <h3 style="margin-left:20px;margin-top:30px">From 7 P.M to 11 P.M</h4>
+                    <h4 style="position: absolute;top:25%;left:65%;">Rs.60,000/=</h4>
+                    <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
+                    <h4 style="position: absolute;top:32%;left:65%;">Rs.50,000/=</h4>
+            </div>
+            <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                <u>
+                    <h3>Price For the Meals</h3>
+                </u>
+                <h3 style="margin-left:20px;margin-top:30px">Total Amount for meals</h3>
+                <h4 style="position: absolute;top:50%;left:65%;">Rs.20,000/=</h4>
+            </div>
+
+            <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                <u>
+                    <h3>Total Amount</h3>
+                </u>
+                <h3 style="margin-left:20px;margin-top:30px">Total Amount for Booking</h3>
+                <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">Rs.130,000/=</h4>
+            </div>
+            <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                <u>
+                    <h3>Advance Amount</h3>
+                </u>
+                <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking * 20%</h3>
+                <h4 style="position: absolute;top:79%;left:65%;font-size:28px">Rs.26,000/=</h4>
+            </div>
+            <div style="margin-left:160px;margin-top:5px">
+                <input type="reset" value="Cancel" name="Cancel-btn" style="color: #f0f0f0;
+                        background-color: goldenrod;
+                        border: none;
+                        padding: 10px;
+                        text-align: center;
+                        width: 110px;
+                        cursor:pointer
+                        ">
+                <input type="submit" name="paymet" value="Book-Now" style=" color: #f0f0f0;
+                        background-color: goldenrod;
+                        border: none;
+                        padding: 10px;
+                        text-align: center;
+                        width: 110px;
+                        margin-left:30px;
+                        cursor:pointer
+                        ">
+            </div>
+        </div>
+    </div>
 
     <script>
         function showMeals() {
@@ -88,11 +149,6 @@
         function closePayments() {
             document.getElementById('payments').style.display = 'none';
         }
-
-        const cart = document.getElementById('addCart');
-        cart.addEventListener('submit', (e) => {
-            e.preventDefault();
-        })
     </script>
 </body>
 

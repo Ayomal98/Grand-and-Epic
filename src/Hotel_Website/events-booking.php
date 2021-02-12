@@ -8,8 +8,8 @@ if (isset($_POST['event-details'])) {
     $eventDate = $_POST['events-reservation-date'];
     $startingTime = $_POST['starting-time'];
     $endingTime = $_POST['ending-time'];
-    $mealPackageID = 2;
     $price = 10;
+    $mealPackageID = 0;
     $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID',$price)";
     mysqli_query($con, $insertEvent);
     $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
@@ -30,12 +30,18 @@ if (isset($_POST['Select_Meal'])) {
     $packagePriceSql = "SELECT price from events_meals_packages WHERE Package_ID='$packageID'";
     $evtExc = mysqli_query($con, $priceSql);
     $priceExc = mysqli_query($con, $packagePriceSql);
-    $total = 0;
+    $totalPrice = 0;
     while ($row = mysqli_fetch_assoc($evtExc)) {
-        $total += $row["Price"];
+        $totalPrice += $row["Price"];
     }
     while ($row = mysqli_fetch_assoc($priceExc)) {
-        $total += $row["price"];
+        $totalPrice += $row["price"];
     }
-    echo $total;
+    $updateTotalPrice = "UPDATE events_booking_temp SET MealPackage_ID='" . $packageID . "',Price='$totalPrice' WHERE Events_ID='$eventsID' ";
+    if (mysqli_query($con, $updateTotalPrice)) {
+        echo '<script>console.log(' . $packageID . ')</script>';
+        header('location:meal-selection.php?events_id=' . $eventsID . '');
+    } else {
+        echo "Not updated";
+    }
 }
