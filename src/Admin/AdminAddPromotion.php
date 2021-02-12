@@ -122,19 +122,25 @@ if (!isset($_SESSION['First_Name'])) {
 
 						<img src="../../public/images/loyalty.png" height="70%">
 					</td>
+	
+				
+				
 
 					<?php include("../../config/connection.php");
 
 					$query = "SELECT Context FROM promotions WHERE Promotion_type='Loyalty'";
 
 					$query_run = mysqli_query($con, $query);
-		while ($row = mysqli_fetch_array($query_run)) 
+					while ($row = mysqli_fetch_array($query_run)) 
 			
 					 echo '<td>'.  $row["Context"].'</td>'; 
 
 		?>
 		
 		</tr>
+	
+	
+
 		<tr>
 			<td align="center">
 				<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
@@ -231,12 +237,12 @@ if (!isset($_SESSION['First_Name'])) {
 								</tr>
 								<tr>
 									<td align="left">Context of Promotions:</td>
-									<td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Leave your reason here:" style="font-size: 20px;"></textarea>
+									<td align="left"><input type="text" name="Context" size="100" class="inputs" required>
 									</td>
 								</tr>
 								<tr>
 									<td align="left">Constraints and Policies</td>
-									<td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Leave your reason here:" style="font-size: 20px;"></textarea>
+									<td align="left"><input type="text" name="Policies" size="500" class="inputs" required>
 									</td>
 								</tr>
 								<tr>
@@ -246,7 +252,7 @@ if (!isset($_SESSION['First_Name'])) {
 							<table style="color:white; font-size: 20px; width:84%;">
 								<tr>
 									<td align="right">
-										<input type="button" class="button" value="UPDATE PROMOTION">
+										<input type="button" class="button" value="CREATE PROMOTION">
 								</tr>
 							</table>
 						</fieldset>
