@@ -237,12 +237,12 @@ if (!isset($_SESSION['First_Name'])) {
 								</tr>
 								<tr>
 									<td align="left">Context of Promotions:</td>
-									<td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Leave your reason here:" style="font-size: 20px;"></textarea>
+									<td align="left"><input type="text" name="Context" size="100" class="inputs" required>
 									</td>
 								</tr>
 								<tr>
 									<td align="left">Constraints and Policies</td>
-									<td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Leave your reason here:" style="font-size: 20px;"></textarea>
+									<td align="left"><input type="text" name="Policies" size="500" class="inputs" required>
 									</td>
 								</tr>
 								<tr>
