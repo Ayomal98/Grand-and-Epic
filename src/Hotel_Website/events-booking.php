@@ -31,11 +31,13 @@ if (isset($_POST['Select_Meal'])) {
     $evtExc = mysqli_query($con, $priceSql);
     $priceExc = mysqli_query($con, $packagePriceSql);
     $totalPrice = 0;
+    $noOFGuests = 0;
     while ($row = mysqli_fetch_assoc($evtExc)) {
+        $noOFGuests = $row["Num_Guests"];
         $totalPrice += $row["Price"];
     }
     while ($row = mysqli_fetch_assoc($priceExc)) {
-        $totalPrice += $row["price"];
+        $totalPrice += $row["price"] * $noOFGuests;
     }
     $updateTotalPrice = "UPDATE events_booking_temp SET MealPackage_ID='" . $packageID . "',Price='$totalPrice' WHERE Events_ID='$eventsID' ";
     if (mysqli_query($con, $updateTotalPrice)) {

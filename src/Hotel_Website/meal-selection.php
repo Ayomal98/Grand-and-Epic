@@ -100,6 +100,15 @@ if (isset($_POST['payment'])) {
             $excecuteEventDetails = mysqli_query($con, $getEventDetails);
             if (mysqli_num_rows($excecuteEventDetails) > 0) {
                 while ($row = mysqli_fetch_assoc($excecuteEventDetails)) {
+                    $advancePrice = $row["Price"] * 0.2;
+                    $mealPackage = $row["MealPackage_ID"];
+                    $noGuests = $row["Num_Guests"];
+                    $mealPrice = 0;
+                    $getPackagePrice = mysqli_query($con, "SELECT * from events_meals_packages WHERE Package_ID='$mealPackage' ");
+                    while ($rowPrice = mysqli_fetch_assoc($getPackagePrice)) {
+                        $mealPrice = $rowPrice["price"];
+                    }
+                    $totalMealPrice = $mealPrice * $noGuests;
                     echo '
                             <div style="position: absolute;width:650px;height:650px;background-color:white">
                                 <input type="hidden" name="merchant_id" value="1215666"> <!-- Replace your Merchant ID -->
@@ -117,68 +126,53 @@ if (isset($_POST['payment'])) {
                                 <input type="hidden" name="email" value=' . $row["Customer_Email"] . '>
                                 <input type="hidden" name="phone" value="0771234567"><br>
                                 <input type="hidden" name="address" value="No.1, Galle Road">
-                                <input type="hidden" name="city" value="Colombo">';
+                                <input type="hidden" name="city" value="Colombo">
+                                <i class="fas fa-times-circle" style="position:absolute;top:5%;right:8%;color:black;font-size:25px;cursor:pointer;color:white;width:20px;height:40px;color:black" onclick="closePayments()"></i>
+                                <u>
+                                    <h2 style="text-align: center;font-weight:bolder;font-size:33px;color:black">Payment Details</h3>
+                                </u>
+                                <h3 style="position: absolute;top:10%;left:65%;font-size:30px">Amount</h3>
+                                <div class="location-payment" style="margin-left:40px;margin-top:70px">
+                                    <u>
+                                        <h3>Price For the Location</h3>
+                                    </u>
+                    
+                                    <h3 style="margin-left:20px;margin-top:30px">From ' . $row['Starting_Time'] . ' to ' . $row['Ending_Time'] . '</h4>
+                                        <h4 style="position:absolute;top:25%;left:65%;">Rs.60,000/=</h4>
+                                        <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
+                                        <h4 style="position: absolute;top:32%;left:65%;">Rs.50,000/=</h4>
+                                </div>
+                                <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                                    <u>
+                                        <h3>Price For the Meals</h3>
+                                    </u>
+                                    <h3 style="margin-left:20px;margin-top:30px">Total Amount for meals</h3>
+                                    <h4 style="position: absolute;top:50%;left:65%;">' . $totalMealPrice . '</h4>
+                                </div>
+                    
+                                <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                                    <u>
+                                        <h3>Total Amount</h3>
+                                    </u>
+                                    <h3 style="margin-left:20px;margin-top:30px">Total Amount for Booking</h3>
+                                    <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">' . $row["Price"] . '</h4>
+                                </div>
+                                <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                                    <u>
+                                        <h3>Advance Amount</h3>
+                                    </u>
+                                    <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking * 20%</h3>
+                                    <h4 style="position: absolute;top:79%;left:65%;font-size:28px">' . $advancePrice . '</h4>
+                                </div>
+                                <div style="margin-left:160px;margin-top:5px">
+                                    <input type="reset" value="Cancel" name="Cancel-btn" style="color: #f0f0f0;background-color: goldenrod;border: none;padding: 10px;text-align: center;width: 110px;cursor:pointer">
+                                    <input type="submit" name="paymet" value="Book-Now" style=" color: #f0f0f0;background-color: goldenrod;border: none;padding: 10px;text-align: center;width: 110px;margin-left:30px;cursor:pointer">
+                                </div>';
                 }
             }
             ?>
 
 
-            <i class="fas fa-times-circle" style="position:absolute;top:5%;right:8%;color:black;font-size:25px;cursor:pointer;color:white;width:20px;height:40px;color:black" onclick="closePayments()"></i>
-            <u>
-                <h2 style="text-align: center;font-weight:bolder;font-size:33px;color:black">Payment Details</h3>
-            </u>
-            <h3 style="position: absolute;top:10%;left:65%;font-size:30px">Amount</h3>
-            <div class="location-payment" style="margin-left:40px;margin-top:70px">
-                <u>
-                    <h3>Price For the Location</h3>
-                </u>
-
-                <h3 style="margin-left:20px;margin-top:30px">From 7 P.M to 11 P.M</h4>
-                    <h4 style="position: absolute;top:25%;left:65%;">Rs.60,000/=</h4>
-                    <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
-                    <h4 style="position: absolute;top:32%;left:65%;">Rs.50,000/=</h4>
-            </div>
-            <div class="location-payment" style="margin-left:40px;margin-top:40px">
-                <u>
-                    <h3>Price For the Meals</h3>
-                </u>
-                <h3 style="margin-left:20px;margin-top:30px">Total Amount for meals</h3>
-                <h4 style="position: absolute;top:50%;left:65%;">Rs.20,000/=</h4>
-            </div>
-
-            <div class="location-payment" style="margin-left:40px;margin-top:40px">
-                <u>
-                    <h3>Total Amount</h3>
-                </u>
-                <h3 style="margin-left:20px;margin-top:30px">Total Amount for Booking</h3>
-                <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">Rs.130,000/=</h4>
-            </div>
-            <div class="location-payment" style="margin-left:40px;margin-top:40px">
-                <u>
-                    <h3>Advance Amount</h3>
-                </u>
-                <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking * 20%</h3>
-                <h4 style="position: absolute;top:79%;left:65%;font-size:28px">Rs.26,000/=</h4>
-            </div>
-            <div style="margin-left:160px;margin-top:5px">
-                <input type="reset" value="Cancel" name="Cancel-btn" style="color: #f0f0f0;
-                        background-color: goldenrod;
-                        border: none;
-                        padding: 10px;
-                        text-align: center;
-                        width: 110px;
-                        cursor:pointer
-                        ">
-                <input type="submit" name="paymet" value="Book-Now" style=" color: #f0f0f0;
-                        background-color: goldenrod;
-                        border: none;
-                        padding: 10px;
-                        text-align: center;
-                        width: 110px;
-                        margin-left:30px;
-                        cursor:pointer
-                        ">
-            </div>
         </div>
         </div>
     </form>
