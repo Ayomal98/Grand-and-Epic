@@ -59,7 +59,7 @@ if (isset($_POST['payment'])) {
     if (mysqli_num_rows($excecuteMeals) > 0) {
         while ($row = mysqli_fetch_assoc($excecuteMeals)) {
             echo '  <form action="events-booking.php" method="post">
-                            <div style="color:white;margin-top:20px;background-color:black;opacity:0.9" >
+                            <div style="color:white;margin-top:20px;background-color:black;opacity:0.7" >
                                 <h3 style="text-align:center">' . $row["Package_Name"] . '</h2>
                                 <div style="display:flex;flex-direction:row;justify-content:space-evenly;margin-top:20px">
                                     <div style="display:flex;flex-direction:column">
@@ -94,64 +94,74 @@ if (isset($_POST['payment'])) {
     ?>
     <form action="https://sandbox.payhere.lk/pay/checkout" method="post">
         <div style="display:none;position:absolute;top:10px;background-color: black;opacity:0.95;width:100%;height:100%;justify-content:center;align-items:center;height:100vh" id="payments">
-            <div style="position: absolute;width:650px;height:650px;background-color:white">
-                <input type="hidden" name="merchant_id" value="1215666"> <!-- Replace your Merchant ID -->
-                <input type="hidden" name="return_url" value="localhost">
-                <input type="hidden" name="cancel_url" value="abc.php">
-                <input type="hidden" name="notify_url" value="abc.php">
-                <input type="hidden" name="country" value="Sri Lanka">
-                <input type="text" name="order_id" value="ItemNo12345">
-                <input type="text" name="items" value="Door bell wireless"><br>
-                <input type="text" name="currency" value="LKR">
-                <input type="text" name="amount" value="50">
-                <br><br>Customer Details<br>
-                <input type="text" name="first_name" value="Saman">
-                <input type="text" name="last_name" value="Perera"><br>
-                <input type="text" name="email" value="samanp@gmail.com">
-                <input type="text" name="phone" value="0771234567"><br>
-                <input type="text" name="address" value="No.1, Galle Road">
-                <input type="text" name="city" value="Colombo">
+            <?php
+            $eventID = $_GET["events_id"];
+            $getEventDetails = "SELECT * FROM events_booking_temp WHERE Events_ID='$eventID'";
+            $excecuteEventDetails = mysqli_query($con, $getEventDetails);
+            if (mysqli_num_rows($excecuteEventDetails) > 0) {
+                while ($row = mysqli_fetch_assoc($excecuteEventDetails)) {
+                    echo '
+                            <div style="position: absolute;width:650px;height:650px;background-color:white">
+                                <input type="hidden" name="merchant_id" value="1215666"> <!-- Replace your Merchant ID -->
+                                <input type="hidden" name="return_url" value="localhost">
+                                <input type="hidden" name="cancel_url" value="abc.php">
+                                <input type="hidden" name="notify_url" value="abc.php">
+                                <input type="hidden" name="country" value="Sri Lanka">
+                                <input type="hidden" name="order_id" value=' . $row["Events_ID"] . '>
+                                <input type="hidden" name="items" value=' . $row["Event_Type"] . '><br>
+                                <input type="hidden" name="currency" value="LKR">
+                                <input type="hidden" name="amount" value=' . $row["Price"] . '>
+                                <!-- <br><br>Customer Details<br> -->
+                                <input type="hidden" name="first_name" value=' . $row["Customer_Name"] . '>
+                                <input type="hidden" name="last_name" value="Perera"><br>
+                                <input type="hidden" name="email" value=' . $row["Customer_Email"] . '>
+                                <input type="hidden" name="phone" value="0771234567"><br>
+                                <input type="hidden" name="address" value="No.1, Galle Road">
+                                <input type="hidden" name="city" value="Colombo">';
+                }
+            }
+            ?>
 
 
-                <i class="fas fa-times-circle" style="position:absolute;top:5%;right:8%;color:black;font-size:25px;cursor:pointer;color:white;width:20px;height:40px;color:black" onclick="closePayments()"></i>
+            <i class="fas fa-times-circle" style="position:absolute;top:5%;right:8%;color:black;font-size:25px;cursor:pointer;color:white;width:20px;height:40px;color:black" onclick="closePayments()"></i>
+            <u>
+                <h2 style="text-align: center;font-weight:bolder;font-size:33px;color:black">Payment Details</h3>
+            </u>
+            <h3 style="position: absolute;top:10%;left:65%;font-size:30px">Amount</h3>
+            <div class="location-payment" style="margin-left:40px;margin-top:70px">
                 <u>
-                    <h2 style="text-align: center;font-weight:bolder;font-size:33px;color:black">Payment Details</h3>
+                    <h3>Price For the Location</h3>
                 </u>
-                <h3 style="position: absolute;top:10%;left:65%;font-size:30px">Amount</h3>
-                <div class="location-payment" style="margin-left:40px;margin-top:70px">
-                    <u>
-                        <h3>Price For the Location</h3>
-                    </u>
 
-                    <h3 style="margin-left:20px;margin-top:30px">From 7 P.M to 11 P.M</h4>
-                        <h4 style="position: absolute;top:25%;left:65%;">Rs.60,000/=</h4>
-                        <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
-                        <h4 style="position: absolute;top:32%;left:65%;">Rs.50,000/=</h4>
-                </div>
-                <div class="location-payment" style="margin-left:40px;margin-top:40px">
-                    <u>
-                        <h3>Price For the Meals</h3>
-                    </u>
-                    <h3 style="margin-left:20px;margin-top:30px">Total Amount for meals</h3>
-                    <h4 style="position: absolute;top:50%;left:65%;">Rs.20,000/=</h4>
-                </div>
+                <h3 style="margin-left:20px;margin-top:30px">From 7 P.M to 11 P.M</h4>
+                    <h4 style="position: absolute;top:25%;left:65%;">Rs.60,000/=</h4>
+                    <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
+                    <h4 style="position: absolute;top:32%;left:65%;">Rs.50,000/=</h4>
+            </div>
+            <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                <u>
+                    <h3>Price For the Meals</h3>
+                </u>
+                <h3 style="margin-left:20px;margin-top:30px">Total Amount for meals</h3>
+                <h4 style="position: absolute;top:50%;left:65%;">Rs.20,000/=</h4>
+            </div>
 
-                <div class="location-payment" style="margin-left:40px;margin-top:40px">
-                    <u>
-                        <h3>Total Amount</h3>
-                    </u>
-                    <h3 style="margin-left:20px;margin-top:30px">Total Amount for Booking</h3>
-                    <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">Rs.130,000/=</h4>
-                </div>
-                <div class="location-payment" style="margin-left:40px;margin-top:40px">
-                    <u>
-                        <h3>Advance Amount</h3>
-                    </u>
-                    <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking * 20%</h3>
-                    <h4 style="position: absolute;top:79%;left:65%;font-size:28px">Rs.26,000/=</h4>
-                </div>
-                <div style="margin-left:160px;margin-top:5px">
-                    <input type="reset" value="Cancel" name="Cancel-btn" style="color: #f0f0f0;
+            <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                <u>
+                    <h3>Total Amount</h3>
+                </u>
+                <h3 style="margin-left:20px;margin-top:30px">Total Amount for Booking</h3>
+                <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">Rs.130,000/=</h4>
+            </div>
+            <div class="location-payment" style="margin-left:40px;margin-top:40px">
+                <u>
+                    <h3>Advance Amount</h3>
+                </u>
+                <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking * 20%</h3>
+                <h4 style="position: absolute;top:79%;left:65%;font-size:28px">Rs.26,000/=</h4>
+            </div>
+            <div style="margin-left:160px;margin-top:5px">
+                <input type="reset" value="Cancel" name="Cancel-btn" style="color: #f0f0f0;
                         background-color: goldenrod;
                         border: none;
                         padding: 10px;
@@ -159,7 +169,7 @@ if (isset($_POST['payment'])) {
                         width: 110px;
                         cursor:pointer
                         ">
-                    <input type="submit" name="paymet" value="Book-Now" style=" color: #f0f0f0;
+                <input type="submit" name="paymet" value="Book-Now" style=" color: #f0f0f0;
                         background-color: goldenrod;
                         border: none;
                         padding: 10px;
@@ -168,8 +178,8 @@ if (isset($_POST['payment'])) {
                         margin-left:30px;
                         cursor:pointer
                         ">
-                </div>
             </div>
+        </div>
         </div>
     </form>
 
