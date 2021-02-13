@@ -47,7 +47,9 @@ $email = $_SESSION["User_Email"];
     <div class="body-container-myreservations">
         <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:750px;"></i>
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
-        <input type="button" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;">
+        <form method='post' action="">
+            <input type="submit" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;" name="Deactivate_Account">
+        </form>
         <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
         <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
 
@@ -108,6 +110,7 @@ $email = $_SESSION["User_Email"];
 
         <!-- Including the customer edit profile form -->
         <?php include("./customer-edit-profile-form.php") ?>
+
         <?php
         $table_no;
         $date;
@@ -271,3 +274,25 @@ $email = $_SESSION["User_Email"];
 </body>
 
 </html>
+
+<?php
+if (isset($_POST['Deactivate_Account'])) {
+    $customerEmail = $_SESSION['User_Email'];
+    $selectCustomer = mysqli_query($con, "SELECT * FROM Customer WHERE Email='$customerEmail'");
+    while ($row = mysqli_fetch_assoc($selectCustomer)) {
+        $firstName = $row['First_Name'];
+        $lastName = $row['Last_Name'];
+        $contactNo = $row['Contact_No'];
+        $insertToBackup = "INSERT INTO customer_backup(First_Name,Last_Name,Email,Contact_No) VALUES('$firstName','$lastName','$customerEmail','$contactNo')";
+        mysqli_query($con, $insertToBackup);
+    }
+    $deleteCustomer = mysqli_query($con, "DELETE FROM Customer WHERE Email='$customerEmail'");
+    $deleteCustomerLogin = mysqli_query($con, "DELETE FROM login_table WHERE Email='$customerEmail' AND User_Type='Customer'");
+    if ($deleteCustomer && $deleteCustomerLogin) {
+        echo "<script>window.location.href='index.php'</script>";
+        echo "<script>alert('Your Account Has Been Deactivated')</script>";
+    } else {
+        echo "<script>alert('Your Account Hasn't Been Deactivated')</script>";
+    }
+}
+?>

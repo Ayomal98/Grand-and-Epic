@@ -7,6 +7,9 @@ if (isset($_POST['payment'])) {
     $payhere_currency    = $_POST['payhere_currency'];
     $status_code         = $_POST['status_code'];
     $md5sig                = $_POST['md5sig'];
+    $firstName = $_POST['first_name'];
+    $email = $_POST['email'];
+
 
     $merchant_secret = '8lyA24TbsSS4UshCmSRr8s4UrOe9MJQXY8Vyp6VOG9sB'; // Replace with your Merchant Secret (Can be found on your PayHere account's Settings page)
 
@@ -14,7 +17,8 @@ if (isset($_POST['payment'])) {
 
     if (($local_md5sig === $md5sig) and ($status_code == 2)) {
         //TODO: Update your database as payment success
-        echo 'success';
+        // $paymentSuccessfull = "INSERT into events_booking(Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_Amount)";
+        $paymentSuccessfull = "INSERT into events_booking (Customer_Name,Customer_Email) VALUES('$firstName',$email)";
     } else {
         echo '<script>alert("Payment Not Successfull")</script>';
     }
