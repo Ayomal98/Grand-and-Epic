@@ -160,6 +160,19 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	}
 
+	if (isset($_POST['delete'])) {
+		$query = "DELETE FROM promotions where Promotion_type='$_POST[Promotion_type]'";
+		$query_run = mysqli_query($con, $query);
+		if ($query_run) {
+			echo "<script>
+                alert('Hotel Manager Has been Deleted');
+                window.location.href='AdminAddPromotion.php';
+                </script>";
+		} else {
+			echo '<script> alert("Hotel Manager has been not deleted") </script>';
+		}
+	}
+
 
 	?>
 					
@@ -192,7 +205,6 @@ if (!isset($_SESSION['First_Name'])) {
 			</table>
 		</td>
 		<td style="border: 1px solid white;">
-
 			<table width="100%">
 				<tr>
 					<td align="center">
