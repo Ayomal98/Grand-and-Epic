@@ -8,12 +8,12 @@ checkSession();
 	}
 ?>
 
-<html>
+<html> 
 
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
 	<title>
-		Hotel Supervisor Manage Set Menu
+		Hotel Supervisor Manage Set Menus
 	</title>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
@@ -35,7 +35,7 @@ checkSession();
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Manage Set Menu
+		<button class="dropdown-btn">Manage Set Menus
 			<i class="fa fa-caret-down"></i>
 		</button>
 
@@ -76,7 +76,7 @@ checkSession();
 		}
 	</script>
 
-	<form action="Meals.php" method="POST" enctype="multipart/form-data">
+	<form action="" method="POST" enctype="multipart/form-data">
 	<fieldset style = " position:absolute; top:280px; width:90%; left:50px;">
         <legend style = "color:white; font-size: 20px">Add New Set Menu</legend>
         
@@ -89,38 +89,38 @@ checkSession();
 					<tr>
                         <td>Meal Type: </td>
                         <td>
-                            <select id="types" name="mealtype" class="inputs">
+							<select id="mttypes" name="mealtype" class="inputs">
 								<option value disabled selected>Select a Meal Type</option>
-                                <option value="Breakfast">Breakfast</option>
-                                <option value="Lunch">Lunch</option>
-                                <option value="Dinner">Dinner</option>
-                            </select>
-                        </td>
+								<option value="Breakfast">Breakfast</option>
+								<option value="Lunch">Lunch</option>
+								<option value="Dinner">Dinner</option>
+							</select>
+						</td>
                     </tr>
                     <tr>
                         <td>Meal 01:</td>
 						<td><input type="text" name="meal1" size="20" required></td>
-						<td><input type="file" name="mealimage1" id="fileToUpload"></td>
+						<td><input type="file" accept="image/*" name="meal1image" id="fileToUpload"></td>
 					</tr>
 					<tr>
                         <td>Meal 02:</td>
 						<td><input type="text" name="meal2" size="20" required></td>
-						<td><input type="file" name="mealimage2" id="fileToUpload"></td>
+						<td><input type="file" accept="image/*" name="meal2image" id="fileToUpload"></td>
 					</tr>
 					<tr>
                         <td>Meal 03:</td>
 						<td><input type="text" name="meal3" size="20" required></td>
-						<td><input type="file" name="mealimage3" id="fileToUpload"></td>
+						<td><input type="file" accept="image/*" name="meal3image" id="fileToUpload"></td>
 					</tr>
 					<tr>
                         <td>Meal 04:</td>
 						<td><input type="text" name="meal4" size="20"></td>
-						<td><input type="file" name="mealimage4" id="fileToUpload"></td>
+						<td><input type="file" accept="image/*" name="meal4image" id="fileToUpload"></td>
 					</tr>
 					<tr>
                         <td>Meal 05:</td>
 						<td><input type="text" name="meal5" size="20"></td>
-						<td><input type="file" name="mealimage5" id="fileToUpload"></td>
+						<td><input type="file" accept="image/*" name="meal5image" id="fileToUpload"></td>
                     </tr>
                     <tr>
                         <td>Price for the Set Menu:</td>
@@ -131,8 +131,8 @@ checkSession();
                 <table style = "color:white; font-size: 20px; width:86.5%;">
                     <tr>
                         <td align="right">
-                            <input type="submit" class="button" name="insertsm" value="Add a New Set Menu">
-							<input type="reset" class="button" value="Reset Menu Details" name="reset">
+                            <input type="submit" class="button" name="insert" value="Add a New Set Menu">
+							<input type="reset" class="button" value="Reset Package Details" name="reset">
                         </td>
                     </tr>
                 </table>
@@ -140,73 +140,170 @@ checkSession();
 	</fieldset>
     </form>
 
+
+ <!-- Insert New Set Menu -->
+ <?php include("../../config/connection.php");
+if(isset($_POST['insert'])){
+
+    $setmenuid=$_POST['setmenuid'];  
+    $mealtype=$_POST['mealtype'];
+	$meal1=$_POST['meal1'];
+    $meal1image = addslashes(file_get_contents($_FILES["meal1image"]["tmp_name"]));
+	$meal2=$_POST['meal2'];
+    $meal2image = addslashes(file_get_contents($_FILES["meal2image"]["tmp_name"]));
+	$meal3=$_POST['meal3'];
+    $meal3image = addslashes(file_get_contents($_FILES["meal3image"]["tmp_name"]));
+	$meal4=$_POST['meal4'];
+    $meal4image = addslashes(file_get_contents($_FILES["meal4image"]["tmp_name"]));
+	$meal5=$_POST['meal5'];
+    $meal5image = addslashes(file_get_contents($_FILES["meal5image"]["tmp_name"]));
+    $price=$_POST['price'];
+
+      $add_query = "INSERT INTO stayingin_setmenu(SetMenu_ID,Meal_Type, Meal1, Meal2, Meal3, Meal4, Meal5, Meal1_Image, Meal2_Image, Meal3_Image, Meal4_Image, Meal5_Image, price) VALUES ('".$setmenuid."', '".$mealtype."', '".$meal1."', '".$meal2."', '".$meal3."', '".$meal4."', '".$meal5."', '".$meal1image."', '".$meal2image."', '".$meal3image."', '".$meal4image."', '".$meal5image."', '".$price."')";
+      $add_query_run = mysqli_query($con,$add_query);
+
+      if ($add_query_run) {
+        echo "<script>
+        alert('New Set Menu Has been Added');
+        window.location.href='SupervisorManageSetMenus.php';
+        </script>";
+      }else {
+        echo "<script>
+        alert('Set Menu Not Added');
+        window.location.href='SupervisorManageSetMenus.php';
+        </script>";
+      }  
+}
+?> 
+
+
+
 	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:1300px; width:90%; left:50px;">
 			<legend style="color:white; font-size: 20px">Update and Delete Set Menu</legend>
-			<input type="text" name="Meals_ID" placeholder="Enter id to Search" /><br>
+			<input type="text" name="SetMenu_ID" placeholder="Enter id to Search" /><br>
 			<input type="submit" class="button" name="search" value="Search by ID">
 		</fieldset>
 	</form>
 
+
 	<!-- SEARCH -->
+	<?php
+	include("../../config/connection.php");
+	if (isset($_POST['search'])) {
+		$SetMenu_ID = $_POST['SetMenu_ID'];
+
+		$query = "SELECT * FROM stayingin_setmenu where SetMenu_ID = '$SetMenu_ID' ";
+		$query_run = mysqli_query($con, $query);
+		if (mysqli_num_rows($query_run) == 1) {
+
+			while ($row = mysqli_fetch_array($query_run)) {
+	?>
+
 			<form action="" method="POST" enctype="multipart/form-data">
 				<fieldset style=" position:absolute; top:1420px; width: 90%; left:50px; ">
 					<table style="color:white; font-size: 20px; width:94%;">
 						<tr>
 							<td>Set Menu ID:</td>
-							<td><input type="text" name="setmenuid" size="20" required></td>
+							<td><input type="text" name="setmenuid" value="<?php echo $row['SetMenu_ID'] ?>" /></td>
 						</tr>
 						<tr>
 							<td>Meal Type: </td>
 							<td>
-								<select id="types" name="mealtype" class="inputs">
+								<select id="mttypes" name="mealtype" class="inputs" style="margin: 8px 2px;">
 									<option value disabled selected>Select a Meal Type</option>
-									<option value="Breakfast">Breakfast</option>
-									<option value="Lunch">Lunch</option>
-									<option value="Dinner">Dinner</option>
+
+									<option value="Breakfast"
+										<?php
+											if($row["Meal_Type"]=='Breakfast')
+											{
+												echo "selected";
+											}
+										?>	
+									>Breakfast</option>
+
+									<option value="Lunch"
+										<?php
+											if($row["Meal_Type"]=='Lunch')
+											{
+												echo "selected";
+											}
+										?>	
+									>Lunch</option>
+
+									<option value="Dinner"
+										<?php
+											if($row["Meal_Type"]=='Dinner')
+											{
+												echo "selected";
+											}
+										?>	
+									>Dinner</option>
 								</select>
 							</td>
 						</tr>
+
 						<tr>
 							<td>Meal 01:</td>
-							<td><input type="text" name="meal1" size="20" required></td>
-							<td><input type="file" name="mealimage1" id="fileToUpload"></td>
+							<td><input type="text" name="meal1" value="<?php echo $row['Meal1'] ?>" /></td>
+							<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal1_Image']) . '" alt="Image" style="width: 150px; height: 100px" >' ?></td>
+							<td style="position:relative; right:20px;"><input type="file" accept="image/*" name="meal1image" id="fileToUpload"></td>
 						</tr>
+
 						<tr>
 							<td>Meal 02:</td>
-							<td><input type="text" name="meal2" size="20" required></td>
-							<td><input type="file" name="mealimage2" id="fileToUpload"></td>
+							<td><input type="text" name="meal2" value="<?php echo $row['Meal2'] ?>" /></td>
+							<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal2_Image']) . '" alt="Image" style="width: 150px; height: 100px" >' ?></td>
+							<td style="position:relative; right:20px;"><input type="file" accept="image/*" name="meal2image" id="fileToUpload"></td>
 						</tr>
+
 						<tr>
 							<td>Meal 03:</td>
-							<td><input type="text" name="meal3" size="20" required></td>
-							<td><input type="file" name="mealimage3" id="fileToUpload"></td>
+							<td><input type="text" name="meal3" value="<?php echo $row['Meal3'] ?>" /></td>
+							<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal3_Image']) . '" alt="Image" style="width: 150px; height: 100px" >' ?></td>
+							<td style="position:relative; right:20px;"><input type="file" accept="image/*" name="meal3image" id="fileToUpload"></td>
 						</tr>
+
 						<tr>
 							<td>Meal 04:</td>
-							<td><input type="text" name="meal4" size="20"></td>
-							<td><input type="file" name="mealimage4" id="fileToUpload"></td>
+							<td><input type="text" name="meal4" value="<?php echo $row['Meal4'] ?>" /></td>
+							<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal4_Image']) . '" alt="Image" style="width: 150px; height: 100px" >' ?></td>
+							<td style="position:relative; right:20px;"><input type="file" accept="image/*" name="meal4image" id="fileToUpload"></td>
 						</tr>
+
 						<tr>
 							<td>Meal 05:</td>
-							<td><input type="text" name="meal5" size="20"></td>
-							<td><input type="file" name="mealimage5" id="fileToUpload"></td>
+							<td><input type="text" name="meal5" value="<?php echo $row['Meal5'] ?>" /></td>
+							<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal5_Image']) . '" alt="Image" style="width: 150px; height: 100px" >' ?></td>
+							<td style="position:relative; right:20px;"><input type="file" accept="image/*" name="meal5image" id="fileToUpload"></td>
 						</tr>
+
 						<tr>
 							<td>Price for the Set Menu:</td>
-							<td><input type="text" name="price" size="50" required></td>
+							<td><input type="text" name="price" value="<?php echo $row['price'] ?>" /></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td style="position:relative; left:450px">
-								<input type="submit" class="button" name="update" value="Update Menu">
-								<input type="submit" class="button" name="delete" value="Delete Menu">
-								<input type="reset" class="button" name="reset" value="Reset Menu Details"></a>
+							<td></td>
+							<td colspan = "2" style="position:relative;">
+								<input type="submit" class="button" name="update" value="Update Package">
+								<input type="submit" class="button" name="delete" value="Delete Package">
+								<input type="reset" class="button" name="reset" value="Reset Details"></a>
 							</td>
 						</tr>
 					</table>
 				</fieldset>
 			</form>
+
+<?php
+
+			}
+		} else {
+			echo "<script>alert('ID you entered doesn't Exist.Please Try Again!')</script>";
+			echo "<script>window.location.href='SupervisorManageSetMenus.php'</script>";
+		}
+	}
+?>
 
 	<!-- View Table-->
 	<div>
@@ -215,7 +312,7 @@ checkSession();
 			<th colspan="13"><h2>Set Menu Details</h2></th>
 		</tr>
 		<tr>
-			<th>Menu ID</th>
+			<th>Set Menu ID</th>
 			<th>Meal Type</th>
 			<th>Meal 01</th>
 			<th>Image 01</th>
@@ -233,25 +330,25 @@ checkSession();
 			<?php
 				include("../../config/connection.php");
 
-					$query = "SELECT * FROM set_menu";
+					$query = "SELECT * FROM stayingin_setmenu";
 					$query_run = mysqli_query($con,$query);
 
 					while($row = mysqli_fetch_array($query_run))
 					{
 			?>
 						<tr>
-							<td><?php echo $row['setmenu_id'] ?></td>
-							<td><?php echo $row['meal_type'] ?></td>
-							<td><?php echo $row['meal_1'] ?></td>
-							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['mealimage_1']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
-							<td><?php echo $row['meal_2'] ?></td>
-							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['mealimage_2']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
-							<td><?php echo $row['meal_3'] ?></td>
-							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['mealimage_3']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
-							<td><?php echo $row['meal_4'] ?></td>
-							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['mealimage_4']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
-							<td><?php echo $row['meal_5'] ?></td>
-							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['mealimage_5']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
+							<td><?php echo $row['SetMenu_ID'] ?></td>
+							<td><?php echo $row['Meal_Type'] ?></td>
+							<td><?php echo $row['Meal1'] ?></td>
+							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal1_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
+							<td><?php echo $row['Meal2'] ?></td>
+							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal2_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
+							<td><?php echo $row['Meal3'] ?></td>
+							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal3_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
+							<td><?php echo $row['Meal4'] ?></td>
+							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal4_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
+							<td><?php echo $row['Meal5'] ?></td>
+							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal5_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
 							<td><?php echo $row['price'] ?></td>						
 						</tr>
 				<?php
@@ -277,38 +374,46 @@ checkSession();
 <!-- Update -->
 <?php include("../../config/connection.php");
 if (isset($_POST['update'])) {
-	$mealid = $_POST['mealid'];
-	$mealname = $_POST['mealname'];
-	$price = $_POST['price'];
-	$mealplan = $_POST['mealplan'];
-	$mealtype = $_POST['mealtype'];
-	$mealimage = addslashes(file_get_contents($_FILES["mealimage"]["tmp_name"]));
+	
+	$setmenuid=$_POST['setmenuid'];  
+    $mealtype=$_POST['mealtype'];
+	$meal1=$_POST['meal1'];
+    $meal1image = addslashes(file_get_contents($_FILES["meal1image"]["tmp_name"]));
+	$meal2=$_POST['meal2'];
+    $meal2image = addslashes(file_get_contents($_FILES["meal2image"]["tmp_name"]));
+	$meal3=$_POST['meal3'];
+    $meal3image = addslashes(file_get_contents($_FILES["meal3image"]["tmp_name"]));
+	$meal4=$_POST['meal4'];
+    $meal4image = addslashes(file_get_contents($_FILES["meal4image"]["tmp_name"]));
+	$meal5=$_POST['meal5'];
+    $meal5image = addslashes(file_get_contents($_FILES["meal5image"]["tmp_name"]));
+    $price=$_POST['price'];
 
-	if($mealimage=="")
+	if($meal1image=="" && $meal2image=="" && $meal3image=="" && $meal4image=="" && $meal5image=="")
 	{
-		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Plan='$mealplan',Meal_Type='$mealtype' where Meals_ID='$_POST[mealid]'";
+		$query = "UPDATE stayingin_setmenu SET SetMenu_ID='$setmenuid',Meal_Type='$mealtype', Meal1='$meal1', Meal2='$meal2', Meal3='$meal3', Meal4='$meal4', Meal5='$meal5', Price='$price' where SetMenu_ID='$_POST[setmenuid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
 			echo "<script>
-			alert('Food item Has been Updated');
-			window.location.href='SupervisorManageMeals.php';
+			alert('Set Menu Has been Updated');
+			window.location.href='SupervisorManageSetMenus.php';
 			</script>";
 		} else {
-			echo '<script> alert("Data Not Updated") </script>';
+			echo '<script> alert("SetMenu Not Updated") </script>';
 		}
 	}
 	else{
-		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Plan='$mealplan',Meal_Type='$mealtype',Meal_Image='$mealimage' where Meals_ID='$_POST[mealid]'";
+		$query = "UPDATE stayingin_setmenu SET SetMenu_ID='$setmenuid',Meal_Type='$mealtype', Meal1='$meal1', Meal1_Image='$meal1image', Meal2='$meal2', Meal2_Image='$meal2image', Meal3='$meal3', Meal3_Image='$meal3image', Meal4='$meal4', Meal4_Image='$meal4image', Meal5='$meal5', Meal5_Image='$meal5image', Price='$price' where SetMenu_ID='$_POST[setmenuid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
 			echo "<script>
-			alert('Food item Has been Updated');
-			window.location.href='SupervisorManageMeals.php';
+			alert('Set Menu Has been Updated');
+			window.location.href='SupervisorManageSetMenus.php';
 			</script>";
 		} else {
-			echo '<script> alert("Data Not Updated") </script>';
+			echo '<script> alert("SetMenu Not Updated") </script>';
 		}
 	}
 }
@@ -317,20 +422,29 @@ if (isset($_POST['update'])) {
 
 // Delete
 if (isset($_POST['delete'])) {
-	$mealname = $_POST['mealname'];
-	$price = $_POST['price'];
-	$mealplan = $_POST['mealplan'];
 	$mealtype = $_POST['mealtype'];
-	$mealimage = addslashes(file_get_contents($_FILES["mealimage"]["tmp_name"]));
-	$delete_query = "DELETE from meals where Meals_ID='$_POST[mealid]'";
+	$meal1=$_POST['meal1'];
+	$meal1image = addslashes(file_get_contents($_FILES["meal1image"]["tmp_name"]));
+	$meal2=$_POST['meal2'];
+	$meal2image = addslashes(file_get_contents($_FILES["meal2image"]["tmp_name"]));
+	$meal3=$_POST['meal3'];
+	$meal3image = addslashes(file_get_contents($_FILES["meal3image"]["tmp_name"]));
+	$meal4=$_POST['meal4'];
+	$meal4image = addslashes(file_get_contents($_FILES["meal4image"]["tmp_name"]));
+	$meal5=$_POST['meal5'];
+	$meal5image = addslashes(file_get_contents($_FILES["meal5image"]["tmp_name"]));
+	$price = $_POST['price'];
+
+	$delete_query = "DELETE from stayingin_setmenu where SetMenu_ID='$_POST[setmenuid]'";
 	$delete_run = mysqli_query($con, $delete_query);
+
 	if ($delete_run) {
 		echo "<script>
-		alert('Food item Has been Deleted');
-		window.location.href='SupervisorManageMeals.php';
+		alert('Set Menu Has been Deleted');
+		window.location.href='SupervisorManageSetMenus.php';
 		</script>";
 	} else {
-		echo '<script> alert("Data Not Deleted") </script>';
+		echo '<script> alert("Set Menu Not Deleted") </script>';
 	}
 }
 
