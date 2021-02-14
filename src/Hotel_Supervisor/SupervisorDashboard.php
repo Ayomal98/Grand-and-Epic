@@ -49,7 +49,7 @@ checkSession();
 				<td>
 				</td>
 				<td>
-					<img src="../../public/images/ayomal.png" height="40%">
+					<img src="../../public/images/ayomal.png" height="80px">
 				</td>
 			</tr>
 		</table>
@@ -75,7 +75,7 @@ checkSession();
 	<table style="position:absolute; top : 270px; width:350px;">
 		<tr>
 			<td>
-				<img src="../../public/images/Employee.png" height="40%">
+				<img src="../../public/images/Employee.png" height="70px">
 			</td>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">Supervisor Dashboard</p>
@@ -109,20 +109,20 @@ checkSession();
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/breakfast.png" height="50%">
+							<img src="../../public/images/breakfast.png" height="60px">
 						</td>
 						<td rowspan="3" align="center">
-							<img src="../../public/images/meal.png" height="60%">
+							<img src="../../public/images/meal.png" height="80px">
 						</td>
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/lunch.png" height="40%">
+							<img src="../../public/images/lunch.png" height="60px">
 						</td>
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/dinner.png" height="50%">
+							<img src="../../public/images/dinner.png" height="50px">
 						</td>
 					</tr>
 				</table>
@@ -133,10 +133,10 @@ checkSession();
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/setmenuSmall.png" height="50%">
+							<img src="../../public/images/setmenuSmall.png" height="80px">
 						</td>
 						<td align="center">
-							<img src="../../public/images/setMenuBig.png" height="100%">
+							<img src="../../public/images/setMenuBig.png" height="80px">
 						</td>
 					</tr>
 				</table>
@@ -147,20 +147,20 @@ checkSession();
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/mpack1.png" height="50%">
+							<img src="../../public/images/mpack1.png" height="70px">
 						</td>
 						<td rowspan="3" align="center">
-							<img src="../../public/images/mpack.png" height="90%">
+							<img src="../../public/images/mpack.png" height="70px">
 						</td>
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/mpack2.png" height="20%">
+							<img src="../../public/images/mpack2.png" height="70px">
 						</td>
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/mpack3.png" height="30%">
+							<img src="../../public/images/mpack3.png" height="70px">
 						</td>
 					</tr>
 				</table>
@@ -172,7 +172,7 @@ checkSession();
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/roomService.png" height="75%">
+							<img src="../../public/images/roomService.png" height="80px">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">15</p>
@@ -180,7 +180,7 @@ checkSession();
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/cutlery.png" height="50%">
+							<img src="../../public/images/cutlery.png" height="80px">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">18</p>
@@ -188,7 +188,7 @@ checkSession();
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/tie.png" height="50%">
+							<img src="../../public/images/tie.png" height="80px">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">2</p>
@@ -201,10 +201,10 @@ checkSession();
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/leave.png" height="50%">
+							<img src="../../public/images/leave.png" height="70px">
 						</td>
 						<td align="center">
-							<img src="../../public/images/leaveBig.png" height="35%">
+							<img src="../../public/images/leaveBig.png" height="80px">
 						</td>
 					</tr>
 				</table>
