@@ -53,7 +53,7 @@ checkSession();
 		<table width="100%">
 			<tr>
 				<td>
-					<img src="../../public/images/ayomal.png" height="40%">
+					<img src="../../public/images/ayomal.png" height="80px">
 				</td>
 			</tr>
 		</table>
@@ -76,7 +76,7 @@ checkSession();
 		}
 	</script>
 
-	<form action="Meals.php" method="POST" enctype="multipart/form-data">
+	<form action="" method="POST" enctype="multipart/form-data">
 		<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
 			<legend style="color:white; font-size: 20px">Add Meals</legend>
 
@@ -122,6 +122,36 @@ checkSession();
 		</fieldset>
 	</form>
 
+	
+ <!-- Insert New Meal -->
+<?php include("../../config/connection.php");
+if(isset($_POST['insert'])){
+
+    $mealid=$_POST['mealid'];  
+    $mealname=$_POST['mealname'];
+    $price=$_POST['price'];
+    $mealimage = addslashes(file_get_contents($_FILES["mealimage"]["tmp_name"]));
+    $mealtype=$_POST['mealtype'];
+
+      $add_query = "INSERT INTO meals(Meals_ID,Meals_Name, Price, Meal_Type, Meal_Image) VALUES ('".$mealid."','".$mealname."','".$price."','".$mealtype."','".$mealimage."')";
+      $add_query_run = mysqli_query($con,$add_query);
+
+      if ($add_query_run) {
+        echo "<script>
+        alert('New Food item Has been Added');
+        window.location.href='SupervisorManageMeals.php';
+        </script>";
+      }else {
+        echo "<script>
+        alert('Food item Not Added');
+        window.location.href='SupervisorManageMeals.php';
+        </script>";
+      }  
+}
+?> 
+
+
+
 	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:700px; width: 45%; right:0%;">
 			<legend style="color:white; font-size: 20px">Update and Delete Meals</legend>
@@ -129,6 +159,7 @@ checkSession();
 			<input type="submit" class="button" name="search" value="Search by ID">
 		</fieldset>
 	</form>
+
 
 
 	<!-- SEARCH -->
@@ -225,6 +256,8 @@ checkSession();
 	}
 	?>
 
+
+
 	<!-- View Table-->
 	<div class="dbtablescroll">
 	<table style="color:white; width:100%">
@@ -276,6 +309,7 @@ checkSession();
 </html>
 
 
+
 <!-- Update -->
 <?php include("../../config/connection.php");
 if (isset($_POST['update'])) {
@@ -317,15 +351,17 @@ if (isset($_POST['update'])) {
 
 
 
-// Delete
+<!-- Delete -->
 <?php include("../../config/connection.php");
 if (isset($_POST['delete'])) {
 	$mealname = $_POST['mealname'];
 	$price = $_POST['price'];
 	$mealtype = $_POST['mealtype'];
 	$mealimage = addslashes(file_get_contents($_FILES["mealimage"]["tmp_name"]));
+
 	$delete_query = "DELETE from meals where Meals_ID='$_POST[mealid]'";
 	$delete_run = mysqli_query($con, $delete_query);
+	
 	if ($delete_run) {
 		echo "<script>
 		alert('Food item Has been Deleted');

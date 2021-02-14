@@ -49,7 +49,7 @@ checkSession();
 	<table width = "100%">
 		<tr>
             <td>
-                <img src ="../../public/images/ayomal.png" height = "40%" >
+                <img src ="../../public/images/ayomal.png" height = "80px">
             </td>
 		</tr>
 	</table>
@@ -130,7 +130,7 @@ checkSession();
 			<table style="border: 1px solid white; width:100%" >
 				<tr>
 					<td align ="center">
-						<img src = "../../public/images/BIgCal.png" height = "10%" >
+						<img src = "../../public/images/BIgCal.png" height = "200px" >
 					</td>
 				</tr>
 				<tr>
@@ -246,7 +246,7 @@ checkSession();
     </tr>
     <tr>
         <td align ="center">
-            <img src ="../../public/images/BIgCal.png" height = "10%" >
+            <img src ="../../public/images/BIgCal.png" height = "200px" >
         </td>
     </tr>
     <tr>
@@ -374,7 +374,7 @@ checkSession();
     </tr>
     <tr>
         <td align ="center">
-            <img src ="../../public/images/BIgCal.png" height = "10%" >
+            <img src ="../../public/images/BIgCal.png" height = "200px" >
         </td>
     </tr>
     <tr>
@@ -471,7 +471,7 @@ checkSession();
     </tr>
     <tr>
         <td align ="center">
-            <img src ="../../public/images/BIgCal.png" height = "10%" >
+            <img src ="../../public/images/BIgCal.png" height = "200px" >
         </td>
     </tr>
     <tr>
