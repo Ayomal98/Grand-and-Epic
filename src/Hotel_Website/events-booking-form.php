@@ -21,9 +21,9 @@
                 <input type="number" name="number-of-guests" placeholder="No-Guests" style="padding:10px;margin:10px;width:130px;" min="30" max="250" step="1" style="width:110px;" required>
             </div>
             <div class="events-booking-wrapper">
-                <label for="type-of-reservation" style="font-size:25px;position:absolute;top:210px;left:40%">Reservation Type</label>
-                <i class="fas fa-glass-cheers" style="position: absolute;top:190px;left:45%"></i>
-                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:210px;left:56%;padding:5px;">
+                <label for="type-of-reservation" style="font-size:25px;position:absolute;top:210px;left:12%">Reservation Type</label>
+                <i class="fas fa-glass-cheers" style="position: absolute;top:190px;left:17%"></i>
+                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:250px;left:15%;padding:5px;">
                     <option value="Weddings">Wedding</option>
                     <option value="Parties">Party</option>
                 </select>
@@ -31,24 +31,24 @@
             </div>
             <div class="date-time-details">
                 <div class="date-container">
-                    <i class="fas fa-calendar-alt" style="position: absolute;top:250px;left:34%"></i>
-                    <label for="Reservation-Date" " style=" font-size:25px;position:absolute;top:270px;left:30%;">Reservation Date</label><br>
-                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:310px;left:30%">
+                    <i class="fas fa-calendar-alt" style="position: absolute;top:185px;left:34%"></i>
+                    <label for="Reservation-Date" " style=" font-size:25px;position:absolute;top:200px;left:30%;">Reservation Date</label><br>
+                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:240px;left:30%;padding:5px">
                 </div>
                 <div class="time-details-events">
-                    <i class="fas fa-clock" style="position: absolute;top:250px;left:64%;"></i>
-                    <label for="time-container" style="position: absolute;top:270px;left:60%;font-size:25px">Time Period</label>
+                    <i class="fas fa-clock" style="position: absolute;top:180px;left:64%;"></i>
+                    <label for="time-container" style="position: absolute;top:200px;left:60%;font-size:25px">Time Period</label>
                     <div class="time-details-shower">
-                        <label for="" style="position:absolute;top:310px;left:52%;font-size:25px;font-size:20px;">Starting time</label>
-                        <input type="time" name="starting-time" id="" style="position:absolute;top:350px;left:52%">
-                        <label for="" style="position: absolute;top:310px;left:70%;font-size:20px">Ending time</label>
-                        <input type="time" name="ending-time" id="" style="position:absolute;top:350px;left:70%">
+                        <label for="" style="position:absolute;top:250px;left:52%;font-size:25px;font-size:20px;">Starting time</label>
+                        <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:52%">
+                        <label for="" style="position: absolute;top:250px;left:70%;font-size:20px">Ending time</label>
+                        <input type="time" name="ending-time" id="" style="position:absolute;top:280px;left:70%">
                     </div>
                 </div>
             </div>
             <div class="additional-features" style="display: inline-block;">
-                <i class="fas fa-icons" style="position:absolute;top:410px;left:35%;"></i>
-                <label for="" style="font-size: 25px;position:absolute;top:430px;left:27%;">Additional Features</label>
+                <i class="fas fa-icons" style="position:absolute;top:365px;left:62%;"></i>
+                <label for="" style="font-size: 25px;position:absolute;top:390px;left:55%;">Additional Features</label>
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:45%">DJ Music</label>
                 <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:443px;left:50%;cursor:pointer">
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:55%">Decorations</label>
