@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
+    <script>
+        // $(document).ready(function() {
+        //     $("#datefield").on("change", function() {
+        //         $("#check-availability-shower").load();
+        //     })
+        // })
+    </script>
 </head>
 
 <body style="background:url('../../public/images/event-form.jpeg');width:100%;height:100%;background-size:cover">
@@ -33,7 +39,7 @@
                 <div class="date-container">
                     <i class="fas fa-calendar-alt" style="position: absolute;top:185px;left:34%"></i>
                     <label for="Reservation-Date" " style=" font-size:25px;position:absolute;top:200px;left:30%;">Reservation Date</label><br>
-                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:240px;left:30%;padding:5px">
+                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:240px;left:30%;padding:5px" onchange="dateHandler(event)">
                 </div>
                 <div class="time-details-events">
                     <i class="fas fa-clock" style="position: absolute;top:180px;left:64%;"></i>
@@ -63,10 +69,10 @@
                     <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
-                <div class="check-availability-shower" style="display:none;background-color:white;left:1.7%;top:25%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
+                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
                     <div><i class="fas fa-times-circle" style="position:absolute;top:5%;left:90%;color:black;font-size:20px;cursor:pointer" onclick="closeAvailability()"></i></div>
-                    <div style="text-align: center;"><i class="fas fa-less-than" style="color:black;position:absolute;left:15%;top:15%"></i><span style="color: black;font-weight:bolder;font-size:25px;position:absolute;top:12%;left:25%">26th November</span><i class="fas fa-greater-than" style="color:black;position:absolute;left:75%;top:15%"></i></div>
-                    <table border="1px solid black" style="background-color: black;position:absolute;top:30%;left:10%;border-radius:5px;">
+                    <div style="text-align: center;"><span style="color: black;font-weight:bolder;font-size:25px;position:absolute;top:12%;left:25%">26th November</span></div>
+                    <table border="1px solid black" style="background-color: black;position:absolute;top:40%;left:10%;border-radius:5px;">
                         <thead>
                             <tr>
                                 <th style="padding:5px">Starting Time</th>
@@ -98,8 +104,6 @@
                     <div style="color: black;position:absolute;right:16%;top:92%"><i class="fas fa-check"><span style="margin-left: 5px;">Available</span></i></div>
                     <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
                 </div>
-
-                <!-- <input type="submit" name="payment"> -->
             </div>
         </div>
     </form>
@@ -124,6 +128,18 @@
         }
         today = yy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("min", today);
+
+        function checkAvailability() {
+            document.getElementById('check-availability-shower').style.display = 'block'
+        }
+
+        function closeAvailability() {
+            document.getElementById('check-availability-shower').style.display = 'none'
+        }
+
+        function dateHandler(e) {
+            console.log(e.target.value);
+        }
     </script>
 </body>
 

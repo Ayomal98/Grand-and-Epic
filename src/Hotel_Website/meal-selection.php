@@ -116,7 +116,7 @@ if (isset($_POST['payment'])) {
                     echo '
                             <div style="position: absolute;width:650px;height:650px;background-color:white">
                                 <input type="hidden" name="merchant_id" value="1215666"> <!-- Replace your Merchant ID -->
-                                <input type="hidden" name="return_url" value="localhost">
+                                <input type="hidden" name="return_url" value="http://localhost/GRAND-AND-EPIC/src/Hotel_Website/payment-thanks.php?type=events&id=' . $row["Events_ID"] . '">
                                 <input type="hidden" name="cancel_url" value="abc.php">
                                 <input type="hidden" name="notify_url" value="abc.php">
                                 <input type="hidden" name="country" value="Sri Lanka">
