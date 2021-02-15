@@ -29,6 +29,9 @@
             $totalAmount = $row["Price"];
             $paidAmount = $row["Price"] * 0.2;
             $paymentSuccess = mysqli_query($con, "INSERT into events_booking(Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount) VALUES('$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount')");
+            if ($paymentSuccess) {
+                $deleteTempEvtDetails = mysqli_query($con, "DELETE * FROM events_booking_temp WHERE Events_ID='$events_ID'");
+            }
         }
     }
     ?>
