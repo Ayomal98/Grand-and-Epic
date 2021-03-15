@@ -178,6 +178,7 @@
                         <input type="button" value="Meal Selection" id="meal-selection" style="display:none;padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
                 </div>
+            </form>
         </div>
     </div>
     <!--start of form for customized meal selection-->

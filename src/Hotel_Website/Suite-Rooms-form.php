@@ -73,62 +73,18 @@
                     </div>
                     <div class="form-page-fields suite-icons-container">
                         <div class="suite-icons-rooms-container">
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 1</span>
-                            </div>
-                            <div class="suite-icon gold">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 2</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 3</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 4</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 5</span>
-                            </div>
-                            <div class="suite-icon gold">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 6</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 7</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 8</span>
-                            </div>
-                            <div class="suite-icon gold">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 9</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 10</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 11</span>
-                            </div>
-                            <div class="suite-icon gold">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 12</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 13</span>
-                            </div>
-                            <div class="suite-icon">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span class="suite-icon-label">Room 14</span>
-                            </div>
+                            <?php
+                            include('../../config/connection.php');
+                            $roomType = 'Suite';
+                            $getNoRooms = mysqli_query($con, "SELECT NoRooms from rooms where Room_Type='$roomType' ");
+                            $noRooms = mysqli_fetch_assoc($getNoRooms);
+                            for ($roomNo = 1; $roomNo <= $noRooms['NoRooms']; $roomNo++) {
+                                echo    '<div class="suite-icon">
+                                            <i class="fa fa-home" aria-hidden="true"></i>
+                                            <span class="suite-icon-label">Room' . $roomNo . '</span>
+                                         </div>';
+                            }
+                            ?>
                         </div>
                         <div class="suite-icons-main suite">
                             <div class="suite-icon main">
