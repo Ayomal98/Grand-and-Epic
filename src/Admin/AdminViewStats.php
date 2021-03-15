@@ -194,7 +194,7 @@ if (!isset($_SESSION['First_Name'])) {
 
   </div>
 
-  <button class="button1" style="position:absolute;top:12%;right:5%;color:white;background-color:blue;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer">
+  <button class="button1" style="position:absolute;top:112%;right:5%;color:white;background-color:blue;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer">
     <p><b>Generte Report</b></p>
   </button>
   <script>
