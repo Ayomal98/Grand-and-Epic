@@ -99,7 +99,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<tr>
 					<td align="left"><textarea name="Message" rows="15" cols="53" placeholder="Add Content here:"></textarea></td>
 					<td>
-						<img src="../../public/images/content1.jpg" height="20%">
+						<img src="../../public/images/content1.jpg" height="350" width="550">
 					</td>
 				</tr>
 				<tr>
@@ -130,7 +130,7 @@ if (!isset($_SESSION['First_Name'])) {
 							</b></p>
 					</td>
 					<td>
-						<img src="../../public/images/content2.jpg" height="40%">
+						<img src="../../public/images/content2.jpg"  height="350" width="500">
 					</td>
 				</tr>
 				<tr></tr>
