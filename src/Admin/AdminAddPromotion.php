@@ -264,7 +264,9 @@ if (!isset($_SESSION['First_Name'])) {
 							<table style="color:white; font-size: 20px; width:84%;">
 								<tr>
 									<td align="right">
-										<input type="button" class="button" value="CREATE PROMOTION">
+										<input type="button" class="button" onclick="ClearFields()" value="CREATE PROMOTION">
+
+
 								</tr>
 							</table>
 						</fieldset>
@@ -273,6 +275,7 @@ if (!isset($_SESSION['First_Name'])) {
 			</tr>
 		</table>
 	</table>
+
 
 	<table style="position:absolute; top : 1000px; width:350px;width : 86%;margin-bottom: 100px;">
 		<tr>
@@ -295,6 +298,10 @@ if (!isset($_SESSION['First_Name'])) {
 
 				function funcCloseUserDetails() {
 					document.getElementById('user-detail-container').style.display = "none";
+				}
+				function ClearFields() {
+					Context.value = "";
+					Policies.value = "";
 				}
 			</script>
 </body>
