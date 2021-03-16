@@ -31,7 +31,7 @@
                     <div class="card-img" id="img01"></div>
                     <div class="card-content">
                         <h1 class="card-header">Staying-In</h>
-                            <p class="card-para">Have you been feeling the need of escaping from your hectic lifestyle and find a perfect hideaway to spend your family with.A place where you won’t be disturbed by the polluted and busy towns and inhale the purest air and enjoy the tranquillity of a place where you can enjoy nature.This is the perfect gateway that you needed all this time.</p>
+                            <p class="card-para" >Have you been feeling the need of escaping from your hectic lifestyle and find a perfect hideaway to spend your family with.A place where you won’t be disturbed by the polluted and busy towns and inhale the purest air and enjoy the tranquillity of a place where you can enjoy nature.This is the perfect gateway that you needed all this time.</p>
                             <a href="staying-in.php" class="card-link">Read more</a>
                     </div>
                 </div>

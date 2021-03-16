@@ -862,6 +862,8 @@ input:focus{
   color: #000;
   font-family: Poppins;
   margin-top: 10px;
+  justify-content: center;
+  text-align:justify
 }
 
 .card-link {
