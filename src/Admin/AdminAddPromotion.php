@@ -152,10 +152,10 @@ if (!isset($_SESSION['First_Name'])) {
 		$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
 		$query_run = mysqli_query($con, $query);
 		if ($query_run) {
-			echo '<script type="text/javascript">alert("Data Updated")</script>';
+			echo '<script type="text/javascript">alert("Data updated successfully")</script>';
 			echo '<script>window.location.href="AdminAddPromotion.php"</script>';
 		} else {
-			echo '<script type="text/javascript">alert("Data Not Updated")</script>';
+			echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
 			echo '<script>window.location.href=AdminAddPromotion.php"</script>';
 		}
 	}
@@ -165,11 +165,11 @@ if (!isset($_SESSION['First_Name'])) {
 		$query_run = mysqli_query($con, $query);
 		if ($query_run) {
 			echo "<script>
-                alert('Hotel Manager Has been Deleted');
+                alert('Hotel Manager has successfully Deleted');
                 window.location.href='AdminAddPromotion.php';
                 </script>";
 		} else {
-			echo '<script> alert("Hotel Manager has been not deleted") </script>';
+			echo '<script> alert("Hotel Manager is not deleted. Please try again") </script>';
 		}
 	}
 
