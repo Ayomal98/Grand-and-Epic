@@ -26,7 +26,7 @@
             <h3>User & Payment Details</h3>
         </div>
         <div class="suite-form-details">
-            <form action="#" method="post">
+            <form action="suite-insert.php" method="post">
                 <!-- start of form-for user details -->
                 <div class="form-page">
                     <div class="form-page-title">
@@ -40,34 +40,45 @@
                                 <option value="Triple-Room">Triple Room</option>
                             </select>
                         </div>
-                        <div class="occupancy-number-details">
+                        <div style="margin-left: -170px;margin-top:-25px">
+                            <label for="reservation-type" style="font-size:20px;margin-right:5px;">Reservation Type</label>
+                            <select name=" reservation-type" id="reservation-type" style="padding:5px">
+                                <option value="Full-Board">Full Board</option>
+                                <option value="Half-Board">Half Board</option>
+                            </select>
+                        </div>
+                        <div class="occupancy-number-details" style="margin-left: 150px;">
                             <div class="occupancy-number-details-container">
                                 <label for="kids">No.Of Adults</label>
-                                <input type="number" name="" id="" style="padding:-5px">
+                                <input type="number" name="No-Adults" id="" style="padding:-5px">
                             </div>
                             <div class="occupancy-number-details-container">
                                 <label for="kids">No.Of Kids</label>
-                                <input type="number" name="" id="" style="margin-left: 5px;">
+                                <input type="number" name="No-Kids" id="" style="margin-left: 5px;">
                             </div>
                             <input type="button" value="+" style="border-radius: 50%;padding:10px;border:none;margin-left:50px;font-size:20px;cursor:pointer" /><span style="font-size:15px;margin-left:10px;">Add a Room</span>
                         </div>
                     </div>
                     <div class="time-checker">
                         <label for="check-in-time" style="margin-left:-20px">Check In Time</label>
-                        <input type="time" name="check-in-time" id="" style="margin-right:35px;margin-left:-5px">
+                        <select name="check-in-time" id="check-in-time" style="padding:5px;border-radius:5px;border:none;margin-right:20px" onchange="showCheckOut(event)">
+                            <option value="9.00">9.00 A.M.</option>
+                            <option value="14.00">2.00 P.M.</option>
+                            <option value="20.00">8.00 P.M</option>
+                        </select>
                         <label for="check-out-time">Check Out Time</label>
-                        <input type="time" name="check-out-time" id="" style="margin-right:10px;margin-left:-5px">
+                        <input type="text" name="check-out-time" id="check-out-time" value="" style="margin-right:5px;margin-left:-2px;padding:5px;">
                     </div>
 
                     <div class="form-page-fields">
                         <div class="date-checker">
                             <div class="date-checker-checkin">
                                 <label for="check-in-Date">Check In Date</label>
-                                <input type="date" name="" id="">
+                                <input type="date" name="check-in-Date" id="">
                             </div>
                             <div class="date-checker-checkout">
                                 <label for="check-out-Date">Check Out Date</label>
-                                <input type="date" name="" id="">
+                                <input type="date" name="check-out-Date" id="">
                             </div>
                         </div>
                     </div>
@@ -99,9 +110,9 @@
                     </div>
                     <div class="select-rooms">
                         <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:20px;">Selection Of Room</label>
-                        <input type="text" name="" id="" style="padding:10px;" placeholder="Enter a Room Number">
+                        <input type="text" name="room-number" id="" style="padding:10px;" placeholder="Enter a Room Number">
                     </div>
-                    <div class="form-page-fields">
+                    <!-- <div class="form-page-fields">
                         <div class="reservation-type-fields" style="margin-left:-170px;margin-top:70px;width:250%">
                             <label for="reservation-type" style="font-size:23px;margin-right:15px;font-weight:bold"">Reservation Type</label>
                             <select name=" reservation-type" id="" style="padding:10px">
@@ -109,9 +120,9 @@
                                 <option value="Half-Board">Half Board</option>
                                 </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-page-fields">
-                        <div class="meal-selection-fields" style="margin-left:295px;margin-top:-72px;width:250%">
+                        <div class="meal-selection-fields" style="margin-left:295px;margin-top:12px;width:250%">
                             <label for="meal-selection" style="font-size:23px;margin-right:15px;font-weight:bold">Meal Selection</label>
                             <select name="meal-selection" id="meal-type" onclick="selectMealType()" style="padding:10px">
                                 <option value="Set-Menu">Set Menu</option>
@@ -120,7 +131,7 @@
                         </div>
                     </div>
                     <div class="button-container-suite-form" style="margin-top:-60px;">
-                        <input type="button" value="Next" id="next" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
+                        <input type="submit" name="Next" value="Next" id="next" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
                         <input type="button" value="Meal Selection" id="meal-selection" style="display:none;padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
                 </div>
@@ -391,6 +402,28 @@
             if (val == 'Customized') {
                 document.getElementById('next').style.display = 'none'
                 document.getElementById('meal-selection').style.display = 'block'
+            }
+        }
+
+        //show the checkout time details according to given check-in details
+        function showCheckOut(e) {
+            var checkIn = e.target.value;
+            console.log(checkIn);
+            var resType = document.getElementById('reservation-type');
+            var reservationType = resType.value;
+            console.log(reservationType)
+            var checkOut;
+            if (reservationType == 'Full-Board') {
+                if (checkIn == '9.00') {
+                    checkOut = '8.00 A.M.'
+                } else if (checkIn == '14.00') {
+                    checkOut = '1.00 P.M.'
+                } else {
+                    checkOut = '7.00 P.M.'
+                }
+                document.getElementById('check-out-time').value = checkOut
+            } else if (reservationType == 'Half-Board') {
+
             }
         }
 
