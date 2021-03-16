@@ -861,9 +861,9 @@ input:focus{
   margin-bottom: 2.5vmin;
   color: #000;
   font-family: Poppins;
-  margin-top: 10px;
   justify-content: center;
-  text-align:justify
+  text-align:justify;
+  margin-top: 2.5vmin;
 }
 
 .card-link {
@@ -1023,8 +1023,11 @@ input:focus{
   line-height: 1.8;
   font-weight: 300;
   margin-bottom: 2.5vmin;
+  margin-left: 2.5vmin;
+  margin-right: 2.5vmin;
   color: #000;
   font-family: Poppins;
+  text-align:justify;
 }
 form.reservation-form {
   display: flex;

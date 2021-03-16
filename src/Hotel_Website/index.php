@@ -56,9 +56,9 @@
 
                 </div>
                 <div class="box">
-                    <span class="fas fa-gifts" id="creditcard-icon"></span>
+                    <span class="fas fa-gifts" id="creditcard-icon" height="30" width="30"></span>
                     <div class="box-heading" style="margin-top: 50px;">Seasonal Offer</div>
-                    <div class="box-content">We are providing some attractive discounts from your complete amount of stay as the seasonal promotions during the christmas season, School vacations etc. Stay tuned for more interesting updates. </div>
+                    <div class="box-content">We provide attractive discounts from the complete amount of the stay as the seasonal promotions. Stay tuned for more interesting updates. </div>
                     <div style="margin-left:-130px;font-size:20px;margin-top:-10px"><b>Available Only For Suit Rooms</b></div>
                     <div class="box-specials"><b>*Valid Until 25th Of December</b></div>
                     <a href="apply-promotions-suite.php" target="_blank"><input type="button" value="Apply Now" style="padding: 5px 5px;border:none;border-radius:5px;background-color:white;cursor:pointer;font-weight:bolder;position:absolute;top:84%;right:10%"></a>
