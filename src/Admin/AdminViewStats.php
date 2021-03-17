@@ -196,6 +196,24 @@ if (!isset($_SESSION['First_Name'])) {
 
   <button class="button1" style="position:absolute;top:112%;right:5%;color:white;background-color:blue;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer">
     <p><b>Generte Report</b></p>
+    <?php
+    require 'AdminViewStats.php';
+
+// create an API client instance
+$client = new AdminViewStats("username", "apikey");
+
+// convert a web page and store the generated PDF into a variable
+$pdf = $client->convertURI('http://localhost/Grand-and-Epic/src/Admin/AdminViewStats.php');
+
+// set HTTP response headers
+header("Content-Type: application/pdf");
+header("Cache-Control: max-age=0");
+header("Accept-Ranges: none");
+header("Content-Disposition: attachment; filename=\"AdminViewStats.pdf\"");
+
+// send the generated PDF 
+echo $pdf;
+?>
   </button>
   <script>
     function funcUserDetails() {
