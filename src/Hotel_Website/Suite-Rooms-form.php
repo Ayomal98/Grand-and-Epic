@@ -1,3 +1,10 @@
+<?php
+include("../../public/includes/session.php");
+checkSession();
+if (!isset($_SESSION['First_Name'])) {
+    header('Location:index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,8 +93,8 @@
                         <div class="suite-icons-rooms-container">
                             <?php
                             include('../../config/connection.php');
-                            $roomType = 'Suite';
-                            $getNoRooms = mysqli_query($con, "SELECT NoRooms from rooms where Room_Type='$roomType' ");
+                            $roomType = 'Suite Rooms';
+                            $getNoRooms = mysqli_query($con, "SELECT NoRooms from rooms where Room_Type=' $roomType ' ");
                             $noRooms = mysqli_fetch_assoc($getNoRooms);
                             for ($roomNo = 1; $roomNo <= $noRooms['NoRooms']; $roomNo++) {
                                 echo    '<div class="suite-icon">
@@ -112,15 +119,6 @@
                         <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:20px;">Selection Of Room</label>
                         <input type="text" name="room-number" id="" style="padding:10px;" placeholder="Enter a Room Number">
                     </div>
-                    <!-- <div class="form-page-fields">
-                        <div class="reservation-type-fields" style="margin-left:-170px;margin-top:70px;width:250%">
-                            <label for="reservation-type" style="font-size:23px;margin-right:15px;font-weight:bold"">Reservation Type</label>
-                            <select name=" reservation-type" id="" style="padding:10px">
-                                <option value="Full-Board">Full Board</option>
-                                <option value="Half-Board">Half Board</option>
-                                </select>
-                        </div>
-                    </div> -->
                     <div class="form-page-fields">
                         <div class="meal-selection-fields" style="margin-left:295px;margin-top:12px;width:250%">
                             <label for="meal-selection" style="font-size:23px;margin-right:15px;font-weight:bold">Meal Selection</label>
@@ -130,11 +128,13 @@
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" name="emailUser" value="<?php echo $_SESSION['User_Email']; ?>">
                     <div class="button-container-suite-form" style="margin-top:-60px;">
                         <input type="submit" name="Next" value="Next" id="next" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
                         <input type="button" value="Meal Selection" id="meal-selection" style="display:none;padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
                 </div>
+            </form>
         </div>
     </div>
     <!--start of form for customized meal selection-->
@@ -343,49 +343,7 @@
 
 
     <!--start of form for payment & user Details for customized details-->
-    <div class="suite-rooms-form-container room-detail paymentuser" style="height:105vh" id="form-page-paymentuser">
-        <div class="suite-form-header">
-            <h3>Room Details & Availability</h3>
-            <h3>Customized Meals</h3>
-            <h3 style="font-weight: bolder;color:black;">User & Payment Details</h3>
-        </div>
-        <div class=" form-page-title" style="text-align: center;margin-top:10px;">
-            User & Payment Details
-        </div>
-        <div class="form-page-fields-user">
-            <div class="user-details">
-                <label for="User-Deatils" style="font-weight: bolder;margin-top:-40px;font-size:45px;color:white;margin-left:50px;">User Details</label>
-                <div class="user-details">
-                    <input type="text" name="" id="" placeholder="First Name" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
-                    <input type="text" name="" id="" placeholder="Last Name" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
-                    <input type="email" name="" id="" placeholder="Email-Address" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
-                    <input type="number" name="" id="" placeholder="Contact Number" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
-                    <input type="text" name="" id="" placeholder="Address" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
-                    <input type="text" name="" id="" placeholder="City" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
-                </div>
-            </div>
-            <div class="payment-details">
-                <div style="margin-top:-15px;font-weight:bolder"><label for="Payment-Deatils" style="font-size:45px;color:white;" ;>Payment Details</label></div>
-                <fieldset style="width: 450px;height:450px;margin-top:80px;background-color:white;border-radius:10px;border:none;padding:10px;">
-                    <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;"><u>Price For the Rooms</u></div>
-                    <label for="">Suite Room x 2 </label><label for="" style="font-weight:bolder;position:absolute;top:31%;right:15%">&nbsp;Rs.50,000/=</label>
-                    <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:10px;"><u>Price For Meals</u></div>
-                    <label for="" style="font-weight:bolder;text-align:center;margin-left:50px;margin-bottom:20px;">Customized Menu</label><br>
-                    <label for="" style="margin-top:20px;margin-left:10px;">Day 1</label><label for="">&nbsp; Rs.3000 /=</label><br>
-                    <label for="" style="margin-top:20px;margin-left:10px;">Day 2</label><label for="">&nbsp; Rs.5000 /=</label><br>
-                    <label for="total amount meals" style="font-weight: bolder;font-size:20px;">Total Amount for Meals </label>&nbsp;<span style="font-weight: bolder;position:absolute;top:49.5%;right:15%"> Rs.8000/=</span>
-                    <div class="total-amount" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:20px;"><u>Total Amount</u></div>
-                    <label for="">Total Amount for the Booking <br><br></label><span style="font-weight: bolder;position:absolute;top:60%;right:15%"> Rs.58,000/=</span>
-                    <div class="total-amount" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:-5px;"><u>Advance Amount</u></div>
-                    <label for="" style="font-weight:bold">Total Amount * 20 % <br><br></label><span style="position: absolute;right:14%;top:70.5%;font-size:28px;font-weight:bolder">Rs.11,600/=</span>
-                </fieldset>
 
-            </div>
-            <input type="submit" value="Previous" id="previous-meal-btn" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;">
-            <input type="submit" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:10px;" value="Book Now">
-
-        </div>
-    </div>
 
 
     </form>
@@ -413,7 +371,7 @@
             var reservationType = resType.value;
             console.log(reservationType)
             var checkOut;
-            if (reservationType == 'Full-Board') {
+            if (reservationType == 'Full-Board' || reservationType == 'Half-Board') {
                 if (checkIn == '9.00') {
                     checkOut = '8.00 A.M.'
                 } else if (checkIn == '14.00') {
@@ -422,8 +380,6 @@
                     checkOut = '7.00 P.M.'
                 }
                 document.getElementById('check-out-time').value = checkOut
-            } else if (reservationType == 'Half-Board') {
-
             }
         }
 

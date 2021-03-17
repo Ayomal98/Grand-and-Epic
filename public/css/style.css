@@ -2067,10 +2067,6 @@ span.suite-icon-label {
   width: 150%;
 }
 
-#form-page-paymentuser{
-display: none;
-}
-
 .reservation-box-form{
   display: flex;
   border:10px;
