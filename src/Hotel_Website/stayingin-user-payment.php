@@ -36,6 +36,7 @@
                         <input type="number" name="ContactNo" id="" placeholder="Contact Number" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
                         <input type="text" name="Address" id="" placeholder="Address" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
                         <input type="text" name="City" id="" placeholder="City" style="padding:15px;width:300px;margin-left:-270px;border-radius:10px;border:none;">
+                        <input type="hidden" name="staying_in_temp" value="<?php echo $_GET['temp_id'] ?>">
                     </div>
                 </div>
                 <div class="payment-details">

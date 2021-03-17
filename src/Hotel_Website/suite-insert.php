@@ -30,4 +30,11 @@ if (isset($_POST['Next'])) {
     }
 }
 if (isset($_POST['BOOK_SUITE'])) {
+    $firstName = $_POST['FName'];
+    $lastName = $_POST['LName'];
+    $contactNo = $_POST['ContactNo'];
+    $address = $_POST['Address'];
+    $city = $_POST['City'];
+    $stayingIn_temp = $_POST['staying_in_temp'];
+    $insertUserDetails = mysqli_query($con, "INSERT into stayingin_user_details (User_FName,User_LName,Contact_No,Street,City,StayingIn_ID) VALUES('$firstName','$lastName','$contactNo','$address','$city','$stayingIn_temp')");
 }
