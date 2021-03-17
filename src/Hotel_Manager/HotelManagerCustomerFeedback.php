@@ -52,7 +52,7 @@ checkSession();
 		<td>
 		</td>
 		<td>
-			<img src = "../../public/images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "80px" >
 		</td>
 		</tr>
 	</table>

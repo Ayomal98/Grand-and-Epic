@@ -51,7 +51,7 @@ checkSession();
 		<td>
 		</td>
 		<td>
-			<img src = "../../public/images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "80px" >
 		</td>
 		</tr>
 	</table>
@@ -77,7 +77,7 @@ checkSession();
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
 		<td>
-			<img src = "../../public/images/discount.png" height = "40%" >
+			<img src = "../../public/images/discount.png" height = "80px" >
 		</td>
 		<td>
 			<p style = "font-family :Lato; font-size:22px; color :white;">Current Promotions</p>		
@@ -104,7 +104,7 @@ checkSession();
 			<table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/loyalty.png" height = "70%">
+					<img src = "../../public/images/loyalty.png" height = "90px">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="0" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
@@ -116,7 +116,7 @@ checkSession();
             <table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/lastminute.png" height = "70%">
+					<img src = "../../public/images/lastminute.png" height = "90px">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
@@ -127,7 +127,7 @@ checkSession();
             <table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Presents.png" height = "18%">
+					<img src = "../../public/images/Presents.png" height = "80px">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
@@ -142,7 +142,7 @@ checkSession();
             <p style = "font-family :Lato; font-size:20px; color :white;">To Create a new Promotion</p>
         </td>
         <td>
-            <img src = "../../public/images/point.png" height = "50%">
+            <img src = "../../public/images/point.png" height = "80px">
         </td>
         <td>
             <form>
@@ -186,7 +186,7 @@ checkSession();
                 <p style = "font-family :Lato; font-size:20px; color :white;">To View Booking Analysis</p>
             </td>
             <td align ="left">
-                <img src = "../../public/images/point.png" height = "50%">
+                <img src = "../../public/images/point.png" height = "80px">
             </td>
             <td align ="left">
                 <p style = "font-family :Lato; font-size:20px; color:cornflowerblue;">Booking Analysis Overview</p>
