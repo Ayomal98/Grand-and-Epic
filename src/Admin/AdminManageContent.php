@@ -66,7 +66,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 				</td>
 				<td>
-					<img src="../../public/images/Uvini.png" height="25%">
+					<img src="../../public/images/Uvini.png" width="60" height="60">
 				</td>
 			</tr>
 		</table>
@@ -89,23 +89,31 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 
-	<form>
+<form action="AdminAddContent.php" method="POST" enctype="multipart/form-data">
 		<fieldset style=" position:absolute; top:280px; width: 98%;">
 			<legend style="color:white; font-size: 30px">Add New Post</legend>
 			<table style="width:100%; color:white; border: 1px solid white;">
 				<tr>
-					<th align="left" style="font-size:20px">Content</th>
+					<th align="center" style="font-size:20px">Heading</th>
+				
+				<td align="center"><textarea name="Message" rows="1" cols="50" placeholder="Add Heading here:"></textarea></td>
 				</tr>
 				<tr>
-					<td align="left"><textarea name="Message" rows="15" cols="53" placeholder="Add Content here:"></textarea></td>
-					<td>
-						<img src="../../public/images/content1.jpg" height="20%">
-					</td>
+					<th align="center" style="font-size:20px">Content</th>
 				</tr>
+				<tr>
+					<td align="center"><textarea name="Message" rows="15" cols="53" placeholder="Add Content here:"></textarea></td>
+					</tr>
+					<tr>
+					<td>Image </td>
+					<td align="center"><input type="file" accept="image/*" name="contentimage" id="fileToUpload" size="20"></td>
+				</tr>
+				
 				<tr>
 					<td></td>
 					<td align="right">
 						<input type="button" class="button" value="ADD NEW POST">
+						<input type="reset" class="button" value="  RESET " name="reset">
 					</td>
 				</tr>
 			</table>
@@ -130,7 +138,7 @@ if (!isset($_SESSION['First_Name'])) {
 							</b></p>
 					</td>
 					<td>
-						<img src="../../public/images/content2.jpg" height="40%">
+						<img src="../../public/images/content2.jpg"  height="350" width="500">
 					</td>
 				</tr>
 				<tr></tr>

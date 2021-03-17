@@ -66,7 +66,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 				</td>
 				<td>
-					<img src="../../public/images/Uvini.png" height="25%">
+					<img src="../../public/images/Uvini.png" width="60" height="60">
 				</td>
 			</tr>
 		</table>

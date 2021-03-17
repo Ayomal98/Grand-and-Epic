@@ -53,7 +53,7 @@ checkSession();
 		<td>	
 		</td>
 		<td>
-			<img src = "../../public/images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "80px" >
 		</td>
 		</tr>
 	</table>
@@ -79,7 +79,7 @@ checkSession();
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
 		<td>
-			<img src = "../../public/images/Employee.png" height = "40%" >
+			<img src = "../../public/images/Employee.png" height = "90px" >
 		</td>
 		<td>
 			<p style = "font-family :Lato; font-size:20px; color :white;">Hotel Manager Dashboard</p>		
@@ -115,7 +115,7 @@ checkSession();
 			<table width= "100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Emplo.png" height = "70%" >
+					<img src = "../../public/images/Emplo.png" height = "80px" >
 				</td>
 				<td align ="center">
                     <p style = "font-family :Lato; font-size:20px; color :white;">No. of  <br>Employees -131</p>		
@@ -129,15 +129,15 @@ checkSession();
 			<table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Planner.png" height = "20%">
+					<img src = "../../public/images/Planner.png" height = "80px">
 				</td>
 				<td align="center">
-					<img src = "../../public/images/Book.png" height = "85%">
+					<img src = "../../public/images/Book.png" height = "80px">
 				</td>
 				</tr>
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Fork.png" height = "50%">
+					<img src = "../../public/images/Fork.png" height = "60px">
                 </td>
                 <td align ="center">
                     <p style = "font-family :Lato; font-size:20px; color :white;">Current <br>Bookings -141</p>		
@@ -151,7 +151,7 @@ checkSession();
 				<table width= "100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/discount.png" height = "50%" >
+					<img src = "../../public/images/discount.png" height = "90px" >
 				</td>
 				<td align ="center">
 					<p style = "font-family :Lato; font-size:20px; color :white;">Existing <br>Promotions -03</p>		
@@ -164,10 +164,10 @@ checkSession();
 				<table width= "100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Feedback.png" height = "50%" >
+					<img src = "../../public/images/Feedback.png" height = "80px" >
 				</td>
 				<td align ="center">
-					<img src = "../../public/images/Feed.png" height = "90%" >
+					<img src = "../../public/images/Feed.png" height = "80px" >
 				</td>
 				</tr>
 			</table>    
@@ -176,7 +176,7 @@ checkSession();
 				<table width= "100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/room.png" height = "50%" >
+					<img src = "../../public/images/room.png" height = "80px" >
 				</td>
 				<td align ="center">
 					<p style = "font-family :Lato; font-size:20px; color :white;">Current <br>Room Types - 3</p>	
@@ -189,10 +189,10 @@ checkSession();
 				<table width= "100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/check-out.png" height = "20%" >
+					<img src = "../../public/images/check-out.png" height = "80px" >
 				</td>
 				<td align ="center">
-					<img src = "../../public/images/clock.png" height = "10%" >
+					<img src = "../../public/images/clock.png" height = "80px" >
 				</td>
 				</tr>
 			</table>
@@ -210,7 +210,7 @@ checkSession();
         </tr>
         <tr>
             <td align = "center">
-                <img src = "../../public/images/bar.png" height = "75%" >
+                <img src = "../../public/images/bar.png" height = "650px" >
             </td>
         </tr>
     </table>

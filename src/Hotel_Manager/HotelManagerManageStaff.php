@@ -67,7 +67,7 @@ if (!isset($_SESSION['First_Name'])) {
                 <td>
                 </td>
                 <td>
-                    <img src="../../public/images/ayomal.png" height="40%">
+                    <img src="../../public/images/ayomal.png" height="80px">
                 </td>
             </tr>
         </table>
@@ -149,7 +149,7 @@ if (!isset($_SESSION['First_Name'])) {
     </fieldset>
 
     <!-- Search -->
-    
+
     <form action="" method="POST">
         <fieldset style=" position:absolute; top:746px; width: 45%;right:0%;">
             <legend style="color:white; font-size: 20px">Update and Delete Employees</legend>
@@ -246,7 +246,7 @@ if (!isset($_SESSION['First_Name'])) {
         }
     }
     ?>
-    </table>
+
 
     <!-- Respond To Leave Requests -->
 

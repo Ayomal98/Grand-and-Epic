@@ -56,13 +56,13 @@ if (!isset($_SESSION['First_Name'])) {
 		</div>
 	</div>
 	<div class="top-right">
-		<table width="10%">
+		<table width="100%">
 			<tr>
 				<td>
 
 				</td>
 				<td>
-					<img src="../../public/images/Uvini.png" height="15%">
+					<img src="../../public/images/Uvini.png" width="60" height="60">
 				</td>
 			</tr>
 		</table>
@@ -368,10 +368,12 @@ if (!isset($_SESSION['First_Name'])) {
                 alert('Hotel Manager Has been Deleted');
                 window.location.href='AdminManageCoAdmins.php';
                 </script>";
-		} else {
+				}
+			 else 
+			 {
 			echo '<script> alert("Hotel Manager has been not deleted") </script>';
+			}
 		}
-	}
 	?>
 
 	<script>
