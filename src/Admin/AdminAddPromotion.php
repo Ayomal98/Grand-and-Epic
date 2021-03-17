@@ -165,11 +165,11 @@ if (!isset($_SESSION['First_Name'])) {
 		$query_run = mysqli_query($con, $query);
 		if ($query_run) {
 			echo "<script>
-                alert('Hotel Manager has successfully Deleted');
+                alert('Promotion is successfully deleted');
                 window.location.href='AdminAddPromotion.php';
                 </script>";
 		} else {
-			echo '<script> alert("Hotel Manager is not deleted. Please try again") </script>';
+			echo '<script> alert("Deletion is not successful. Please try again") </script>';
 		}
 	}
 
@@ -253,7 +253,7 @@ if (!isset($_SESSION['First_Name'])) {
 									</td>
 								</tr>
 								<tr>
-									<td align="left">Constraints and Policies</td>
+									<td align="left">Constraints and Policies </td>
 									<td align="left"><input type="text" name="Policies" size="500" class="inputs" required>
 									</td>
 								</tr>
@@ -264,9 +264,9 @@ if (!isset($_SESSION['First_Name'])) {
 							<table style="color:white; font-size: 20px; width:84%;">
 								<tr>
 									<td align="right">
-										<input type="button" class="button" onclick="ClearFields()" value="CREATE PROMOTION">
-
-
+										<input type="submit" class="button" name="ADD" value="CREATE PROMOTION">
+										<input type="reset" class="button" value="  RESET " name="reset">
+										
 								</tr>
 							</table>
 						</fieldset>
@@ -299,10 +299,7 @@ if (!isset($_SESSION['First_Name'])) {
 				function funcCloseUserDetails() {
 					document.getElementById('user-detail-container').style.display = "none";
 				}
-				function ClearFields() {
-					Context.value = "";
-					Policies.value = "";
-				}
+			
 			</script>
 </body>
 
