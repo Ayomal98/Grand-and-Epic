@@ -14,9 +14,27 @@ if (isset($_POST['Next'])) {
     $roomNumber = $_POST['room-number'];
     $mealSelection = $_POST['meal-selection'];
     $emailUser = $_POST['emailUser'];
+    $roomType = 'Suite Rooms';
     $noRooms = 1;
     $noOccupants = $noKids + $noAdults;
-    $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,User_Email) VALUES('$occupancy','$noOccupants','$noRooms','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$emailUser')");
+    $roomPrice;
+    $mealPrice;
+    //to select the price for the rooms
+    $selectRoomPrice = mysqli_query($con, "SELECT Price from rooms WHERE Room_Type=' $roomType  '");
+    while ($rowRooms = mysqli_fetch_assoc($selectRoomPrice)) {
+        $roomPrice = (int)$rowRooms['Price'] * $noRooms;
+    }
+    //to select the price for the meals accordingly
+    if ($mealSelection == 'Set-Menu' && $reservationType == 'Full-Board') {
+        $selectMealPrice = mysqli_query($con, "SELECT * FROM stayingin_setmenu");
+        if (mysqli_num_rows($selectMealPrice) > 0) {
+            while ($rowMeals = mysqli_fetch_assoc($selectMealPrice)) {
+                $mealPrice += (int) $rowMeals['Price'];
+            }
+        }
+    }
+    //inserting data into the temporary table
+    $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
 
     if ($insertRoomDetails < 0) {
         echo 'Data has not been entered';
