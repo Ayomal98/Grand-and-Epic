@@ -1749,7 +1749,7 @@ form.staying-in-form > label {
 .date-checker-checkin {
   display: flex;
   flex-direction: column;
-  margin-right: 180px;
+  margin-right: 100px;
 }
 .date-checker-checkout {
   display: flex;

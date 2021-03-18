@@ -67,7 +67,7 @@ if (!isset($_SESSION['First_Name'])) {
                         </div>
                     </div>
                     <div class="time-checker">
-                        <label for="check-in-time" style="margin-left:-20px">Check In Time</label>
+                        <label for="check-in-time" style="margin-left:-60px">Check In Time</label>
                         <select name="check-in-time" id="check-in-time" style="padding:5px;border-radius:5px;border:none;margin-right:20px" onchange="showCheckOut(event)">
                             <option value="9.00">9.00 A.M.</option>
                             <option value="14.00">2.00 P.M.</option>
@@ -116,18 +116,19 @@ if (!isset($_SESSION['First_Name'])) {
                         </div>
                     </div>
                     <div class="select-rooms">
-                        <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:20px;">Selection Of Room</label>
+                        <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:15px;">Selection Of Room</label>
                         <input type="text" name="room-number" id="" style="padding:10px;" placeholder="Enter a Room Number">
                     </div>
                     <div class="form-page-fields">
-                        <div class="meal-selection-fields" style="margin-left:295px;margin-top:12px;width:250%">
-                            <label for="meal-selection" style="font-size:23px;margin-right:15px;font-weight:bold">Meal Selection</label>
-                            <select name="meal-selection" id="meal-type" onclick="selectMealType()" style="padding:10px">
+                        <div class="meal-selection-fields" style="margin-left:295px;margin-top:12px;width:250%;margin-left:575px;margin-top:-360px">
+                            <label for="meal-selection" style="font-size:20px;margin-right:15px;margin-bottom:5px;">Meal Selection</label><br>
+                            <select name="meal-selection" id="meal-type" onclick="selectMealType()" style="padding:7px;margin-top:5px">
                                 <option value="Set-Menu">Set Menu</option>
                                 <option value="Customized">Customized</option>
                             </select>
                         </div>
                     </div>
+
                     <input type="hidden" name="emailUser" value="<?php echo $_SESSION['User_Email']; ?>">
                     <div class="button-container-suite-form" style="margin-top:-60px;">
                         <input type="submit" name="Next" value="Next" id="next" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">

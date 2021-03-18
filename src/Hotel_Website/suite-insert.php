@@ -44,7 +44,7 @@ if (isset($_POST['Next'])) {
         while ($row = mysqli_fetch_assoc($selectTempBookingID)) {
             $stayingIn_ID = $row['StayingIn_ID'];
         }
-        header('location:stayingin-user-payment.php?temp_id=' . $stayingIn_ID . '');
+        header('location:stayingin-payment.php?temp_id=' . $stayingIn_ID . '');
     }
 }
 
