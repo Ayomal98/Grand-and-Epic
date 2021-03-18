@@ -1,4 +1,6 @@
 <?php include('../../config/connection.php');
+
+//entering the event details
 if (isset($_POST['event-details'])) {
     $additionalFeatures = implode(',', $_POST['additional']);
     $customerName = $_POST['customer-name'];
@@ -23,6 +25,7 @@ if (isset($_POST['event-details'])) {
     }
 }
 
+//selecting the mealss
 if (isset($_POST['Select_Meal'])) {
     $packageID = $_POST['packageID'];
     $eventsID = $_POST['eventsID'];

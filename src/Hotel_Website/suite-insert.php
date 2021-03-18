@@ -1,7 +1,7 @@
 <?php
 include('../../config/connection.php');
 
-//
+//room details
 if (isset($_POST['Next'])) {
     $occupancy = $_POST['occupancy-select'];
     $reservationType = $_POST['reservation-type'];
@@ -47,12 +47,19 @@ if (isset($_POST['Next'])) {
         header('location:stayingin-user-payment.php?temp_id=' . $stayingIn_ID . '');
     }
 }
+
+//entering the user details and total amount
 if (isset($_POST['BOOK_SUITE'])) {
     $firstName = $_POST['FName'];
     $lastName = $_POST['LName'];
     $contactNo = $_POST['ContactNo'];
     $address = $_POST['Address'];
     $city = $_POST['City'];
+    $total_amount = $_POST['Total_Amount'];
+    $advance_amount = $_POST['Advance_Amount'];
     $stayingIn_temp = $_POST['staying_in_temp'];
-    $insertUserDetails = mysqli_query($con, "INSERT into stayingin_user_details (User_FName,User_LName,Contact_No,Street,City,StayingIn_ID) VALUES('$firstName','$lastName','$contactNo','$address','$city','$stayingIn_temp')");
+    $insertUserDetails = mysqli_query($con, "INSERT into stayingin_user_details (User_FName,User_LName,Contact_No,Street,City,StayingIn_ID,Total_Amount,Advance_Amount) VALUES('$firstName','$lastName','$contactNo','$address','$city','$stayingIn_temp','$total_amount','$advance_amount')");
+    if ($insertUserDetails) {
+        header('location:stayingin-payment-payhere.php?user_book_id=' . $stayingIn_temp . '');
+    }
 }
