@@ -122,61 +122,61 @@ if (!isset($_SESSION['First_Name'])) {
 
 						<img src="../../public/images/loyalty.png" height="70%">
 					</td>
-	
-				
-				
+
+
+
 
 					<?php include("../../config/connection.php");
 
 					$query = "SELECT Context FROM promotions WHERE Promotion_type='Loyalty'";
 
 					$query_run = mysqli_query($con, $query);
-					while ($row = mysqli_fetch_array($query_run)) 
-			
-					 echo '<td>'.  $row["Context"].'</td>'; 
+					while ($row = mysqli_fetch_array($query_run))
 
-		?>
-		
-		</tr>
-	
-	
+						echo '<td>' .  $row["Context"] . '</td>';
 
-		<tr>
-			<td align="center">
-				<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
-		<?php		
-	include("../../config/connection.php");
-	if (isset($_POST['update'])) {
-		$Context = $_POST['Context'];
+					?>
 
-		$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
-		$query_run = mysqli_query($con, $query);
-		if ($query_run) {
-			echo '<script type="text/javascript">alert("Data updated successfully")</script>';
-			echo '<script>window.location.href="AdminAddPromotion.php"</script>';
-		} else {
-			echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
-			echo '<script>window.location.href=AdminAddPromotion.php"</script>';
-		}
-	}
+				</tr>
 
-	if (isset($_POST['delete'])) {
-		$query = "DELETE FROM promotions where Promotion_type='$_POST[Promotion_type]'";
-		$query_run = mysqli_query($con, $query);
-		if ($query_run) {
-			echo "<script>
+
+
+				<tr>
+					<td align="center">
+						<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
+						<?php
+						include("../../config/connection.php");
+						if (isset($_POST['update'])) {
+							$Context = $_POST['Context'];
+
+							$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
+							$query_run = mysqli_query($con, $query);
+							if ($query_run) {
+								echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+								echo '<script>window.location.href="AdminAddPromotion.php"</script>';
+							} else {
+								echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+								echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+							}
+						}
+
+						if (isset($_POST['delete'])) {
+							$query = "DELETE FROM promotions where Promotion_type='$_POST[Promotion_type]'";
+							$query_run = mysqli_query($con, $query);
+							if ($query_run) {
+								echo "<script>
                 alert('Promotion is successfully deleted');
                 window.location.href='AdminAddPromotion.php';
                 </script>";
-		} else {
-			echo '<script> alert("Deletion is not successful. Please try again") </script>';
-		}
-	}
+							} else {
+								echo '<script> alert("Deletion is not successful. Please try again") </script>';
+							}
+						}
 
 
-	?>
-					
-		
+						?>
+
+
 					</td>
 					<td align="center">
 						<input type="button" class="button" value="DELETE PROMOTION">
@@ -234,13 +234,13 @@ if (!isset($_SESSION['First_Name'])) {
 					<img src="../../public/images/point.png" height="50%">
 				</td>
 				<td>
-					<form>
+					<form action="PromotionAdd.php" method="POST">
 						<fieldset>
 							<legend style="color:white; font-size: 20px">New Promotion</legend>
 							<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
 								<tr>
 									<td align="left">Promotion Type: </td>
-									<td align="left"><select id="types" name="typelist" form="typeform">
+									<td align="left"><select id="types" name="typelist">
 											<option value="volvo">Loyalty Promotion</option>
 											<option value="saab">Last Minute Promotion</option>
 											<option value="opel">Seasonal Promotion</option>
@@ -266,7 +266,7 @@ if (!isset($_SESSION['First_Name'])) {
 									<td align="right">
 										<input type="submit" class="button" name="ADD" value="CREATE PROMOTION">
 										<input type="reset" class="button" value="  RESET " name="reset">
-										
+
 								</tr>
 							</table>
 						</fieldset>
@@ -299,7 +299,6 @@ if (!isset($_SESSION['First_Name'])) {
 				function funcCloseUserDetails() {
 					document.getElementById('user-detail-container').style.display = "none";
 				}
-			
 			</script>
 </body>
 
