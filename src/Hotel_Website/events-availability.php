@@ -2,13 +2,17 @@
 include('../../config/connection.php');
 $dateSelected = $_POST['dateSelected'];
 $datearray = $_POST['datearray'];
+$timeSlot = $_POST['timeslot'];
+$morningTime = $_POST['morningTime'];
+$afternoonTime = $_POST['afternoonTime'];
+$nightTime = $_POST['nightTime'];
+
 //find the existing bookings on that day
 $monthNum  = $datearray[1]; // to get the month number from array
 $day = $datearray[2];
+echo $timeSlot;
 $monthName = date('F', mktime(0, 0, 0, $monthNum, 10));
-echo $monthName;
-
-$getBookingsOnDay = "SELECT * FROM events_booking WHERE Reservation_Date=' $dateSelected '";
+$getBookingsOnDay = "SELECT * FROM events_booking WHERE Reservation_Date=' $dateSelected ' ";
 $exceceuteSearch = mysqli_query($con, $getBookingsOnDay);
 if (mysqli_num_rows($exceceuteSearch) > 0) {
     echo '<div><i class="fas fa-times-circle" style="position:absolute;top:5%;left:90%;color:black;font-size:20px;cursor:pointer" onclick="closeAvailability()"></i></div>
