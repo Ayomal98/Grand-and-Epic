@@ -9,11 +9,25 @@
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script>
-        // $(document).ready(function() {
-        //     $("#datefield").on("change", function() {
-        //         $("#check-availability-shower").load();
-        //     })
-        // })
+        $(document).ready(function() {
+            $("#datefield").on("change", function() {
+                var date = new Date($('#datefield').val());
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                var datearray = [year, month, day];
+                var dateSelected = [year, month, day].join('-');
+
+                $("#check-availability").click(function(e) {
+                    console.log(dateSelected);
+                    console.log(datearray)
+                    $("#check-availability-shower").load("events-availability.php", {
+                        dateSelected: dateSelected,
+                        datearray: datearray
+                    })
+                });
+            })
+        })
     </script>
 </head>
 
@@ -69,8 +83,8 @@
                     <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
-                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
-                    <div><i class="fas fa-times-circle" style="position:absolute;top:5%;left:90%;color:black;font-size:20px;cursor:pointer" onclick="closeAvailability()"></i></div>
+                <div class="check-availability-shower" id="check-availability-shower" style="background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
+                    <!-- <div><i class="fas fa-times-circle" style="position:absolute;top:5%;left:90%;color:black;font-size:20px;cursor:pointer" onclick="closeAvailability()"></i></div>
                     <div style="text-align: center;"><span style="color: black;font-weight:bolder;font-size:25px;position:absolute;top:12%;left:25%">26th November</span></div>
                     <table border="1px solid black" style="background-color: black;position:absolute;top:40%;left:10%;border-radius:5px;">
                         <thead>
@@ -103,9 +117,9 @@
                     <div style="color: black;position:absolute;right:8%;top:82%"><i class="fa fa-times"><span style="margin-left: 10px;">Not Available</span></i></div>
                     <div style="color: black;position:absolute;right:16%;top:92%"><i class="fas fa-check"><span style="margin-left: 5px;">Available</span></i></div>
                     <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
+                </div> -->
                 </div>
             </div>
-        </div>
     </form>
 
     <!-- <div class="meal-section" id="meal-section" style="display: none;">
@@ -138,7 +152,7 @@
         }
 
         function dateHandler(e) {
-            console.log(e.target.value);
+            // console.log(e.target.value);
         }
     </script>
 </body>

@@ -32,7 +32,7 @@
             }
         }
     } else if ($_GET['type'] == 'staying-in') {
-        $stayingInId = $_GET['order_id'];
+        $stayingInId = $_GET['id'];
         $selectTemp = mysqli_query($con, "SELECT * FROM stayingin_booking_temp WHERE StayingIn_ID='$stayingInId'");
         while ($rowStayingIn = mysqli_fetch_assoc($selectTemp)) {
             $occupancy = $rowStayingIn['Occupancy'];
@@ -52,10 +52,8 @@
             $paidAmountStayingIn = $totalAmountStayingIn * 0.2;
             $paymentSuccessStayingIn = mysqli_query($con, "INSERT into stayingin_booking (Occupancy,No_Occupants,No_Rooms,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price,Paid_Amount,Total_Amount) VALUES('$occupancy','$noOccupants','$noRooms','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice','$paidAmountStayingIn','$totalAmountStayingIn')");
             if ($paymentSuccessStayingIn) {
-                $deleteTempStayDetails = mysqli_query($con, "DELETE * FROM stayingin_booking_temp WHERE StayingIn_ID='$stayingInId'");
-                if (!$deleteTempStayDetails) {
-                    echo 'noo';
-                }
+                $deleteTempStayDetails =  "DELETE * FROM stayingin_booking_temp WHERE No_Occupants='$noOccupants'";
+                $excecuteDeleteStayTemp = mysqli_query($con, $deleteTempStayDetails);
             }
         }
     }

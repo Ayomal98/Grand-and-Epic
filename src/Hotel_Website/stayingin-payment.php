@@ -64,7 +64,7 @@
                                     <label for="" style="font-weight:bold">Total Amount * 20 % <br><br></label><span style="position: absolute;right:14%;top:70.5%;font-size:28px;font-weight:bolder">Rs.' . $advance_amount . '/=</span>
                                     <input type="hidden" name="Advance_Amount" value=' . $advance_amount . '>
                                     <input type="hidden" name="merchant_id" value="1215666"> <!-- Replace your Merchant ID -->
-                                    <input type="hidden" name="return_url" value="http://localhost/GRAND-AND-EPIC/src/Hotel_Website/payment-thanks.php?type=staying-in">
+                                    <input type="hidden" name="return_url" value="http://localhost/GRAND-AND-EPIC/src/Hotel_Website/payment-thanks.php?type=staying-in&id=' . $row["StayingIn_ID"] . '">
                                     <input type="hidden" name="cancel_url" value="abc.php">
                                     <input type="hidden" name="notify_url" value="abc.php">
                                     <input type="hidden" name="country" value="Sri Lanka">
