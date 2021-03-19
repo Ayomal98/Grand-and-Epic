@@ -84,7 +84,7 @@
             <div class="events-booking-wrapper">
                 <label for="type-of-reservation" style="font-size:25px;position:absolute;top:210px;left:12%">Reservation Type</label>
                 <i class="fas fa-glass-cheers" style="position: absolute;top:190px;left:17%"></i>
-                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:250px;left:15%;padding:5px;" onclick="getReservationType(event)">
+                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:250px;left:15%;padding:5px;" onclick="getReservationType(event)" required>
                     <option value="Wedding">Wedding</option>
                     <option value="Party">Party</option>
                 </select>
@@ -94,14 +94,14 @@
                 <div class="date-container">
                     <i class="fas fa-calendar-alt" style="position: absolute;top:185px;left:34%"></i>
                     <label for="Reservation-Date" " style=" font-size:25px;position:absolute;top:200px;left:30%;">Reservation Date</label><br>
-                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:240px;left:30%;padding:5px" onchange="dateHandler(event)">
+                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:240px;left:30%;padding:5px" onchange="dateHandler(event)" required>
                 </div>
                 <div class="time-details-events">
                     <i class="fas fa-clock" style="position: absolute;top:180px;left:64%;"></i>
                     <label for="time-container" style="position: absolute;top:200px;left:60%;font-size:25px">Time Period</label>
                     <div class="time-details-shower">
                         <label for="" style="position:absolute;top:250px;left:48%;font-size:25px;font-size:20px;"> Preferred Starting time-slot</label>
-                        <select style="position:absolute;top:280px;left:54%;padding:4px" name="preferred-timeslot" id="preferred-timeslot" onclick="timeShow(event)">
+                        <select style="position:absolute;top:280px;left:54%;padding:4px" name="preferred-timeslot" id="preferred-timeslot" onclick="timeShow(event)" required>
                             <option value="Morning">Morning</option>
                             <option value="Afternoon">Afternoon</option>
                             <option value="Night">Night</option>
@@ -119,9 +119,9 @@
                         </select>
                         <!-- <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:68%"> -->
                         <label for="" style="position:absolute;top:250px;left:74%;font-size:15px;font-size:15px;">Time Duration(In Hours)</label>
-                        <input type="number" min="1" max="4" style="position:absolute;top:280px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)">
+                        <input type="number" name="event-duration" min="1" max="4" style="position:absolute;top:280px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
                         <label for="" style="position: absolute;top:250px;left:87%;font-size:20px">Ending time</label>
-                        <input type="text" name="ending-time" id="ending-time" value="" style="position:absolute;top:280px;left:85.5%;padding:5px;width:120px">
+                        <input type="text" name="ending-time" id="ending-time" value="" style="position:absolute;top:280px;left:85.5%;padding:5px;width:120px" required>
                     </div>
                 </div>
             </div>
