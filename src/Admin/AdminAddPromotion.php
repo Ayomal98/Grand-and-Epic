@@ -124,7 +124,7 @@ if (!isset($_SESSION['First_Name'])) {
 					</td>
 
 
-
+					
 
 					<?php include("../../config/connection.php");
 
@@ -136,17 +136,16 @@ if (!isset($_SESSION['First_Name'])) {
 						echo '<td>' .  $row["Context"] . '</td>';
 
 					?>
+					<td><input type="text" name="Context" value="<?php echo $row['Context'] ?>" /></td>
 
 				</tr>
-
-
-
 				<tr>
 					<td align="center">
 						<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
 						<?php
 						include("../../config/connection.php");
 						if (isset($_POST['update'])) {
+							$Promotion_ID=$_POST['Promotion_ID'];
 							$Context = $_POST['Context'];
 
 							$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
@@ -192,14 +191,70 @@ if (!isset($_SESSION['First_Name'])) {
 						<img src="../../public/images/lastminute.png" height="70%">
 					</td>
 					<td align="center">
-						<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
+					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+					<?php include("../../config/connection.php");
+
+					$query = "SELECT Context FROM promotions WHERE Promotion_type='Last'";
+
+					$query_run = mysqli_query($con, $query);
+					while ($row = mysqli_fetch_array($query_run))
+
+						echo   $row["Context"];
+					?>
+					</textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						<?php include("../../config/connection.php");
+
+					$query = "SELECT Policies FROM promotions WHERE Promotion_type='Last'";
+
+					$query_run = mysqli_query($con, $query);
+					while ($row = mysqli_fetch_array($query_run))
+
+						echo   $row["Policies"];
+					?>
+					</textarea>
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="button" class="button" value="UPDATE PROMOTION">
-					</td>
+					<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
+					<?php echo "1" ?>
+						</td>
+						<?php
+						include("../../config/connection.php");
+						if (isset($_POST['update'])) {
+							$Context = $_POST['Context'];
+							$Policies=$_POST['Policies'];
+
+							$query = "UPDATE promotions SET Context='$Context',Policies='$Policies'WHERE Promotion_type='Last'";
+							$query_run = mysqli_query($con, $query);
+							if ($query_run) {
+								echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+								echo '<script>window.location.href="AdminAddPromotion.php"</script>';
+							} else {
+								echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+								echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+							}
+						}
+						?>
+					
 					<td align="center">
-						<input type="button" class="button" value="DELETE PROMOTION">
+					<input type="submit" class="button" name="delete" value="DELETE PROMOTION"> 
+						<?php
+						include("../../config/connection.php");
+						if (isset($_POST['delete'])) {
+							$query = "DELETE FROM promotions where Promotion_type='Last'";
+							$query_run = mysqli_query($con, $query);
+							if ($query_run) {
+								echo "<script>
+                alert('Promotion is successfully deleted');
+                window.location.href='AdminAddPromotion.php';
+                </script>";
+							} else {
+								echo '<script> alert("Deletion is not successful. Please try again") </script>';
+							}
+						}
+						?>
+
 					</td>
 				</tr>
 			</table>
@@ -211,7 +266,8 @@ if (!isset($_SESSION['First_Name'])) {
 						<img src="../../public/images/presents.jpeg" width="125" height="100">
 					</td>
 					<td align="center">
-						<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;"></textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;"></textarea>
 				</tr>
 				<tr>
 					<td align="center">
@@ -225,7 +281,7 @@ if (!isset($_SESSION['First_Name'])) {
 		</td>
 		</tr>
 
-		<table style="position:absolute; top : 650px; width:350px;width : 97%;">
+		<table style="position:absolute; top : 850px; width:350px;width : 97%;">
 			<tr>
 				<td>
 					<p style="font-family :Lato; font-size:20px; color :white;">To Create a new Promotion</p>
@@ -241,9 +297,9 @@ if (!isset($_SESSION['First_Name'])) {
 								<tr>
 									<td align="left">Promotion Type: </td>
 									<td align="left"><select id="types" name="typelist">
-											<option value="volvo">Loyalty Promotion</option>
-											<option value="saab">Last Minute Promotion</option>
-											<option value="opel">Seasonal Promotion</option>
+											<option value="Loyalty">Loyalty Promotion</option>
+											<option value="Last">Last Minute Promotion</option>
+											<option value="Seasonal">Seasonal Promotion</option>
 										</select>
 									</td>
 								</tr>
