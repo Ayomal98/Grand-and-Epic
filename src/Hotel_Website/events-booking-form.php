@@ -1,3 +1,4 @@
+<?php include('./time-inclusion.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +11,37 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            var morningTime = '';
+            var afternoonTime = '';
+            var nightTime = '';
+            $("#preferred-timeslot").on("change", function() {
+                var timeslot = $(this).find("option:selected").val();
+                console.log(timeslot);
+                if (timeslot === 'Morning') {
+                    $("#morning-times").on("change", function() {
+                        var timeSelected = $(this).find("option:selected");
+                        morningTime = timeSelected.val();
+                        console.log(morningTime);
+                        timeSelected = '';
+                    })
+                }
+                if (timeslot === 'Afternoon') {
+                    $("#afternoon-times").on("change", function() {
+                        var timeSelected = $(this).find("option:selected");
+                        afternoonTime = timeSelected.val();
+                        console.log(afternoonTime);
+                        timeSelected = '';
+                    })
+                }
+                if (timeslot === 'Night') {
+                    $("#dinner-times").on("change", function() {
+                        var timeSelected = $(this).find("option:selected").val();
+                        nightTime = timeSelected.val();
+                        console.log(nightTime)
+                        timeSelected = '';
+                    })
+                }
+            })
             $("#datefield").on("change", function() {
                 var date = new Date($('#datefield').val());
                 var day = date.getDate();
@@ -43,9 +75,9 @@
             <div class="events-booking-wrapper">
                 <label for="type-of-reservation" style="font-size:25px;position:absolute;top:210px;left:12%">Reservation Type</label>
                 <i class="fas fa-glass-cheers" style="position: absolute;top:190px;left:17%"></i>
-                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:250px;left:15%;padding:5px;">
-                    <option value="Weddings">Wedding</option>
-                    <option value="Parties">Party</option>
+                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:250px;left:15%;padding:5px;" onclick="getReservationType(event)">
+                    <option value="Wedding">Wedding</option>
+                    <option value="Party">Party</option>
                 </select>
 
             </div>
@@ -59,10 +91,25 @@
                     <i class="fas fa-clock" style="position: absolute;top:180px;left:64%;"></i>
                     <label for="time-container" style="position: absolute;top:200px;left:60%;font-size:25px">Time Period</label>
                     <div class="time-details-shower">
-                        <label for="" style="position:absolute;top:250px;left:52%;font-size:25px;font-size:20px;">Starting time</label>
-                        <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:52%">
-                        <label for="" style="position: absolute;top:250px;left:70%;font-size:20px">Ending time</label>
-                        <input type="time" name="ending-time" id="" style="position:absolute;top:280px;left:70%">
+                        <label for="" style="position:absolute;top:250px;left:48%;font-size:25px;font-size:20px;"> Preferred Starting time-slot</label>
+                        <select style="position:absolute;top:280px;left:54%;padding:4px" name="preferred-timeslot" id="preferred-timeslot" onclick="timeShow(event)">
+                            <option value="Morning">Morning</option>
+                            <option value="Afternoon">Afternoon</option>
+                            <option value="Night">Night</option>
+                        </select>
+                        <label for="" style="position:absolute;top:250px;left:68%;font-size:25px;font-size:20px;">Starting time</label>
+                        <select name="morning-time" style="position:absolute;top:280px;left:68%;display:none;padding:5px" id="morning-times">
+                            <?php echo getMorningTime(); ?>
+                        </select>
+                        <select name="afternoon-time" style="position:absolute;top:280px;left:68%;display:none;padding:5px" id="afternoon-times">
+                            <?php echo getAfternoonTime(); ?>
+                        </select>
+                        <select name="dinner-time" style="position:absolute;top:280px;left:68%;display:none;padding:5px" id="night-times">
+                            <?php echo getNightTime(); ?>
+                        </select>
+                        <!-- <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:68%"> -->
+                        <label for="" style="position: absolute;top:250px;left:80%;font-size:20px">Ending time</label>
+                        <input type="time" name="ending-time" id="" style="position:absolute;top:280px;left:80%">
                     </div>
                 </div>
             </div>
@@ -84,40 +131,6 @@
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
                 <div class="check-availability-shower" id="check-availability-shower" style="background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
-                    <!-- <div><i class="fas fa-times-circle" style="position:absolute;top:5%;left:90%;color:black;font-size:20px;cursor:pointer" onclick="closeAvailability()"></i></div>
-                    <div style="text-align: center;"><span style="color: black;font-weight:bolder;font-size:25px;position:absolute;top:12%;left:25%">26th November</span></div>
-                    <table border="1px solid black" style="background-color: black;position:absolute;top:40%;left:10%;border-radius:5px;">
-                        <thead>
-                            <tr>
-                                <th style="padding:5px">Starting Time</th>
-                                <th style="padding:5px">Ending Time</th>
-                                <th style="padding:5px">Availability</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="padding: 5px;">8.00 A.M</td>
-                                <td style="padding: 5px;">11.00 A.M</td>
-                                <td style="padding: 5px 10px;"><i class="fa fa-times" aria-hidden="true"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px;">12.00 P.M</td>
-                                <td style="padding: 5px;">3.00 P.M</td>
-                                <td style="padding: 5px 10px;"><i class="fa fa-times" aria-hidden="true"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 5px;">4.00 P.M</td>
-                                <td style="padding: 5px;">12.00 A.M</td>
-                                <td style="padding: 5px 10px;"><i class="fas fa-check"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div style="color: black;position:absolute;right:8%;top:82%"><i class="fa fa-times"><span style="margin-left: 10px;">Not Available</span></i></div>
-                    <div style="color: black;position:absolute;right:16%;top:92%"><i class="fas fa-check"><span style="margin-left: 5px;">Available</span></i></div>
-                    <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
-                </div> -->
                 </div>
             </div>
     </form>
@@ -151,8 +164,32 @@
             document.getElementById('check-availability-shower').style.display = 'none'
         }
 
+        function getReservationType(e) {
+            console.log(e.target.value)
+        }
+
         function dateHandler(e) {
             // console.log(e.target.value);
+        }
+
+        //to get the starting time-slot
+        function timeShow(e) {
+            var time_slot = e.target.value;
+            if (time_slot == "Morning") {
+                document.getElementById("morning-times").style.display = "inline-block";
+                document.getElementById("afternoon-times").style.display = "none";
+                document.getElementById("night-times").style.display = "none";
+            }
+            if (time_slot == "Afternoon") {
+                document.getElementById("afternoon-times").style.display = "inline-block";
+                document.getElementById("morning-times").style.display = "none";
+                document.getElementById("night-times").style.display = "none";
+            }
+            if (time_slot == "Night") {
+                document.getElementById("night-times").style.display = "inline-block";
+                document.getElementById("afternoon-times").style.display = "none";
+                document.getElementById("morning-times").style.display = "none";
+            }
         }
     </script>
 </body>
