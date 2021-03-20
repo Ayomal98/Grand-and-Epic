@@ -124,66 +124,36 @@ if (!isset($_SESSION['First_Name'])) {
 					</td>
 
 
-					
-
-					<?php include("../../config/connection.php");
-
-					$query = "SELECT Context FROM promotions WHERE Promotion_type='Loyalty'";
-
-					$query_run = mysqli_query($con, $query);
-					while ($row = mysqli_fetch_array($query_run))
-
-						echo '<td>' .  $row["Context"] . '</td>';
-
-					?>
-					<td><input type="text" name="Context" value="<?php echo $row['Context'] ?>" /></td>
+					<td align="center">
+					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+			
+					</textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+			
+					</textarea></td>
 
 				</tr>
+				
 				<tr>
 					<td align="center">
-						<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
-						<?php
-						include("../../config/connection.php");
-						if (isset($_POST['update'])) {
-							$Promotion_ID=$_POST['Promotion_ID'];
-							$Context = $_POST['Context'];
-
-							$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
-							$query_run = mysqli_query($con, $query);
-							if ($query_run) {
-								echo '<script type="text/javascript">alert("Data updated successfully")</script>';
-								echo '<script>window.location.href="AdminAddPromotion.php"</script>';
-							} else {
-								echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
-								echo '<script>window.location.href=AdminAddPromotion.php"</script>';
-							}
-						}
-
-						if (isset($_POST['delete'])) {
-							$query = "DELETE FROM promotions where Promotion_type='$_POST[Promotion_type]'";
-							$query_run = mysqli_query($con, $query);
-							if ($query_run) {
-								echo "<script>
-                alert('Promotion is successfully deleted');
-                window.location.href='AdminAddPromotion.php';
-                </script>";
-							} else {
-								echo '<script> alert("Deletion is not successful. Please try again") </script>';
-							}
-						}
-
-
-						?>
+					<form action="PromotionManage.php" method="POST">
+						<input type="hidden" class="button" name="update" value="<?php echo $row['Promotion_Type']?>">
+				
+						</form>
 
 
 					</td>
 					<td align="center">
-						<input type="button" class="button" value="DELETE PROMOTION">
+						<input type="hidden" class="button" name="delete" value="<?php echo $row['Promotion_Type']?>">
 					</td>
 				</tr>
 			</table>
+			
 
 		</td>
+
+		<!--LAST MINUTE-->
+
 		<td style="border: 1px solid white;">
 			<table width="100%">
 				<tr>
@@ -191,69 +161,18 @@ if (!isset($_SESSION['First_Name'])) {
 						<img src="../../public/images/lastminute.png" height="70%">
 					</td>
 					<td align="center">
-					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
-					<?php include("../../config/connection.php");
-
-					$query = "SELECT Context FROM promotions WHERE Promotion_type='Last'";
-
-					$query_run = mysqli_query($con, $query);
-					while ($row = mysqli_fetch_array($query_run))
-
-						echo   $row["Context"];
-					?>
+					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">			
 					</textarea>
 						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
-						<?php include("../../config/connection.php");
 
-					$query = "SELECT Policies FROM promotions WHERE Promotion_type='Last'";
-
-					$query_run = mysqli_query($con, $query);
-					while ($row = mysqli_fetch_array($query_run))
-
-						echo   $row["Policies"];
-					?>
 					</textarea>
 				</tr>
 				<tr>
 					<td align="center">
 					<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
-					<?php echo "1" ?>
 						</td>
-						<?php
-						include("../../config/connection.php");
-						if (isset($_POST['update'])) {
-							$Context = $_POST['Context'];
-							$Policies=$_POST['Policies'];
-
-							$query = "UPDATE promotions SET Context='$Context',Policies='$Policies'WHERE Promotion_type='Last'";
-							$query_run = mysqli_query($con, $query);
-							if ($query_run) {
-								echo '<script type="text/javascript">alert("Data updated successfully")</script>';
-								echo '<script>window.location.href="AdminAddPromotion.php"</script>';
-							} else {
-								echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
-								echo '<script>window.location.href=AdminAddPromotion.php"</script>';
-							}
-						}
-						?>
 					
 					<td align="center">
-					<input type="submit" class="button" name="delete" value="DELETE PROMOTION"> 
-						<?php
-						include("../../config/connection.php");
-						if (isset($_POST['delete'])) {
-							$query = "DELETE FROM promotions where Promotion_type='Last'";
-							$query_run = mysqli_query($con, $query);
-							if ($query_run) {
-								echo "<script>
-                alert('Promotion is successfully deleted');
-                window.location.href='AdminAddPromotion.php';
-                </script>";
-							} else {
-								echo '<script> alert("Deletion is not successful. Please try again") </script>';
-							}
-						}
-						?>
 
 					</td>
 				</tr>
@@ -266,8 +185,12 @@ if (!isset($_SESSION['First_Name'])) {
 						<img src="../../public/images/presents.jpeg" width="125" height="100">
 					</td>
 					<td align="center">
-						<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;"></textarea>
-						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;"></textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+				
+					</textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						</textarea>
+						
 				</tr>
 				<tr>
 					<td align="center">
@@ -290,7 +213,7 @@ if (!isset($_SESSION['First_Name'])) {
 					<img src="../../public/images/point.png" height="50%">
 				</td>
 				<td>
-					<form action="PromotionAdd.php" method="POST">
+					<form action="PromotionManage.php" method="POST">
 						<fieldset>
 							<legend style="color:white; font-size: 20px">New Promotion</legend>
 							<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
@@ -333,7 +256,7 @@ if (!isset($_SESSION['First_Name'])) {
 	</table>
 
 
-	<table style="position:absolute; top : 1000px; width:350px;width : 86%;margin-bottom: 100px;">
+	<table style="position:absolute; top : 1500px; width:350px;width : 86%;margin-bottom: 100px;">
 		<tr>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">To View Booking Analysis</p>
