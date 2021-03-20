@@ -89,7 +89,8 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 
-<form action="AdminAddContent.php" method="POST" enctype="multipart/form-data">
+<!--<form action="AdminAddContent.php" method="POST" enctype="multipart/form-data">-->
+<form method="POST" enctype="multipart/form-data">
 		<fieldset style=" position:absolute; top:280px; width: 98%;">
 			<legend style="color:white; font-size: 30px">Add New Post</legend>
 			<table style="width:100%; color:white; border: 1px solid white;">
@@ -108,11 +109,12 @@ if (!isset($_SESSION['First_Name'])) {
 					<td>Image </td>
 					<td align="center"><input type="file" accept="image/*" name="contentimage" id="fileToUpload" size="20"></td>
 				</tr>
-				
+				<form action="ConetntManage.php" method="POST">
 				<tr>
 					<td></td>
 					<td align="right">
-						<input type="button" class="button" value="ADD NEW POST">
+					<input type="submit" class="button" name="ADD" value="ADD NEW POST">
+
 						<input type="reset" class="button" value="  RESET " name="reset">
 					</td>
 				</tr>

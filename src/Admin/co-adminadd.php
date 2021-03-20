@@ -12,10 +12,11 @@ if (isset($_POST['ADD'])) {
     $userrole = 'Hotel Manager';
     $userType='Employee';
 
-    $sql = "INSERT into employee (Employee_ID,First_Name,Last_Name,Email,Password,Contact_No,User_Role) VALUES ('" . $empID . "','" . $empFname . "','" . $empSname . "','" . $empEmail . "','" . $empPass . "','" . $empContact . "','" . $userrole . "')";
-    $sql = "INSERT into login_table (Email,Password,User_Type) VALUES ('" . $empEmail . "','" . $empPass . "','" . $userType . "')";
+    $sql1 = "INSERT into employee (Employee_ID,First_Name,Last_Name,Email,Password,Contact_No,User_Role) VALUES ('" . $empID . "','" . $empFname . "','" . $empSname . "','" . $empEmail . "','" . $empPass . "','" . $empContact . "','" . $userrole . "')";
+    $sql2 = "INSERT into login_table (Email,Password,User_Type) VALUES ('" . $empEmail . "','" . $empPass . "','" . $userType . "')";
 
-    $query_run = mysqli_query($con,$sql);
+    $query_run = mysqli_query($con,$sql1);
+    $query_run = mysqli_query($con,$sql2);
 
     if ($query_run) {
 	echo "<script>
