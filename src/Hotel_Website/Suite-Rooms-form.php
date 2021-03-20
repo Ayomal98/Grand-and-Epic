@@ -404,15 +404,6 @@ if (!isset($_SESSION['First_Name'])) {
             document.getElementById('suite-form-header').classList.add('meal');
         }
 
-        //to open the items which were added to the cart
-        function openCart() {
-            document.getElementById('payment-shower').style.display = 'block';
-        }
-
-        //to close the view cart 
-        document.querySelector(".close").addEventListener("click", function() {
-            document.querySelector(".payment-shower").style.display = "none";
-        });
 
         //from meals to user & payment details('for next button')
         function userMealPayment() {

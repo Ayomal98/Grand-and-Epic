@@ -12,6 +12,7 @@
             background-image: url("../../public/images/suite-form-img.jpeg");
             background-repeat: no-repeat;
             background-size: cover;
+
         }
     </style>
 </head>
@@ -25,22 +26,13 @@
         </div>
 
         <div class="meal-type-selector">
-            <h4 style="margin-right: 20px;
-                        font-size: 25px;
-    width: 1810px;
-    margin-left:10px;color:white;">Breakfast</h4>
+            <h4 id="meal-header-breakfast" style="margin-right: 20px;font-size: 25px;width: 1810px;margin-left:10px;color:white;cursor:pointer" onclick="showBreakfastFood()">Breakfast</h4>
             <hr>
-            <h4 style="margin-right: 20px;
-                        font-size: 25px;
-    width: 1810px;
-    margin-left:10px">Lunch</h4>
+            <h4 id="meal-header-lunch" style="margin-right: 20px;font-size: 25px;width: 1810px;margin-left:10px;cursor:pointer" onclick="showLunchFood()">Lunch</h4>
             <hr>
-            <h4 style="margin-right: 20px;
-                        font-size: 25px;
-    width: 1810px;
-    margin-left:10px">Dinner</h4>
+            <h4 id="meal-header-dinner" style="margin-right: 20px;font-size: 25px;width: 1810px;margin-left:10px;cursor:pointer" onclick="showDinnerFood()">Dinner</h4>
         </div>
-        <div class="meal-selection" style="display: grid;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
+        <div class="meal-selection" id="breakfast-meal" style="display: grid;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
             <?php
             include('../../config/connection.php');
             $mealType = "Breakfast";
@@ -60,7 +52,48 @@
 
 
             ?>
+        </div>
+        <div class="meal-selection" id="lunch-meal" style="display:none;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
+            <?php
+            include('../../config/connection.php');
+            $mealType = "Lunch";
+            $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
+            if (mysqli_num_rows($selectBreakfastFood) > 0) {
+                while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
+                    echo '<div class="set-menu-meals-card">
+                                <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                                <input type="hidden" value="' . $rowBreakfast["Meal_Type"] . '">
+                                <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<span style="display: inline-block;font-weight:bolder;">LKR ' . $rowBreakfast["Price"] . '.00</span>
+                                    <div class="add-to-cart"><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
+                                </div>
+                
+                            </div>';
+                }
+            }
 
+
+            ?>
+        </div>
+        <div class="meal-selection" id="dinner-meal" style="display: none;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
+            <?php
+            include('../../config/connection.php');
+            $mealType = "Dinner";
+            $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
+            if (mysqli_num_rows($selectBreakfastFood) > 0) {
+                while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
+                    echo '<div class="set-menu-meals-card">
+                                <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                                <input type="hidden" value="' . $rowBreakfast["Meal_Type"] . '">
+                                <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<span style="display: inline-block;font-weight:bolder;">LKR ' . $rowBreakfast["Price"] . '.00</span>
+                                    <div class="add-to-cart"><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
+                                </div>
+                
+                            </div>';
+                }
+            }
+
+
+            ?>
         </div>
         <div class="view-items-cart" style="position: absolute;top:140px;right:20px;background-color:green;padding:10px;border-radius:10px;width:110px;height:40px;cursor:pointer;" onclick="openCart()"><span style="font-size:15px;color:white;">View Cart</span><i class="fas fa-shopping-cart" style="color:white;position:absolute;right:10px;"></i></div>
         <div class="payment-shower" style="display: none;" id="payment-shower">
@@ -91,5 +124,53 @@
     </div>
 
 </body>
+<script>
+    //to open the items which were added to the cart
+    function openCart() {
+        document.getElementById('payment-shower').style.display = 'block';
+    }
+
+    //to close the view cart 
+    document.querySelector(".close").addEventListener("click", function() {
+        document.querySelector(".payment-shower").style.display = "none";
+    });
+
+    //to show the breakfast food
+    function showBreakfastFood() {
+        document.getElementById("breakfast-meal").style.display = "grid";
+        document.getElementById("lunch-meal").style.display = "none";
+        document.getElementById("dinner-meal").style.display = "none";
+
+        //to change the header color of Breakfast
+        document.getElementById("meal-header-breakfast").style.color = "white"
+        document.getElementById("meal-header-lunch").style.color = "black"
+        document.getElementById("meal-header-dinner").style.color = "black"
+
+    }
+
+    //to show the lunch food
+    function showLunchFood() {
+        document.getElementById("breakfast-meal").style.display = "none";
+        document.getElementById("lunch-meal").style.display = "grid";
+        document.getElementById("dinner-meal").style.display = "none";
+
+        //to change the header color of Breakfast
+        document.getElementById("meal-header-breakfast").style.color = "black"
+        document.getElementById("meal-header-lunch").style.color = "white"
+        document.getElementById("meal-header-dinner").style.color = "black"
+    }
+
+    //to show the Dinner food
+    function showDinnerFood() {
+        document.getElementById("breakfast-meal").style.display = "none";
+        document.getElementById("lunch-meal").style.display = "none";
+        document.getElementById("dinner-meal").style.display = "grid";
+
+        //to change the header color of Breakfast
+        document.getElementById("meal-header-breakfast").style.color = "black"
+        document.getElementById("meal-header-lunch").style.color = "black"
+        document.getElementById("meal-header-dinner").style.color = "white"
+    }
+</script>
 
 </html>
