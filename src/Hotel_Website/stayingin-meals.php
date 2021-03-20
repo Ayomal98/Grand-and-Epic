@@ -1,3 +1,34 @@
+<?php
+include("../../config/connection.php");
+session_start();
+if (isset($_POST['Add-to-cart'])) {
+    $meals_array;
+    if (!isset($_SESSION["meal_cart"])) {
+        $meals_array = array(
+            'meal_id' => $_POST["Meal_ID"],
+            'meal_name' => $_POST["Meal_Name"],
+            'meal_price' => $_POST["Meal_Price"],
+            'meal_type' => $_POST["Meal_Type"],
+            'quantity' => 1
+        );
+        $_SESSION["meal_cart"][0] = $meals_array;
+    } else {
+        if (!in_array($_POST["Meal_ID"], $meals_array)) {
+            $meal_id = array_column($_SESSION["meal_cart"], 'meal_id');
+            $count = count($_SESSION['meal_cart']);
+            $meals_array = array(
+                'meal_id' => $_POST["Meal_ID"],
+                'meal_name' => $_POST["Meal_Name"],
+                'meal_price' => $_POST["Meal_Price"],
+                'meal_type' => $_POST["Meal_Type"],
+                'quantity' => 1
+            );
+            $_SESSION['meal_cart'][$count] = $meals_array;
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,14 +70,21 @@
             $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
             if (mysqli_num_rows($selectBreakfastFood) > 0) {
                 while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
-                    echo '<div class="set-menu-meals-card">
-                                <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                                <input type="hidden" value="' . $rowBreakfast["Meal_Type"] . '">
-                                <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<span style="display: inline-block;font-weight:bolder;">LKR ' . $rowBreakfast["Price"] . '.00</span>
-                                    <div class="add-to-cart"><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
-                                </div>
-                
-                            </div>';
+                    echo '
+                            <div class="set-menu-meals-card" style="position:relative">
+                                <form action="" method="POST">
+                                    <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                                    <input type="hidden" name="Meal_ID" value="' . $rowBreakfast["Meals_ID"] . '">
+                                    <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
+                                    <input type="hidden" name="Meal_Price" value="' . $rowBreakfast["Price"] . '">
+                                    <input type="hidden" name="Meal_Name" value="' . $rowBreakfast["Meals_Name"] . '">
+                                    <input type="hidden" name="Meal_Price" value="' . $rowBreakfast["Price"] . '">
+                                    <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<br><span style="position:absolute;top:215px;font-weight:bolder;left:80px">LKR ' . $rowBreakfast["Price"] . '.00</span>
+                                        <div class="add-to-cart"><input type="submit" name="Add-to-cart" value="Add to Cart" style="position:absolute;background-color:green;color:white;padding:10px;border:none;border-radius:5px;bottom:10px;left:80px"></div>
+                                    </div>
+                                </form>
+                            </div>
+                           ';
                 }
             }
 
@@ -60,14 +98,15 @@
             $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
             if (mysqli_num_rows($selectBreakfastFood) > 0) {
                 while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
-                    echo '<div class="set-menu-meals-card">
+                    echo '<form action="" method="POST">
+                            <div class="set-menu-meals-card">
                                 <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                                <input type="hidden" value="' . $rowBreakfast["Meal_Type"] . '">
+                                <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
                                 <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<span style="display: inline-block;font-weight:bolder;">LKR ' . $rowBreakfast["Price"] . '.00</span>
-                                    <div class="add-to-cart"><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
+                                    <div class="add-to-cart"><input type="submit" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                                 </div>
-                
-                            </div>';
+                            </div>
+                           </form>';
                 }
             }
 
@@ -81,14 +120,15 @@
             $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
             if (mysqli_num_rows($selectBreakfastFood) > 0) {
                 while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
-                    echo '<div class="set-menu-meals-card">
+                    echo '<form action="" method="POST">
+                            <div class="set-menu-meals-card">
                                 <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
-                                <input type="hidden" value="' . $rowBreakfast["Meal_Type"] . '">
+                                <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
                                 <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<span style="display: inline-block;font-weight:bolder;">LKR ' . $rowBreakfast["Price"] . '.00</span>
                                     <div class="add-to-cart"><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
                                 </div>
-                
-                            </div>';
+                            </div>
+                          </form>';
                 }
             }
 
@@ -99,13 +139,21 @@
         <div class="payment-shower" style="display: none;" id="payment-shower">
             <div class="close">+</div>
             <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Added Items</h1>
-            <div style="display: inline-block;padding:10px;border-radius:5px;margin-top:30px;border:1px solid black;margin-left:5px;margin-right:5px">
-                <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
+            <?php
+            if (!empty($_SESSION['meal_cart'])) {
+                $total = 0;
+                foreach ($_SESSION['meal_cart'] as $keys => $values) {
 
-                <span style="font-size: 10px;font-weight:bolder">String Hoppers with Chicken 3 plates</span>
-                <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
-            </div>
-            <div style="display: inline-block;padding:10px;border-radius:5px;margin-top:15px;border:1px solid black;margin-left:5px;margin-right:5px">
+                    echo '<div style="display: inline-block;padding:10px;border-radius:5px;margin-top:30px;border:1px solid black;margin-left:5px;margin-right:5px">
+                        <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
+        
+                        <span style="font-size: 10px;font-weight:bolder">' . $values["meal_name"] . '</span>
+                        <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
+                    </div>';
+                };
+            }
+            ?>
+            <!-- <div style="display: inline-block;padding:10px;border-radius:5px;margin-top:15px;border:1px solid black;margin-left:5px;margin-right:5px">
                 <span style="font-weight: bolder;font-size:20px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">-</span>
                 <span style="font-size: 10px;font-weight:bolder">Noodles with Chicken Devilled curry 2 plates</span>
                 <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
@@ -114,7 +162,7 @@
                 <span style="font-weight: bolder;font-size:20px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">-</span>
                 <span style="font-size: 10px;font-weight:bolder">Pineapple Pudding</span>
                 <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
-            </div>
+            </div> -->
         </div>
         <div style="width:100px;border-radius:5px; padding:8px;font-size:10px;background-color:green;color:white;border:none;position:absolute;top:140px;left:200px;padding:10px;border-radius:10px;width:200px;height:40px;font-size:15px;">Search Food<i class="fas fa-search" style="color: white;margin-left:10px;cursor:pointer;"></i></div>
         <div class="button-container-suite-form" style="margin-top:20px;margin-left:30%;">

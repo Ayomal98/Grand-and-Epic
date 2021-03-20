@@ -132,7 +132,7 @@ if (!isset($_SESSION['First_Name'])) {
                     <input type="hidden" name="emailUser" value="<?php echo $_SESSION['User_Email']; ?>">
                     <div class="button-container-suite-form" style="margin-top:-60px;">
                         <input type="submit" name="Next" value="Next" id="next" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
-                        <input type="button" value="Meal Selection" id="meal-selection" style="display:none;padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
+                        <input type="submit" name="Meal-Selection" value="Meal Selection" id="meal-selection" style="display:none;padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
                 </div>
             </form>
