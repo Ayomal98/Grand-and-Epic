@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suite Room Form</title>
+    <title>User Details & Room Payment</title>
     <style>
         body {
             background-image: url("../../public/images/suite-form-img.jpeg");
