@@ -153,7 +153,7 @@ if (!isset($_SESSION['First_Name'])) {
 		</td>
 
 		<!--LAST MINUTE-->
-
+<form action="PromotionManage.php" method="POST" >
 		<td style="border: 1px solid white;">
 			<table width="100%">
 				<tr>
@@ -169,7 +169,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 				<tr>
 					<td align="center">
-					<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
+					<input type="submit" class="button" name="update-lastminute" value="UPDATE PROMOTION">
 						</td>
 					
 					<td align="center">
@@ -178,6 +178,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 			</table>
 		</td>
+		<form action="PromotionManage.php" method="POST" >
 		<td style="border: 1px solid white;">
 			<table width="100%">
 				<tr>
@@ -185,16 +186,24 @@ if (!isset($_SESSION['First_Name'])) {
 						<img src="../../public/images/presents.jpeg" width="125" height="100">
 					</td>
 					<td align="center">
-						<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<?php
+						include("../../config/connection.php");
+						$query = "SELECT Context FROM promotions where Promotion_type='Seasonal'";
+					$query_run = mysqli_query($con, $query);
+					while ($row = mysqli_fetch_array($query_run))
+                    echo   $row["Context"];
+                    //echo   $row["Policies"];
+					?>
 				
 					</textarea>
-						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						<textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
 						</textarea>
-						
+						<input type="hidden" name="type" value="Seasonal">
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="button" class="button" value="UPDATE PROMOTION">
+						<input type="submit" class="button" name="update" value="update">
 					</td>
 					<td align="center">
 						<input type="button" class="button" value="DELETE PROMOTION">
@@ -202,6 +211,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 			</table>
 		</td>
+		</form>
 		</tr>
 
 		<table style="position:absolute; top : 850px; width:350px;width : 97%;">
