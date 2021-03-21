@@ -66,6 +66,31 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     }
 }
 
+if (isset($_POST['user-meals'])) {
+    $total_price = $_POST['total_price'];
+    $temp_id = $_POST['temp_id'];
+    session_start();
+    $meals_arr = array(); //meal array that going to send to the db
+    $quantity_arr = array();
+    $selectedMeals = $_SESSION['meal_cart'];
+    foreach ($selectedMeals as $meal) {
+        foreach ($meal as $keys => $values) {
+            if ($keys == 'meal_name') {
+                array_push($meals_arr, $values);
+            }
+            if ($keys == 'quantity') {
+                array_push($quantity_arr, $values);
+            }
+            // echo $keys . ':' . $values . '<br>';
+        }
+    }
+    $serializedMealsArr = serialize($meals_arr); //serialize meals array in order to send it to the db 
+    $serializedQuantityArr = serialize($quantity_arr);
+    $insertCustomizeMealDetails = mysqli_query($con, "INSERT into customize_meals_stayingin (Selected_Meal_Names,Selected_Meals_Quantity,Total_Price,Stayingin_booking_id) VALUES('" . $serializedMealsArr . "','" . $serializedQuantityArr . "','$total_price','$temp_id')");
+    if ($insertCustomizeMealDetails) {
+        header('location:stayingin-payment.php?temp_id=' . $temp_id . '');
+    }
+}
 
 //entering the user details and total amount
 if (isset($_POST['BOOK_SUITE'])) {

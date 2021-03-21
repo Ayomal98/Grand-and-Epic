@@ -196,10 +196,13 @@ if (isset($_GET["action"])) {
                 </table>
             </div>
         </div>
-        <div class="button-container-suite-form" style="margin-top:20px;margin-left:30%;">
-            <input type="button" value="Back" id="room-details-availability" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:30px;" onclick="roomDetails()">
-            <input type="button" value="Next" id="user-payment-details" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;" onclick="userMealPayment()">
-        </div>
+        <form action="suite-insert.php" method="POST">
+            <div class="button-container-suite-form" style="margin-top:20px;margin-left:30%;">
+                <input type="hidden" name="total_price" value="<?php echo $total ?>">
+                <input type="hidden" name="temp_id" value="<?php echo $temp_id ?>">
+                <input type="button" value="Back" id="room-details-availability" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:30px;" onclick="roomDetails()">
+                <input type="submit" value="Next" name="user-meals" id="user-payment-details" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;" onclick="userMealPayment()">
+            </div>
     </div>
 
 </body>
