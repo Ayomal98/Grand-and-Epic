@@ -112,8 +112,7 @@ if (!isset($_SESSION['First_Name'])) {
                         </div>
                     </div>
                     <div class="select-rooms">
-                        <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:15px;">Selection Of Room</label>
-                        <input type="text" name="room-number" id="" style="padding:10px;" placeholder="Enter a Room Number">
+                        <!-- <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:15px;">Selection Of Room</label> -->
                     </div>
                     <div class="form-page-fields">
                         <div class="meal-selection-fields" style="margin-left:295px;margin-top:12px;width:250%;margin-left:575px;margin-top:-360px">
@@ -197,7 +196,21 @@ if (!isset($_SESSION['First_Name'])) {
                 console.log('please add eligible amount number of rooms');
             } else {
                 document.getElementById("entered-no").innerText = " ";
+                var select_R = document.querySelector('.select-rooms');
+                select_R.innerHTML = ""
+                for (let i = 1; i <= enteredRoomsNo; i++) {
+                    console.log(i);
+                    var newInput = document.createElement("input");
+                    newInput.setAttribute("type", "text");
+                    newInput.setAttribute("name", "room-number");
+                    newInput.setAttribute("placeholder", "Room " + i);
+                    newInput.style.padding = '5px'
+                    select_R.appendChild(newInput);
+                    select_R.appendChild(document.createElement("br"));
+
+                }
             }
+
         }
 
         //show the checkout time details according to given check-in details
