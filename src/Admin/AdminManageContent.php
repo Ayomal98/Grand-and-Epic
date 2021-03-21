@@ -90,28 +90,27 @@ if (!isset($_SESSION['First_Name'])) {
 
 	<!--<form action="AdminAddContent.php" method="POST" enctype="multipart/form-data">-->
 	<form action="ContentManage.php" method="POST" enctype="multipart/form-data">
-		<fieldset style=" position:absolute; top:280px; width: 98%;">
+		<fieldset style=" position:absolute; top:280px; left:50px; width: 35%;">
 			<legend style="color:white; font-size: 30px">Add New Post</legend>
 			<table style="width:100%; color:white; border: 1px solid white;">
 				<tr>
 					<th align="center" style="font-size:20px">Heading</th>
 
-					<td align="center"><textarea name="Heading" rows="1" cols="50" placeholder="Add Heading here:"></textarea></td>
+					<td align="center"><textarea name="Heading" rows="2" cols="50" placeholder="Add Heading here:"></textarea></td>
 				</tr>
 				<tr>
 					<th align="center" style="font-size:20px">Content</th>
+				
+					<td align="center"><textarea name="Content" rows="15" cols="50" placeholder="Add Content here:"></textarea></td>
 				</tr>
 				<tr>
-					<td align="center"><textarea name="Content" rows="15" cols="53" placeholder="Add Content here:"></textarea></td>
-				</tr>
-				<tr>
-					<td>Image </td>
-					<td align="center"><input type="file" accept="image/*" name="contentimage" id="fileToUpload"></td>
+				<th align="center" style="font-size:20px">Image</th>
+					<td align="left"><input type="file" accept="image/*" name="contentimage" id="fileToUpload"></td>
 				</tr>
 
 				<tr>
 					<td></td>
-					<td align="right">
+					<td align="left">
 						<input type="submit" class="button" name="ADD" value="ADD NEW POST">
 
 						<input type="reset" class="button" value="  RESET " name="reset">
@@ -121,36 +120,84 @@ if (!isset($_SESSION['First_Name'])) {
 		</fieldset>
 	</form>
 
+<!--VIEW-->
 	<form>
-		<fieldset style=" position:absolute; top:900px; width: 98%;">
+		<fieldset style=" position:absolute; top:280px;left:650px; width: 45%;">
 			<legend style="color:white; font-size: 30px">Past Posts</legend>
 			<table style="width:100%; color:white; border: 1px solid white;">
-				<tr>
-					<th align="left" style="font-size:20px">Post 1</th>
-				</tr>
-				<tr>
+	
+			<?php include("../../config/connection.php");
+
+$query = "SELECT * FROM content WHERE Content_ID='2'";
+$query_run = mysqli_query($con, $query);
+while ($row = mysqli_fetch_array($query_run)) {
+
+?>
+	<tr><input type="text" name="Content_ID" value="<?php echo $row['Content_ID'] ?>" /></tr>
+	<tr><input type="text" name="Heading" value="<?php echo $row['Heading'] ?>" /></tr>
+	<tr><input type="text" name="Content" value="<?php echo $row['Content'] ?>" /></tr>
+			
+
+<?php
+}
+?>
+				
 					<td align="left">
-						<p><b>
-								In GRAND AND EPIC, amongst the mesmarizing hill side of Sri Lanka, you may find the most
-								extravagent room in the most possible elegant way.
-								Want to have a cool shower amidst the Jungle, To read a book listening to the musical
-								fiesta of birds flying by,
-								to have a cup of tea experiencing the calmness of the Greenery.
-							</b></p>
-					</td>
-					<td>
-						<img src="../../public/images/content2.jpg" height="350" width="500">
-					</td>
-				</tr>
-				<tr></tr>
-				<tr>
-					<td align="left">
-						<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>
+					<?php
+					include("../../config/connection.php");
+
+					$next = mysqli_query($mysqli, "SELECT * FROM content WHERE Content_ID>$Content_ID order by Content_ID ASC");
+					if($row = mysqli_fetch_array($next))
+					{
+					  echo '<a href="AdminManageContent.php"?Content_ID='.$row['Content_ID'].'"><button class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>';
+					} 
+					
+					?>
+						<!--<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>-->
 						<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&raquo;</a>
 					</td>
+					<form action="" method="POST">
 					<td align="right">
-						<input type="button" class="button" value="EDIT POST">
-						<input type="button" class="button" value="DELETE POST">
+						<input type="submit" class="button" name="update" value="EDIT POST">
+						<?php
+						include("../../config/connection.php");
+						if (isset($_POST['update'])) {
+							$Heading=$_POST['Heading'];
+							$Content = $_POST['Content'];
+                            $query = "UPDATE content SET Heading='$Heading',Content='$Content' where Content_ID=' $Content_ID '";
+							$query_run = mysqli_query($con, $query);
+							if ($query_run) {
+								echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+								echo '<script>window.location.href="AdminAddPromotion.php"</script>';
+							} else {
+								echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+								echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+							}
+						}
+						?>
+						</td>
+						</form>
+						<td>
+						<input type="submit" class="button" name="delete" value="DELETE POST">
+						<?php
+						include("../../config/connection.php");
+						if (isset($_POST['delete'])) {
+		$query = "DELETE FROM content where Content_ID='$_POST[Content_ID]'";
+		$query_run = mysqli_query($con, $query);
+		if ($query_run) {
+			echo "<script>
+                alert('Content Has been Deleted');
+                window.location.href='AdminManageContent.php';
+                </script>";
+				}
+			 else 
+			 {
+			echo '<script> alert("Content has been not deleted") 
+			</script>';
+
+			}
+		}
+		?>
 					</td>
 				</tr>
 			</table>
