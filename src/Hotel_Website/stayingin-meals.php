@@ -13,8 +13,8 @@ if (isset($_POST['Add-to-cart'])) {
         );
         $_SESSION["meal_cart"][0] = $meals_array;
     } else {
-        if (!in_array($_POST["Meal_ID"], $meals_array)) {
-            $meal_id = array_column($_SESSION["meal_cart"], 'meal_id');
+        $meal_array_id = array_column($_SESSION["meal_cart"], 'meal_id');
+        if (!in_array($_POST["Meal_ID"], $meal_array_id)) {
             $count = count($_SESSION['meal_cart']);
             $meals_array = array(
                 'meal_id' => (int) $_POST["Meal_ID"],
@@ -24,7 +24,6 @@ if (isset($_POST['Add-to-cart'])) {
                 'quantity' => $_POST["Meal_Quantity"]
             );
             $_SESSION['meal_cart'][$count] = $meals_array;
-            echo var_dump($_SESSION["meal_cart"]);
             echo $count;
         } else {
             echo '<script>alert("Meal has been already added")</script>';
