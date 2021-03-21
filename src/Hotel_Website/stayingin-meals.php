@@ -1,4 +1,5 @@
 <?php
+$temp_id = $_GET['temp_id'];
 include("../../config/connection.php");
 session_start();
 if (isset($_POST['Add-to-cart'])) {
@@ -24,9 +25,22 @@ if (isset($_POST['Add-to-cart'])) {
                 'quantity' => $_POST["Meal_Quantity"]
             );
             $_SESSION['meal_cart'][$count] = $meals_array;
-            echo $count;
         } else {
-            echo '<script>alert("Meal has been already added")</script>';
+            echo '<script>alert("Meal has been already added")
+                  window.location.href="stayingin-meals.php"</script>
+                ';
+        }
+    }
+}
+if (isset($_GET["action"])) {
+    if ($_GET["action"] == 'Delete') {
+        foreach ($_SESSION['meal_cart'] as $keys => $values) {
+            if ($values["meal_id"] == $_GET["remove_id"]) {
+                unset($_SESSION['meal_cart'][$keys]);
+
+                echo '<script>alert("Prduct has been removed")
+                              window.location.href="stayingin-meals.php?temp_id=' . $_GET['temp_id'] . '"</script>';
+            }
         }
     }
 }
@@ -74,7 +88,7 @@ if (isset($_POST['Add-to-cart'])) {
                 while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
                     echo '
                             <div class="set-menu-meals-card" style="position:relative">
-                                <form action="stayingin-meals.php" method="POST">
+                                <form action="" method="POST">
                                     <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                                     <input type="hidden" name="Meal_ID" value="' . $rowBreakfast["Meals_ID"] . '">
                                     <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
@@ -141,45 +155,47 @@ if (isset($_POST['Add-to-cart'])) {
             ?>
         </div>
         <div class="view-items-cart" style="position: absolute;top:140px;right:20px;background-color:green;padding:10px;border-radius:10px;width:110px;height:40px;cursor:pointer;" onclick="openCart()"><span style="font-size:15px;color:white;">View Cart</span><i class="fas fa-shopping-cart" style="color:white;position:absolute;right:10px;"></i></div>
-        <div class="payment-shower" style="display: none;" id="payment-shower">
-            <div class="close">+</div>
-            <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Meal Cart</h1>
-            <?php
-            if (!empty($_SESSION['meal_cart'])) {
-                $total = 0;
-                foreach ($_SESSION['meal_cart'] as $keys => $values) {
-                    $total += $values["meal_price"];
-                    echo '<div style="display: inline-block;padding:10px;border-radius:5px;margin-top:30px;border:1px solid black;margin-left:5px;margin-right:5px">
-                        <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
-        
-                        <span style="font-size: 10px;font-weight:bolder">' . $values["meal_name"] . '</span>
-                        <span style="font-size: 10px;font-weight:bolder">' . $values["quantity"] . '</span>
-                        <span style="font-size: 10px;font-weight:bolder">' . $values["meal_price"] . '</span>
-                        <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
-                    </div>                  ';
-                };
-                echo '<span>Total Price For Meal is Rs.' . $total . '.00/=';
-            } else {
-                echo '<div style="display: inline-block;padding:10px;border-radius:5px;margin-top:30px;border:1px solid black;margin-left:5px;margin-right:5px">
+        <div class="bg-modal">
+            <div class="modal-content-meal-selection-stayingin" style="display: none;" id="payment-shower">
+                <div class="close">+</div>
+                <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Meal Cart</h1>
+                <table style="border:1px solid black;margin-top:20px;margin-left:40px">
+                    <thead>
+                        <tr>
+                            <th style="border:1px solid black;padding:5px">Meal Name</th>
+                            <th style="border:1px solid black;padding:5px">Quantity</th>
+                            <th style="border:1px solid black;padding:5px">Meal Price</th>
+                            <th style="border:1px solid black;">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if (!empty($_SESSION['meal_cart'])) {
+                            $total = 0;
+                            foreach ($_SESSION['meal_cart'] as $keys => $values) {
+                                $total += $values["meal_price"];
+                                echo '<tr style="border:1px solid black;">
+                                
+                                <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["meal_name"] . '</span>
+                                <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["quantity"] . '</span>
+                                <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["meal_price"] . '</span>
+                                <td style="border:1px solid black;padding:5px"><a href="stayingin-meals.php?action=Delete&remove_id=' . $values['meal_id'] . '&temp_id=' . $temp_id . '"><span style="font-weight: bolder;font-size:15px;padding:1px 2px;border:1px solid black;cursor:pointer;background-color:green;color:white;">-</span></td>
+                                     </tr>';
+                            };
+                            echo '</table><br><br><span style="font-weight:bold;font-size:20px">Total Price For Meal is Rs.' . $total . '.00/=';
+                        } else {
+                            echo '
                         <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
         
                         <span style="font-size: 10px;font-weight:bolder">No Meals has been added</span>
                         <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
                     </div>';
-            }
-            ?>
-            <!-- <div style="display: inline-block;padding:10px;border-radius:5px;margin-top:15px;border:1px solid black;margin-left:5px;margin-right:5px">
-                <span style="font-weight: bolder;font-size:20px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">-</span>
-                <span style="font-size: 10px;font-weight:bolder">Noodles with Chicken Devilled curry 2 plates</span>
-                <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
-            <div style="display: inline-block;padding:10px;border-radius:5px;margin-top:15px;border:1px solid black;margin-left:5px;margin-right:5px">
-                <span style="font-weight: bolder;font-size:20px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">-</span>
-                <span style="font-size: 10px;font-weight:bolder">Pineapple Pudding</span>
-                <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
-            </div> -->
         </div>
-        <div style="width:100px;border-radius:5px; padding:8px;font-size:10px;background-color:green;color:white;border:none;position:absolute;top:140px;left:200px;padding:10px;border-radius:10px;width:200px;height:40px;font-size:15px;">Search Food<i class="fas fa-search" style="color: white;margin-left:10px;cursor:pointer;"></i></div>
         <div class="button-container-suite-form" style="margin-top:20px;margin-left:30%;">
             <input type="button" value="Back" id="room-details-availability" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:30px;" onclick="roomDetails()">
             <input type="button" value="Next" id="user-payment-details" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;" onclick="userMealPayment()">
@@ -190,12 +206,17 @@ if (isset($_POST['Add-to-cart'])) {
 <script>
     //to open the items which were added to the cart
     function openCart() {
+        document.querySelector('.bg-modal').style.display = "flex";
         document.getElementById('payment-shower').style.display = 'block';
+
     }
 
     //to close the view cart 
     document.querySelector(".close").addEventListener("click", function() {
-        document.querySelector(".payment-shower").style.display = "none";
+        document.getElementById("payment-shower").style.display = "none";
+        document.querySelector('.bg-modal').style.display = "none";
+
+
     });
 
     //to show the breakfast food

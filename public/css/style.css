@@ -614,6 +614,15 @@ input:focus{
   padding: 20px;
   position: relative;
 }
+.modal-content-meal-selection-stayingin {
+  width: 750px;
+  height: 750px;
+  background-color:white;
+  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
 
 .modal-content .signup {
   width: 500px;
