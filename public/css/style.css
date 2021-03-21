@@ -1693,7 +1693,7 @@ form.staying-in-form > label {
 .suite-form-details form .form-page .form-page-fields{
   height: 45px;
   width: 330px;
-  margin:45px 0;
+  margin:50px 0;
 }
 
 
@@ -1777,13 +1777,14 @@ form.staying-in-form > label {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   margin-left: -400px;
-  margin-top: -100px;
+  margin-top: -145px;
 }
 .suite-icon{
   display: flex;
   flex-direction: column;
   margin-right: 100px;
   font-size:25px;
+  margin-top: 5px;
 }
 span.suite-icon-label {
   font-size: 20px;

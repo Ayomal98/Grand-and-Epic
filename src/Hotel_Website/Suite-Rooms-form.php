@@ -22,6 +22,42 @@ if (!isset($_SESSION['First_Name'])) {
     </style>
     <link rel="stylesheet" href="../../public/css/style.css">
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $("#check-in-date").on("input", function() {
+                var checkInDate = new Date($('#check-in-date').val());
+                var checkInDay = checkInDate.getDate();
+                var checkInMonth = checkInDate.getMonth() + 1;
+                var checkInYear = checkInDate.getFullYear();
+                var checkIndatearray = [checkInYear, checkInMonth, checkInDay];
+                var checkIndateSelected = [checkInYear, checkInMonth, checkInDay].join('-');
+                $("#check-out-date").on("input", function() {
+                    var checkOutDate = new Date($('#check-out-date').val());
+                    var checkOutDay = checkOutDate.getDate();
+                    var checkOutMonth = checkOutDate.getMonth() + 1;
+                    var checkOutYear = checkOutDate.getFullYear();
+                    var checkOutdatearray = [checkOutYear, checkOutMonth, checkOutDay];
+                    var checkOutdateSelected = [checkOutYear, checkOutMonth, checkOutDay].join('-');
+
+                    $('#check-in-time').on("input", function() {
+                        var checkInTimeSelected = $(this).find("option:selected").val();
+                        $('#check-availability').click(function(e) {
+                            console.log(checkOutdateSelected);
+                            console.log(checkIndateSelected);
+                            console.log(checkInTimeSelected);
+                            $(".suite-icons-rooms-container").load("rooms-availability.php", {
+                                checkIndateSelected: checkIndateSelected,
+                                checkOutdateSelected: checkOutdateSelected,
+                                checkInTimeSelected: checkInTimeSelected
+                            })
+                        })
+                    })
+                })
+            })
+
+        })
+    </script>
 </head>
 
 
@@ -77,16 +113,18 @@ if (!isset($_SESSION['First_Name'])) {
                         <div class="date-checker">
                             <div class="date-checker-checkin">
                                 <label for="check-in-Date">Check In Date</label>
-                                <input type="date" name="check-in-Date" id="" required>
+                                <input type="date" name="check-in-Date" id="check-in-date" required>
                             </div>
                             <div class="date-checker-checkout">
                                 <label for="check-out-Date">Check Out Date</label>
-                                <input type="date" name="check-out-Date" id="" required>
+                                <input type="date" name="check-out-Date" id="check-out-date" required>
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <input type="button" name="Check-Availability" id="check-availability" value="Check Availability" style="border-radius:5px;padding:8px;color:white;background-color: goldenrod;border:none;width:120px;height:40px;font-size:12px;cursor:pointer;position:relative;top:-70px;left:190px">
                     <div class="form-page-fields suite-icons-container">
-                        <div class="suite-icons-rooms-container">
+                        <div class="suite-icons-rooms-container" id="suite-icons-rooms-container">
                             <?php
                             include('../../config/connection.php');
                             $roomType = 'Suite Rooms';
@@ -126,8 +164,8 @@ if (!isset($_SESSION['First_Name'])) {
 
                     <input type="hidden" name="emailUser" value="<?php echo $_SESSION['User_Email']; ?>">
                     <div class="button-container-suite-form" style="margin-top:-60px;">
-                        <input type="submit" name="Next" value="Next" id="next" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
-                        <input type="submit" name="Meal-Selection" value="Meal Selection" id="meal-selection" style="display:none;padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
+                        <input type="submit" name="Next" value="Next" id="next" style="padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
+                        <input type="submit" name="Meal-Selection" value="Meal Selection" id="meal-selection" style="display:none;padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
                 </div>
             </form>
@@ -152,7 +190,7 @@ if (!isset($_SESSION['First_Name'])) {
         //occurs in the room details page
         function selectMealType() {
             var val = document.getElementById('meal-type').value;
-            console.log(val);
+            // console.log(val);
             if (val == 'Set-Menu') {
                 document.getElementById('meal-selection').style.display = 'none'
                 document.getElementById('next').style.display = 'block'
@@ -189,25 +227,24 @@ if (!isset($_SESSION['First_Name'])) {
         function enteredNo(e) {
             let enteredRoomsNo = parseInt(e.target.value);
             let predictNoRooms = parseInt(document.getElementById("predict-rooms").value);
-            console.log(enteredRoomsNo);
-            console.log(predictNoRooms);
+            // console.log(enteredRoomsNo);
+            // console.log(predictNoRooms);
             if (predictNo_Rooms > enteredRoomsNo) {
                 document.getElementById("entered-no").innerText = "please add eligible amount number of rooms Or More";
-                console.log('please add eligible amount number of rooms');
+                // console.log('please add eligible amount number of rooms');
             } else {
                 document.getElementById("entered-no").innerText = " ";
                 var select_R = document.querySelector('.select-rooms');
                 select_R.innerHTML = ""
                 for (let i = 1; i <= enteredRoomsNo; i++) {
-                    console.log(i);
+                    // console.log(i);
                     var newInput = document.createElement("input");
                     newInput.setAttribute("type", "text");
-                    newInput.setAttribute("name", "room-number");
+                    newInput.setAttribute("name", "room-number-" + i);
                     newInput.setAttribute("placeholder", "Room " + i);
                     newInput.style.padding = '5px'
                     select_R.appendChild(newInput);
                     select_R.appendChild(document.createElement("br"));
-
                 }
             }
 
