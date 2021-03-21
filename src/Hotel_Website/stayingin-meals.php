@@ -27,7 +27,7 @@ if (isset($_POST['Add-to-cart'])) {
             $_SESSION['meal_cart'][$count] = $meals_array;
         } else {
             echo '<script>alert("Meal has been already added")
-                  window.location.href="stayingin-meals.php"</script>
+                  window.location.href="stayingin-meals.php?temp_id="' . $_GET['temp_id'] . '</script>
                 ';
         }
     }
