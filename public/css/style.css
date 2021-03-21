@@ -1995,8 +1995,8 @@ span.suite-icon-label {
 .payment-shower{
   display: flex;
   background-color: white;
-  width: 300px;
-  height: 300px;
+  width: 375px;
+  height: 350px;
   flex-direction: column;
   color: #000;
   position: absolute;

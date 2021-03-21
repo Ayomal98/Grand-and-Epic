@@ -2,14 +2,14 @@
 include("../../config/connection.php");
 session_start();
 if (isset($_POST['Add-to-cart'])) {
-    $meals_array;
+    $meals_array = array();
     if (!isset($_SESSION["meal_cart"])) {
         $meals_array = array(
-            'meal_id' => $_POST["Meal_ID"],
+            'meal_id' => (int) $_POST["Meal_ID"],
             'meal_name' => $_POST["Meal_Name"],
-            'meal_price' => $_POST["Meal_Price"],
+            'meal_price' => $_POST["Meal_Price"] * $_POST["Meal_Quantity"],
             'meal_type' => $_POST["Meal_Type"],
-            'quantity' => 1
+            'quantity' => $_POST["Meal_Quantity"]
         );
         $_SESSION["meal_cart"][0] = $meals_array;
     } else {
@@ -17,17 +17,20 @@ if (isset($_POST['Add-to-cart'])) {
             $meal_id = array_column($_SESSION["meal_cart"], 'meal_id');
             $count = count($_SESSION['meal_cart']);
             $meals_array = array(
-                'meal_id' => $_POST["Meal_ID"],
+                'meal_id' => (int) $_POST["Meal_ID"],
                 'meal_name' => $_POST["Meal_Name"],
-                'meal_price' => $_POST["Meal_Price"],
+                'meal_price' => $_POST["Meal_Price"] * $_POST["Meal_Quantity"],
                 'meal_type' => $_POST["Meal_Type"],
-                'quantity' => 1
+                'quantity' => $_POST["Meal_Quantity"]
             );
             $_SESSION['meal_cart'][$count] = $meals_array;
+            echo var_dump($_SESSION["meal_cart"]);
+            echo $count;
+        } else {
+            echo '<script>alert("Meal has been already added")</script>';
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,15 +75,16 @@ if (isset($_POST['Add-to-cart'])) {
                 while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
                     echo '
                             <div class="set-menu-meals-card" style="position:relative">
-                                <form action="" method="POST">
+                                <form action="stayingin-meals.php" method="POST">
                                     <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                                     <input type="hidden" name="Meal_ID" value="' . $rowBreakfast["Meals_ID"] . '">
                                     <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
                                     <input type="hidden" name="Meal_Price" value="' . $rowBreakfast["Price"] . '">
                                     <input type="hidden" name="Meal_Name" value="' . $rowBreakfast["Meals_Name"] . '">
                                     <input type="hidden" name="Meal_Price" value="' . $rowBreakfast["Price"] . '">
-                                    <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<br><span style="position:absolute;top:215px;font-weight:bolder;left:80px">LKR ' . $rowBreakfast["Price"] . '.00</span>
-                                        <div class="add-to-cart"><input type="submit" name="Add-to-cart" value="Add to Cart" style="position:absolute;background-color:green;color:white;padding:10px;border:none;border-radius:5px;bottom:10px;left:80px"></div>
+                                    <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<br><span style="position:absolute;top:215px;font-weight:bolder;left:50px">LKR ' . $rowBreakfast["Price"] . '.00<span style="font-size:10px">(Price per plate)</span></span>
+                                        <div class="add-to-cart"><input type="submit" name="Add-to-cart" value="Add to Cart" style="position:absolute;background-color:green;color:white;padding:10px;border:none;border-radius:5px;bottom:10px;left:120px">
+                                        <input type="number min="1" max="10" name="Meal_Quantity" style="position:absolute;background-color:black;color:white;padding:2px;border:none;border-radius:5px;bottom:10px;left:20px;width:80px;padding:10px" placeholder="quantity" required> </div>
                                     </div>
                                 </form>
                             </div>
@@ -104,6 +108,7 @@ if (isset($_POST['Add-to-cart'])) {
                                 <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
                                 <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<span style="display: inline-block;font-weight:bolder;">LKR ' . $rowBreakfast["Price"] . '.00</span>
                                     <div class="add-to-cart"><input type="submit" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
+                                    <input type="number" min="1" max="10" name="Meal_Quantity" style="position:absolute;background-color:black;color:white;padding:2px;border:none;border-radius:5px;bottom:10px;left:20px;width:80px;padding:10px" placeholder="quantity" required> </div>
                                 </div>
                             </div>
                            </form>';
@@ -125,7 +130,8 @@ if (isset($_POST['Add-to-cart'])) {
                                 <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                                 <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
                                 <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<span style="display: inline-block;font-weight:bolder;">LKR ' . $rowBreakfast["Price"] . '.00</span>
-                                    <div class="add-to-cart"><input type="button" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
+                                    <div class="add-to-cart"><input type="submit" name="Add to cart" value="Add to Cart" style="background-color:green;color:white;padding:10px;border:none;border-radius:5px;margin-bottom:-4px;"></div>
+                                    <input type="number" name="Meal_Quantity" style="position:absolute;background-color:black;color:white;padding:2px;border:none;border-radius:5px;bottom:10px;left:20px;width:80px;padding:10px" placeholder="quantity"> </div>
                                 </div>
                             </div>
                           </form>';
@@ -138,19 +144,29 @@ if (isset($_POST['Add-to-cart'])) {
         <div class="view-items-cart" style="position: absolute;top:140px;right:20px;background-color:green;padding:10px;border-radius:10px;width:110px;height:40px;cursor:pointer;" onclick="openCart()"><span style="font-size:15px;color:white;">View Cart</span><i class="fas fa-shopping-cart" style="color:white;position:absolute;right:10px;"></i></div>
         <div class="payment-shower" style="display: none;" id="payment-shower">
             <div class="close">+</div>
-            <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Added Items</h1>
+            <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Meal Cart</h1>
             <?php
             if (!empty($_SESSION['meal_cart'])) {
                 $total = 0;
                 foreach ($_SESSION['meal_cart'] as $keys => $values) {
-
+                    $total += $values["meal_price"];
                     echo '<div style="display: inline-block;padding:10px;border-radius:5px;margin-top:30px;border:1px solid black;margin-left:5px;margin-right:5px">
                         <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
         
                         <span style="font-size: 10px;font-weight:bolder">' . $values["meal_name"] . '</span>
+                        <span style="font-size: 10px;font-weight:bolder">' . $values["quantity"] . '</span>
+                        <span style="font-size: 10px;font-weight:bolder">' . $values["meal_price"] . '</span>
+                        <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
+                    </div>                  ';
+                };
+                echo '<span>Total Price For Meal is Rs.' . $total . '.00/=';
+            } else {
+                echo '<div style="display: inline-block;padding:10px;border-radius:5px;margin-top:30px;border:1px solid black;margin-left:5px;margin-right:5px">
+                        <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
+        
+                        <span style="font-size: 10px;font-weight:bolder">No Meals has been added</span>
                         <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
                     </div>';
-                };
             }
             ?>
             <!-- <div style="display: inline-block;padding:10px;border-radius:5px;margin-top:15px;border:1px solid black;margin-left:5px;margin-right:5px">
@@ -220,5 +236,7 @@ if (isset($_POST['Add-to-cart'])) {
         document.getElementById("meal-header-dinner").style.color = "white"
     }
 </script>
+
+
 
 </html>
