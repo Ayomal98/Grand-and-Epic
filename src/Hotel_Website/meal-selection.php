@@ -60,10 +60,10 @@ if (isset($_POST['payment'])) {
     if (mysqli_num_rows($excecuteMeals) > 0) {
         while ($row = mysqli_fetch_assoc($excecuteMeals)) {
             echo '  <form action="events-booking.php" method="post">
-                            <div style="color:white;margin-top:20px;background-color:black;opacity:0.7" >
-                                <h3 style="text-align:center">' . $row["Package_Name"] . '</h2>
+                            <div style="color:white;margin-top:20px;background-color:black;opacity:0.7;padding:10px;" >
+                                <h3 style="text-align:center;font-weight:bold;font-size:30px">' . $row["Package_Name"] . '</h2>
                                 <div style="display:flex;flex-direction:row;justify-content:space-evenly;margin-top:20px">
-                                    <div style="display:flex;flex-direction:column">
+                                    <div style="display:flex;flex-direction:column" class="set-menu-meals-card">
                                         <img src="data:image;base64,' . base64_encode($row["Meal1_Image"]) . '" alt="Image" style="width:180px;height:144px;" >
                                         <h4 style="text-align:center;margin-top:5px">' . $row["Meal1"] . '</h4>
                                     </div>
@@ -85,7 +85,7 @@ if (isset($_POST['payment'])) {
                                     </div>
                                 </div>
                                 <div class="amount-events" style="margin-top:25px;margin-left:1200px"><span> Whole Plate For Rs.' . $row["price"] . '/=</span></div>
-                                <input type="submit" value="Select the Package" name="Select_Meal" id="addCart" onsubmit="handleSubmit()">
+                                <input type="submit" style="padding:13px;border-radius:5px;margin-left:600px;margin-bottom:15px;background-color:green;color:white;border:none" value="Select the Package" name="Select_Meal" id="addCart" onsubmit="handleSubmit()">
                                 <input type="hidden" value=' . $row["Package_ID"] . ' name="packageID">
                                 <input type="hidden" value=' . $_GET["events_id"] . ' name="eventsID">
                             </div>
