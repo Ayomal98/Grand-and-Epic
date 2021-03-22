@@ -79,14 +79,20 @@ if (isset($_GET["action"])) {
             <hr>
             <h4 id="meal-header-dinner" style="margin-right: 20px;font-size: 25px;width: 1810px;margin-left:10px;cursor:pointer" onclick="showDinnerFood()">Dinner</h4>
         </div>
-        <div class="meal-selection" id="breakfast-meal" style="display: grid;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
-            <?php
-            include('../../config/connection.php');
-            $mealType = "Breakfast";
-            $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
-            if (mysqli_num_rows($selectBreakfastFood) > 0) {
-                while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
-                    echo '
+        <?php
+        include('../../config/connection.php');
+        $selectMealType = mysqli_query($con, "SELECT * FROM stayingin_booking_temp WHERE StayingIn_ID='" . $temp_id . "'");
+        $rowMealType = mysqli_fetch_assoc($selectMealType);
+        if ($rowMealType['Reservation_Type'] == 'Full-Board' || $rowMealType['Reservation_Type'] == 'Half-Board') {
+        ?>
+            <div class="meal-selection" id="breakfast-meal" style="display: grid;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
+                <?php
+                include('../../config/connection.php');
+                $mealType = "Breakfast";
+                $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
+                if (mysqli_num_rows($selectBreakfastFood) > 0) {
+                    while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
+                        echo '
                             <div class="set-menu-meals-card" style="position:relative">
                                 <form action="" method="POST">
                                     <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
@@ -102,20 +108,20 @@ if (isset($_GET["action"])) {
                                 </form>
                             </div>
                            ';
+                    }
                 }
-            }
 
 
-            ?>
-        </div>
-        <div class="meal-selection" id="lunch-meal" style="display:none;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
-            <?php
-            include('../../config/connection.php');
-            $mealType = "Lunch";
-            $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
-            if (mysqli_num_rows($selectBreakfastFood) > 0) {
-                while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
-                    echo '<form action="" method="POST">
+                ?>
+            </div>
+            <div class="meal-selection" id="lunch-meal" style="display:none;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
+                <?php
+                include('../../config/connection.php');
+                $mealType = "Lunch";
+                $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
+                if (mysqli_num_rows($selectBreakfastFood) > 0) {
+                    while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
+                        echo '<form action="" method="POST">
                             <div class="set-menu-meals-card">
                                 <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                                 <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
@@ -125,20 +131,21 @@ if (isset($_GET["action"])) {
                                 </div>
                             </div>
                            </form>';
+                    }
                 }
-            }
 
 
-            ?>
-        </div>
-        <div class="meal-selection" id="dinner-meal" style="display: none;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
-            <?php
-            include('../../config/connection.php');
-            $mealType = "Dinner";
-            $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
-            if (mysqli_num_rows($selectBreakfastFood) > 0) {
-                while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
-                    echo '<form action="" method="POST">
+                ?>
+            </div>
+
+            <div class="meal-selection" id="dinner-meal" style="display: none;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
+                <?php
+                include('../../config/connection.php');
+                $mealType = "Dinner";
+                $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
+                if (mysqli_num_rows($selectBreakfastFood) > 0) {
+                    while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
+                        echo '<form action="" method="POST">
                             <div class="set-menu-meals-card">
                                 <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
                                 <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
@@ -148,62 +155,64 @@ if (isset($_GET["action"])) {
                                 </div>
                             </div>
                           </form>';
+                    }
                 }
-            }
+                ?>
+            </div>
+        <?php } ?>
 
+    </div>
 
-            ?>
-        </div>
-        <div class="view-items-cart" style="position: absolute;top:140px;right:20px;background-color:green;padding:10px;border-radius:10px;width:110px;height:40px;cursor:pointer;" onclick="openCart()"><span style="font-size:15px;color:white;">View Cart</span><i class="fas fa-shopping-cart" style="color:white;position:absolute;right:10px;"></i></div>
-        <div class="bg-modal">
-            <div class="modal-content-meal-selection-stayingin" style="display: none;" id="payment-shower">
-                <div class="close">+</div>
-                <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Meal Cart</h1>
-                <table style="border:1px solid black;margin-top:20px;margin-left:40px">
-                    <thead>
-                        <tr>
-                            <th style="border:1px solid black;padding:5px">Meal Name</th>
-                            <th style="border:1px solid black;padding:5px">Quantity</th>
-                            <th style="border:1px solid black;padding:5px">Meal Price</th>
-                            <th style="border:1px solid black;">Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if (!empty($_SESSION['meal_cart'])) {
-                            $total = 0;
-                            foreach ($_SESSION['meal_cart'] as $keys => $values) {
-                                $total += $values["meal_price"];
-                                echo '<tr style="border:1px solid black;">
+    <div class="view-items-cart" style="position: absolute;top:140px;right:20px;background-color:green;padding:10px;border-radius:10px;width:110px;height:40px;cursor:pointer;" onclick="openCart()"><span style="font-size:15px;color:white;">View Cart</span><i class="fas fa-shopping-cart" style="color:white;position:absolute;right:10px;"></i></div>
+    <div class="bg-modal">
+        <div class="modal-content-meal-selection-stayingin" style="display: none;" id="payment-shower">
+            <div class="close">+</div>
+            <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Meal Cart</h1>
+            <table style="border:1px solid black;margin-top:20px;margin-left:40px">
+                <thead>
+                    <tr>
+                        <th style="border:1px solid black;padding:5px">Meal Name</th>
+                        <th style="border:1px solid black;padding:5px">Quantity</th>
+                        <th style="border:1px solid black;padding:5px">Meal Price</th>
+                        <th style="border:1px solid black;">Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (!empty($_SESSION['meal_cart'])) {
+                        $total = 0;
+                        foreach ($_SESSION['meal_cart'] as $keys => $values) {
+                            $total += $values["meal_price"];
+                            echo '<tr style="border:1px solid black;">
                                 
                                 <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["meal_name"] . '</span>
                                 <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["quantity"] . '</span>
                                 <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["meal_price"] . '</span>
                                 <td style="border:1px solid black;padding:5px"><a href="stayingin-meals.php?action=Delete&remove_id=' . $values['meal_id'] . '&temp_id=' . $temp_id . '"><span style="font-weight: bolder;font-size:15px;padding:1px 2px;border:1px solid black;cursor:pointer;background-color:green;color:white;">-</span></td>
                                      </tr>';
-                            };
-                            echo '</table><br><br><span style="font-weight:bold;font-size:20px">Total Price For Meal is Rs.' . $total . '.00/=';
-                        } else {
-                            echo '
+                        };
+                        echo '</table><br><br><span style="font-weight:bold;font-size:20px">Total Price For Meal is Rs.' . $total . '.00/=';
+                    } else {
+                        echo '
                         <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
         
                         <span style="font-size: 10px;font-weight:bolder">No Meals has been added</span>
                         <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
                     </div>';
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
-        <form action="suite-insert.php" method="POST">
-            <div class="button-container-suite-form" style="margin-top:20px;margin-left:30%;">
-                <input type="hidden" name="total_price" value="<?php echo $total ?>">
-                <input type="hidden" name="temp_id" value="<?php echo $temp_id ?>">
-                <input type="button" value="Back" id="room-details-availability" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:30px;" onclick="roomDetails()">
-                <input type="submit" value="Next" name="user-meals" id="user-payment-details" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;" onclick="userMealPayment()">
-            </div>
     </div>
+    <form action="suite-insert.php" method="POST">
+        <div class="button-container-suite-form" style="margin-top:20px;margin-left:30%;">
+            <input type="hidden" name="total_price" value="<?php echo $total ?>">
+            <input type="hidden" name="temp_id" value="<?php echo $temp_id ?>">
+            <input type="button" value="Back" id="room-details-availability" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;margin-right:30px;" onclick="roomDetails()">
+            <input type="submit" value="Next" name="user-meals" id="user-payment-details" style="padding:10px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;margin-top:20px;" onclick="userMealPayment()">
+        </div>
+    </form>
 
 </body>
 <script>
@@ -259,7 +268,6 @@ if (isset($_GET["action"])) {
         document.getElementById("meal-header-dinner").style.color = "white"
     }
 </script>
-
 
 
 </html>

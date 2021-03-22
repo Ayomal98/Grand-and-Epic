@@ -86,14 +86,14 @@ if (!isset($_SESSION['First_Name'])) {
                         <div class="occupancy-number-details" style="margin-left: -80px;font-size:20px">
                             <div class="occupancy-number-details-container">
                                 <label for="kids">No.Of Occupants</label>
-                                <input type="number" min="1" max="25" style="width: 70%;height:50%" name="No-Adults" id="predict-rooms" style="padding:5px" oninput="predictNoRooms(event)" required>
+                                <input type="number" min="1" max="25" style="width: 70%;height:50%" name="No-Occupants" id="predict-rooms" style="padding:5px" oninput="predictNoRooms(event)" required>
                             </div>
                         </div>
                         <div style="margin-left:100px;margin-top:-30px;width:150px;">
                             <span style="font-size: 12px;color:red" id="predicted-rooms"></span>
                         </div>
                         <div style="display:none;position:relative;top:-30px;left:100%" id="no_rooms_id">
-                            <input type="number" style="width: 70%;height:50%;padding:7px" min="1" max="5" oninput="enteredNo(event)" placeholder="Enter Number of Rooms" style="padding: 8px;" required>
+                            <input type="number" name="No-Rooms" style="width: 70%;height:50%;padding:7px" min="1" max="5" oninput="enteredNo(event)" placeholder="Enter Number of Rooms" style="padding: 8px;" required>
                             <br>
                             <span id="entered-no" style="margin-top: 5px;color:green"></span>
                         </div>
@@ -101,9 +101,9 @@ if (!isset($_SESSION['First_Name'])) {
                     <div class="time-checker">
                         <label for="check-in-time" style="margin-left:-60px">Check In Time</label>
                         <select name="check-in-time" id="check-in-time" style="padding:5px;border-radius:5px;border:none;margin-right:20px" onchange="showCheckOut(event)" required>
-                            <option value="9.00">9.00 A.M.</option>
-                            <option value="14.00">2.00 P.M.</option>
-                            <option value="20.00">8.00 P.M</option>
+                            <option value="9.00 A.M.">9.00 A.M.</option>
+                            <option value="2.00 P.M.">2.00 P.M.</option>
+                            <option value="8.00 P.M">8.00 P.M</option>
                         </select>
                         <label for="check-out-time">Check Out Time</label>
                         <input type="text" name="check-out-time" id="check-out-time" value="" style="margin-right:5px;margin-left:-2px;padding:5px;" required>
@@ -239,7 +239,7 @@ if (!isset($_SESSION['First_Name'])) {
                 for (let i = 1; i <= enteredRoomsNo; i++) {
                     // console.log(i);
                     var newInput = document.createElement("input");
-                    newInput.setAttribute("type", "text");
+                    newInput.setAttribute("type", "number");
                     newInput.setAttribute("name", "room-number-" + i);
                     newInput.setAttribute("placeholder", "Room " + i);
                     newInput.style.padding = '5px'
@@ -259,9 +259,9 @@ if (!isset($_SESSION['First_Name'])) {
             console.log(reservationType)
             var checkOut;
             if (reservationType == 'Full-Board' || reservationType == 'Half-Board') {
-                if (checkIn == '9.00') {
+                if (checkIn == '9.00 A.M.') {
                     checkOut = '8.00 A.M.'
-                } else if (checkIn == '14.00') {
+                } else if (checkIn == '2.00 P.M.') {
                     checkOut = '1.00 P.M.'
                 } else {
                     checkOut = '7.00 P.M.'

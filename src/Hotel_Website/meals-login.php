@@ -38,24 +38,7 @@ if (!isset($_SESSION['First_Name'])) {
   </div>
   <!-- set menu shower container -->
   <div class="body-container set-menu" id="body-container-set-menu">
-    <div class="all-in-price">
-      <?php
-      include('../../config/connection.php');
-      $getPrices = "SELECT Price from stayingin_setmenu";
-      $result = mysqli_query($con, $getPrices);
-      $prices = array();
-      $total = 0;
-      while ($row = mysqli_fetch_assoc($result)) {
-        array_push($prices, $row["Price"]);
-      }
-      foreach ($prices as $price) {
-        $total += $price;
-      }
-      $total = $total * 0.9;
-      echo 'All in one for ' . $total . '/=';
-      ?>
-      <span style="font-weight:bold;font-size:13.6px;color:black">&nbsp-For Fullboard Customers Only</span>
-    </div>
+
     <h1 style="text-align: center;font-size:40px;margin-top:-10px;padding:20px;">Set Menu For Staying-In </h1>
     <p style="text-align: center;font-size:20px;">This menu is for the staying in customers which will be sufficient for one person only</p>
     <div class="set-menu-breakfast-area">
@@ -67,24 +50,24 @@ if (!isset($_SESSION['First_Name'])) {
         while ($row = mysqli_fetch_assoc($result)) {
           echo '<h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">' . $row["Meal_Type"] . ' Menu</h3>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal1_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal1"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal1_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal1"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal2_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal2"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal2_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal2"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal3_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal3"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal3_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal3"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal4_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal4"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal4_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal4"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal5_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal5"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal5_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal5"] . '</div>
                               </div>
                               <div class="amount-set-menu" style="position: absolute;top:200%;right:20%"><span> Whole Plate For Rs.' . $row["Price"] . '/=</span></div>
                               ';
@@ -103,24 +86,24 @@ if (!isset($_SESSION['First_Name'])) {
         while ($row = mysqli_fetch_assoc($result)) {
           echo '<h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">' . $row["Meal_Type"] . ' Menu</h3>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal1_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal1"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal1_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal1"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal2_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal2"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal2_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal2"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal3_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal3"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal3_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal3"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal4_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal4"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal4_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal4"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal5_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal5"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal5_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal5"] . '</div>
                               </div>
                               <div class="amount-set-menu" style="position: absolute;top:260%;right:20%"><span> Whole Plate For Rs.' . $row["Price"] . '/=</span></div>
                               ';
@@ -138,26 +121,26 @@ if (!isset($_SESSION['First_Name'])) {
         while ($row = mysqli_fetch_assoc($result)) {
           echo '<h3 style="font-family: roboto;font-weight:lighter;color:white;position:absolute;color:white;left:43%;font-size:30px;margin-top:-10px;">' . $row["Meal_Type"] . ' Menu</h3>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal1_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal1"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal1_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal1"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal2_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal2"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal2_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal2"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal3_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal3"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal3_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal3"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal4_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal4"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal4_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal4"] . '</div>
                               </div>
                               <div class="set-menu-meals-card">
-                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal5_Image"]) . '" style="border-radius:10px 10px 0px 0px;"></div>
-                                <div class="set-menu-card-text">' . $row["Meal5"] . '</div>
+                                <div class="set-menu-card-img"><img src="data:image;base64, ' . base64_encode($row["Meal5_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:180px;width:100%"></div>
+                                <div class="set-menu-card-text-meals-page">' . $row["Meal5"] . '</div>
                               </div>
-                              <div class="amount-set-menu" style="position: absolute;top:320%;right:20%"><span> Whole Plate For Rs.' . $row["Price"] . '/=</span></div>
+                              <div class="amount-set-menu" style="position: absolute;top:325%;right:20%"><span> Whole Plate For Rs.' . $row["Price"] . '/=</span></div>
                               
                               ';
         }
