@@ -213,36 +213,51 @@ checkSession();
 
 	</table>
 
-
-	<form>
+	
+	<!-- User Profie -->
+	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
 			<table align="center" style="color:white; font-size: 20px; width:88%;">
+
+			<?php
+				include("../../config/connection.php");
+
+					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
+					$query_run = mysqli_query($con,$query);
+
+					while($row = mysqli_fetch_array($query_run))
+					{
+			?>
 				<tr>
 					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
 				</tr>
 				<tr>
 					<td>Supervisor ID:</td>
-					<td><input type="text" id="id" name="id" value="S001"></td>
+					<td><input type="text" name="id" value="<?php echo $row['Employee_ID'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="fname" name="fname" value="Hasini"></td>
+					<td><input type="text" id="fname" name="fname" value="<?php echo $row['First_Name'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lname" name="lname" value="Vidushanka"></td>
+					<td><input type="text" id="lname" name="lname" value="<?php echo $row['Last_Name'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" id="email" name="email" value="hasinividushanka@gmail.com"></td>
+					<td><input type="email" id="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" id="tel" name="tel" value="0766065684"></td>
+					<td><input type="tel" id="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
 				</tr>
 				<tr>
 					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
 				</tr>
+			<?php
+				}
+			?>
+
 			</table>
 		</form>
 
