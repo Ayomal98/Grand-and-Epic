@@ -39,6 +39,7 @@
             $occupancy = $rowStayingIn['Occupancy'];
             $noOccupants = $rowStayingIn['No_Occupants'];
             $noRooms = $rowStayingIn['No_Rooms'];
+            $roomNumbers = ($rowStayingIn['Room_Numbers']);
             $mealSelection = $rowStayingIn['Meal_Selection'];
             $reservationType = $rowStayingIn['Reservation_Type'];
             $checkInDate = $rowStayingIn['CheckIn_Date'];
@@ -49,9 +50,10 @@
             $emailUser = $rowStayingIn['User_Email'];
             $roomPrice = $rowStayingIn['Room_Price'];
             $mealPrice = $rowStayingIn['Meal_Price'];
+            echo $roomNumbers;
             $totalAmountStayingIn = $mealPrice + $roomPrice;
             $paidAmountStayingIn = $totalAmountStayingIn * 0.2;
-            $paymentSuccessStayingIn = mysqli_query($con, "INSERT into stayingin_booking (Occupancy,No_Occupants,No_Rooms,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price,Paid_Amount,Total_Amount) VALUES('$occupancy','$noOccupants','$noRooms','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice','$paidAmountStayingIn','$totalAmountStayingIn')");
+            $paymentSuccessStayingIn = mysqli_query($con, "INSERT into stayingin_booking (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price,Paid_Amount,Total_Amount) VALUES('$occupancy','$noOccupants','$noRooms','" . $roomNumbers . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice','$paidAmountStayingIn','$totalAmountStayingIn')");
             if ($paymentSuccessStayingIn) {
                 $selectStayingInDetails = "SELECT * FROM stayingin_booking";
                 $html = '<h1 style=\'text-align:center\'>Payment Details</h1>';
@@ -65,7 +67,7 @@
                     $html .= "<tr><td style='border:1px solid black'>' . $roomType . '</td><td style='border:1px solid black'>' . $noRooms . '</td><td style='border:1px solid black'>' . $occupancy . '</td><td style='border:1px solid black'>' . $checkInDate . '</td><td style='border:1px solid black'>' . $checkOutDate . '</td><td style='border:1px solid black'>' . $checkInTime . '</td><td style='border:1px solid black'>' . $checkOutTime . '</td><td style='border:1px solid black'>' . $noOccupants . '</td></tr>";
                     $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($totalAmountStayingIn, 2) . "</td></tr>";
                 }
-                $deleteTempStayDetails =  "DELETE FROM stayingin_booking_temp WHERE StayingIn_ID='$stayingInId'";
+                $deleteTempStayDetails =  "DELETE FROM stayingin_booking_temp WHERE StayingIn_ID=' $stayingInId '";
                 $excecuteDeleteStayTemp = mysqli_query($con, $deleteTempStayDetails);
                 $mpdf = new \Mpdf\Mpdf();
                 $mpdf->WriteHTML($html);

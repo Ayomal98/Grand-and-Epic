@@ -240,41 +240,39 @@ if (isset($_GET["action"])) {
     <div class="bg-modal">
         <div class="modal-content-meal-selection-stayingin" style="display: none;" id="payment-shower">
             <div class="close">+</div>
-            <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;">Meal Cart</h1>
-            <table style="border:1px solid black;margin-top:20px;margin-left:40px">
-                <thead>
-                    <tr>
-                        <th style="border:1px solid black;padding:5px">Meal Name</th>
-                        <th style="border:1px solid black;padding:5px">Quantity</th>
-                        <th style="border:1px solid black;padding:5px">Meal Price</th>
-                        <th style="border:1px solid black;">Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if (!empty($_SESSION['meal_cart'])) {
-                        $total = 0;
-                        foreach ($_SESSION['meal_cart'] as $keys => $values) {
-                            $total += $values["meal_price"];
-                            echo '<tr style="border:1px solid black;">
+            <h1 style="font-size:22px;text-align:center;margin-right:8px;margin-top:5px;margin-bottom:10px">Meal Cart</h1>
+            <tbody>
+                <?php
+                if (!empty($_SESSION['meal_cart'])) {
+                    echo '<table style="border:1px solid black;margin-top:20px;margin-left:40px;border-radis:5px">
+                            <thead>
+                                <tr>
+                                    <th style="border:1px solid black;padding:5px">Meal Name</th>
+                                    <th style="border:1px solid black;padding:5px">Quantity</th>
+                                    <th style="border:1px solid black;padding:5px">Meal Price</th>
+                                    <th style="border:1px solid black;">Remove</th>
+                                </tr>
+                            </thead>';
+                    $total = 0;
+                    foreach ($_SESSION['meal_cart'] as $keys => $values) {
+                        $total += $values["meal_price"];
+                        echo '<tr style="border:1px solid black;">
                                 
                                 <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["meal_name"] . '</span>
                                 <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["quantity"] . '</span>
                                 <td style="font-size: 10px;font-weight:bolder;border:1px solid black;padding:5px">' . $values["meal_price"] . '</span>
                                 <td style="border:1px solid black;padding:5px"><a href="stayingin-meals.php?action=Delete&remove_id=' . $values['meal_id'] . '&temp_id=' . $temp_id . '"><span style="font-weight: bolder;font-size:15px;padding:1px 2px;border:1px solid black;cursor:pointer;background-color:green;color:white;">-</span></td>
                                      </tr>';
-                        };
-                        echo '</table><br><br><span style="font-weight:bold;font-size:20px">Total Price For Meal is Rs.' . $total . '.00/=';
-                    } else {
-                        echo '
-                        <span style="font-weight: bolder;font-size:20px;border:1px solid black;padding:5px;cursor:pointer;background-color:green;color:white;">-</span>
+                    };
+                    echo '</table><br><br><span style="font-weight:bold;font-size:20px">Total Price For Meal is Rs.' . $total . '.00/=';
+                } else {
+                    echo '
         
-                        <span style="font-size: 10px;font-weight:bolder">No Meals has been added</span>
-                        <span style="font-weight: bolder;font-size:15px;padding:5px;border:1px solid black;cursor:pointer;background-color:green;color:white;">+</span>
+                        <span style="font-size: 25px;font-weight:bolder;margin-top:100px">Currently No Meals has been added</span>
                     </div>';
-                    }
-                    ?>
-                </tbody>
+                }
+                ?>
+            </tbody>
             </table>
         </div>
     </div>
