@@ -122,69 +122,38 @@ if (!isset($_SESSION['First_Name'])) {
 
 						<img src="../../public/images/loyalty.png" height="70%">
 					</td>
-	
-				
-				
 
-					<?php include("../../config/connection.php");
 
-					$query = "SELECT Context FROM promotions WHERE Promotion_type='Loyalty'";
-
-					$query_run = mysqli_query($con, $query);
-					while ($row = mysqli_fetch_array($query_run)) 
+					<td align="center">
+					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
 			
-					 echo '<td>'.  $row["Context"].'</td>'; 
+					</textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+			
+					</textarea></td>
 
-		?>
-		
-		</tr>
-	
-	
-
-		<tr>
-			<td align="center">
-				<input type="submit" class="button" name="update" value="UPDATE PROMOTION">
-		<?php		
-	include("../../config/connection.php");
-	if (isset($_POST['update'])) {
-		$Context = $_POST['Context'];
-
-		$query = "UPDATE promotions SET Context='$Context' WHERE Promotion_type='Loyalty'";
-		$query_run = mysqli_query($con, $query);
-		if ($query_run) {
-			echo '<script type="text/javascript">alert("Data Updated")</script>';
-			echo '<script>window.location.href="AdminAddPromotion.php"</script>';
-		} else {
-			echo '<script type="text/javascript">alert("Data Not Updated")</script>';
-			echo '<script>window.location.href=AdminAddPromotion.php"</script>';
-		}
-	}
-
-	if (isset($_POST['delete'])) {
-		$query = "DELETE FROM promotions where Promotion_type='$_POST[Promotion_type]'";
-		$query_run = mysqli_query($con, $query);
-		if ($query_run) {
-			echo "<script>
-                alert('Hotel Manager Has been Deleted');
-                window.location.href='AdminAddPromotion.php';
-                </script>";
-		} else {
-			echo '<script> alert("Hotel Manager has been not deleted") </script>';
-		}
-	}
+				</tr>
+				
+				<tr>
+					<td align="center">
+					<form action="PromotionManage.php" method="POST">
+						<input type="hidden" class="button" name="update" value="<?php echo $row['Promotion_Type']?>">
+				
+						</form>
 
 
-	?>
-					
-		
 					</td>
 					<td align="center">
-						<input type="button" class="button" value="DELETE PROMOTION">
+						<input type="hidden" class="button" name="delete" value="<?php echo $row['Promotion_Type']?>">
 					</td>
 				</tr>
 			</table>
+			
 
 		</td>
+
+		<!--LAST MINUTE-->
+<form action="PromotionManage.php" method="POST" >
 		<td style="border: 1px solid white;">
 			<table width="100%">
 				<tr>
@@ -192,18 +161,24 @@ if (!isset($_SESSION['First_Name'])) {
 						<img src="../../public/images/lastminute.png" height="70%">
 					</td>
 					<td align="center">
-						<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
+					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">			
+					</textarea>
+						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+
+					</textarea>
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="button" class="button" value="UPDATE PROMOTION">
-					</td>
+					<input type="submit" class="button" name="update-lastminute" value="UPDATE PROMOTION">
+						</td>
+					
 					<td align="center">
-						<input type="button" class="button" value="DELETE PROMOTION">
+
 					</td>
 				</tr>
 			</table>
 		</td>
+		<form action="PromotionManage.php" method="POST" >
 		<td style="border: 1px solid white;">
 			<table width="100%">
 				<tr>
@@ -211,11 +186,24 @@ if (!isset($_SESSION['First_Name'])) {
 						<img src="../../public/images/presents.jpeg" width="125" height="100">
 					</td>
 					<td align="center">
-						<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
+						<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<?php
+						include("../../config/connection.php");
+						$query = "SELECT Context FROM promotions where Promotion_type='Seasonal'";
+					$query_run = mysqli_query($con, $query);
+					while ($row = mysqli_fetch_array($query_run))
+                    echo   $row["Context"];
+                    //echo   $row["Policies"];
+					?>
+				
+					</textarea>
+						<textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						</textarea>
+						<input type="hidden" name="type" value="Seasonal">
 				</tr>
 				<tr>
 					<td align="center">
-						<input type="button" class="button" value="UPDATE PROMOTION">
+						<input type="submit" class="button" name="update" value="update">
 					</td>
 					<td align="center">
 						<input type="button" class="button" value="DELETE PROMOTION">
@@ -223,9 +211,10 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 			</table>
 		</td>
+		</form>
 		</tr>
 
-		<table style="position:absolute; top : 650px; width:350px;width : 97%;">
+		<table style="position:absolute; top : 850px; width:350px;width : 97%;">
 			<tr>
 				<td>
 					<p style="font-family :Lato; font-size:20px; color :white;">To Create a new Promotion</p>
@@ -234,16 +223,16 @@ if (!isset($_SESSION['First_Name'])) {
 					<img src="../../public/images/point.png" height="50%">
 				</td>
 				<td>
-					<form>
+					<form action="PromotionManage.php" method="POST">
 						<fieldset>
 							<legend style="color:white; font-size: 20px">New Promotion</legend>
 							<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
 								<tr>
 									<td align="left">Promotion Type: </td>
-									<td align="left"><select id="types" name="typelist" form="typeform">
-											<option value="volvo">Loyalty Promotion</option>
-											<option value="saab">Last Minute Promotion</option>
-											<option value="opel">Seasonal Promotion</option>
+									<td align="left"><select id="types" name="typelist">
+											<option value="Loyalty">Loyalty Promotion</option>
+											<option value="Last">Last Minute Promotion</option>
+											<option value="Seasonal">Seasonal Promotion</option>
 										</select>
 									</td>
 								</tr>
@@ -253,7 +242,7 @@ if (!isset($_SESSION['First_Name'])) {
 									</td>
 								</tr>
 								<tr>
-									<td align="left">Constraints and Policies</td>
+									<td align="left">Constraints and Policies </td>
 									<td align="left"><input type="text" name="Policies" size="500" class="inputs" required>
 									</td>
 								</tr>
@@ -264,7 +253,9 @@ if (!isset($_SESSION['First_Name'])) {
 							<table style="color:white; font-size: 20px; width:84%;">
 								<tr>
 									<td align="right">
-										<input type="button" class="button" value="CREATE PROMOTION">
+										<input type="submit" class="button" name="ADD" value="CREATE PROMOTION">
+										<input type="reset" class="button" value="  RESET " name="reset">
+
 								</tr>
 							</table>
 						</fieldset>
@@ -274,7 +265,8 @@ if (!isset($_SESSION['First_Name'])) {
 		</table>
 	</table>
 
-	<table style="position:absolute; top : 1000px; width:350px;width : 86%;margin-bottom: 100px;">
+
+	<table style="position:absolute; top : 1500px; width:350px;width : 86%;margin-bottom: 100px;">
 		<tr>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">To View Booking Analysis</p>

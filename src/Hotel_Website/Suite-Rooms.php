@@ -22,35 +22,41 @@
             <?php include('login-signup-template.php'); ?>
         </div>
         <div class="body-container Suite-Rooms">
-            <div class="suite-rooms-wrapper">
-                <h3>Suite Rooms</h3>
-                <div class="suite-room-content">
-                    <p style="text-align:center; font-family:Tahoma, Geneva, sans-serif">Life at the top can be very satisfying and so our suites are situated on
-                        the uppermost floor. The sights from your living space are sublime,
-                        offering undisturbed views of the unfurling landscape. The interiors are superbly
-                        designed, with subtle hues and lush tones conveying understated luxury. Chic accompaniments
-                        like your own Jacuzzi, a private dining area and cloistered patio make for a more sensual setting,
-                        combining the intimacy of home, with the unbridled indulgence of a five star sojourn.</p>
-                </div>
-                <button class="book" style="color:black;background-color:goldenrod"><a href="Suite-Rooms-form.php" target="_blank">Book Now</a></button>
-            </div>
-
-            <div class="room-container">
-                <div class="image-container">
-                    <img src="../../public/images/suite.jpeg" alt="Superior-Room Image">
-                </div>
-                <div class="room-details">
-                    <h2 style="color:white;font-size:28px">Room-Details</h2>
-                    <div class="room-details-wrapper">
-                        <div class="grid-room-container"><i class="fa fa-list-ol" aria-hidden="true"><span class="room-detail">Number of Rooms</span><br><span class="Superior-values">14</span></i></div>
-                        <div class="grid-room-container"><i class="fa fa-users" aria-hidden="true"><span class="room-detail">Occupancy</span><br><span class="Superior-values">Double or Triple</span></i></div>
-                        <div class="grid-room-container"><i class="fas fa-sort-amount-down"><span class="room-detail">Room Size</span><br><span class="Superior-values">428.47 SQ.FT</span></i></div>
-                        <div class="grid-room-container"><i class="fas fa-bed"><span class="room-detail">Beds</span><br><span class="Superior-values">King Bed or Twin Bed</span></i></div>
-                        <div class="grid-room-container"><i class="fas fa-binoculars"><span class="room-detail">Room View</span><br><span class="Superior-values">Lake View</span></i></div>
-                        <div class="grid-room-container"><i class="fas fa-dollar-sign"><span class="room-detail">Prices</span><br><span class="Superior-values">1 Triple Room:$400.00</span><br><span class="Superior-values">1 Double Room:$300.00</span></i></div>
-                    </div>
-                </div>
-            </div>
+            <?php
+            include('../../config/connection.php');
+            $roomType = 'Suite Rooms';
+            $selectSuperior = "SELECT * from rooms WHERE Room_Type=' $roomType '";
+            $result = mysqli_query($con, $selectSuperior);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo   '
+                        <div class="suite-rooms-wrapper">
+                            <h3>' . $roomType . '</h3>
+                                <div class="superior-room-content">
+                                    <p style="text-align:center; font-family:Tahoma, Geneva, sans-serif">' . $row['Description'] . '</p>
+                                </div>
+                                    <button class="book" style="color:black;background-color:goldenrod"><a href="Superior-Rooms-form.php" target="_blank">Book Now</a></button>
+                        </div>         
+                        <div class="room-container">
+                            <div class="image-container">
+                                <img src="../../public/images/sup-centara-ceysands-resort.jpg" alt="Superior-Room Image">
+                            </div>
+                            <div class="room-details">
+                                <h2 style="color:white;font-size:28px">Room-Details</h2>
+                                <div class="room-details-wrapper">
+                                    <div class="grid-room-container"><i class="fa fa-list-ol" aria-hidden="true"><span class="room-detail">Number of Rooms</span><br><span class="Superior-values">' . $row['NoRooms'] . '</span></i></div>
+                                    <div class="grid-room-container"><i class="fa fa-users" aria-hidden="true"><span class="room-detail">Occupancy</span><br><span class="Superior-values">Double or Triple</span></i></div>
+                                    <div class="grid-room-container"><i class="fas fa-sort-amount-down"><span class="room-detail">Room Size</span><br><span class="Superior-values">199.93 SQ.FT</span></i></div>
+                                    <div class="grid-room-container"><i class="fas fa-bed"><span class="room-detail">Beds</span><br><span class="Superior-values">' . $row['BedType'] . '</span></i></div>
+                                    <div class="grid-room-container"><i class="fas fa-binoculars"><span class="room-detail">Room View</span><br><span class="Superior-values">' . $row['Room_View'] . '</span></i></div>
+                                    <div class="grid-room-container"><i class="fas fa-dollar-sign"><span class="room-detail">Prices</span><br><span class="Superior-values">1 Triple Room:' . $row['Price'] . '</span><br><span class="Superior-values">1 Double Room:' . $row['Price'] . '</span></i></div>
+                                </div>
+                            </div>
+                        </div>
+                                    ';
+                }
+            }
+            ?>
         </div>
     </div>
 
