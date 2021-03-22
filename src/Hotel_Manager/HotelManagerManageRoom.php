@@ -53,7 +53,7 @@ checkSession();
 		<td>
 		</td>
 		<td>
-			<img src = "../../public/images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "80px" >
 		</td>
 		</tr>
 	</table>
@@ -79,7 +79,7 @@ checkSession();
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
 		<td>
-			<img src = "../../public/images/room.png" height = "60%" >
+			<img src = "../../public/images/room.png" height = "80px" >
 		</td>
 		<td>
 			<p style = "font-family :Lato; font-size:22px; color :white;">Current Room Types</p>		
@@ -118,7 +118,7 @@ checkSession();
             <table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Panora.png" height = "60%">
+					<img src = "../../public/images/Panora.png" height = "100px">
 				</td>
 				<td align="center">
 					<textarea name="Message" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"></textarea>
@@ -137,26 +137,27 @@ checkSession();
 			</table>
         </td>
         </tr>
-   
+     <!-- Add --> 
     <table  style ="position:absolute; top : 600px; width:350px;width : 100%;">
     <tr>
     
         <td>
-            <form>
                 <fieldset >
+                    
                     <legend style = "color:white; font-size: 26px"><b>New Room</b></legend>    
                     <table style = "color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;" >
+                    <form method="POST" id="room_form"></form>
                         <tr>
                             <td align="left">Room Type: </td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" placeholder="Suggested Name" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text" name="roomType" rows="1" cols="25" placeholder="Suggested Name" style="font-size: 20px;" form="room_form" required></textarea></td>
                         </tr>
                         <tr>
                             <td align="left">No: of Rooms:</td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text" name="noRooms" rows="1" cols="25" style="font-size: 20px;"form="room_form" required></textarea></td>
                         </tr>
                         <tr>
                             <td align="left">Price Estimated:</td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text" name="price" rows="1" cols="25" style="font-size: 20px;"form="room_form" required></textarea></td>
                         </tr>
                         <tr></tr>
                         <tr>
@@ -165,51 +166,86 @@ checkSession();
                         </tr>
                         <tr>
                             <td align="left">Room View:</td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text" name="roomView" rows="1" cols="25" style="font-size: 20px;"form="room_form" required></td>
                         </tr>
                         <tr>
                             <td align="left">No of Guests:</td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text"  name="noGuests" rows="1" cols="25" style="font-size: 20px;" form="room_form" required></td>
                         </tr>
                         <tr>
                             <td align="left">Bed Type:</td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text"  name="bedType" rows="1" cols="25" style="font-size: 20px;" form="room_form" required></td>
                         </tr>
                         <tr>
                             <td align="left">No of Beds:</td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text"  name="noBeds" rows="1" cols="25" style="font-size: 20px;" form="room_form" required></td>
                         </tr>
                         <tr>
                             <td align="left">Bathroom:</td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text"  name="bathroom" rows="1" cols="25" style="font-size: 20px;" form="room_form" required></td>
                         </tr>
                         <tr>
                             <td align="left">Amenities:</td>
-                            <td align="left"><textarea name="Message" rows="3" cols="25" placeholder="List down here the suggested amenities" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text"  name="amenities" rows="3" cols="25" placeholder="List down here the suggested amenities" style="font-size: 20px;" form="room_form" required></td>
                         </tr>
                         <tr>
                             <td align="left">Description:</td>
-                            <td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Add images & the description here" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text"  name="description" rows="3" cols="25" placeholder="Add images & the description here" style="font-size: 20px;" form="room_form" required></td>
                         </tr>
                         <tr>
                             <td align="left">Other:</td>
-                            <td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Special Notes" style="font-size: 20px;"></textarea></td>
+                            <td align="left"><input type ="text"  name="other" rows="3" cols="25" placeholder="Special Notes" style="font-size: 20px;" form="room_form" required></td>
                         </tr>
                     </table>
                     <br>
                     <table style = "color:white; font-size: 20px; width:81%;">
                         <tr>
                             <td align="right">
-                                <input type="button" class="button" value="INSERT ROOM TYPE">
+                                <input type="button" class="button" value="INSERT ROOM TYPE" name="Insert" form="room_form">
                                 <input type="button" class="button" value="SEND TO ADMIN">
                             </td>
                          </tr> 
                     </table>     
                 </fieldset>
-                </form>
+                
         </td>
     </tr>
     </table>
+
+<?php
+include("../../config/connection.php");
+if(isset($_POST['Insert'])){
+
+    
+    $roomType=$_POST['roomType'];
+    $noRooms=$_POST['noRooms'];
+    $price=$_POST['price'];   
+    $roomView=$_POST['roomView'];
+    $noGuests=$_POST['noGuests'];    
+    $bedType=$_POST['bedType'];
+    $noBeds=$_POST['noBeds'];
+    $bathroom=$_POST['bathroom'];
+    $amenities=$_POST['amenities'];
+    $description=$_POST['description'];
+    $other=$_POST['other'];
+
+$sql="INSERT into rooms(Room_Type,NoRooms,Price,Room_View,NoGuests,BedType,NoBeds,Bathroom,Amenities,_description,Other) VALUES ('".$roomType."','".$noRooms."','".$price."','".$roomView."','".$noGuests."','".$bedType."','".$noBeds."','".$bathroom."','".$amenities."','".$description."','".$other."')";
+$query_run = mysqli_query($con,$sql);
+
+if ($query_run) {
+    echo "<script>
+    alert('New Meal Package Has been Added');
+    window.location.href='HotelManagerManageRoom.php';
+    </script>";
+  }else {
+    echo "<script>
+    alert('Meal Package Not Added');
+    window.location.href='HotelManagerManageRoom.php';
+    </script>";
+  }  
+}
+?>
+
 	<form action="" method="POST">
         <fieldset style=" position:absolute; top:1500px; width: 75%; left:160px">
             <legend style="color:white; font-size: 20px">Update and Delete Room Types</legend>
@@ -317,3 +353,4 @@ checkSession();
 	</script>
 	</body>
 </html>
+
