@@ -50,7 +50,7 @@ checkSession();
 		<td>
 		</td>
 		<td>
-			<img src = "../../public/images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "80px" >
 		</td>
 		</tr>
 	</table>
@@ -76,7 +76,7 @@ checkSession();
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
 		<td>
-			<img src = "../../public/images/Employee.png" height = "40%" >
+			<img src = "../../public/images/Employee.png" height = 80px >
 		</td>
 		<td>
 			<p style = "font-family :Lato; font-size:20px; color :white;">Receptionist Dashboard</p>		
@@ -106,10 +106,10 @@ checkSession();
 			<table width= "100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/Reservation.png" height = "50%" >
+					<img src = "../../public/images/Reservation.png" height = "80px" >
 				</td>
 				<td align ="center">
-					<img src = "../../public/images/sheets.png" height = "18%" >
+					<img src = "../../public/images/sheets.png" height = "80px" >
 				</td>
                 </tr>
                 <tr>
@@ -125,10 +125,10 @@ checkSession();
 			<table width="100%">
 				<tr>
 				<td align ="center">
-					<img src = "../../public/images/bed.png" height = "100%">
+					<img src = "../../public/images/bed.png" height = "80px">
 				</td>
 				<td align="center">
-                    <img src = "../../public/images/room.png" height = "100%">
+                    <img src = "../../public/images/room.png" height = "80px">
 				</td>
 				</tr>
 				<tr>
@@ -147,10 +147,10 @@ checkSession();
 		<table width="100%">
 			<tr>
 			<td align ="center">
-				<img src = "../../public/images/Calendar.png" height = "100%">
+				<img src = "../../public/images/Calendar.png" height = "80px">
 			</td>
 			<td align="center">
-				<img src = "../../public/images/bigCal.png" height = "10%">
+				<img src = "../../public/images/bigCal.png" height = "80px">
 			</td>
 			</tr>
 			
@@ -162,10 +162,10 @@ checkSession();
 		<table width="100%">
 			<tr>
 			<td align ="center">
-					<img src = "../../public/images/Payment.png" height = "100%" >
+					<img src = "../../public/images/Payment.png" height = "80px" >
 			</td>
 			<td align ="center">
-					<img src = "../../public/images/sheets.png" height = "18%" >
+					<img src = "../../public/images/sheets.png" height = "80px" >
 				</td>
 			</tr>
 			<tr>

@@ -51,7 +51,7 @@ checkSession();
 		<td>	
 		</td>
 		<td>
-			<img src = "../../public/images/ayomal.png" height = "40%" >
+			<img src = "../../public/images/ayomal.png" height = "80px" >
 		</td>
 		</tr>
 	</table>
@@ -77,7 +77,7 @@ checkSession();
 	<table style ="position:absolute; top : 240px; width:350px;" >
 		<tr>
             <td>
-                <img src = "../../public/images/room.png" height = "65%">
+                <img src = "../../public/images/room.png" height = "80px">
             </td>
 		<td>
 			<p style = "font-family :Lato; font-size:22px; color :white;">Room Details</p>		
@@ -100,7 +100,7 @@ checkSession();
 				<tr>
 				
 				<td align="center">
-                    <img src = "../../public/images/BIgCal.png" height = "10%">
+                    <img src = "../../public/images/BIgCal.png" height = "80px">
 				</td>
 				</tr>
 				<tr>
