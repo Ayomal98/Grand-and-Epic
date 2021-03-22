@@ -225,34 +225,62 @@ checkSession();
 					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
 					$query_run = mysqli_query($con,$query);
 
+
+					
+					// Update Profile
+					if (isset($_POST['update'])) {
+
+						$id = $_POST['id'];
+						$fname = $_POST['fname'];
+						$lname = $_POST['lname'];
+						$email = $_POST['email'];
+						$tel = $_POST['tel'];
+					
+							$update_query = " UPDATE employee SET Last_Name='$lname', Email='$email', Contact_No='$tel' where Employee_ID='$_POST[id]' ";
+							$update_run = mysqli_query($con, $update_query);
+					
+							if ($update_run) {
+								echo "<script>
+								alert('Your Details has been Updated');
+								window.location.href='SupervisorDashboard.php';
+								</script>";
+							} else {
+								echo '<script> alert("Data Not Updated") </script>';
+							}
+					}
+
+
+
+					
 					while($row = mysqli_fetch_array($query_run))
 					{
 			?>
+
 				<tr>
 					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
 				</tr>
 				<tr>
 					<td>Supervisor ID:</td>
-					<td><input type="text" name="id" value="<?php echo $row['Employee_ID'] ?>" /></td>
+					<td><input type="text" name="id" readonly value="<?php echo $row['Employee_ID'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="fname" name="fname" value="<?php echo $row['First_Name'] ?>" /></td>
+					<td><input type="text" name="fname" readonly value="<?php echo $row['First_Name'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lname" name="lname" value="<?php echo $row['Last_Name'] ?>" /></td>
+					<td><input type="text" name="lname" value="<?php echo $row['Last_Name'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" id="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
+					<td><input type="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" id="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
+					<td><input type="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
 				</tr>
 				<tr>
-					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
+					<td><input type="submit" class="button" name="update" value="UPDATE PROFILE"></td>
 				</tr>
 			<?php
 				}
@@ -260,6 +288,8 @@ checkSession();
 
 			</table>
 		</form>
+
+
 
 	<script>
 		function funcUserDetails() {
