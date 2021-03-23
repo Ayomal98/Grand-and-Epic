@@ -1,6 +1,6 @@
 <?php
 include('../../config/connection.php');
-function getAmount($tableName)
+function getID($tableName, $prefix)
 {
     include('../../config/connection.php');
     $count = mysqli_query($con, 'SELECT COUNT(*) AS NumberOfData FROM ' . $tableName . '');
@@ -11,5 +11,5 @@ function getAmount($tableName)
     for ($i = $len; $i < 4; ++$i) {
         $num = '0' . $num;
     }
-    return $num;
+    return $prefix . $num;
 }

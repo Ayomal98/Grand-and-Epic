@@ -19,13 +19,9 @@ include('../../public/includes/id-generator.php'); ?>
         $events_ID = $_GET['id'];
         $reservationType = $_GET['type'];
         $getEventDetailsTemp = mysqli_query($con, "SELECT * FROM events_booking_temp WHERE Events_ID='$events_ID'");
-        $number = getAmount('Reservation');
-
-
-        $reservationID = 'R' . $number;
+        $reservationID = getID('Reservation', 'R');
         while ($row = mysqli_fetch_assoc($getEventDetailsTemp)) {
-            $numberOfEvents = getAmount('events_booking');
-            $eventID = 'E' . $numberOfEvents;
+            $eventID = getID('events_booking', 'E');
             $customer_Name = $row["Customer_Name"];
             $customer_Email = $row["Customer_Email"];
             $num_Guests = $row["Num_Guests"];

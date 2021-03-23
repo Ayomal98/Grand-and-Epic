@@ -1,10 +1,28 @@
 <?php
 
 include("../../public/includes/session.php");
+include('../../public/includes/id-generator.php');
 
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
     header('Location:../Hotel_Website/HomePage-login.php');
+}
+
+if (isset($_POST['Payment_Accept'])) {
+    $reservationID = $_POST['Reservation_ID'];
+    $customerNam = $_POST['Customer_Name'];
+    $paymentMethod = $_POST['payment-method'];
+    $paidAmount = $_POST['Paid_Amount'];
+    $date = $_POST['Date'];
+    $status = 1;
+    $amountToBePaid = 0;
+    $payment_ID = getID('paid_confirmations', 'P');
+    $updatePaymentStatus = mysqli_query($con, "UPDATE reservation SET Payment_Status='$status', Amount_To_Be_Paid='$amountToBePaid' WHERE Reservation_ID='$reservationID'");
+    $insertConfirmation = mysqli_query($con, "INSERT INTO paid_confirmations(Paid_ID,Reservation_ID,Payment_Accepted,Date_Accepted,Payment_Method) VALUES('$payment_ID','$reservationID','$paidAmount','" . $date . "','$paymentMethod')");
+    if ($insertConfirmation && $updatePaymentStatus) {
+        echo '<script>alert("Payment Successfullt Accepted")</script>';
+        header('location:ReceptionistAcceptPayments.php');
+    }
 }
 
 ?>
@@ -75,7 +93,7 @@ if (!isset($_SESSION['First_Name'])) {
             });
         }
     </script>
-    //to generate today date
+    <!-- to generate today date  -->
     <?php
     date_default_timezone_set('Asia/Colombo');
     $date = date('Y-m-d', time());
@@ -83,7 +101,8 @@ if (!isset($_SESSION['First_Name'])) {
     ?>
     <?php
     include('../../config/connection.php');
-    $selectReservationDate = mysqli_query($con, "SELECT * FROM reservation WHERE Reservation_Date='" . $date . "'");
+    $tempStatus = 0;
+    $selectReservationDate = mysqli_query($con, "SELECT * FROM reservation WHERE Reservation_Date='" . $date . "' AND Payment_Status='" . $tempStatus . "' ");
     if (mysqli_num_rows($selectReservationDate) > 0) {
         echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
             <thead>
@@ -95,38 +114,47 @@ if (!isset($_SESSION['First_Name'])) {
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Payment Status</th>
             </thead>';
         while ($rowResDetails = mysqli_fetch_assoc($selectReservationDate)) {
+            $id = $rowResDetails['Reservation_ID'];
             echo '<tbody>
-            <tr>
-                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reservation_ID'] . '</td>
-                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Customer_Name'] . '</td>
-                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reservation_Type'] . '</td>
-                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Amount_Paid'] . '</td>
-                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Amount_To_Be_Paid'] . '</td>
-                <td style="border: 1px solid white;padding: 5px;"><a href="#">Accept Payments</a></td>
-            </tr>';
+                    <tr>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reservation_ID'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Customer_Name'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reservation_Type'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Amount_Paid'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Amount_To_Be_Paid'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;"><a href="ReceptionistAcceptPayments.php?id=' . $id . '">Accept Payments</a></td>
+                    </tr>';
         }
         echo '</table>';
     }
 
     ?>
 
-    <form style="border:1px solid white;width:350px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
-        <label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Accepting Payments</label>
-        <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Customer Name</label>
-        <input type="text" name="" id="" value="Kumara Fernando">
-        <div style="display: inline-block;margin-top:20px;">
-            <label for="Payment Selection" style="color: white;font-size: 20px;">Payment Type</label>
-            <select>
-                <option value="By-Cash">By Cash</option>
-                <option value="By-Credit Card">By Credit Card</option>
-            </select>
-        </div>
-        <label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Amount
-        </label>
-        <input type="text" name="" id="" value="Rs.50,000/=">
-        <input type="button" value="Payment Accepted" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
-    </form>
-
+    <?php if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $selectDetails = mysqli_query($con, "SELECT * FROM reservation WHERE Reservation_ID='$id'");
+        $rowUserDetails = mysqli_fetch_assoc($selectDetails);
+    ?>
+        <form action="" method="POST" style="border:1px solid white;width:350px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
+            <label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Accepting Payments</label>
+            <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Customer Name</label>
+            <input type="hidden" name="Date" value="<?php echo $date ?>">
+            <input type="hidden" name="Reservation_ID" value="<?php echo $id ?>">
+            <input type="text" name="Customer_Name" id="" value="<?php echo $rowUserDetails['Customer_Name'] ?>">
+            <div style="display: inline-block;margin-top:20px;">
+                <label for="Payment Selection" style="color: white;font-size: 20px;">Payment Type</label>
+                <select name="payment-method">
+                    <option value="By-Cash">By Cash</option>
+                    <option value="By-Credit Card">By Credit Card</option>
+                </select>
+            </div>
+            <label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Amount
+            </label>
+            <input type="text" name="Paid_Amount" id="" value="<?php echo $rowUserDetails['Amount_To_Be_Paid'] ?>">
+            <input type="submit" name="Payment_Accept" value="Payment Accepted" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
+        </form>
+    <?php } else {
+    } ?>
     <script>
         function funcUserDetails() {
             document.getElementById('user-detail-container').style.display = "block";
