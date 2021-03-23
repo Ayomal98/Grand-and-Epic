@@ -142,7 +142,7 @@
                     <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
-                <div class="check-availability-shower" id="check-availability-shower" style="background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
+                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
                 </div>
             </div>
     </form>

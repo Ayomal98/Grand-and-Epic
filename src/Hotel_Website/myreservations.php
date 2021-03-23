@@ -48,10 +48,10 @@ $email = $_SESSION["User_Email"];
         <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:750px;"></i>
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
         <form method='post' action="">
-            <input type="submit" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;" name="Deactivate_Account">
+            <input type="submit" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:280px;cursor:pointer;" name="Deactivate_Account">
         </form>
-        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
-        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:30px;cursor:pointer;">
+        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:440px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
 
     </div>
     <h3><u>Upcoming Reservations</u></h3>
@@ -68,31 +68,42 @@ $email = $_SESSION["User_Email"];
     </div>
     <div class="userBookings upcoming" id="user-bookings">
         <div class="upcomig-reservation-box">
-            <span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">Room Number : Suite 12</span>
-            <table border="1px solid black" style="font-size:13px;border-radius:10px">
-                <tr>
-                    <th style="padding:5px 0px">Check-in Date</th>
-                    <th style="padding:5px 0px">Check-in Time</th>
-                    <th style="padding:5px 0px">Check-out Date</th>
-                    <th style="padding:5px 0px">Check-out Time</th>
-                </tr>
-                <tr>
-                    <td style="padding-left:7px">29th November</td>
-                    <td style="padding-left:7px">12.30 P.M</td>
-                    <td style="padding-left:7px">31st November</td>
-                    <td style="padding-left:7px">12.30 P.M</td>
-                </tr>
-            </table>
-            <table border="1px solid black" style="font-size:13px;border-radius:10px;margin-top:20px;width:60%;margin-left:50px">
-                <tr>
-                    <th style="padding:5px">Amount Paid</th>
-                    <th style="padding:5px">Amount to be Paid</th>
-                </tr>
-                <tr>
-                    <td style="padding-left: 15px;">Rs.16,000/=</td>
-                    <td style="padding-left: 15px;">Rs.64,000/=</td>
-                </tr>
-            </table>
+            <?php
+            $selectStayingInBookings = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE User_Email='$email'");
+            if (mysqli_num_rows($selectStayingInBookings) > 0) {
+                while ($rowSelectedStayingIn = mysqli_fetch_assoc($selectStayingInBookings)) {
+                    $rooomNumbers = unserialize($rowSelectedStayingIn['Room_Numbers']);
+                    $rooomType = $rowSelectedStayingIn["Room_Type"];
+                    $amountToPay = (int)$rowSelectedStayingIn['Total_Amount'] - (int)$rowSelectedStayingIn['Paid_Amount'];
+                    echo '<span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">' . $rooomType . ' Numbers   :' . implode(",", $rooomNumbers) . '</span>
+                            <table border="1px solid black" style="font-size:13px;border-radius:10px">
+                            <tr>
+                                <th style="padding:5px 0px">Check-in Date</th>
+                                <th style="padding:5px 0px">Check-in Time</th>
+                                <th style="padding:5px 0px">Check-out Date</th>
+                                <th style="padding:5px 0px">Check-out Time</th>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Date'] . '</td>
+                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Time'] . '</td>
+                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckOut_Date'] . '</td>
+                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Time'] . '</td>
+                            </tr>
+                        </table>
+                        <table border="1px solid black" style="font-size:13px;border-radius:10px;margin-top:20px;width:60%;margin-left:50px">
+                            <tr>
+                                <th style="padding:5px">Amount Paid</th>
+                                <th style="padding:5px">Amount to be Paid</th>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">Rs. ' . $rowSelectedStayingIn['Paid_Amount'] . '/=</td>
+                                <td style="padding-left: 15px;">Rs.' . $amountToPay . '/=</td>
+                            </tr>
+                        </table>';
+                }
+            }
+            ?>
+
             <!-- <span style="font-weight: bold;font-size:15px;">Room Number : Suite-12</span>
             <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>29th of November 2020</span></span>
             <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>

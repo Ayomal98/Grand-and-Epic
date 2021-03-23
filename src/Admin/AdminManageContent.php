@@ -121,14 +121,14 @@ if (!isset($_SESSION['First_Name'])) {
 	</form>
 
 <!--VIEW-->
-	<form>
+<form action="ContentManage.php" method="POST">
 		<fieldset style=" position:absolute; top:280px;left:650px; width: 45%;">
 			<legend style="color:white; font-size: 30px">Past Posts</legend>
 			<table style="width:100%; color:white; border: 1px solid white;">
 	
 			<?php include("../../config/connection.php");
 
-$query = "SELECT * FROM content WHERE Content_ID='2'";
+$query = "SELECT * FROM content WHERE Content_ID='8'";
 $query_run = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($query_run)) {
 
@@ -137,14 +137,13 @@ while ($row = mysqli_fetch_array($query_run)) {
 	<tr><input type="text" name="Heading" value="<?php echo $row['Heading'] ?>" /></tr>
 	<tr><input type="text" name="Content" value="<?php echo $row['Content'] ?>" /></tr>
 			
-
 <?php
 }
 ?>
 				
-					<td align="left">
+					<!--<td align="left">
 					<?php
-					include("../../config/connection.php");
+					/*include("../../config/connection.php");
 
 					$next = mysqli_query($mysqli, "SELECT * FROM content WHERE Content_ID>$Content_ID order by Content_ID ASC");
 					if($row = mysqli_fetch_array($next))
@@ -155,49 +154,21 @@ while ($row = mysqli_fetch_array($query_run)) {
 					?>
 						<!--<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>-->
 						<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&raquo;</a>
-					</td>
-					<form action="" method="POST">
-					<td align="right">
-						<input type="submit" class="button" name="update" value="EDIT POST">
-						<?php
-						include("../../config/connection.php");
-						if (isset($_POST['update'])) {
-							$Heading=$_POST['Heading'];
-							$Content = $_POST['Content'];
-                            $query = "UPDATE content SET Heading='$Heading',Content='$Content' where Content_ID=' $Content_ID '";
-							$query_run = mysqli_query($con, $query);
-							if ($query_run) {
-								echo '<script type="text/javascript">alert("Data updated successfully")</script>';
-								echo '<script>window.location.href="AdminAddPromotion.php"</script>';
-							} else {
-								echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
-								echo '<script>window.location.href=AdminAddPromotion.php"</script>';
-							}
-						}
-						?>
-						</td>
-						</form>
-						<td>
-						<input type="submit" class="button" name="delete" value="DELETE POST">
-						<?php
-						include("../../config/connection.php");
-						if (isset($_POST['delete'])) {
-		$query = "DELETE FROM content where Content_ID='$_POST[Content_ID]'";
-		$query_run = mysqli_query($con, $query);
-		if ($query_run) {
-			echo "<script>
-                alert('Content Has been Deleted');
-                window.location.href='AdminManageContent.php';
-                </script>";
-				}
-			 else 
-			 {
-			echo '<script> alert("Content has been not deleted") 
-			</script>';
+					</td>*/
+					?>-->
 
-			}
-		}
-		?>
+					<form action="ContentManage.php" method="POST">
+					<td align="right">
+					<input type="submit" class="button" name="update" value="UPDATE">
+						</td>
+
+						<form action="ContentManage.php" method="POST">
+					<td align="right">
+					<input type="submit" class="button" name="delete" value="DELETE POST">
+						
+						</td>
+						
+		
 					</td>
 				</tr>
 			</table>

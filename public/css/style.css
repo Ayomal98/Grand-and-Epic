@@ -614,6 +614,16 @@ input:focus{
   padding: 20px;
   position: relative;
 }
+
+.modal-content.edit {
+  width: 529px;
+  height: 550px;
+  background-color:white;
+  border-radius: 4px;
+  text-align: center;
+  padding: 12px;
+  position: relative;
+}
 .modal-content-meal-selection-stayingin {
   width: 750px;
   height: 750px;
@@ -1908,6 +1918,14 @@ span.suite-icon-label {
   margin-top: 0px;
   text-align: center;
   font-size:17px;
+  font-style: italic;
+}
+.set-menu-card-text-meals-page{
+  grid-area: text;
+  margin-left: -220px;
+  margin-top: -30px;
+  text-align: center;
+  font-size:23px;
   font-style: italic;
 }
 

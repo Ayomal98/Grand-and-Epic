@@ -179,69 +179,85 @@ checkSession();
 		</tr>
 		
 	</table>
-	
-	
-	<div class ="bottom-left">
-		<div class="display">
-		  
 
-		  <!--<button class="display-left" onclick="plusDivs(-1)">&#10094;</button>-->
-		  <!--<button class="display-right" onclick="plusDivs(1)">&#10095;</button>-->
-	</div>
 
-	<script>
-	var slideIndex = 1;
-	showDivs(slideIndex);
-
-	function plusDivs(n) {
-	  showDivs(slideIndex += n);
-	}
-
-	function showDivs(n) {
-	  var i;
-	  var x = document.getElementsByClassName("mySlides");
-	  if (n > x.length) {slideIndex = 1}
-	  if (n < 1) {slideIndex = x.length}
-	  for (i = 0; i < x.length; i++) {
-		x[i].style.display = "none";  
-	  }
-	  x[slideIndex-1].style.display = "block";  
-	}
-	</script>
-	</div>
-	
-  <!-- USER PROFILE -->	
-	<form>
+<!-- User Profie -->
+	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
 			<table align="center" style="color:white; font-size: 20px; width:88%;">
+
+			<?php
+				include("../../config/connection.php");
+
+					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
+					$query_run = mysqli_query($con,$query);
+
+
+					
+					// Update Profile
+					if (isset($_POST['update'])) {
+
+						$id = $_POST['id'];
+						$fname = $_POST['fname'];
+						$lname = $_POST['lname'];
+						$email = $_POST['email'];
+						$tel = $_POST['tel'];
+					
+							$update_query = " UPDATE employee SET Last_Name='$lname', Email='$email', Contact_No='$tel' where Employee_ID='$_POST[id]' ";
+							$update_run = mysqli_query($con, $update_query);
+					
+							if ($update_run) {
+								echo "<script>
+								alert('Your Details has been Updated');
+								window.location.href='ReceptionistDashboard.php';
+								</script>";
+							} else {
+								echo '<script> alert("Data Not Updated") </script>';
+							}
+					}
+
+
+
+					
+					while($row = mysqli_fetch_array($query_run))
+					{
+			?>
+
 				<tr>
 					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
 				</tr>
 				<tr>
 					<td>Receptionist ID:</td>
-					<td><input type="text" id="id" name="id" value="R001"></td>
+					<td><input type="text" name="id" readonly value="<?php echo $row['Employee_ID'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>
-					<td><input type="text" id="fname" name="fname" value="Anushka"></td>
+					<td><input type="text" name="fname" readonly value="<?php echo $row['First_Name'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" id="lname" name="lname" value="De Silva"></td>
+					<td><input type="text" name="lname" value="<?php echo $row['Last_Name'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" id="email" name="email" value="anushka@gmail.com"></td>
+					<td><input type="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" id="tel" name="tel" value="0771122347"></td>
+					<td><input type="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
 				</tr>
 				<tr>
-					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
+					<td><input type="submit" class="button" name="update" value="UPDATE PROFILE"></td>
 				</tr>
+			<?php
+				}
+			?>
+
 			</table>
 		</form>
+
+
+
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
