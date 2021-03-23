@@ -114,105 +114,114 @@ if (!isset($_SESSION['First_Name'])) {
 			</th>
 		</tr>
 
-		<td style="border: 1px solid white;">
-
-			<table width="100%">
-				<tr>
-					<td align="center">
-
-						<img src="../../public/images/loyalty.png" height="70%">
-					</td>
-
-
-					<td align="center">
-					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
-			
-					</textarea>
-						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
-			
-					</textarea></td>
-
-				</tr>
-				
-				<tr>
-					<td align="center">
-					<form action="PromotionManage.php" method="POST">
-						<input type="hidden" class="button" name="update" value="<?php echo $row['Promotion_Type']?>">
-				
-						</form>
-
-
-					</td>
-					<td align="center">
-						<input type="hidden" class="button" name="delete" value="<?php echo $row['Promotion_Type']?>">
-					</td>
-				</tr>
-			</table>
-			
-
-		</td>
-
-		<!--LAST MINUTE-->
-<form action="PromotionManage.php" method="POST" >
-		<td style="border: 1px solid white;">
-			<table width="100%">
-				<tr>
-					<td align="center">
-						<img src="../../public/images/lastminute.png" height="70%">
-					</td>
-					<td align="center">
-					<textarea name="Message" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">			
-					</textarea>
-						<textarea name="Message" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
-
-					</textarea>
-				</tr>
-				<tr>
-					<td align="center">
-					<input type="submit" class="button" name="update-lastminute" value="UPDATE PROMOTION">
-						</td>
-					
-					<td align="center">
-
-					</td>
-				</tr>
-			</table>
-		</td>
-		<form action="PromotionManage.php" method="POST" >
-		<td style="border: 1px solid white;">
-			<table width="100%">
-				<tr>
-					<td align="center">
-						<img src="../../public/images/presents.jpeg" width="125" height="100">
-					</td>
-					<td align="center">
-						<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+		<form action="PromotionManage.php" method="POST">
+				<td style="border: 1px solid white;">
+					<table width="100%">
+						<tr>
+							<td align="center">
+								<img src="../../public/images/loyalty.png" width="125" height="100">
+							</td>
+							<td align="center">
+								<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
 						<?php
 						include("../../config/connection.php");
-						$query = "SELECT Context FROM promotions where Promotion_type='Seasonal'";
-					$query_run = mysqli_query($con, $query);
-					while ($row = mysqli_fetch_array($query_run))
-                    echo   $row["Context"];
-                    //echo   $row["Policies"];
-					?>
-				
-					</textarea>
-						<textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						$query = "SELECT Context,Policies FROM promotions where Promotion_type='Loyalty'";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+							echo   $row["Context"] .
+								'</textarea><textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						' . $row["Policies"] . '
+							</textarea>'
+						?>
 						</textarea>
-						<input type="hidden" name="type" value="Seasonal">
-				</tr>
-				<tr>
-					<td align="center">
-						<input type="submit" class="button" name="update" value="update">
-					</td>
-					<td align="center">
-						<input type="button" class="button" value="DELETE PROMOTION">
-					</td>
-				</tr>
-			</table>
-		</td>
-		</form>
-		</tr>
+
+								<input type="hidden" name="type" value="Loyalty">
+						</tr>
+						<tr>
+							<td align="center">
+								<input type="submit" class="button" name="update" value="update">
+							</td>
+							<td align="center">
+							<input type="submit" class="button" name="delete" value="delete">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</form>
+
+		<!--LAST MINUTE-->
+		<form action="PromotionManage.php" method="POST">
+				<td style="border: 1px solid white;">
+					<table width="100%">
+						<tr>
+							<td align="center">
+								<img src="../../public/images/lastminute.png" width="125" height="100">
+							</td>
+							<td align="center">
+								<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<?php
+						include("../../config/connection.php");
+						$query = "SELECT Context,Policies FROM promotions where Promotion_type='Last'";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+							echo   $row["Context"] .
+								'</textarea><textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						' . $row["Policies"] . '
+							</textarea>'
+						?>
+						</textarea>
+
+								<input type="hidden" name="type" value="Last">
+						</tr>
+						<tr>
+							<td align="center">
+								<input type="submit" class="button" name="update" value="update">
+							</td>
+							<td align="center">
+							<input type="submit" class="button" name="delete" value="delete">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</form>
+		
+
+		<!--SEASONAL-->
+		<form action="PromotionManage.php" method="POST">
+				<td style="border: 1px solid white;">
+					<table width="100%">
+						<tr>
+							<td align="center">
+								<img src="../../public/images/presents.jpeg" width="125" height="100">
+							</td>
+							<td align="center">
+								<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<?php
+						include("../../config/connection.php");
+						$query = "SELECT Context,Policies FROM promotions where Promotion_type='Seasonal'";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+							echo   $row["Context"] .
+								'</textarea><textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						' . $row["Policies"] . '
+							</textarea>'
+						?>
+						</textarea>
+
+								<input type="hidden" name="type" value="Seasonal">
+						</tr>
+						<tr>
+							<td align="center">
+								<input type="submit" class="button" name="update" value="update">
+							</td>
+							<td align="center">
+							<input type="submit" class="button" name="delete" value="delete">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</form>
+		
 
 		<table style="position:absolute; top : 850px; width:350px;width : 97%;">
 			<tr>

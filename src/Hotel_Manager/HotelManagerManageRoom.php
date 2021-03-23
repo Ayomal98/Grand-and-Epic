@@ -123,7 +123,15 @@ if (!isset($_SESSION['First_Name'])) {
                         <img src="../../public/images/Superior.png" height="80%">
                     </td>
                     <td align="center">
-                        <textarea name="Message" rows="5" cols="0" placeholder="Description" style="font-size: 20px;"></textarea>
+                        <?php
+						include("../../config/connection.php");
+						$query = "SELECT Description FROM rooms where Room_Type= ' Superior '";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+                        echo
+                        '<textarea name="Description" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"> ' . $row["Description"] . '
+                            </textarea>';
+                    	?>
                 </tr>
             </table>
 
@@ -135,7 +143,15 @@ if (!isset($_SESSION['First_Name'])) {
                         <img src="../../public/images/Panora.png" height="100px">
                     </td>
                     <td align="center">
-                        <textarea name="Message" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"></textarea>
+                    <?php
+						include("../../config/connection.php");
+						$query = "SELECT Description FROM rooms where Room_Type= ' Panoramic '";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+                        echo
+                        '<textarea name="Description" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"> ' . $row["Description"] . '
+                            </textarea>';
+                    	?>
                 </tr>
             </table>
         </td>
@@ -146,7 +162,15 @@ if (!isset($_SESSION['First_Name'])) {
                         <img src="../../public/images/suite.png" height="80%">
                     </td>
                     <td align="center">
-                        <textarea name="Message" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"></textarea>
+                    <?php
+						include("../../config/connection.php");
+						$query = "SELECT Description FROM rooms where Room_Type= ' Suite '";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+                        echo
+                        '<textarea name="Description" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"> ' . $row["Description"] . '
+                            </textarea>';
+                    	?>
                 </tr>
             </table>
         </td>
