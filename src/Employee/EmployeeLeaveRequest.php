@@ -1,6 +1,7 @@
 <?php
 include("../../public/includes/session.php");
 include("../../config/connection.php");
+include('../../public/includes/id-generator.php');
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/index.php');
@@ -117,6 +118,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<th style="border-right: 1px solid white;padding:15px">Start Date</th>
 				<th style="border-right: 1px solid white;padding:15px">End Date</th>
 				<th style="border-right: 1px solid white;padding:8px">Reason</th>
+				<th style="border-right: 1px solid white;padding:8px">Status</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -128,10 +130,17 @@ if (!isset($_SESSION['First_Name'])) {
 					$startDate = $row["Start_Date"];
 					$endDate = $row["End_Date"];
 					$reason = $row["Reason"];
+					$showStatus = $row["Status"];
+					if ($showStatus == 0) {
+						$showStatus = 'Not Accepted';
+					} else {
+						$showStatus = 'Accepted';
+					}
 					echo 	'<tr style="border-bottom: 1px solid white;">
 								<td style="border-right: 1px solid white;padding:15px">' . $startDate . '</td>
 								<td style="border-right: 1px solid white;padding:15px">' . $endDate . '</td>
 								<td style="border-right: 1px solid white;padding:15px 25px">' . $reason . '</td>
+								<td style="border-right: 1px solid white;padding:15px">' . $showStatus . '</td>
 							</tr>';
 				}
 			} else {
@@ -167,6 +176,7 @@ if (!isset($_SESSION['First_Name'])) {
 	}
 	today = yy + '-' + mm + '-' + dd;
 	document.getElementById("datefield").setAttribute("min", today);
+	document.getElementById("endfield").setAttribute("min", today);
 </script>
 
 
@@ -175,16 +185,21 @@ if (!isset($_SESSION['First_Name'])) {
 <?php
 require_once('../../config/connection.php');
 if (isset($_POST["Submit"])) {
+	$leaveRequestID = getID("leave_request", "L");
 	$employeeID = $_SESSION['Employee_ID'];
 	$startDate = mysqli_real_escape_string($con, $_POST['startdate']);
 	$endDate = mysqli_real_escape_string($con, $_POST['enddate']);
 	$section = mysqli_real_escape_string($con, $_POST['section']);
 	$reason = mysqli_real_escape_string($con, $_POST['Message']);
-	$insertLR = "INSERT INTO leave_request(Employee_ID,Start_Date,End_Date,Section,Reason) VALUES ('$employeeID','$startDate','$endDate','$section','$reason')";
+
+	$status = 0;
+	$insertLR = "INSERT INTO leave_request(ID,Employee_ID,Start_Date,End_Date,Type_Employee,Reason,Status) VALUES ('" . $leaveRequestID . "','$employeeID','$startDate','$endDate','$section','$reason','$status')";
 	if (mysqli_query($con, $insertLR)) {
 		echo "<script>alert('Your Leave Request Has been sent')
 					  window.location.href='EmployeeLeaveRequest.php'
 			  </script>";
+	} else {
+		echo $leaveRequestID;
 	}
 }
 ?>
