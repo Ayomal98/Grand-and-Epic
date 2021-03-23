@@ -1,23 +1,22 @@
 <?php
 include("../../public/includes/session.php");
-include("../../config/connection.php");
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/index.php');
 }
 ?>
-
 <html>
 
 <head>
 	<link rel="stylesheet" href="../../public/css/employee.css">
 	<title>
-		Employee Leave Request
+		Employee Dashboard
 	</title>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
 <body bgcolor="black">
+
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
 
@@ -32,22 +31,24 @@ if (!isset($_SESSION['First_Name'])) {
 
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Leave Request
+		<button class="dropdown-btn">Dashboard
 			<i class="fa fa-caret-down"></i>
 		</button>
 
 		<div class="dropdown-container">
-			<a href="EmployeeDashboard.php">Dashboard</a>
+
+			<a href="EmployeeLeaveRequest.php">Request a Leave</a>
 			<a href="EmployeeDutyRoaster.php">View Duty Roaster</a>
-			<a href="EmloyeeViewCustomerFeedback.php"> View Customer Feedback</a>
+			<a href="EmloyeeViewCustomerFeedback.php">View Customer Feedback</a>
 		</div>
+
 	</div>
 
 	<div class="top-right">
 		<table width="100%">
 			<tr>
 				<td>
-					<img src="../../public/images/ayomal.png" height="40%">
+					<img src="../../public/images/ayomal.png" height="80px">
 				</td>
 			</tr>
 		</table>
@@ -70,121 +71,143 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 
+	<table style="position:absolute; top : 240px; width:350px;">
+		<tr>
+			<td>
 
-	<form method="post" action="">
-		<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
-			<legend style="color:white; font-size: 20px">Request a Leave</legend>
+				<img src="../../public/images/Employee.png" height="70px">
 
-			<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
-				<tr>
-					<td align="left">Employee ID:</td>
-					<td align="left"><input type="text" name="id" size="20" value=<?php echo $_SESSION["Employee_ID"]; ?>></td>
-				</tr>
-				<tr>
-					<td align="left">Leave Start Date:</td>
-					<td align="left"><input type="date" name="startdate" id="datefield" size="20"></td>
-				</tr>
-				<tr>
-					<td align="left">Leave End Date:</td>
-					<td align="left"><input type="date" name="enddate" id="endfield" size="20"></td>
-				</tr>
-				<tr>
-					<td align="left">Section:</td>
-					<td align="left"><input type="text" name="section" size="50"></td>
-				</tr>
-				<tr>
-					<td align="left">Reason for the leave:</td>
-					<td align="left"><textarea name="Message" rows="5" cols="53" placeholder="Leave your reason here:"></textarea></td>
-				</tr>
-			</table>
-
-			<br>
-			<table style="color:white; font-size: 20px; width:81%;">
-				<tr>
-					<td align="right">
-						<input type="reset" class="button" value="CANCEL">
-						<input type="submit" class="button" name="Submit" value="SUBMIT">
-					</td>
-
-				</tr>
-			</table>
-		</fieldset>
-	</form>
-	<h1 style="text-align: center;color:white;font-weight:bold;margin-top:300px"><u>Leave Request Info</u></h1>
-	<table style="color:white;border:1px solid white;border-collapse:collapse;margin-top:20px;margin-left:500px">
-		<thead>
-			<tr style="border-bottom: 1px solid white;">
-				<th style="border-right: 1px solid white;padding:15px">Start Date</th>
-				<th style="border-right: 1px solid white;padding:15px">End Date</th>
-				<th style="border-right: 1px solid white;padding:8px">Reason</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-			$showLR = "SELECT * FROM leave_request ";
-			$result = mysqli_query($con, $showLR);
-			if (mysqli_num_rows($result) > 0) {
-				while ($row = mysqli_fetch_assoc($result)) {
-					$startDate = $row["Start_Date"];
-					$endDate = $row["End_Date"];
-					$reason = $row["Reason"];
-					echo 	'<tr style="border-bottom: 1px solid white;">
-								<td style="border-right: 1px solid white;padding:15px">' . $startDate . '</td>
-								<td style="border-right: 1px solid white;padding:15px">' . $endDate . '</td>
-								<td style="border-right: 1px solid white;padding:15px 25px">' . $reason . '</td>
-							</tr>';
-				}
-			} else {
-				echo '<h2>No Leave Request Have been taken </h2>';
-			}
-			?>
-		</tbody>
+			</td>
+			<td>
+				<p style="font-family :Lato; font-size:20px; color :white;">Employee Dashboard</p>
+			</td>
+		</tr>
 	</table>
 
 
+	<table style="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;">
+		<tr>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px;"><a href="EmployeeLeaveRequest.php">Request a Leave</a></p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px;"><a href="EmployeeDutyRoaster.php">View Duty Roaster</a></p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px;"><a href="EmloyeeViewCustomerFeedback.php">View Customer Feedback</a></p>
+			</th>
+		</tr>
+		<tr>
+			<td style="border: 1px solid white;">
+
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/Calendar.png" height="60px">
+						</td>
+						<td align="center">
+							<img src="../../public/images/BigCal.png" height="170px">
+						</td>
+					</tr>
+				</table>
+
+			</td>
+			<td style="border: 1px solid white;">
+
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/T.png" height="40px">
+						</td>
+						<td rowspan="2" align="center">
+							<img src="../../public/images/Duty.png" height="190px">
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/Tick.png" height="50px">
+						</td>
+					</tr>
+
+				</table>
+
+			</td>
+			<td style="border: 1px solid white;">
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/Feedback.png" height="50px">
+						</td>
+						<td align="center">
+							<img src="../../public/images/Feed.png" height="140px">
+						</td>
+					</tr>
+				</table>
+
+			</td>
+		</tr>
+
+	</table>
+
+
+	<!-- User Profie -->
+	<form action="" method="POST">
+		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
+			<table align="center" style="color:white; font-size: 20px; width:88%;">
+
+			<?php
+				include("../../config/connection.php");
+
+					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
+					$query_run = mysqli_query($con,$query);
+
+					while($row = mysqli_fetch_array($query_run))
+					{
+			?>
+				<tr>
+					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
+				</tr>
+				<tr>
+					<td>Supervisor ID:</td>
+					<td><input type="text" name="id" value="<?php echo $row['Employee_ID'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" id="fname" name="fname" value="<?php echo $row['First_Name'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" id="lname" name="lname" value="<?php echo $row['Last_Name'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Email Address:</td>
+					<td><input type="email" id="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>TP Number: </td>
+					<td><input type="tel" id="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
+				</tr>
+				<tr>
+					<td><input type="button" class="button" value="UPDATE PROFILE"></td>
+				</tr>
+			<?php
+				}
+			?>
+
+			</table>
+		</form>
+
+
+	<script>
+		function funcUserDetails() {
+			document.getElementById('user-detail-container').style.display = "block";
+		}
+
+		function funcCloseUserDetails() {
+			document.getElementById('user-detail-container').style.display = "none";
+		}
+	</script>
+
 </body>
-<script>
-	function funcUserDetails() {
-		document.getElementById('user-detail-container').style.display = "block";
-	}
-
-	function funcCloseUserDetails() {
-		document.getElementById('user-detail-container').style.display = "none";
-	}
-</script>
-
-<script>
-	//--    for setting the current day as the minimum date for the time being --
-	var today = new Date();
-	var dd = today.getDate() + 1;
-	var mm = today.getMonth() + 1;
-	var yy = today.getFullYear();
-	if (dd < 10) {
-		dd = '0' + dd;
-	}
-	if (mm < 10) {
-		mm = '0' + mm;
-	}
-	today = yy + '-' + mm + '-' + dd;
-	document.getElementById("datefield").setAttribute("min", today);
-</script>
-
 
 </html>
-
-<?php
-require_once('../../config/connection.php');
-if (isset($_POST["Submit"])) {
-	$employeeID = $_SESSION['Employee_ID'];
-	$startDate = mysqli_real_escape_string($con, $_POST['startdate']);
-	$endDate = mysqli_real_escape_string($con, $_POST['enddate']);
-	$section = mysqli_real_escape_string($con, $_POST['section']);
-	$reason = mysqli_real_escape_string($con, $_POST['Message']);
-	$insertLR = "INSERT INTO leave_request(Employee_ID,Start_Date,End_Date,Section,Reason) VALUES ('$employeeID','$startDate','$endDate','$section','$reason')";
-	if (mysqli_query($con, $insertLR)) {
-		echo "<script>alert('Your Leave Request Has been sent')
-					  window.location.href='EmployeeLeaveRequest.php'
-			  </script>";
-	}
-}
-?>
