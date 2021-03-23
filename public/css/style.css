@@ -614,6 +614,16 @@ input:focus{
   padding: 20px;
   position: relative;
 }
+
+.modal-content.edit {
+  width: 529px;
+  height: 550px;
+  background-color:white;
+  border-radius: 4px;
+  text-align: center;
+  padding: 12px;
+  position: relative;
+}
 .modal-content-meal-selection-stayingin {
   width: 750px;
   height: 750px;

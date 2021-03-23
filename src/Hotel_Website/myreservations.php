@@ -48,10 +48,10 @@ $email = $_SESSION["User_Email"];
         <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:750px;"></i>
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
         <form method='post' action="">
-            <input type="submit" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:280px;cursor:pointer;" name="Deactivate_Account">
+            <input type="submit" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:280px;cursor:pointer;" name="Deactivate_Account">
         </form>
-        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:30px;cursor:pointer;">
-        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:750px;right:440px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:30px;cursor:pointer;">
+        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:440px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
 
     </div>
     <h3><u>Upcoming Reservations</u></h3>

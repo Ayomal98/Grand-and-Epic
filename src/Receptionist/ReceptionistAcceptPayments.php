@@ -3,9 +3,9 @@
 include("../../public/includes/session.php");
 
 checkSession();
-	if(!isset($_SESSION['First_Name'])){
-		header('Location:../Hotel_Website/HomePage-login.php');
-	}
+if (!isset($_SESSION['First_Name'])) {
+    header('Location:../Hotel_Website/HomePage-login.php');
+}
 
 ?>
 
@@ -25,26 +25,26 @@ checkSession();
         <img src="../../public/images/Logo.png" width="20%">
 
         <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
-		<!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
-		<div id="user-detail-container">
-			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black">
-            <?php 
-				echo "Logged in as " . $_SESSION['First_Name'] ."(Staff)</P>";
-			?>
-			<hr style="color:teal">
-			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
-		</div>
+        <!--<br><span style="position:absolute;top:100px;right:40px;font-size:20px;color:white"></span>-->
+        <div id="user-detail-container">
+            <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
+            <p style="margin-top: 2px; color:black">
+                <?php
+                echo "Logged in as " . $_SESSION['First_Name'] . "(Staff)</P>";
+                ?>
+                <hr style="color:teal">
+                <a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
+        </div>
     </center>
     <div class="sidenav">
         <button class="dropdown-btn">Accept Payments
-        <i class="fa fa-caret-down"></i>
+            <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
             <a href="ReceptionistDashboard.php">Dashboard</a>
             <a href="ReceptionistReservations.php">Reservations</a>
             <a href="ReceptionistRoomDetails.php">Room Details</a>
-            <a href="ReceptionistRequestLeave.php">Request a Leave</a> 
+            <a href="ReceptionistRequestLeave.php">Request a Leave</a>
         </div>
     </div>
     <div class="top-right">
@@ -64,7 +64,7 @@ checkSession();
         var i;
 
         for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function () {
+            dropdown[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var dropdownContent = this.nextElementSibling;
                 if (dropdownContent.style.display === "block") {
@@ -75,8 +75,17 @@ checkSession();
             });
         }
     </script>
-    <input type="date" name="" id="" style="margin-top:-200px;margin-bottom: 200px;width: 300px;margin-left: 600px;" />
-    <table style="color:white;border:1px solid white;margin-left:12%;margin-top:-130px;width: 80%;">
+    //to generate today date
+    <?php
+    date_default_timezone_set('Asia/Colombo');
+    $date = date('Y-m-d', time());
+    echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">' . $date . '</span>    ';
+    ?>
+    <?php
+    include('../../config/connection.php');
+    $selectReservationDate = mysqli_query($con, "SELECT * FROM reservation WHERE Reservation_Date='" . $date . "'");
+    ?>
+    <table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
         <thead>
             <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reservation Id</th>
             <th style="border: 1px solid white;padding: 10px;font-size:20px;">Customer Name</th>
@@ -114,8 +123,7 @@ checkSession();
         </tbody>
     </table>
 
-    <form
-        style="border:1px solid white;width:350px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
+    <form style="border:1px solid white;width:350px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
         <label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Accepting Payments</label>
         <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Customer Name</label>
         <input type="text" name="" id="" value="Kumara Fernando">
@@ -129,19 +137,18 @@ checkSession();
         <label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Amount
         </label>
         <input type="text" name="" id="" value="Rs.50,000/=">
-        <input type="button" value="Payment Accepted"
-            style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
+        <input type="button" value="Payment Accepted" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
     </form>
 
     <script>
-		function funcUserDetails() {
-			document.getElementById('user-detail-container').style.display = "block";
-		}
+        function funcUserDetails() {
+            document.getElementById('user-detail-container').style.display = "block";
+        }
 
-		function funcCloseUserDetails() {
-			document.getElementById('user-detail-container').style.display = "none";
-		}
-	</script>
+        function funcCloseUserDetails() {
+            document.getElementById('user-detail-container').style.display = "none";
+        }
+    </script>
 </body>
 
 </html>

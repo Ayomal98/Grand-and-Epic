@@ -1,4 +1,6 @@
-<?php include('../../config/vendor/autoload.php'); ?>
+<?php include('../../config/vendor/autoload.php');
+
+include('../../public/includes/id-generator.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +17,15 @@
     include('../../config/connection.php');
     if ($_GET['type'] == 'events') {
         $events_ID = $_GET['id'];
+        $reservationType = $_GET['type'];
         $getEventDetailsTemp = mysqli_query($con, "SELECT * FROM events_booking_temp WHERE Events_ID='$events_ID'");
+        $number = getAmount('Reservation');
+
+
+        $reservationID = 'R' . $number;
         while ($row = mysqli_fetch_assoc($getEventDetailsTemp)) {
+            $numberOfEvents = getAmount('events_booking');
+            $eventID = 'E' . $numberOfEvents;
             $customer_Name = $row["Customer_Name"];
             $customer_Email = $row["Customer_Email"];
             $num_Guests = $row["Num_Guests"];
@@ -27,7 +36,10 @@
             $mealPackage_ID = $row["MealPackage_ID"];
             $totalAmount = $row["Price"];
             $paidAmount = $row["Price"] * 0.2;
-            $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount) VALUES('$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount')");
+            $amountToBePaid = $totalAmount - $paidAmount;
+            $paymentStatus = 0;
+            $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Events_ID,Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount) VALUES('$eventID','$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount')");
+            $insertToReservationTable = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservationID','$reservationType','$paymentStatus','$eventID','$customer_Name','$paidAmount','$amountToBePaid','$reservation_Date')");
             if ($paymentSuccessEvent) {
                 $deleteTempEvtDetails = mysqli_query($con, "DELETE * FROM events_booking_temp WHERE Events_ID='$events_ID'");
             }
