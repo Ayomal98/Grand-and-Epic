@@ -139,10 +139,10 @@ if (!isset($_SESSION['First_Name'])) {
 						</tr>
 						<tr>
 							<td align="center">
-								<input type="submit" class="button" name="update" value="UPDATE">
+								<input type="submit" class="button" name="update" value="update">
 							</td>
 							<td align="center">
-							<input type="submit" class="button" name="delete" value="DELETE">
+							<input type="submit" class="button" name="delete" value="delete">
 							</td>
 						</tr>
 					</table>
@@ -175,10 +175,10 @@ if (!isset($_SESSION['First_Name'])) {
 						</tr>
 						<tr>
 							<td align="center">
-								<input type="submit" class="button" name="update" value="UPDATE">
+								<input type="submit" class="button" name="update" value="update">
 							</td>
 							<td align="center">
-							<input type="submit" class="button" name="delete" value="DELETE">
+							<input type="submit" class="button" name="delete" value="delete">
 							</td>
 						</tr>
 					</table>
@@ -212,10 +212,10 @@ if (!isset($_SESSION['First_Name'])) {
 						</tr>
 						<tr>
 							<td align="center">
-								<input type="submit" class="button" name="update" value="UPDATE">
+								<input type="submit" class="button" name="update" value="update">
 							</td>
 							<td align="center">
-							<input type="submit" class="button" name="delete" value="DELETE">
+							<input type="submit" class="button" name="delete" value="delete">
 							</td>
 						</tr>
 					</table>
