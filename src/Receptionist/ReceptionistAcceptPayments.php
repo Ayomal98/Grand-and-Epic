@@ -84,44 +84,31 @@ if (!isset($_SESSION['First_Name'])) {
     <?php
     include('../../config/connection.php');
     $selectReservationDate = mysqli_query($con, "SELECT * FROM reservation WHERE Reservation_Date='" . $date . "'");
-    ?>
-    <table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
-        <thead>
-            <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reservation Id</th>
-            <th style="border: 1px solid white;padding: 10px;font-size:20px;">Customer Name</th>
-            <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reservation type</th>
-            <th style="border: 1px solid white;padding: 10px;font-size:20px;">Amount Paid</th>
-            <th style="border: 1px solid white;padding: 10px;font-size:20px;">Amount to be Paid</th>
-            <th style="border: 1px solid white;padding: 10px;font-size:20px;">Payment Status</th>
+    if (mysqli_num_rows($selectReservationDate) > 0) {
+        echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
+            <thead>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reservation Id</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Customer Name</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reservation type</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Amount Paid</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Amount to be Paid</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Payment Status</th>
+            </thead>';
+        while ($rowResDetails = mysqli_fetch_assoc($selectReservationDate)) {
+            echo '<tbody>
+            <tr>
+                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reservation_ID'] . '</td>
+                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Customer_Name'] . '</td>
+                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reservation_Type'] . '</td>
+                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Amount_Paid'] . '</td>
+                <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Amount_To_Be_Paid'] . '</td>
+                <td style="border: 1px solid white;padding: 5px;"><a href="#">Accept Payments</a></td>
+            </tr>';
+        }
+        echo '</table>';
+    }
 
-        </thead>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid white;padding: 5px;">R001</td>
-                <td style="border: 1px solid white;padding: 5px;">Kumara Fernando</td>
-                <td style="border: 1px solid white;padding: 5px;">Staying-in</td>
-                <td style="border: 1px solid white;padding: 5px;">Rs.10,000/=</td>
-                <td style="border: 1px solid white;padding: 5px;">Rs.50,000/=</td>
-                <td style="border: 1px solid white;padding: 5px;"><a href="#">Accept Payment</a></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid white;padding: 5px;">R002</td>
-                <td style="border: 1px solid white;padding: 5px;">Lakmal De Silva</td>
-                <td style="border: 1px solid white;padding: 5px;">Staying-in</td>
-                <td style="border: 1px solid white;padding: 5px;">Rs.5,000/=</td>
-                <td style="border: 1px solid white;padding: 5px;">Rs.20,000/=</td>
-                <td style="border: 1px solid white;padding: 5px;"><a href="#">Accept Payment</a></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid white;padding: 5px;">R003</td>
-                <td style="border: 1px solid white;padding: 5px;">Upul Perera</td>
-                <td style="border: 1px solid white;padding: 5px;">Events</td>
-                <td style="border: 1px solid white;padding: 5px;">Rs.2,000/=</td>
-                <td style="border: 1px solid white;padding: 5px;">Rs.30,000/=</td>
-                <td style="border: 1px solid white;padding: 5px;"><a href="#">Accept Payment</a></td>
-            </tr>
-        </tbody>
-    </table>
+    ?>
 
     <form style="border:1px solid white;width:350px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
         <label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Accepting Payments</label>
