@@ -113,8 +113,8 @@ checkSession();
 				<table style = "color:white; font-size: 20px; width:81%;">
 					<tr>
 						<td align="right">
-							<input type="button" class="button" value="CANCEL">
-							<input type="button" class="button" value="UPDATE">
+							<input type="button" class="button" value="Assign Tasks">
+                            <input type="reset" class="button" value="Reset Details">
 						</td>
 						
 					</tr>
