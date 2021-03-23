@@ -96,7 +96,7 @@ $email = $_SESSION["User_Email"];
                                 <th style="padding:5px">Amount to be Paid</th>
                             </tr>
                             <tr>
-                                <td style="padding-left: 15px;">Rs.' . $rowSelectedStayingIn['Paid_Amount'] . '/=</td>
+                                <td style="padding-left: 15px;">Rs. ' . $rowSelectedStayingIn['Paid_Amount'] . '/=</td>
                                 <td style="padding-left: 15px;">Rs.' . $amountToPay . '/=</td>
                             </tr>
                         </table>';
