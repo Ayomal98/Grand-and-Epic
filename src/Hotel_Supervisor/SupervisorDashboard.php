@@ -225,7 +225,6 @@ checkSession();
 					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
 					$query_run = mysqli_query($con,$query);
 
-
 					
 					// Update Profile
 					if (isset($_POST['update'])) {

@@ -268,7 +268,7 @@ if (!isset($_SESSION['First_Name'])) {
                 while ($row = mysqli_fetch_array($query_run)) {
         ?>
 
-                    <fieldset style=" position:absolute; top:1700px; width: 75%; left:160px">
+                    <fieldset style=" position:absolute; top:1700px; width: 98%; left:2px">
                         <form action="" method="POST" id="roomform">
                             <table align="center" style="color:white; font-size: 22px; width:75%;">
                                 <tr>
@@ -309,11 +309,11 @@ if (!isset($_SESSION['First_Name'])) {
                                 </tr>
                                 <tr>
                                     <td align="left">Description:</td>
-                                    <td align="left"><input type="text" name="description" value="<?php echo $row['Description']; ?>" rows="3" cols="25" placeholder="Add images & the description here" style="font-size: 20px;" form="roomform" required></td>
+                                    <td align="left"><input type="text" name="description" value="<?php echo $row['Description']; ?>" rows="5" cols="30" placeholder="Add images & the description here" style="font-size: 20px;" form="roomform" required></td>
                                 </tr>
                                 <tr>
                                     <td align="left">Other:</td>
-                                    <td align="left"><input type="text" name="other" value="<?php echo $row['Other']; ?>" rows="3" cols="25" placeholder="Special Notes" style="font-size: 20px;" form="roomform" required></td>
+                                    <td align="left"><input type="text" name="other" value="<?php echo $row['Other']; ?>" rows="5" cols="30" placeholder="Special Notes" style="font-size: 20px;" form="roomform" required></td>
                                 </tr>
                                 <tr>
                                     <td></td>
