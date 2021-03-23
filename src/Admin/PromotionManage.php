@@ -27,34 +27,35 @@ if (isset($_POST['ADD'])) {
 		
 
 
+
 //UPDATE
 if (isset($_POST['update'])) {
-							$Promotion_Type=$_POST['type'];
-							$Context = $_POST['Context'];
-                           //$Policies = $_POST['Policies'];
-                            $query = "UPDATE promotions SET Context='$Context' where Promotion_type=' $Promotion_type '";
-							$query_run = mysqli_query($con, $query);
-							if ($query_run) {
-								echo '<script type="text/javascript">alert("Data updated successfully")</script>';
-								echo '<script>window.location.href="AdminAddPromotion.php"</script>';
-							} else {
-								echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
-								echo '<script>window.location.href=AdminAddPromotion.php"</script>';
-							}
-						}
+    $type = $_POST["type"];
+    $policies = $_POST['Policies'];
+    $context = $_POST['Context'];
+    $query = "UPDATE promotions SET Context='$context',Policies='$policies' WHERE Promotion_type='" . $type . " '";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+      echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+      echo '<script>window.location.href="AdminAddPromotion.php"</script>';
+    } else {
+      echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+      // echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+    }
+  }
 
 //DELETE
 if (isset($_POST['delete'])) {
-    $query = "DELETE FROM promotions where Promotion_type='$_POST[Promotion_type]'";
+    $type = $_POST["type"];
+    $query = "DELETE from promotions  WHERE Promotion_type='" . $type . " '";
     $query_run = mysqli_query($con, $query);
     if ($query_run) {
-        echo "<script>
-alert('Promotion is successfully deleted');
-window.location.href='AdminAddPromotion.php';
-</script>";
+      echo '<script type="text/javascript">alert("Promotion Delete Successfully")</script>';
+      echo '<script>window.location.href="AdminAddPromotion.php"</script>';
     } else {
-        echo '<script> alert("Deletion is not successful. Please try again") </script>';
+      echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+      // echo '<script>window.location.href=AdminAddPromotion.php"</script>';
     }
-}
+  }
 ?>
 
