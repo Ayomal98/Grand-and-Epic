@@ -226,7 +226,7 @@ if(isset($_POST['insert'])){
 							</tr>
 							<tr>
 								<td>Meal Image:</td>
-								<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal_Image']) . '" alt="Image" style="width: 250px; height: 200px" >' ?></td>
+								<td><?php echo '<img src="data:image;base64, ' . base64_encode($row['Meal_Image']) . '" alt="Image" style="width: 200px; height: 150px" >' ?></td>
 							</tr>
 							<tr>
 								<td>Update Meal Image:</td>
