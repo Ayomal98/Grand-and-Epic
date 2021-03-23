@@ -260,7 +260,7 @@ select {
 	top:200px; 
 	position:relative; 
 	border: 1px solid white;
-	max-height: 92%;
+	max-height: 85%;
 	overflow: auto;
 	float: left;
 }
