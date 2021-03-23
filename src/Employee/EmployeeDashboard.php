@@ -71,11 +71,11 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 
-	<table style="position:absolute; top : 240px; width:350px;">
+	<table style="position:absolute; top : 200px; width:350px;">
 		<tr>
 			<td>
 
-				<img src="../../public/images/Employee.png" height="40%">
+				<img src="../../public/images/Employee.png" height="40px" width="40px">
 
 			</td>
 			<td>
@@ -103,10 +103,10 @@ if (!isset($_SESSION['First_Name'])) {
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/Calendar.png" height="50%">
+							<img src="../../public/images/Calendar.png" height="40px" width="40px">
 						</td>
 						<td align="center">
-							<img src="../../public/images/BigCal.png" height="10%">
+							<img src="../../public/images/BigCal.png" height="40px" width="40px">
 						</td>
 					</tr>
 				</table>
