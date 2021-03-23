@@ -195,9 +195,12 @@ $email = $_SESSION['User_Email'];
             let guests_allowed = document.getElementById(table_no + '-cus').value // number of guests allowed for selected table
             let guestsHandler = document.getElementById('table-availability-checker');
             if (no_guests > guests_allowed) {
-                guestsHandler.innerHTML = "Please Select a another table";
-            } else {
+                guestsHandler.innerHTML = "Please Select another table";
+            } else if (no_guests == guests_allowed || parseInt(no_guests) + 1 == guests_allowed) {
                 guestsHandler.innerHTML = "";
+            } else {
+                guestsHandler.innerHTML = "Please Select another table";
+
             }
         }
         // let Guests_evt = document.getElementById("number-of-guest");

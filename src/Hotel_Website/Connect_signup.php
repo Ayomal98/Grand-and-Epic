@@ -1,5 +1,6 @@
 <!--contains the query for the customer signup -->
 <?php include("../../config/connection.php");
+include('../../public/includes/id-generator.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -11,7 +12,8 @@ if (isset($_POST['Submit'])) {
   $password = md5($_POST['password']);
   $tpN = $_POST['contactNum'];
   $userType = 'Customer';
-  $sql = "INSERT INTO customer (First_Name,Last_Name,Email,Password,Contact_No) VALUES ('" . $firstName . "','" . $lastName . "','" . $email . "','" . $password . "','" . $tpN . "')";
+  $customerID = getID("customer", "C");
+  $sql = "INSERT INTO customer (Customer_ID,First_Name,Last_Name,Email,Password,Contact_No) VALUES ('" . $customerID . "','" . $firstName . "','" . $lastName . "','" . $email . "','" . $password . "','" . $tpN . "')";
   $login_sql = "INSERT INTO login_table(Email,Password,User_Type) VALUES('$email','$password','$userType')"; //insert query for the login
   mysqli_query($con, $login_sql);
   if ($con->query($sql) === TRUE) {
