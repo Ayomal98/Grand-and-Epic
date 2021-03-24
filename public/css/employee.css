@@ -264,6 +264,15 @@ select {
 	overflow: auto;
 	float: left;
 }
+
+.overflowtable1{
+	font-size: 18px; 
+	top:300px; 
+	position:relative; 
+	border: 1px solid white;
+	max-height: 60%;
+	overflow: auto;
+}
 .scroll{
 	background-color: lightblue;
 	width: 110px;
