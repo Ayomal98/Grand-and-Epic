@@ -1,5 +1,6 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -220,7 +221,7 @@ checkSession();
 			<table align="center" style="color:white; font-size: 20px; width:88%;">
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
 					$query_run = mysqli_query($con,$query);
