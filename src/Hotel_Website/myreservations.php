@@ -175,6 +175,47 @@ $email = $_SESSION["User_Email"];
             }
         }
         ?>
+        <?php
+        $selectEvtBookings = mysqli_query($con, "SELECT * FROM events_booking WHERE Customer_Email='$email'");
+        if (mysqli_num_rows($selectEvtBookings) > 0) {
+            while ($rowEvtBookings = mysqli_fetch_assoc($selectEvtBookings)) {
+                $amountEvtPay = (int)$rowEvtBookings['Total_Amount'] - (int)$rowEvtBookings['Paid_Amount'];
+                echo ' <div class="upcomig-reservation-box">
+                                <span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">Event Type :' . $rowEvtBookings['Event_Type'] . '</span>
+                                <table border="1px solid black" style="font-size:13px;border-radius:10px">
+                                <tr>
+                                    <th style="padding:5px 0px">Event Date</th>
+                                    <th style="padding:5px 0px">Starting Time</th>
+                                    <th style="padding:5px 0px">Ending Time</th>
+                                    <th style="padding:5px 0px">No_Guests</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left:7px">' . $rowEvtBookings['Reservation_Date'] . '</td>
+                                    <td style="padding-left:7px">' . $rowEvtBookings['Starting_Time'] . '</td>
+                                    <td style="padding-left:7px">' . $rowEvtBookings['Ending_Time'] . '</td>
+                                    <td style="padding-left:7px">' . $rowEvtBookings['Num_Guests'] . '</td>
+                                </tr>
+                            </table>
+                            <table border="1px solid black" style="font-size:13px;border-radius:10px;margin-top:20px;width:60%;margin-left:50px">
+                                <tr>
+                                    <th style="padding:5px">Amount Paid</th>
+                                    <th style="padding:5px">Amount to be Paid</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding-left: 15px;">Rs. ' . $rowEvtBookings['Paid_Amount'] . '/=</td>
+                                    <td style="padding-left: 15px;">Rs.' . $amountEvtPay     . '/=</td>
+                                </tr>
+                            </table>
+                            <div class="book-btn-container" style="margin-top:10px">
+                                <button class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:36%;height:40px;text-align:center;margin-top:25px" id="btn-early-checkout">Request Early Checkouts</button>
+                                <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
+                            </div>
+                        </div>
+
+               ';
+            }
+        }
+        ?>
         <br>
     </div>
     <div style="margin-bottom: 50px;">
