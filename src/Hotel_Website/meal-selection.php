@@ -106,6 +106,9 @@
             $eventID = $_GET["events_id"];
             $getEventDetails = "SELECT * FROM events_booking_temp WHERE Events_ID='$eventID'";
             $excecuteEventDetails = mysqli_query($con, $getEventDetails);
+            $getAdvancePercentage = mysqli_query($con, "SELECT Advance_Percentage FROM advance_amount_table WHERE Reservation_Type='Events'");
+            $rowAdvance = mysqli_fetch_assoc($getAdvancePercentage);
+            $advancePercentageValue = $rowAdvance['Advance_Percentage'];
             if (mysqli_num_rows($excecuteEventDetails) > 0) {
                 while ($row = mysqli_fetch_assoc($excecuteEventDetails)) {
                     $mealPackage = $row["MealPackage_ID"];
@@ -115,10 +118,10 @@
                     while ($rowPrice = mysqli_fetch_assoc($getPackagePrice)) {
                         $mealPrice = $rowPrice["price"];
                     }
-                    $locationPrice = $row["Price"] - $row["Feature_Price"];
                     $totalMealPrice = $mealPrice * $noGuests;
-                    $totalAmountBooking = $row["Price"] + $totalMealPrice;
-                    $advancePrice = $totalAmountBooking * 0.2;
+                    $locationPrice = $row["Location_Price"];
+                    $totalAmountBooking = $row["Location_Price"] + $totalMealPrice + $row["Feature_Price"];
+                    $advancePrice = ($totalAmountBooking * $advancePercentageValue) / 100;
 
                     echo '
                             <div style="position: absolute;width:650px;height:680px;background-color:white">
@@ -172,7 +175,7 @@
                                     <u>
                                         <h3>Advance Amount</h3>
                                     </u>
-                                    <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking * 20%</h3>
+                                    <h3 style="margin-left:20px;margin-top:20px">Total Amount for Booking *' . $advancePercentageValue . '</h3>
                                     <h4 style="position: absolute;top:76.5%;left:65%;font-size:28px">Rs. ' . $advancePrice . ' /=</h4>
                                 </div>
                                 <div style="margin-left:160px;margin-top:5px">

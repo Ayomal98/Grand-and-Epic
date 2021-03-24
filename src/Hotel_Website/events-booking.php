@@ -27,6 +27,7 @@ if (isset($_POST['event-details'])) {
     if (mysqli_num_rows($selectLocationPrice) > 0) {
         while ($rowLocPrice = mysqli_fetch_assoc($selectLocationPrice)) {
             $locationTotalPrice = $rowLocPrice['Location_Price'] * $eventDuration;
+            $locationPrice = $rowLocPrice['Location_Price'] * $eventDuration;
             foreach ($additionalFeatures as $feature) {
                 if ($feature == 'DJMusic') {
 
@@ -41,7 +42,7 @@ if (isset($_POST['event-details'])) {
     }
     $locationTotalPrice += $featurePrice;
     $mealPackageID = 0; //inital meal packageID, since its not selected
-    $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice')";
+    $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice')";
     mysqli_query($con, $insertEvent);
     $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
     if ($resultID = mysqli_query($con, $selectEventID)) {
@@ -66,7 +67,7 @@ if (isset($_POST['Select_Meal'])) {
     $noOFGuests = 0;
     while ($row = mysqli_fetch_assoc($evtExc)) {
         $noOFGuests = $row["Num_Guests"];
-        $totalPrice += $row["Price"];
+        $totalPrice = $row["Location_Price"] + $row["Feature_Price"];
     }
     while ($row = mysqli_fetch_assoc($priceExc)) {
         $totalPrice += $row["price"] * $noOFGuests;
