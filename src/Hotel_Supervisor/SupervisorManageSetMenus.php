@@ -1,5 +1,7 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
+
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -84,7 +86,7 @@ checkSession();
 
 					<tr>
 						<td>Set Menu ID:</td>
-						<td><input type="text" name="setmenuid" size="20" required></td>
+						<td><input type="text" name="setmenuid" placeholder="Ex:SM001" size="20" required></td>
 					</tr>
 					<tr>
                         <td>Meal Type: </td>
@@ -142,7 +144,7 @@ checkSession();
 
 
  <!-- Insert New Set Menu -->
- <?php include("../../config/connection.php");
+ <?php 
 if(isset($_POST['insert'])){
 
     $setmenuid=$_POST['setmenuid'];  
@@ -189,7 +191,7 @@ if(isset($_POST['insert'])){
 
 	<!-- SEARCH -->
 	<?php
-	include("../../config/connection.php");
+	
 	if (isset($_POST['search'])) {
 		$SetMenu_ID = $_POST['SetMenu_ID'];
 
@@ -328,7 +330,7 @@ if(isset($_POST['insert'])){
 		</tr>
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$query = "SELECT * FROM stayingin_setmenu";
 					$query_run = mysqli_query($con,$query);
@@ -372,7 +374,7 @@ if(isset($_POST['insert'])){
 
 
 <!-- Update -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['update'])) {
 	
 	$setmenuid=$_POST['setmenuid'];  

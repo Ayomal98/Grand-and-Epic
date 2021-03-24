@@ -1,5 +1,6 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -84,7 +85,7 @@ checkSession();
 
 					<tr>
 						<td>Meal Package ID:</td>
-						<td><input type="text" name="mealpackid" size="20" required></td>
+						<td><input type="text" name="mealpackid" placeholder="Ex:MP001" size="20" required></td>
 					</tr>
 					<tr>
                         <td>Meal Package Name: </td>
@@ -135,7 +136,7 @@ checkSession();
 
 
  <!-- Insert New Meal Package -->
- <?php include("../../config/connection.php");
+ <?php 
 if(isset($_POST['insert'])){
 
     $mealpackid=$_POST['mealpackid'];  
@@ -182,7 +183,7 @@ if(isset($_POST['insert'])){
 
 	<!-- SEARCH -->
 	<?php
-	include("../../config/connection.php");
+	
 	if (isset($_POST['search'])) {
 		$Package_ID = $_POST['Package_ID'];
 
@@ -290,7 +291,7 @@ if(isset($_POST['insert'])){
 		</tr>
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$query = "SELECT * FROM events_meals_packages";
 					$query_run = mysqli_query($con,$query);
@@ -334,7 +335,7 @@ if(isset($_POST['insert'])){
 
 
 <!-- Update -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['update'])) {
 	
 	$mealpackid=$_POST['mealpackid'];  
