@@ -97,6 +97,7 @@ if (!isset($_SESSION['First_Name'])) {
 					<td align="left">Reason for the leave:</td>
 					<td align="left"><textarea name="Message" rows="5" cols="53" placeholder="Leave your reason here:"></textarea></td>
 				</tr>
+				<input type="hidden" name="user_email" value="<?php echo $userEmail; ?>">
 			</table>
 
 			<br>
@@ -123,7 +124,8 @@ if (!isset($_SESSION['First_Name'])) {
 		</thead>
 		<tbody>
 			<?php
-			$showLR = "SELECT * FROM leave_request ";
+			$employeeID = $_SESSION['Employee_ID'];
+			$showLR = "SELECT * FROM leave_request WHERE Employee_ID='$employeeID' ";
 			$result = mysqli_query($con, $showLR);
 			if (mysqli_num_rows($result) > 0) {
 				while ($row = mysqli_fetch_assoc($result)) {

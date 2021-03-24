@@ -6,27 +6,60 @@
     <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
-    <style>
-        body {
-            background-image: url('../../public/images/events-meals-bg.jpeg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            font-family: sans-serif;
-            color: black;
-            font-weight: lighter;
-        }
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,700&display=swap");
 
-        figcaption {
-            color: white;
-        }
-    </style>
+    body {
+        background-image: url('../../public/images/events-meals-bg.jpeg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        font-family: sans-serif;
+        color: black;
+        font-weight: lighter;
+    }
+
+    figcaption {
+        color: white;
+    }
+
+    .suite-form-header {
+        display: flex;
+        margin-top: -7px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 10px;
+        background-color: #b88b4a;
+        height: 15vh;
+        text-align: center;
+        color: white;
+        width: 100%;
+    }
+
+    .suite-form-header h3 {
+        font-family: "Ubuntu";
+        padding-right: 30px;
+        margin-top: 2px;
+        padding-top: 5px;
+    }
+
+    .suite-form-header h3:last-child {
+        border-right: none;
+        padding-right: 20px;
+    }
+</style>
+
+<body>
+    <div class="suite-form-header" style="height: 12vh;">
+        <h3 style="color:black;font-size:35px">Event Details & Location Availability</h3>
+        <div style="border-right:1px solid white;line-height:10px"></div>
+        <h3 style="color:white;font-size:35px">Meal Package Selection & Payment</h3>
+    </div>
 
     <h1 style="text-align:center;color: white;margin-left:-5px;"><u>MEAL SELECTION</u></h1>
     <input type="button" value="Proceed to Payment" class="button1 Payment" onclick="showPayments()">
-
-    <a href="events-booking-form.php"><input type="button" value="Start Over" class="button1 Payment" style="padding: 15px;position:absolute;top:5%;width:10%;left:10px"></a>
+    <a href="events-booking-form.php"><input type="button" value="Start Over" class="button1 Payment" style="padding: 15px;position:absolute;top:20%;width:10%;left:22px"></a>
+    <i class="fas fa-redo-alt" style="position:relative;top:-42px;width:10%;left:-30px;color:white"></i>
     <?php
     include('../../config/connection.php');
     $selectMeal = "SELECT * FROM events_meals_packages";

@@ -1585,7 +1585,7 @@ form.staying-in-form > label {
   align-items: center;
   padding: 20px 10px;
   border: none;
-  margin: 20px 60px 10px 100px;
+  margin: 35px 60px 10px 100px;
   height: 90vh;
   background: #000;
   opacity: 0.7;
@@ -1596,7 +1596,7 @@ form.staying-in-form > label {
 .customer-details-events {
   padding: 30px;
   position: absolute;
-  top: 80px;
+  top: 140px;
   left: 30%;
 }
 
@@ -1628,7 +1628,7 @@ form.staying-in-form > label {
 .event-meal-selection-btn{
   display: inline-block;
   position: absolute;
-  top: 500px;
+  top: 540px;
   padding: 15px;
   left: 50%;
   cursor: pointer;
@@ -1681,6 +1681,17 @@ form.staying-in-form > label {
   color: white;
 }
 
+.events-form-header{
+  display: flex;
+  margin-top: 0px;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: #b88b4a ;
+  height: 10vh;
+  text-align: center;
+  color: white;
+}
 .suite-form-details{
   display: flex;
   flex-direction: column;

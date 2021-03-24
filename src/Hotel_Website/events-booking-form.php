@@ -73,18 +73,22 @@
 </head>
 
 <body style="background:url('../../public/images/event-form.jpeg');width:100%;height:100%;background-size:cover">
+    <div class="suite-form-header" style="height: 12vh;">
+        <h3 style="font-weight: bolder;color:white">Event Details & Location Availability</h3>
+        <h3 style="color:black">Meal Package Selection & Payment</h3>
+    </div>
     <form action="events-booking.php" method="post" id="event-booking">
         <div class="events-booking-form" id="events-booking-form">
-            <h2 style="position:absolute;top:50px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
+            <h2 style="position:absolute;top:120px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
             <div class="customer-details-events">
-                <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:10px;" required>
+                <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:20px;" required>
                 <input type="email" name="customer-email" id="" placeholder="Email address" style="padding:10px;margin:10px;" required>
                 <input type="number" name="number-of-guests" placeholder="No-Guests" style="padding:10px;margin:10px;width:130px;" min="30" max="250" step="1" style="width:110px;" required>
             </div>
             <div class="events-booking-wrapper">
-                <label for="type-of-reservation" style="font-size:25px;position:absolute;top:210px;left:12%">Reservation Type</label>
-                <i class="fas fa-glass-cheers" style="position: absolute;top:190px;left:17%"></i>
-                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:250px;left:15%;padding:5px;" onclick="getReservationType(event)" required>
+                <label for="type-of-reservation" style="font-size:25px;position:absolute;top:270px;left:12%">Reservation Type</label>
+                <i class="fas fa-glass-cheers" style="position: absolute;top:230px;left:17%"></i>
+                <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:310px;left:15%;padding:5px;" onclick="getReservationType(event)" required>
                     <option value="Wedding">Wedding</option>
                     <option value="Party">Party</option>
                 </select>
@@ -92,59 +96,60 @@
             </div>
             <div class="date-time-details">
                 <div class="date-container">
-                    <i class="fas fa-calendar-alt" style="position: absolute;top:185px;left:34%"></i>
-                    <label for="Reservation-Date" " style=" font-size:25px;position:absolute;top:200px;left:30%;">Reservation Date</label><br>
-                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:240px;left:30%;padding:5px" onchange="dateHandler(event)" required>
+                    <i class="fas fa-calendar-alt" style="position: absolute;top:230px;left:34%"></i>
+                    <label for="Reservation-Date" " style=" font-size:25px;position:absolute;top:260px;left:30%;">Reservation Date</label><br>
+                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:300px;left:30%;padding:5px" onchange="dateHandler(event)" required>
                 </div>
                 <div class="time-details-events">
-                    <i class="fas fa-clock" style="position: absolute;top:180px;left:64%;"></i>
-                    <label for="time-container" style="position: absolute;top:200px;left:60%;font-size:25px">Time Period</label>
+                    <i class="fas fa-clock" style="position: absolute;top:230px;left:64%;"></i>
+                    <label for="time-container" style="position: absolute;top:260px;left:60%;font-size:25px">Time Period</label>
                     <div class="time-details-shower">
-                        <label for="" style="position:absolute;top:250px;left:48%;font-size:25px;font-size:20px;"> Preferred Starting time-slot</label>
-                        <select style="position:absolute;top:280px;left:54%;padding:4px" name="preferred-timeslot" id="preferred-timeslot" onclick="timeShow(event)" required>
+                        <label for="" style="position:absolute;top:300px;left:48%;font-size:25px;font-size:20px;"> Preferred Starting time-slot</label>
+                        <select style="position:absolute;top:330px;left:54%;padding:4px" name="preferred-timeslot" id="preferred-timeslot" onclick="timeShow(event)" required>
                             <option value="Morning">Morning</option>
                             <option value="Afternoon">Afternoon</option>
                             <option value="Night">Night</option>
                         </select>
-                        <label for="" style="position:absolute;top:250px;left:65%;font-size:25px;font-size:20px;">Starting time</label>
-                        <select name="morning-time" style="position:absolute;top:280px;left:65%;display:none;padding:5px" id="morning-times">
+                        <label for="" style="position:absolute;top:300px;left:65%;font-size:25px;font-size:20px;">Starting time</label>
+                        <select name="morning-time" style="position:absolute;top:330px;left:65%;display:none;padding:5px" id="morning-times">
                             <?php echo getMorningTime(); ?>
 
                         </select>
-                        <select name="afternoon-time" style="position:absolute;top:280px;left:65%;display:none;padding:5px" id="afternoon-times">
+                        <select name="afternoon-time" style="position:absolute;top:330px;left:65%;display:none;padding:5px" id="afternoon-times">
                             <?php echo getAfternoonTime(); ?>
                         </select>
-                        <select name="dinner-time" style="position:absolute;top:280px;left:65%;display:none;padding:5px" id="night-times">
+                        <select name="dinner-time" style="position:absolute;top:330px;left:65%;display:none;padding:5px" id="night-times">
                             <?php echo getNightTime(); ?>
                         </select>
                         <!-- <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:68%"> -->
-                        <label for="" style="position:absolute;top:250px;left:74%;font-size:15px;font-size:15px;">Time Duration(In Hours)</label>
-                        <input type="number" name="event-duration" min="1" max="5" style="position:absolute;top:280px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
-                        <label for="" style="position: absolute;top:250px;left:87%;font-size:20px">Ending time</label>
-                        <input type="text" name="ending-time" id="ending-time" value="" style="position:absolute;top:280px;left:85.5%;padding:5px;width:120px" required>
+                        <label for="" style="position:absolute;top:305px;left:74%;font-size:15px;font-size:15px;">Time Duration(In Hours)</label>
+                        <input type="number" name="event-duration" min="1" max="5" style="position:absolute;top:328px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
+                        <label for="" style="position: absolute;top:303px;left:87%;font-size:20px">Ending time</label>
+                        <input type="text" name="ending-time" id="ending-time" value="" style="position:absolute;top:330px;left:86.5%;padding:5px;width:120px" required>
                     </div>
                 </div>
             </div>
             <div class="additional-features" style="display: inline-block;">
-                <i class="fas fa-icons" style="position:absolute;top:365px;left:62%;"></i>
-                <label for="" style="font-size: 25px;position:absolute;top:390px;left:55%;">Additional Features</label>
-                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:45%">DJ Music</label>
-                <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:443px;left:50%;cursor:pointer">
-                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:55%">Decorations</label>
-                <input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:445px;left:61%;cursor:pointer">
-                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:440px;left:65%">Champaigne Tables</label>
-                <input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:445px;left:74%;cursor:pointer">
+                <i class="fas fa-icons" style="position:absolute;top:395px;left:62%;"></i>
+                <label for="" style="font-size: 25px;position:absolute;top:420px;left:55%;">Additional Features</label>
+                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:470px;left:45%">DJ Music</label>
+                <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:473px;left:50%;cursor:pointer">
+                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:470px;left:55%">Decorations</label>
+                <input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:473px;left:61%;cursor:pointer">
+                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:470px;left:65%">Champaigne Tables</label>
+                <input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:473px;left:74%;cursor:pointer">
             </div>
 
             <div class="payment-cancel-btns">
-                <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:100px;left:130px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
+                <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:165px;left:165px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
                 <div class="payment-cancel-btns">
                     <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
-                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
+                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:52%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
                 </div>
             </div>
+        </div>
     </form>
 
     <!-- <div class="meal-section" id="meal-section" style="display: none;">

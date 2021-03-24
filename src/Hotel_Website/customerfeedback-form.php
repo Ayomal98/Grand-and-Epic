@@ -82,8 +82,9 @@ if (isset($_POST['Provide_Feedback'])) {
     $feedbackWebsite = $_POST['feedback_website'];
     $feedbackRate_Staff = $_POST['Staff_Rate'];
     $feedbackRate_Website = $_POST['Website_Rate'];
+    // $user_Email = $_POST['user_email'];
     $status = 0;
-    $insertCusFeedback = mysqli_query($con, "INSERT INTO customer_feedback(Feedback_ID,Reservation_ID,Feedback_Staff,Staff_Rate,Feedback_Website,Website_Rate,Status) VALUES('$customerFeedbackID','$reservationID','$feedBackStaff','$feedbackRate_Staff','" . $feedbackWebsite . "','$feedbackRate_Website','$status')");
+    $insertCusFeedback = mysqli_query($con, "INSERT INTO customer_feedback(Feedback_ID,Reservation_ID,Feedback_Staff,Staff_Rate,Feedback_Website,Website_Rate,User_Email,Status) VALUES('$customerFeedbackID','$reservationID','$feedBackStaff','$feedbackRate_Staff','" . $feedbackWebsite . "','$feedbackRate_Website','$user_Email','$status')");
     if ($insertCusFeedback) {
         echo '<script>alert("Customer Feedback has been sent")
                 window.location.href="myreservations.php"</script>';
