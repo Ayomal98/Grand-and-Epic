@@ -1,6 +1,7 @@
 <?php
 include("../../public/includes/session.php");
 include("../../config/connection.php");
+include('../../public/includes/id-generator.php');
 
 
 checkSession();
@@ -85,10 +86,6 @@ checkSession();
 				<table style = "color:white; font-size:20px; width:100%;">
 
 					<tr>
-						<td>Set Menu ID:</td>
-						<td><input type="text" name="setmenuid" placeholder="Ex:SM001" size="20" required></td>
-					</tr>
-					<tr>
                         <td>Meal Type: </td>
                         <td>
 							<select id="mttypes" name="mealtype" class="inputs">
@@ -147,7 +144,7 @@ checkSession();
  <?php 
 if(isset($_POST['insert'])){
 
-    $setmenuid=$_POST['setmenuid'];  
+    $setmenuid=getID("stayingin_setmenu", "SM"); 
     $mealtype=$_POST['mealtype'];
 	$meal1=$_POST['meal1'];
     $meal1image = addslashes(file_get_contents($_FILES["meal1image"]["tmp_name"]));
@@ -161,7 +158,7 @@ if(isset($_POST['insert'])){
     $meal5image = addslashes(file_get_contents($_FILES["meal5image"]["tmp_name"]));
     $price=$_POST['price'];
 
-      $add_query = "INSERT INTO stayingin_setmenu(SetMenu_ID,Meal_Type, Meal1, Meal2, Meal3, Meal4, Meal5, Meal1_Image, Meal2_Image, Meal3_Image, Meal4_Image, Meal5_Image, price) VALUES ('".$setmenuid."', '".$mealtype."', '".$meal1."', '".$meal2."', '".$meal3."', '".$meal4."', '".$meal5."', '".$meal1image."', '".$meal2image."', '".$meal3image."', '".$meal4image."', '".$meal5image."', '".$price."')";
+      $add_query = "INSERT INTO stayingin_setmenu(SetMenu_ID,Meal_Type, Meal1, Meal2, Meal3, Meal4, Meal5, Meal1_Image, Meal2_Image, Meal3_Image, Meal4_Image, Meal5_Image, Price) VALUES ('".$setmenuid."', '".$mealtype."', '".$meal1."', '".$meal2."', '".$meal3."', '".$meal4."', '".$meal5."', '".$meal1image."', '".$meal2image."', '".$meal3image."', '".$meal4image."', '".$meal5image."', '".$price."')";
       $add_query_run = mysqli_query($con,$add_query);
 
       if ($add_query_run) {
@@ -207,7 +204,7 @@ if(isset($_POST['insert'])){
 					<table style="color:white; font-size: 20px; width:94%;">
 						<tr>
 							<td>Set Menu ID:</td>
-							<td><input type="text" name="setmenuid" value="<?php echo $row['SetMenu_ID'] ?>" /></td>
+							<td><input type="text" name="setmenuid" value="<?php echo $row['SetMenu_ID'] ?>" readonly /></td>
 						</tr>
 						<tr>
 							<td>Meal Type: </td>
@@ -282,7 +279,7 @@ if(isset($_POST['insert'])){
 
 						<tr>
 							<td>Price for the Set Menu:</td>
-							<td><input type="text" name="price" value="<?php echo $row['price'] ?>" /></td>
+							<td><input type="text" name="price" value="<?php echo $row['Price'] ?>" /></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -308,8 +305,8 @@ if(isset($_POST['insert'])){
 ?>
 
 	<!-- View Table-->
-	<div>
-	<table style="position:absolute; left:50px; top:900px; border: 1px solid white; color:white; width:92%">
+	<div class="overflowtable1">
+	<table style="color:white; width:100%">
 		<tr>
 			<th colspan="13"><h2>Set Menu Details</h2></th>
 		</tr>
@@ -351,7 +348,7 @@ if(isset($_POST['insert'])){
 							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal4_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
 							<td><?php echo $row['Meal5'] ?></td>
 							<td><?php echo '<img src="data:image;base64, '.base64_encode($row['Meal5_Image']).'" alt="Image" style="width: 100px; height: 60px" >' ?></td>
-							<td><?php echo $row['price'] ?></td>						
+							<td><?php echo $row['Price'] ?></td>						
 						</tr>
 				<?php
 					}
@@ -376,8 +373,7 @@ if(isset($_POST['insert'])){
 <!-- Update -->
 <?php 
 if (isset($_POST['update'])) {
-	
-	$setmenuid=$_POST['setmenuid'];  
+	 
     $mealtype=$_POST['mealtype'];
 	$meal1=$_POST['meal1'];
     $meal1image = addslashes(file_get_contents($_FILES["meal1image"]["tmp_name"]));
@@ -393,7 +389,7 @@ if (isset($_POST['update'])) {
 
 	if($meal1image=="" && $meal2image=="" && $meal3image=="" && $meal4image=="" && $meal5image=="")
 	{
-		$query = "UPDATE stayingin_setmenu SET SetMenu_ID='$setmenuid',Meal_Type='$mealtype', Meal1='$meal1', Meal2='$meal2', Meal3='$meal3', Meal4='$meal4', Meal5='$meal5', Price='$price' where SetMenu_ID='$_POST[setmenuid]'";
+		$query = "UPDATE stayingin_setmenu SET Meal_Type='$mealtype', Meal1='$meal1', Meal2='$meal2', Meal3='$meal3', Meal4='$meal4', Meal5='$meal5', Price='$price' where SetMenu_ID='$_POST[setmenuid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
@@ -406,7 +402,7 @@ if (isset($_POST['update'])) {
 		}
 	}
 	else{
-		$query = "UPDATE stayingin_setmenu SET SetMenu_ID='$setmenuid',Meal_Type='$mealtype', Meal1='$meal1', Meal1_Image='$meal1image', Meal2='$meal2', Meal2_Image='$meal2image', Meal3='$meal3', Meal3_Image='$meal3image', Meal4='$meal4', Meal4_Image='$meal4image', Meal5='$meal5', Meal5_Image='$meal5image', Price='$price' where SetMenu_ID='$_POST[setmenuid]'";
+		$query = "UPDATE stayingin_setmenu SET Meal_Type='$mealtype', Meal1='$meal1', Meal1_Image='$meal1image', Meal2='$meal2', Meal2_Image='$meal2image', Meal3='$meal3', Meal3_Image='$meal3image', Meal4='$meal4', Meal4_Image='$meal4image', Meal5='$meal5', Meal5_Image='$meal5image', Price='$price' where SetMenu_ID='$_POST[setmenuid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
