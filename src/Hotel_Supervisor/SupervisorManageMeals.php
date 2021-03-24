@@ -1,5 +1,7 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
+include('../../public/includes/id-generator.php');
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -124,7 +126,7 @@ checkSession();
 
 	
  <!-- Insert New Meal -->
-<?php include("../../config/connection.php");
+<?php 
 if(isset($_POST['insert'])){
 
     $mealid=$_POST['mealid'];  
@@ -164,7 +166,7 @@ if(isset($_POST['insert'])){
 
 	<!-- SEARCH -->
 	<?php
-	include("../../config/connection.php");
+	
 	if (isset($_POST['search'])) {
 		$Meals_ID = $_POST['Meals_ID'];
 
@@ -273,7 +275,7 @@ if(isset($_POST['insert'])){
 		</tr>
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$query = "SELECT * FROM meals";
 					$query_run = mysqli_query($con,$query);
@@ -311,7 +313,7 @@ if(isset($_POST['insert'])){
 
 
 <!-- Update -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['update'])) {
 	$mealid = $_POST['mealid'];
 	$mealname = $_POST['mealname'];
@@ -352,7 +354,7 @@ if (isset($_POST['update'])) {
 
 
 <!-- Delete -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['delete'])) {
 	$mealname = $_POST['mealname'];
 	$price = $_POST['price'];

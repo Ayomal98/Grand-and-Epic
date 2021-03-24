@@ -1,5 +1,6 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -124,7 +125,7 @@ checkSession();
 
 	
  <!-- Assign New Task -->
- <?php include("../../config/connection.php");
+ <?php 
 if(isset($_POST['insert'])){
 
     $employeeid=$_POST['employeeid'];  
@@ -162,7 +163,7 @@ if(isset($_POST['insert'])){
 
 <!-- SEARCH -->
 <?php
-	include("../../config/connection.php");
+	
 	if (isset($_POST['search'])) {
 		$Employee_ID = $_POST['Employee_ID'];
 
@@ -270,7 +271,7 @@ if(isset($_POST['insert'])){
 		</tr>
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$view_query = "SELECT * FROM employee_tasks";
 					$view_query_run = mysqli_query($con,$view_query);
@@ -298,7 +299,7 @@ if(isset($_POST['insert'])){
 	<!-- View Leave Requests of Employees -->
 
 		<form>
-		<fieldset style="font-size: 20px; position:absolute; top:1400px; width: 48%; left:0%">
+		<fieldset style="font-size: 20px; position:absolute; top:1400px; width: 45%; right:0%">
 		<legend style = "color:white;">View Leave Requests</legend>
 			<table border="1px solid white" style="width:100%" >
 				<tr>
@@ -409,7 +410,7 @@ if(isset($_POST['insert'])){
 	
 <!-- View Booking Details -->
 <form>
-<fieldset style="font-size: 20px; position:absolute; top:-20px; width: 88%; left:105%">
+<fieldset style="font-size: 20px; position:absolute; top:-20px; width: 102%; right:105%">
 	<legend style = "color:white;">View Booking Details</legend>
     <table border="1px solid white" style="width:100%" >
     <tr>
@@ -751,7 +752,7 @@ if(isset($_POST['insert'])){
 
 
 <!-- Update -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['update'])) {
 	
     $employeeid=$_POST['employeeid'];  
@@ -778,7 +779,7 @@ if (isset($_POST['update'])) {
 
 
 <!-- Delete -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['delete'])) {
 	
     $employeeid=$_POST['employeeid'];  
