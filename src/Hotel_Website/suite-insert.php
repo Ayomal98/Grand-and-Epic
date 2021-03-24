@@ -17,7 +17,7 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     $roomPrice;
     $mealPrice;
     $rooms = array();
-    echo gettype($noRooms);
+    // echo gettype($noRooms);
     for ($i = 1; $i <= $noRooms; $i++) {
         array_push($rooms, $_POST['room-number-' . $i]);
     }
@@ -35,6 +35,9 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
                 $mealPrice += (int) $rowMeals['Price'];
             }
         }
+        // //select the availability
+        // $selectSuiteAvailability = mysqli_query($con, "SELECT * WHERE `CheckIn_Date`>='" . $checkInDate . "' AND `CheckOut_Date`<='" . $checkOutDate . "' ");
+
         //inserting data into the temporary table
         $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
 

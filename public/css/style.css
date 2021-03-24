@@ -1787,7 +1787,7 @@ form.staying-in-form > label {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   margin-left: -400px;
-  margin-top: -145px;
+  margin-top: -300px;
 }
 .suite-icon{
   display: flex;
@@ -2105,7 +2105,7 @@ span.suite-icon-label {
   display: flex;
   flex-direction: column;
   margin-left: 730px;
-  margin-top:-90px;
+  margin-top:-145px;
 }
 
 

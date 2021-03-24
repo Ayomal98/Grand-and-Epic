@@ -39,9 +39,9 @@ if (!isset($_SESSION['First_Name'])) {
                     var checkOutYear = checkOutDate.getFullYear();
                     var checkOutdatearray = [checkOutYear, checkOutMonth, checkOutDay];
                     var checkOutdateSelected = [checkOutYear, checkOutMonth, checkOutDay].join('-');
-
                     $('#check-in-time').on("input", function() {
                         var checkInTimeSelected = $(this).find("option:selected").val();
+
                         $('#check-availability').click(function(e) {
                             console.log(checkOutdateSelected);
                             console.log(checkIndateSelected);
@@ -53,8 +53,11 @@ if (!isset($_SESSION['First_Name'])) {
                             })
                         })
                     })
+
                 })
+
             })
+
 
         })
     </script>
@@ -121,8 +124,17 @@ if (!isset($_SESSION['First_Name'])) {
                             </div>
                         </div>
                     </div>
+                    <div class="form-page-fields">
+                        <div class="meal-selection-fields" style="position:relative;top:-260px;right:-190%">
+                            <label for="meal-selection" style="font-size:20px;">Meal Selection</label><br>
+                            <select name="meal-selection" id="meal-type" onclick="selectMealType()" style="padding:7px;margin-top:10px" required>
+                                <option value="Set-Menu">Set Menu</option>
+                                <option value="Customized">Customized</option>
+                            </select>
+                        </div>
+                    </div>
                     <br>
-                    <input type="button" name="Check-Availability" id="check-availability" value="Check Availability" style="border-radius:5px;padding:8px;color:white;background-color: goldenrod;border:none;width:120px;height:40px;font-size:12px;cursor:pointer;position:relative;top:-70px;left:190px">
+                    <input type="button" name="Check-Availability" id="check-availability" value="Check Availability" style="border-radius:5px;padding:8px;color:white;background-color: goldenrod;border:none;width:120px;height:40px;font-size:12px;cursor:pointer;position:relative;top:-170px;left:190px">
                     <div class="form-page-fields suite-icons-container">
                         <div class="suite-icons-rooms-container" id="suite-icons-rooms-container">
                             <?php
@@ -152,18 +164,10 @@ if (!isset($_SESSION['First_Name'])) {
                     <div class="select-rooms">
                         <!-- <label for="" style="font-weight:bolder;margin-bottom:10px;font-size:15px;">Selection Of Room</label> -->
                     </div>
-                    <div class="form-page-fields">
-                        <div class="meal-selection-fields" style="margin-left:295px;margin-top:12px;width:250%;margin-left:575px;margin-top:-360px">
-                            <label for="meal-selection" style="font-size:20px;margin-right:15px;margin-bottom:5px;">Meal Selection</label><br>
-                            <select name="meal-selection" id="meal-type" onclick="selectMealType()" style="padding:7px;margin-top:5px">
-                                <option value="Set-Menu">Set Menu</option>
-                                <option value="Customized">Customized</option>
-                            </select>
-                        </div>
-                    </div>
+
 
                     <input type="hidden" name="emailUser" value="<?php echo $_SESSION['User_Email']; ?>">
-                    <div class="button-container-suite-form" style="margin-top:-60px;">
+                    <div class="button-container-suite-form" style="margin-top:-10px;">
                         <input type="submit" name="Next" value="Next" id="next" style="padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
                         <input type="submit" name="Meal-Selection" value="Meal Selection" id="meal-selection" style="display:none;padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
@@ -243,6 +247,7 @@ if (!isset($_SESSION['First_Name'])) {
                     newInput.setAttribute("name", "room-number-" + i);
                     newInput.setAttribute("placeholder", "Room " + i);
                     newInput.style.padding = '5px'
+                    newInput.style.marginTop = '-10px'
                     select_R.appendChild(newInput);
                     select_R.appendChild(document.createElement("br"));
                 }
@@ -270,53 +275,12 @@ if (!isset($_SESSION['First_Name'])) {
             }
         }
 
-        //from room details to the payment section
-        function userPayment() {
-            document.getElementById('suite-rooms-form-container-room-detail').style.display = 'none';
-            document.getElementById('form-page-paymentuser').style.display = 'none';
-            document.getElementById('form-page-mealuser').style.display = 'none';
-            document.getElementById('form-page-paymentuser-setmenu').style.display = 'block';
-        }
-
-        function showRooms() {
-            document.getElementById('suite-rooms-form-container-room-detail').style.display = 'block';
-            document.getElementById('form-page-paymentuser').style.display = 'none';
-        }
-
-        //when customer select the customize meal
-        function mealSelect() {
-            document.getElementById('suite-rooms-form-container-room-detail').style.display = 'none';
-            document.getElementById('form-page-mealuser').style.display = 'block';
-            document.getElementById('suite-form-header').classList.add('meal');
-        }
 
 
-        //from meals to user & payment details('for next button')
-        function userMealPayment() {
-            document.getElementById('form-page-mealuser').style.display = 'none';
-            document.getElementById('form-page-paymentuser').style.display = 'block';
-            var a = document.getElementById('suite-rooms-form-container-room-detail').style.getPropertyValue("display");
-            var a = window.getComputedStyle(a);
-            console.log(a);
-        }
-        //from meals to room details and availability
-        function roomDetails() {
-            document.getElementById('form-page-mealuser').style.display = 'none';
-            document.getElementById('suite-rooms-form-container-room-detail').style.display = 'block';
-            document.getElementById('custom-meal').setAttribute('style', 'display-block');
-            document.getElementById('form-page-mealuser').style.display = 'none';
-        }
+
 
         //adding event listener for the showing from payment page to meals page
         document.getElementById("previous-meal-btn").addEventListener('click', PaymentToMeals);
-
-        function PaymentToMeals(e) {
-            e.preventDefault();
-            document.getElementById('form-page-paymentuser').style.display = 'none';
-            document.getElementById('suite-rooms-form-container-room-detail').style.display = 'none';
-            document.getElementById('form-page-mealuser').style.display = 'block';
-            e.preventDefault();
-        }
     </script>
 </body>
 

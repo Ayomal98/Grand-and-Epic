@@ -42,5 +42,5 @@ if (mysqli_num_rows($exceceuteSearch) > 0) {
                     <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
                 </div> ';
 } else {
-    echo '<h1 style="color:black">There isnt any booking today';
+    echo '<h1 style="color:black">There isnt any booking today</h1>';
 }

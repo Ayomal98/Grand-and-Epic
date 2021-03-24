@@ -50,23 +50,23 @@
                 var year = date.getFullYear();
                 var datearray = [year, month, day];
                 var dateSelected = [year, month, day].join('-');
-            })
-            $("#check-availability").click(function(e) {
-                console.log(dateSelected);
-                console.log(datearray);
-                console.log(morningTime);
-                console.log(afternoonTime);
-                console.log(nightTime);
-                $("#check-availability-shower").load("events-availability.php", {
-                    dateSelected: dateSelected,
-                    timeslot: timeslot,
-                    morningTime: morningTime,
-                    afternoonTime: afternoonTime,
-                    nightTime: nightTime,
-                    datearray: datearray
-                })
-            });
+                $("#check-availability").click(function(e) {
+                    console.log(dateSelected);
+                    console.log(datearray);
+                    console.log(morningTime);
+                    console.log(afternoonTime);
+                    console.log(nightTime);
+                    $("#check-availability-shower").load("events-availability.php", {
+                        dateSelected: dateSelected,
+                        timeslot: timeslot,
+                        morningTime: morningTime,
+                        afternoonTime: afternoonTime,
+                        nightTime: nightTime,
+                        datearray: datearray
+                    })
+                });
 
+            })
 
         })
     </script>
@@ -142,8 +142,7 @@
                     <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
-                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;color:black" id="check-availability-shower">
-                    <h2 style="text-align: center;">ALL The Time Slots Are Available</h2>
+                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
                 </div>
             </div>
     </form>

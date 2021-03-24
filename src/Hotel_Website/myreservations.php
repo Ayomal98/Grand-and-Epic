@@ -104,18 +104,18 @@ $email = $_SESSION["User_Email"];
             }
             ?>
 
-            <!-- <span style="font-weight: bold;font-size:15px;">Room Number : Suite-12</span>
+            <div class="book-btn-container" style="margin-top:10px">
+                <button class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:36%;height:40px;text-align:center;margin-top:25px" id="btn-early-checkout">Request Early Checkouts</button>
+                <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
+            </div>
+        </div>
+        <!-- <span style="font-weight: bold;font-size:15px;">Room Number : Suite-12</span>
             <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>29th of November 2020</span></span>
             <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
             <span style="font-weight: bold;font-size:15px;">Check-Out Date: &nbsp;<span>21st of November 2020</span></span>
             <span style="font-weight: bold;font-size:15px;">Check-Out Time: &nbsp;<span>12.30 P.M</span></span>
             <span style="font-weight: bold;font-size:15px;">Amount Paid: Rs. 16,000/=</span>
             <span style="font-weight: bold;font-size:15px;">Amount left to paid: Rs.64,000/=</span> -->
-            <div class="book-btn-container" style="margin-top:10px">
-                <button class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:36%;height:40px;text-align:center;margin-top:25px" id="btn-early-checkout">Request Early Checkouts</button>
-                <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
-            </div>
-        </div>
         <!-- Including the early-checkout request form -->
         <?php include("./request-early-checkout-form.php") ?>
 
@@ -249,7 +249,6 @@ $email = $_SESSION["User_Email"];
             </table>
             <div class="book-btn-container">
                 <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px" id="btn-feedback">Provide Feedback</button>
-
             </div>
         </div>
 
