@@ -42,32 +42,32 @@
                         timeSelected = '';
                     })
                 }
-
-                $("#datefield").on("change", function() {
-                    var date = new Date($('#datefield').val());
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    var datearray = [year, month, day];
-                    var dateSelected = [year, month, day].join('-');
-
-                    $("#check-availability").click(function(e) {
-                        console.log(dateSelected);
-                        console.log(datearray);
-                        console.log(morningTime);
-                        console.log(afternoonTime);
-                        console.log(nightTime);
-                        $("#check-availability-shower").load("events-availability.php", {
-                            dateSelected: dateSelected,
-                            timeslot: timeslot,
-                            morningTime: morningTime,
-                            afternoonTime: afternoonTime,
-                            nightTime: nightTime,
-                            datearray: datearray
-                        })
-                    });
-                })
             })
+            $("#datefield").on("change", function() {
+                var date = new Date($('#datefield').val());
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                var datearray = [year, month, day];
+                var dateSelected = [year, month, day].join('-');
+            })
+            $("#check-availability").click(function(e) {
+                console.log(dateSelected);
+                console.log(datearray);
+                console.log(morningTime);
+                console.log(afternoonTime);
+                console.log(nightTime);
+                $("#check-availability-shower").load("events-availability.php", {
+                    dateSelected: dateSelected,
+                    timeslot: timeslot,
+                    morningTime: morningTime,
+                    afternoonTime: afternoonTime,
+                    nightTime: nightTime,
+                    datearray: datearray
+                })
+            });
+
+
         })
     </script>
 </head>
@@ -119,7 +119,7 @@
                         </select>
                         <!-- <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:68%"> -->
                         <label for="" style="position:absolute;top:250px;left:74%;font-size:15px;font-size:15px;">Time Duration(In Hours)</label>
-                        <input type="number" name="event-duration" min="1" max="4" style="position:absolute;top:280px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
+                        <input type="number" name="event-duration" min="1" max="5" style="position:absolute;top:280px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
                         <label for="" style="position: absolute;top:250px;left:87%;font-size:20px">Ending time</label>
                         <input type="text" name="ending-time" id="ending-time" value="" style="position:absolute;top:280px;left:85.5%;padding:5px;width:120px" required>
                     </div>
@@ -142,7 +142,8 @@
                     <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
                     <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                 </div>
-                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
+                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:45%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;color:black" id="check-availability-shower">
+                    <h2 style="text-align: center;">ALL The Time Slots Are Available</h2>
                 </div>
             </div>
     </form>

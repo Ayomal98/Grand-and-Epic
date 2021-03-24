@@ -54,30 +54,31 @@ $email = $_SESSION['User_Email'];
                         optionAgainSelected = '';
                     })
                 }
-                $('#datefield').on('change', function() {
-                    var date = new Date($('#datefield').val());
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    dateSelected = [year, month, day];
-                    dateSelected = dateSelected.join('-');
-                })
+            })
+            $('#datefield').on('change', function() {
+                var date = new Date($('#datefield').val());
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                dateSelected = [year, month, day];
+                dateSelected = dateSelected.join('-');
+            })
 
-                $('.check-availability-btn').click(function(e) {
-                    console.log(breakfastPeriod); // to check the data passing using the console
-                    console.log(lunchPeriod);
-                    console.log(dinnerPeriod);
-                    console.log(dateSelected);
-                    console.log(mealPeriod);
-                    $('.table-showing-container').load("showtables-after.php", { //will load the availability of the tables using showtables-after.php file
-                        mealPeriod: mealPeriod,
-                        breakfastPeriod: breakfastPeriod,
-                        lunchPeriod: lunchPeriod,
-                        dinnerPeriod: dinnerPeriod,
-                        dateSelected: dateSelected
-                    })
+            $('.check-availability-btn').click(function(e) {
+                console.log(breakfastPeriod); // to check the data passing using the console
+                console.log(lunchPeriod);
+                console.log(dinnerPeriod);
+                console.log(dateSelected);
+                console.log(mealPeriod);
+                $('.table-showing-container').load("showtables-after.php", { //will load the availability of the tables using showtables-after.php file
+                    mealPeriod: mealPeriod,
+                    breakfastPeriod: breakfastPeriod,
+                    lunchPeriod: lunchPeriod,
+                    dinnerPeriod: dinnerPeriod,
+                    dateSelected: dateSelected
                 })
             })
+
         })
     </script>
 

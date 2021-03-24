@@ -1,29 +1,3 @@
-<?php
-
-if (isset($_POST['payment'])) {
-    $merchant_id         = $_POST['merchant_id'];
-    $order_id             = $_POST['order_id'];
-    $payhere_amount     = $_POST['payhere_amount'];
-    $payhere_currency    = $_POST['payhere_currency'];
-    $status_code         = $_POST['status_code'];
-    $md5sig                = $_POST['md5sig'];
-    $firstName = $_POST['first_name'];
-    $email = $_POST['email'];
-
-
-    $merchant_secret = '8lyA24TbsSS4UshCmSRr8s4UrOe9MJQXY8Vyp6VOG9sB'; // Replace with your Merchant Secret (Can be found on your PayHere account's Settings page)
-
-    $local_md5sig = strtoupper(md5($merchant_id . $order_id . $payhere_amount . $payhere_currency . $status_code . strtoupper(md5($merchant_secret))));
-
-    if (($local_md5sig === $md5sig) and ($status_code == 2)) {
-        //TODO: Update your database as payment success
-        // $paymentSuccessfull = "INSERT into events_booking(Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_Amount)";
-        $paymentSuccessfull = "INSERT into events_booking (Customer_Name,Customer_Email) VALUES('$firstName',$email)";
-    } else {
-        echo '<script>alert("Payment Not Successfull")</script>';
-    }
-}
-?>
 <html>
 
 <head>
@@ -101,7 +75,6 @@ if (isset($_POST['payment'])) {
             $excecuteEventDetails = mysqli_query($con, $getEventDetails);
             if (mysqli_num_rows($excecuteEventDetails) > 0) {
                 while ($row = mysqli_fetch_assoc($excecuteEventDetails)) {
-                    $advancePrice = $row["Price"] * 0.2;
                     $mealPackage = $row["MealPackage_ID"];
                     $noGuests = $row["Num_Guests"];
                     $mealPrice = 0;
@@ -111,6 +84,9 @@ if (isset($_POST['payment'])) {
                     }
                     $locationPrice = $row["Price"] - $row["Feature_Price"];
                     $totalMealPrice = $mealPrice * $noGuests;
+                    $totalAmountBooking = $row["Price"] + $totalMealPrice;
+                    $advancePrice = $totalAmountBooking * 0.2;
+
                     echo '
                             <div style="position: absolute;width:650px;height:680px;background-color:white">
                                 <input type="hidden" name="merchant_id" value="1215666"> <!-- Replace your Merchant ID -->
@@ -121,7 +97,7 @@ if (isset($_POST['payment'])) {
                                 <input type="hidden" name="order_id" value=' . $row["Events_ID"] . '>
                                 <input type="hidden" name="items" value=' . $row["Event_Type"] . '><br>
                                 <input type="hidden" name="currency" value="LKR">
-                                <input type="hidden" name="amount" value=' . $row["Price"] . '>
+                                <input type="hidden" name="amount" value=' . $advancePrice . '>
                                 <!-- <br><br>Customer Details<br> -->
                                 <input type="hidden" name="first_name" value=' . $row["Customer_Name"] . '>
                                 <input type="hidden" name="last_name" value="Perera"><br>
@@ -140,16 +116,16 @@ if (isset($_POST['payment'])) {
                                     </u>
                     
                                     <h3 style="margin-left:20px;margin-top:30px">From ' . $row['Starting_Time'] . ' to ' . $row['Ending_Time'] . '</h4>
-                                        <h4 style="position:absolute;top:25%;left:65%;">' . $locationPrice . '</h4>
+                                        <h4 style="position:absolute;top:25%;left:65%;">Rs.' . $locationPrice . ' /=</h4>
                                         <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
-                                        <h4 style="position: absolute;top:32%;left:65%;">' . $row['Feature_Price'] . '</h4>
+                                        <h4 style="position: absolute;top:32%;left:65%;">Rs.' . $row['Feature_Price'] . ' /=</h4>
                                 </div>
                                 <div class="location-payment" style="margin-left:40px;margin-top:40px">
                                     <u>
                                         <h3>Price For the Meals</h3>
                                     </u>
                                     <h3 style="margin-left:20px;margin-top:30px">Total Amount for meals</h3>
-                                    <h4 style="position: absolute;top:50%;left:65%;">' . $totalMealPrice . '</h4>
+                                    <h4 style="position: absolute;top:48%;left:65%;">Rs.' . $totalMealPrice . ' /=</h4>
                                 </div>
                     
                                 <div class="location-payment" style="margin-left:40px;margin-top:40px">
@@ -157,7 +133,7 @@ if (isset($_POST['payment'])) {
                                         <h3>Total Amount</h3>
                                     </u>
                                     <h3 style="margin-left:20px;margin-top:30px">Total Amount for Booking</h3>
-                                    <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">' . $row["Price"] . '</h4>
+                                    <h4 style="position: absolute;top:63%;left:65%;font-size:25px;">Rs.' . $totalAmountBooking . ' /=</h4>
                                 </div>
                                 <div class="location-payment" style="margin-left:40px;margin-top:40px">
                                     <u>

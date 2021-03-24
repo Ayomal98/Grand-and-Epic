@@ -23,7 +23,7 @@ if (isset($_POST['event-details'])) {
     }
 
     //to select the location price according to the event-type by adding other features
-    $selectLocationPrice = mysqli_query($con, "SELECT * FROM event_location_features  WHERE Event_Type='$eventType'");
+    $selectLocationPrice = mysqli_query($con, "SELECT * FROM event_location_features  WHERE Event_Type='" . $eventType . "'");
     if (mysqli_num_rows($selectLocationPrice) > 0) {
         while ($rowLocPrice = mysqli_fetch_assoc($selectLocationPrice)) {
             $locationTotalPrice = $rowLocPrice['Location_Price'] * $eventDuration;
