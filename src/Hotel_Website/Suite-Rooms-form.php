@@ -81,9 +81,11 @@ if (!isset($_SESSION['First_Name'])) {
                     <div class="form-page-fields">
                         <div style="margin-left: -520px;margin-top:-25px">
                             <label for="reservation-type" style="font-size:20px;margin-right:5px;">Reservation Type</label>
-                            <select name=" reservation-type" id="reservation-type" style="padding:5px" required>
+                            <select name=" reservation-type" id="reservation-type" onchange="DisplayMealTypes(event)" style="padding:5px" required>
                                 <option value="Full-Board">Full Board</option>
                                 <option value="Half-Board">Half Board</option>
+                                <option value="Room Only">Room Only</option>
+                                <option value="Room & Breakfast">Room & Breakfast</option>
                             </select>
                         </div>
                         <div class="occupancy-number-details" style="margin-left: -80px;font-size:20px">
@@ -125,7 +127,7 @@ if (!isset($_SESSION['First_Name'])) {
                         </div>
                     </div>
                     <div class="form-page-fields">
-                        <div class="meal-selection-fields" style="position:relative;top:-260px;right:-190%">
+                        <div class="meal-selection-fields" id="meal-selection-fields" style="position:relative;top:-260px;right:-190%">
                             <label for="meal-selection" style="font-size:20px;">Meal Selection</label><br>
                             <select name="meal-selection" id="meal-type" onclick="selectMealType()" style="padding:7px;margin-top:10px" required>
                                 <option value="Set-Menu">Set Menu</option>
@@ -263,7 +265,7 @@ if (!isset($_SESSION['First_Name'])) {
             var reservationType = resType.value;
             console.log(reservationType)
             var checkOut;
-            if (reservationType == 'Full-Board' || reservationType == 'Half-Board') {
+            if (reservationType == 'Full-Board' || reservationType == 'Half-Board' || reservationType == 'Room Only' || reservationType == 'Room & Breakfast') {
                 if (checkIn == '9.00 A.M.') {
                     checkOut = '8.00 A.M.'
                 } else if (checkIn == '2.00 P.M.') {
@@ -276,11 +278,17 @@ if (!isset($_SESSION['First_Name'])) {
         }
 
 
-
-
-
         //adding event listener for the showing from payment page to meals page
         document.getElementById("previous-meal-btn").addEventListener('click', PaymentToMeals);
+
+        function DisplayMealTypes(e) {
+            if (e.target.value == 'Room Only') {
+                console.log('Room Only')
+                document.getElementById('meal-selection-fields').style.display = "none";
+            } else {
+                document.getElementById("meal-selection-fields").style.display = "block";
+            }
+        }
     </script>
 </body>
 

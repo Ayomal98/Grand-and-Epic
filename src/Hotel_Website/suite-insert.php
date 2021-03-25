@@ -27,20 +27,12 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     while ($rowRooms = mysqli_fetch_assoc($selectRoomPrice)) {
         $roomPrice = (int)$rowRooms['Price'] * $noRooms;
     }
-    //to select the price for the meals accordingly
-    if ($mealSelection == 'Set-Menu' && $reservationType == 'Full-Board') {
-        $selectMealPrice = mysqli_query($con, "SELECT * FROM stayingin_setmenu");
-        if (mysqli_num_rows($selectMealPrice) > 0) {
-            while ($rowMeals = mysqli_fetch_assoc($selectMealPrice)) {
-                $mealPrice += (int) $rowMeals['Price'];
-            }
-        }
-        // //select the availability
-        // $selectSuiteAvailability = mysqli_query($con, "SELECT * WHERE `CheckIn_Date`>='" . $checkInDate . "' AND `CheckOut_Date`<='" . $checkOutDate . "' ");
 
-        //inserting data into the temporary table
+    //when the reservation type is room only
+    if ($reservationType == 'Room Only') {
+        $mealSelection = "none";
+        $mealPrice = 0;
         $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
-
         if ($insertRoomDetails < 0) {
             echo 'Data has not been entered';
         } else {
@@ -51,22 +43,96 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
             }
             header('location:stayingin-payment.php?temp_id=' . $stayingIn_ID . '');
         }
-    }
-
-    //for the customized-foods
-    else if ($mealSelection == 'Customized') {
-        $mealPrice = 0;
-        //inserting data into the temporary table
-        $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
-        if ($insertRoomDetails < 0) {
-            echo 'Data has not been entered';
-        } else {
+    } else if ($reservationType == 'Room & Breakfast') {
+        if ($mealSelection == 'Set-Menu') {
+            $selectMealPrice = mysqli_query($con, "SELECT Price FROM stayingin_setmenu WHERE Meal_Type='Breakfast'");
+            $rowBreakfastprice = mysqli_fetch_assoc($selectMealPrice);
+            $mealPrice = $rowBreakfastprice['Price'];
+            $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
             $stayingIn_ID;
             $selectTempBookingID = mysqli_query($con, "SELECT StayingIn_ID FROM stayingin_booking_temp WHERE User_Email='$emailUser'");
             while ($row = mysqli_fetch_assoc($selectTempBookingID)) {
                 $stayingIn_ID = $row['StayingIn_ID'];
             }
-            header('location:stayingin-meals.php?temp_id=' . $stayingIn_ID . '');
+            header('location:stayingin-payment.php?temp_id=' . $stayingIn_ID . '');
+        } else if ($mealSelection == 'Customized') {
+            $mealPrice = 0;
+            $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
+            if ($insertRoomDetails < 0) {
+                echo 'Data has not been entered';
+            } else {
+                $stayingIn_ID;
+                $selectTempBookingID = mysqli_query($con, "SELECT StayingIn_ID FROM stayingin_booking_temp WHERE User_Email='$emailUser'");
+                while ($row = mysqli_fetch_assoc($selectTempBookingID)) {
+                    $stayingIn_ID = $row['StayingIn_ID'];
+                }
+                header('location:stayingin-meals.php?temp_id=' . $stayingIn_ID . '');
+            }
+        }
+    } else {
+        //to select the price for the meals accordingly for set menu & full board
+        if ($mealSelection == 'Set-Menu' && $reservationType == 'Full-Board') {
+            $selectMealPrice = mysqli_query($con, "SELECT * FROM stayingin_setmenu");
+            if (mysqli_num_rows($selectMealPrice) > 0) {
+                while ($rowMeals = mysqli_fetch_assoc($selectMealPrice)) {
+                    $mealPrice += (int) $rowMeals['Price'];
+                }
+            }
+            // //select the availability
+            // $selectSuiteAvailability = mysqli_query($con, "SELECT * WHERE `CheckIn_Date`>='" . $checkInDate . "' AND `CheckOut_Date`<='" . $checkOutDate . "' ");
+
+            //inserting data into the temporary table
+            $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
+
+            if ($insertRoomDetails < 0) {
+                echo 'Data has not been entered';
+            } else {
+                $stayingIn_ID;
+                $selectTempBookingID = mysqli_query($con, "SELECT StayingIn_ID FROM stayingin_booking_temp WHERE User_Email='$emailUser'");
+                while ($row = mysqli_fetch_assoc($selectTempBookingID)) {
+                    $stayingIn_ID = $row['StayingIn_ID'];
+                }
+                header('location:stayingin-payment.php?temp_id=' . $stayingIn_ID . '');
+            }
+        } else if ($mealSelection == 'Set-Menu' && $reservationType == 'Half-Board') { //for the reservation type of half-board and set menu
+            $mealPrice = 0;
+            $selectMealBreakfastPrice = mysqli_query($con, "SELECT Price FROM stayingin_setmenu WHERE Meal_Type='Breakfast'");
+            $selectMealDinnerPrice = mysqli_query($con, "SELECT Price FROM stayingin_setmenu WHERE Meal_Type='Dinner'");
+            $rowMealBreakfastprice = mysqli_fetch_assoc($selectMealBreakfastPrice);
+            $rowMealDinnerprice = mysqli_fetch_assoc($selectDinnerPrice);
+            $mealPrice = $rowBreakfastprice;
+            $mealPrice += $rowMealDinnerprice;
+
+            //inserting data into the temporary table
+            $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
+
+            if ($insertRoomDetails < 0) {
+                echo 'Data has not been entered';
+            } else {
+                $stayingIn_ID;
+                $selectTempBookingID = mysqli_query($con, "SELECT StayingIn_ID FROM stayingin_booking_temp WHERE User_Email='$emailUser'");
+                while ($row = mysqli_fetch_assoc($selectTempBookingID)) {
+                    $stayingIn_ID = $row['StayingIn_ID'];
+                }
+                header('location:stayingin-payment.php?temp_id=' . $stayingIn_ID . '');
+            }
+        }
+
+        //for the customized-foods
+        else if ($mealSelection == 'Customized') {
+            $mealPrice = 0;
+            //inserting data into the temporary table
+            $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
+            if ($insertRoomDetails < 0) {
+                echo 'Data has not been entered';
+            } else {
+                $stayingIn_ID;
+                $selectTempBookingID = mysqli_query($con, "SELECT StayingIn_ID FROM stayingin_booking_temp WHERE User_Email='$emailUser'");
+                while ($row = mysqli_fetch_assoc($selectTempBookingID)) {
+                    $stayingIn_ID = $row['StayingIn_ID'];
+                }
+                header('location:stayingin-meals.php?temp_id=' . $stayingIn_ID . '');
+            }
         }
     }
 }

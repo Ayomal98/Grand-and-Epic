@@ -167,7 +167,7 @@ if (isset($_GET["action"])) {
                 }
                 ?>
             </div>
-        <?php } else { ?>
+        <?php } else if ($rowMealType['Reservation_Type'] == 'Half-Board') { ?>
 
             <div class="meal-type-selector">
                 <h4 id="meal-header-breakfast" style="margin-right: 20px;font-size: 25px;width: 1810px;margin-left:10px;color:white;cursor:pointer" onclick="showBreakfastHBFood()">Breakfast</h4>
@@ -231,6 +231,40 @@ if (isset($_GET["action"])) {
                 }
                 ?>
             </div>
+        <?php } else { ?>
+            <div class="meal-type-selector" style="width: 250px;">
+                <h4 id="meal-header-breakfast" style="margin-right: 20px;font-size: 25px;width: 1810px;margin-left:10px;color:white;cursor:pointer" onclick="showBreakfastFood()">Breakfast</h4>
+            </div>
+            <div class="meal-selection" id="breakfast-meal" style="display: grid;grid-template-columns:100px 100px 100px 100px;column-gap:250px">
+                <?php
+                include('../../config/connection.php');
+                $mealType = "Breakfast";
+                $selectBreakfastFood = mysqli_query($con, "SELECT * FROM meals WHERE Meal_Type='$mealType'");
+                if (mysqli_num_rows($selectBreakfastFood) > 0) {
+                    while ($rowBreakfast = mysqli_fetch_assoc($selectBreakfastFood)) {
+                        echo '
+                            <div class="set-menu-meals-card" style="position:relative">
+                                <form action="" method="POST">
+                                    <div class="set-menu-card-image"><img src="data:image;base64,' . base64_encode($rowBreakfast["Meal_Image"]) . '" style="border-radius:10px 10px 0px 0px;height:163.5px;width:100%" alt=""></div>
+                                    <input type="hidden" name="Meal_ID" value="' . $rowBreakfast["Meals_ID"] . '">
+                                    <input type="hidden" name="Meal_Type" value="' . $rowBreakfast["Meal_Type"] . '">
+                                    <input type="hidden" name="Meal_Price" value="' . $rowBreakfast["Price"] . '">
+                                    <input type="hidden" name="Meal_Name" value="' . $rowBreakfast["Meals_Name"] . '">
+                                    <input type="hidden" name="Meal_Price" value="' . $rowBreakfast["Price"] . '">
+                                    <div class="set-menu-card-text">' . $rowBreakfast["Meals_Name"] . '<br><span style="position:absolute;top:215px;font-weight:bolder;left:50px">LKR ' . $rowBreakfast["Price"] . '.00<span style="font-size:10px">(Price per plate)</span></span>
+                                        <div class="add-to-cart"><input type="submit" name="Add-to-cart" value="Add to Cart" style="position:absolute;background-color:green;color:white;padding:10px;border:none;border-radius:5px;bottom:10px;left:120px">
+                                        <input type="number min="1" max="10" name="Meal_Quantity" style="position:absolute;background-color:black;color:white;padding:2px;border:none;border-radius:5px;bottom:10px;left:20px;width:80px;padding:10px" placeholder="quantity" required> </div>
+                                    </div>
+                                </form>
+                            </div>
+                           ';
+                    }
+                }
+
+
+                ?>
+            </div>
+
         <?php } ?>
 
 
