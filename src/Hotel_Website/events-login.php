@@ -86,7 +86,7 @@ if (!isset($_SESSION['First_Name'])) {
                         </ul>';
                         ?>
 
-                        <a href="events-booking-form.php" style="position: absolute;top: 187%; right: 15%;" target="_blank">
+                        <a href="events-booking-form.php" style="position: absolute;top: 194%; right: 15%;" target="_blank">
                             <input type="button" value="Book-Now" name="book-wedding" class="wedding-btn">
                         </a>
                     </div>

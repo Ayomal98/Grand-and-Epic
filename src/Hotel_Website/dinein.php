@@ -36,7 +36,6 @@
             <div style="color:#B88B4A;">Lunch Time &emsp; 12.00 P.M to 2.00 P.M</div>
             <div style="color:#B88B4A;">Dinner Time &emsp; 7.30 P.M to 9.30 P.M</div>
         </div>
-        <button class="book" style="color:black;background-color:goldenrod;padding:15px;margin-top:10px;"><a href="dinein-booking-form-nl.php" target="_blank">Book Now</a></button>
         <div class="img-dinein-container">
             <img src="../../public/Images/pexels-lee-hnetinka-1679825.jpg" alt="">
             <img src="../../public/Images/pexels-mat-brown-1395964.jpg" alt="">

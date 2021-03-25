@@ -35,7 +35,6 @@
                                 <div class="superior-room-content">
                                     <p style="text-align:center; font-family:Tahoma, Geneva, sans-serif">' . $row['Description'] . '</p>
                                 </div>
-                                    <button class="book" style="color:black;background-color:goldenrod"><a href="Panaromic-Rooms-form.php" target="_blank">Book Now</a></button>
                         </div>         
                         <div class="room-container">
                             <div class="image-container">

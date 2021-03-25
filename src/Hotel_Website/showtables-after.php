@@ -26,14 +26,14 @@ if ($mealPeriod == 'Lunch') {
         if (in_array($table_no, $selected)) {
             echo '<div id="table-' . $table_no . '">
                     <div class="dot not-avb"><span id="table-' . $table_no . '">' . $table_no . '</span></div>
-                    <div style="margin-left:-40px">Customers Allowed : <span id="cus-' . $no_Of_Customers . '">' . $no_Of_Customers . ' </span></div>
+                    <div style="margin-left:-40px">Guests Allowed: <span id="cus-' . $no_Of_Customers . '">' . $no_Of_Customers . ' </span></div>
                     <input type="hidden" name="table_no" value="' . $table_no . '">
                     <input type="hidden" name="no_customers" id="table-' . $table_no . '-cus" value="' . $no_Of_Customers . '">
                   </div>';
         } else {
             echo '<div id="table-' . $table_no . '">
                     <div class="dot"><span id="table-' . $table_no . '">' . $table_no . '</span></div>
-                    <div style="margin-left:-40px">Customers Allowed : <span id="cus-' . $no_Of_Customers . '">' . $no_Of_Customers . ' </div>
+                    <div style="margin-left:-40px">Guests Allowed : <span id="cus-' . $no_Of_Customers . '">' . $no_Of_Customers . ' </div>
                     <input type="hidden" name="table_no" value="' . $table_no . '">
                     <input type="hidden" name="no_customers" id="table-' . $table_no . '-cus" value="' . $no_Of_Customers . '">
                   </div>';
