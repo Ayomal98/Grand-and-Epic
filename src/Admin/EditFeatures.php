@@ -4,7 +4,6 @@ checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/index.php');
 }
-
 ?>
 <html>
 
@@ -12,11 +11,11 @@ if (!isset($_SESSION['First_Name'])) {
 	<link rel="stylesheet" href="../../public/css/employee.css">
 
 	<title>
-		Respond Leave Requests
+		Admin Manage Content
 	</title>
 	<style>
 		body {
-			height: 700px;
+			height: 1500px;
 		}
 	</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
@@ -35,21 +34,21 @@ if (!isset($_SESSION['First_Name'])) {
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Respond Leave Requests
+		<button class="dropdown-btn">Manage Contents
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
 			<a href="AdminDashboard.php">
 				<font size="4 px">Dashboard</font>
 			</a>
-			<a href="AdminManageCoAdmins.php">
-				<font size="4px">Manage Co-admins(H.M)</font>
+			<a href="AdminRespondToLeaveRequests.php">
+				<font size="4px">Respond to Leave Requests</font>
 			</a>
 			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
 			</a>
-			<a href="AdminManageContent.php">
-				<font size="4 px">Manage Content on web-site</font>
+			<a href="AdminManageCoAdmins.php">
+				<font size="4 px">Manage Co-Admins</font>
 			</a>
 			<a href="AdminAddPromotion.php">
 				<font size="4 px">Add promotion</font>
@@ -88,40 +87,76 @@ if (!isset($_SESSION['First_Name'])) {
 			});
 		}
 	</script>
-	<?php
-    date_default_timezone_set('Asia/Colombo');
-    $date = date('Y-m-d', time());
-    echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">' . $date . '</span>    ';
-    ?>
-    <?php
-    include('../../config/connection.php');
-    $tempStatus = 0;
-    $selectLeaveDate = mysqli_query($con, "SELECT * FROM leave_request WHERE Start_Date='" . $date+2 . "' AND Status='" . $tempStatus . "' AND Employee_ID like 'C%' ");
-    if (mysqli_num_rows($selectReservationDate) > 0) {
-        echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
-            <thead>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Employee ID</th>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Start Date</th>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">End Date</th>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Section</th>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reason</th>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Status</th>
-            </thead>';
-        while ($rowResDetails = mysqli_fetch_assoc($selectLeaveDate)) {
-            $id = $rowResDetails['Employee_ID'];
-            echo '<tbody>
-                    <tr>
-                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Employee_ID'] . '</td>
-                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Start_Date'] . '</td>
-                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['End_Date'] . '</td>
-                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Section'] . '</td>
-                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reason'] . '</td>
-                    </tr>';
-        }
-        echo '</table>';
-    }
+	<form action="" method="POST">
+		<fieldset style=" position:absolute; top:250px;left:150px; width: 45%;">
+			<table align="left" style="color:white; font-size: 20px; width:110%;">
+				<tr>
+					<td>Event Type</td>
+					<td align="left"><select id="type" name="typelist">
+							<option value="Wedding">Wedding</option>
+							<option value="Party">Party</option>
+						</select>
+						<input type="submit" class="button" name="search" value="Search by ID">
+					</td>
+				</tr>
+			</table>
+			</form>
+	
 
-    ?>
+
+	<?php
+	include("../../config/connection.php");
+	if (isset($_POST['search'])) {
+		$Event_Type = $_POST['typelist'];
+
+		$query = "SELECT * FROM event_location_features where Event_Type='$Event_Type '";
+		$query_run = mysqli_query($con, $query);
+		$row = mysqli_fetch_assoc($query_run);
+		if (mysqli_num_rows($query_run) > 0) {
+	?>
+			
+		
+			<table align="left" style="color:white; font-size: 20px; width:110%;">
+				<tr>
+					<td>Location Price(LKR)</td>
+					<td><input type="text" name="First_Name" value="<?php echo $row['Location_Price'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>DJ Price(LKR)</td>
+					<td><input type="float" name="Last_Name" value="<?php echo $row['DJ_Price'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Decoration Price(LKR)</td>
+					<td><input type="text" name="Email" value="<?php echo $row['Decoration_Price'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Champagne Price(LKR)</td>
+					<td><input type="text" name="Contact_No" value="<?php echo $row['Champaigne_Price'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Advance Percentage</td>
+					<td><input type="text" name="Contact_No" value="<?php echo $row['Advance_Percentage'] ?>" /></td>
+				</tr>
+				<tr>
+					<td align="center" style="width:50%;">
+						<input type="submit" class="button" name="update" value="UPDATE">
+						<input type="reset" class="button" value="  RESET " name="reset">
+
+					</td>
+
+				</tr>
+			</table>
+			</fieldset>
+		
+			
+	<?php
+		}
+	}
+
+	?>
+
+
+
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
@@ -131,7 +166,6 @@ if (!isset($_SESSION['First_Name'])) {
 			document.getElementById('user-detail-container').style.display = "none";
 		}
 	</script>
-
 </body>
 
 </html>
