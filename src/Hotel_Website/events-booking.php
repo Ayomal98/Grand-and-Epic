@@ -22,7 +22,35 @@ if (isset($_POST['event-details'])) {
         $startingTime = $_POST['dinner-time'];
     }
 
-    //to select the location price according to the event-type by adding other features
+    //to check whether the existing bookings are already there
+    $getBookingsOnDay = mysqli_query($con, "SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ");
+    if (mysqli_num_rows($getBookingsOnDay) > 0) {
+        while ($rowAvailability = mysqli_fetch_assoc($getBookingsOnDay)) {
+            $startDBTime = date("H:i:s", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
+            $startInputTime = date("H:i:s", strtotime($startingTime));
+            $endDBTime = date("H:i:s", strtotime($rowAvailability['Ending_Time']));
+            $endInputTime = date("H:i:s", strtotime($endingTime));
+            if (($startInputTime == $startDBTime) || ($endInputTime == $endDBTime) || ($startInputTime == $endDBTime) || ($endDBTime == $startInputTime)) {
+                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                            window.location.href="events-booking-form.php"
+                        </script>';
+            } else if ($startInputTime > $startDBTime && $startInputTime < $endDBTime) {
+                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                            window.location.href="events-booking-form.php"
+                        </script>';
+            } else if ($endInputTime > $startInputTime && $endInputTime < $endDBTime) {
+                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                            window.location.href="events-booking-form.php"
+                        </script>';
+            } else if ($startInputTime > $startDBTime && $endInputTime < $endDBTime) {
+                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                window.location.href="events-booking-form.php"
+            </script>';
+            }
+        }
+    }
+
+    //to select the location price and the other features according to the event-type by adding other features
     $selectLocationPrice = mysqli_query($con, "SELECT * FROM event_location_features  WHERE Event_Type='" . $eventType . "'");
     if (mysqli_num_rows($selectLocationPrice) > 0) {
         while ($rowLocPrice = mysqli_fetch_assoc($selectLocationPrice)) {
@@ -30,7 +58,6 @@ if (isset($_POST['event-details'])) {
             $locationPrice = $rowLocPrice['Location_Price'] * $eventDuration;
             foreach ($additionalFeatures as $feature) {
                 if ($feature == 'DJMusic') {
-
                     $featurePrice += $rowLocPrice['DJ_Price'];
                 } else if ($feature == 'Decorations') {
                     $featurePrice += $rowLocPrice['Decoration_Price'];
@@ -54,7 +81,6 @@ if (isset($_POST['event-details'])) {
         header('location:./HomePage-login.php');
     }
 }
-
 //selecting the mealss
 if (isset($_POST['Select_Meal'])) {
     $packageID = $_POST['packageID'];
