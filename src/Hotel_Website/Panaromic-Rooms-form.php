@@ -11,7 +11,7 @@ if (!isset($_SESSION['First_Name'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suite Room Form</title>
+    <title>Panaromic Room Form</title>
     <style>
         body {
             background-image: url("../../public/images/suite-form-img.jpeg");
@@ -94,6 +94,7 @@ if (!isset($_SESSION['First_Name'])) {
                                 <input type="number" min="1" max="10" style="width: 70%;height:50%" name="No-Occupants" id="predict-rooms" style="padding:5px" oninput="predictNoRooms(event)" required>
                             </div>
                         </div>
+                        <input type="hidden" name="room_type" value="Panaromic Rooms">
                         <div style="margin-left:100px;margin-top:-30px;width:150px;">
                             <span style="font-size: 12px;color:red" id="predicted-rooms"></span>
                         </div>
@@ -169,7 +170,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 
                     <input type="hidden" name="emailUser" value="<?php echo $_SESSION['User_Email']; ?>">
-                    <div class="button-container-suite-form" style="margin-top:-10px;">
+                    <div class="button-container-suite-form" style="margin-top:70px;">
                         <input type="submit" name="Next" value="Next" id="next" style="padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
                         <input type="submit" name="Meal-Selection" value="Meal Selection" id="meal-selection" style="display:none;padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
@@ -265,7 +266,7 @@ if (!isset($_SESSION['First_Name'])) {
             var reservationType = resType.value;
             console.log(reservationType)
             var checkOut;
-            if (reservationType == 'Full-Board' || reservationType == 'Half-Board') {
+            if (reservationType == 'Full-Board' || reservationType == 'Half-Board' || reservationType == 'Room Only' || reservationType == 'Room & Breakfast') {
                 if (checkIn == '9.00 A.M.') {
                     checkOut = '8.00 A.M.'
                 } else if (checkIn == '2.00 P.M.') {

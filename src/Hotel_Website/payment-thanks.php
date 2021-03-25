@@ -32,7 +32,7 @@ if ($_GET['type'] == 'events') {
     $advancePercentageValue = $rowAdvance['Advance_Percentage'];
     $reservationID = getID('Reservation', 'R');
     while ($row = mysqli_fetch_assoc($getEventDetailsTemp)) {
-        $eventID = getID('events_booking', 'E');
+        $eventID = getID('events_booking', 'E'); //generating events ID
         $customer_Name = $row["Customer_Name"];
         $customer_Email = $row["Customer_Email"];
         $num_Guests = $row["Num_Guests"];
@@ -57,10 +57,12 @@ if ($_GET['type'] == 'events') {
             $html_evt .= '<tr><td style=\'border:1px solid black\'>' . $event_Type . '</td><td style=\'border:1px solid black\'>' . $num_Guests . '</td><td style=\'border:1px solid black\'>' . $reservation_Date . '</td><td style=\'border:1px solid black\'>' . $starting_Time . '</td><td style=\'border:1px solid black\'>' . $ending_Time . '</td><td style=\'border:1px solid black\'>' . $location_Price . '</td><td style=\'border:1px solid black\'>' . $feature_Price . '</td></tr>';
             $html_evt .= "</table>";
             $deleteTempEvtDetails = mysqli_query($con, "DELETE FROM events_booking_temp WHERE Events_ID='$events_ID'");
-            $mpdf = new \Mpdf\Mpdf();
-            $mpdf->WriteHTML($html_evt);
-            $file = time() . '.pdf';
-            $mpdf->Output($file, 'D');
+            if ($deleteTempEvtDetails) {
+                $mpdf = new \Mpdf\Mpdf();
+                $mpdf->WriteHTML($html_evt);
+                $file = time() . '.pdf';
+                $mpdf->Output($file, 'D');
+            }
         }
     }
 } else if ($_GET['type'] == 'staying-in') {
@@ -68,7 +70,7 @@ if ($_GET['type'] == 'events') {
     $reservationType = $_GET['type'];
     $selectTemp = mysqli_query($con, "SELECT * FROM stayingin_booking_temp WHERE StayingIn_ID='$stayingInId'");
     while ($rowStayingIn = mysqli_fetch_assoc($selectTemp)) {
-        $stayingInId = getID("stayingin_booking", "S");
+        $stayingInId = getID("stayingin_booking", "S"); //generating stayingin ID
         $reservation_Stay_ID = getID('Reservation', 'R');
         $occupancy = $rowStayingIn['Occupancy'];
         $noOccupants = $rowStayingIn['No_Occupants'];
@@ -110,12 +112,13 @@ if ($_GET['type'] == 'events') {
                 $html .= "<tr><td style='border:1px solid black'>' . $roomType . '</td><td style='border:1px solid black'>' . $noRooms . '</td><td style='border:1px solid black'>' . $occupancy . '</td><td style='border:1px solid black'>' . $checkInDate . '</td><td style='border:1px solid black'>' . $checkOutDate . '</td><td style='border:1px solid black'>' . $checkInTime . '</td><td style='border:1px solid black'>' . $checkOutTime . '</td><td style='border:1px solid black'>' . $noOccupants . '</td></tr>";
                 $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($totalAmountStayingIn, 2) . "</td></tr>";
             }
-            $deleteTempStayDetails =  "DELETE FROM stayingin_booking_temp WHERE StayingIn_ID='$stayingInId'";
-            $excecuteDeleteStayTemp = mysqli_query($con, $deleteTempStayDetails);
-            $mpdf = new \Mpdf\Mpdf();
-            $mpdf->WriteHTML($html);
-            $file = time() . '.pdf';
-            $mpdf->Output($file, 'D');
+            $deleteTempStayDetails =  mysqli_query($con, "DELETE FROM stayingin_booking_temp WHERE StayingIn_ID='" . $stayingInId . "'");
+            if ($deleteTempStayDetails) {
+                $mpdf = new \Mpdf\Mpdf();
+                $mpdf->WriteHTML($html);
+                $file = time() . '.pdf';
+                $mpdf->Output($file, 'D');
+            }
         }
     }
 }

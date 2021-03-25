@@ -94,6 +94,7 @@ if (!isset($_SESSION['First_Name'])) {
                                 <input type="number" min="1" max="25" style="width: 70%;height:50%" name="No-Occupants" id="predict-rooms" style="padding:5px" oninput="predictNoRooms(event)" required>
                             </div>
                         </div>
+                        <input type="hidden" name="room_type" value="Suite Rooms">
                         <div style="margin-left:100px;margin-top:-30px;width:150px;">
                             <span style="font-size: 12px;color:red" id="predicted-rooms"></span>
                         </div>

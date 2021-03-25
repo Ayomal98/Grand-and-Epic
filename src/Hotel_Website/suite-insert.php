@@ -11,7 +11,7 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     $checkOutDate = $_POST['check-out-Date'];
     $mealSelection = $_POST['meal-selection']; //meal-type
     $emailUser = $_POST['emailUser'];
-    $roomType = 'Suite Rooms';
+    $roomType = $_POST['room_type'];
     $occupancy = 'Suite';
     $noRooms = $_POST['No-Rooms'];
     $roomPrice;
@@ -23,7 +23,7 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     }
     $encoded_rooms = serialize($rooms);
     //to select the price for the rooms
-    $selectRoomPrice = mysqli_query($con, "SELECT Price from rooms WHERE Room_Type=' $roomType  '");
+    $selectRoomPrice = mysqli_query($con, "SELECT Price from rooms WHERE Room_Type=' $roomType '");
     while ($rowRooms = mysqli_fetch_assoc($selectRoomPrice)) {
         $roomPrice = (int)$rowRooms['Price'] * $noRooms;
     }
@@ -32,7 +32,7 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     if ($reservationType == 'Room Only') {
         $mealSelection = "none";
         $mealPrice = 0;
-        $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
+        $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','" . $roomType . "','$emailUser','$roomPrice','$mealPrice')");
         if ($insertRoomDetails < 0) {
             echo 'Data has not been entered';
         } else {
