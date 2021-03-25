@@ -34,31 +34,31 @@ if (!isset($_SESSION['First_Name'])) {
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
 	</center>
-	<div class="sidenav">
-		<button class="dropdown-btn">Respond Leave Requests
-			<i class="fa fa-caret-down"></i>
-		</button>
-		<div class="dropdown-container">
-			<a href="AdminDashboard.php">
-				<font size="4 px">Dashboard</font>
-			</a>
-			<a href="AdminManageCoAdmins.php">
-				<font size="4px">Manage Co-admins(H.M)</font>
-			</a>
-			<a href="AdminViewBookings.php">
-				<font size="4 px">View Booking Details</font>
-			</a>
-			<a href="AdminManageContent.php">
-				<font size="4 px">Manage Content on web-site</font>
-			</a>
-			<a href="AdminAddPromotion.php">
-				<font size="4 px">Add promotion</font>
-			</a>
-			<a href="AdminViewStats.php">
-				<font size="4 px">View Stats</font>
-			</a>
-		</div>
-	</div>
+    <div class="sidenav">
+    <button class="dropdown-btn">View Stats
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="AdminDashboard.php">
+        <font size="4 px">Dashboard</font>
+      </a>
+      <a href="AdminRespondToLeaveRequests.php">
+        <font size="4px">Respond to Leave Requests</font>
+      </a>
+      <a href="AdminViewBookings.php">
+        <font size="4 px">View Booking Details</font>
+      </a>
+      <a href="AdminManageContent.php">
+        <font size="4 px">Manage Content on web-site</font>
+      </a>
+      <a href="AdminAddPromotion.php">
+        <font size="4 px">Add promotion</font>
+      </a>
+      <a href="AdminManageCoAdmins.php">
+        <font size="4 px">Manage Co-admins(H.M)</font>
+      </a>
+    </div>
+  </div>
 	<div class="top-right">
 		<table width="100%">
 			<tr>
@@ -122,17 +122,21 @@ $dataCount = json_encode($NoRooms); //encode the value into json format
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
         let massChart = new Chart(myChart, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
                 labels: <?php echo $data ?>,
                 datasets: [{
                     label: 'Room Type Summary',
                     data: <?php echo $dataCount ?>
                 }]
+                color: [
+    'red',    // color for data at index 0
+    'blue',   // color for data at index 1
+    'green',  // color for data at index 2  // color for data at index 3
+    //...
+]
             },
-            options: {
-                Color: 'Green'
-            }
+        
 
         })
     </script>

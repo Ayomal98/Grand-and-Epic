@@ -24,10 +24,6 @@ if (isset($_POST['ADD'])) {
   }
 }
 
-		
-
-
-
 //UPDATE
 if (isset($_POST['update'])) {
     $type = $_POST["type"];
