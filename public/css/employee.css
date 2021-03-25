@@ -280,4 +280,37 @@ select {
 	overflow: auto;
 }
 
+.staytable{
+	font-size: 18px; 
+	width:50%; 
+	top:300px; 
+	position:relative; 
+	border: 1px solid white;
+	max-height: 50%;
+	overflow: auto;
+	float: left;
+}
+
+.dinetable{
+	font-size: 18px; 
+	width:50%; 
+	top:350px; 
+	position:relative; 
+	border: 1px solid white;
+	max-height: 50%;
+	overflow: auto;
+	float: left;
+}
+
+.eventtable{
+	font-size: 18px; 
+	width:50%; 
+	top:400px; 
+	position:relative; 
+	border: 1px solid white;
+	max-height: 50%;
+	overflow: auto;
+	float: left;
+}
+
 
