@@ -1,4 +1,33 @@
 <?php
+
+include("../../public/includes/session.php");
+include('../../public/includes/id-generator.php');
+
+checkSession();
+if (!isset($_SESSION['First_Name'])) {
+    header('Location:../Hotel_Website/HomePage-login.php');
+}
+
+if (isset($_POST['View'])) {
+    $feedback_ID = $_POST['Feedback_ID'];
+    $feedstaff = $_POST['Feedback_Staff'];
+    $staffrate = $_POST['Staff_Rate'];
+    $feedweb = $_POST['Feedback_Website'];
+    $webrate = $_POST['Website_Rate'];
+    $status = 1;
+    $amountToBePaid = 0;
+    $payment_ID = getID('paid_confirmations', 'P');
+    $updatePaymentStatus = mysqli_query($con, "UPDATE reservation SET Payment_Status='$status', Amount_To_Be_Paid='$amountToBePaid' WHERE Reservation_ID='$reservationID'");
+    $insertConfirmation = mysqli_query($con, "INSERT INTO paid_confirmations(Paid_ID,Reservation_ID,Payment_Accepted,Date_Accepted,Payment_Method) VALUES('$payment_ID','$reservationID','$paidAmount','" . $date . "','$paymentMethod')");
+    if ($insertConfirmation && $updatePaymentStatus) {
+        echo '<script>alert("Payment Successfullt Accepted")</script>';
+        header('location:ReceptionistAcceptPayments.php');
+    }
+}
+
+?>
+
+<?php
 include("../../public/includes/session.php");
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
