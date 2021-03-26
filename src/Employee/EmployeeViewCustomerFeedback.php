@@ -103,7 +103,7 @@ if (!isset($_SESSION['First_Name'])) {
 						<tr>
 							<td style="border: 1px solid white;padding: 5px;">' . $rowDetails['Feedback_ID'] . '</td>
 							<td style="border: 1px solid white;padding: 5px;">' . $rowDetails['Staff_Rate'] . '</td>
-							<td style="border: 1px solid white;padding: 5px;"><a href="EmloyeeViewCUstomerFeedback.php?id=' . $id . '">View</a></td>
+							<td style="border: 1px solid white;padding: 5px;"><a href="EmployeeViewCUstomerFeedback.php?id=' . $id . '">View</a></td>
 						</tr>';
 			}
 			echo '</table>';
