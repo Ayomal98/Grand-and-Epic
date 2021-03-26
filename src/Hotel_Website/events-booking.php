@@ -31,19 +31,19 @@ if (isset($_POST['event-details'])) {
             $endDBTime = date("H:i:s", strtotime($rowAvailability['Ending_Time']));
             $endInputTime = date("H:i:s", strtotime($endingTime));
             if (($startInputTime == $startDBTime) || ($endInputTime == $endDBTime) || ($startInputTime == $endDBTime) || ($endDBTime == $startInputTime)) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take 1")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($startInputTime > $startDBTime && $startInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take 2")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($endInputTime > $startInputTime && $endInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take 3")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($startInputTime > $startDBTime && $endInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take 4")
                 window.location.href="events-booking-form.php"
             </script>';
             } else {

@@ -69,48 +69,49 @@ $email = $_SESSION["User_Email"];
         </div>
     </div>
     <div class="userBookings upcoming" id="user-bookings">
-        <div class="upcomig-reservation-box">
-            <?php
-            $selectStayingInBookings = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE User_Email='$email'");
-            if (mysqli_num_rows($selectStayingInBookings) > 0) {
-                while ($rowSelectedStayingIn = mysqli_fetch_assoc($selectStayingInBookings)) {
-                    $rooomNumbers = unserialize($rowSelectedStayingIn['Room_Numbers']);
-                    $rooomType = $rowSelectedStayingIn["Room_Type"];
-                    $amountToPay = (int)$rowSelectedStayingIn['Total_Amount'] - (int)$rowSelectedStayingIn['Paid_Amount'];
-                    echo '<span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">' . $rooomType . ' Numbers   :' . implode(",", $rooomNumbers) . '</span>
-                            <table border="1px solid black" style="font-size:13px;border-radius:10px">
-                            <tr>
-                                <th style="padding:5px 0px">Check-in Date</th>
-                                <th style="padding:5px 0px">Check-in Time</th>
-                                <th style="padding:5px 0px">Check-out Date</th>
-                                <th style="padding:5px 0px">Check-out Time</th>
-                            </tr>
-                            <tr>
-                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Date'] . '</td>
-                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Time'] . '</td>
-                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckOut_Date'] . '</td>
-                                <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Time'] . '</td>
-                            </tr>
-                        </table>
-                        <table border="1px solid black" style="font-size:13px;border-radius:10px;margin-top:20px;width:60%;margin-left:50px">
-                            <tr>
-                                <th style="padding:5px">Amount Paid</th>
-                                <th style="padding:5px">Amount to be Paid</th>
-                            </tr>
-                            <tr>
-                                <td style="padding-left: 15px;">Rs. ' . $rowSelectedStayingIn['Paid_Amount'] . '/=</td>
-                                <td style="padding-left: 15px;">Rs.' . $amountToPay . '/=</td>
-                            </tr>
-                        </table>';
-                }
-            }
-            ?>
 
-            <div class="book-btn-container" style="margin-top:10px">
-                <button class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:36%;height:40px;text-align:center;margin-top:25px" id="btn-early-checkout">Request Early Checkouts</button>
-                <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
-            </div>
-        </div>
+        <?php
+        $selectStayingInBookings = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE User_Email='$email'");
+        if (mysqli_num_rows($selectStayingInBookings) > 0) {
+            while ($rowSelectedStayingIn = mysqli_fetch_assoc($selectStayingInBookings)) {
+                $rooomNumbers = unserialize($rowSelectedStayingIn['Room_Numbers']);
+                $rooomType = $rowSelectedStayingIn["Room_Type"];
+                $amountToPay = (int)$rowSelectedStayingIn['Total_Amount'] - (int)$rowSelectedStayingIn['Paid_Amount'];
+                echo '<div class="upcomig-reservation-box">
+                            <span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">' . $rooomType . ' Numbers   :' . implode(",", $rooomNumbers) . '</span>
+                            <table border="1px solid black" style="font-size:13px;border-radius:10px">
+                                    <tr>
+                                        <th style="padding:5px 0px">Check-in Date</th>
+                                        <th style="padding:5px 0px">Check-in Time</th>
+                                        <th style="padding:5px 0px">Check-out Date</th>
+                                        <th style="padding:5px 0px">Check-out Time</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Date'] . '</td>
+                                        <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Time'] . '</td>
+                                        <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckOut_Date'] . '</td>
+                                        <td style="padding-left:7px">' . $rowSelectedStayingIn['CheckIn_Time'] . '</td>
+                                    </tr>
+                            </table>
+                            <table border="1px solid black" style="font-size:13px;border-radius:10px;margin-top:20px;width:60%;margin-left:50px">
+                                    <tr>
+                                        <th style="padding:5px">Amount Paid</th>
+                                        <th style="padding:5px">Amount to be Paid</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 15px;">Rs. ' . $rowSelectedStayingIn['Paid_Amount'] . '/=</td>
+                                        <td style="padding-left: 15px;">Rs.' . $amountToPay . '/=</td>
+                                    </tr>
+                            </table>                
+                            <div class="book-btn-container" style="margin-top:10px">
+                                <button class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:36%;height:40px;text-align:center;margin-top:25px" id="btn-early-checkout">Request Early Checkouts</button>
+                                <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
+                            </div>
+                        </div>';
+            }
+        }
+        ?>
+
         <!-- <span style="font-weight: bold;font-size:15px;">Room Number : Suite-12</span>
             <span style="font-weight: bold;font-size:15px;">Check-In Date: &nbsp;<span>29th of November 2020</span></span>
             <span style="font-weight: bold;font-size:15px;">Check-In Time: &nbsp;<span>12.30 P.M</span></span>
@@ -218,43 +219,66 @@ $email = $_SESSION["User_Email"];
         ?>
         <br>
     </div>
-    <div style="margin-bottom: 50px;">
-        <?php
 
-        $selectNoReservation = mysqli_query($con, "SELECT * FROM paid_confirmation");
-        ?>
+    </div>
+    <div style="margin-bottom: 50px;">
         <u>
             <h3 style="text-align: center;">Past Reservations</h3>
         </u>
-        <div class="upcomig-reservation-box past" style="margin-left: 10px;">
-            <div style="display:flex;margin-top:-40px;margin-bottom:10px">
-                <span style="font-weight: bold;font-size:15px;margin-right:35px">Staying-in ID : 48</span>
-                <span style="font-weight: bold;font-size:15px;">Room Number : Panaromic 13</span>
-            </div>
-            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px">
-                <tr>
-                    <th>Check-In Date</th>
-                    <th>Check-In Time</th>
-                    <th>Check-Out Date</th>
-                    <th>Check-Out Time</th>
-                </tr>
-                <tr>
-                    <td style="padding-left:5px">20th November 2020</td>
-                    <td style="padding-left:5px">8.30 A.M.</td>
-                    <td style="padding-left:5px">23th November 2020</td>
-                    <td style="padding-left:5px">12.30 P.M.</td>
-                </tr>
-            </table>
-            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px;width:30%;margin-left:27%">
-                <tr>
-                    <th style="padding: 5px;">Total Amount </th>
-                    <td style="padding: 5px;">Rs.60,000/=</td>
-                </tr>
-            </table>
-            <div class="book-btn-container">
-                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px" id="btn-feedback">Provide Feedback</button>
-            </div>
-        </div>
+        <?php
+        $paymentStatus = 1;
+        $selectPastBookings = mysqli_query($con, "SELECT * FROM reservation WHERE User_Email='" . $email . "' AND Payment_Status='$paymentStatus'");
+        if (mysqli_num_rows($selectPastBookings) > 0) {
+            while ($rowPastBookings = mysqli_fetch_assoc($selectPastBookings)) {
+                if ($rowPastBookings["Reservation_Type"] == 'events') {
+                    $id = $rowPastBookings['Booking_ID'];
+                    $selectBookingsFromEvents = mysqli_query($con, "SELECT * FROM events_booking WHERE Events_ID='" . $id . "'");
+                    $rowBookingEvents = mysqli_fetch_assoc($selectBookingsFromEvents);
+                    $packageID = $rowBookingEvents['MealPackage_ID'];
+                    $selectPackagePrice = mysqli_query($con, "SELECT * FROM events_meals_packages WHERE Package_ID='" . $packageID . "'");
+                    $rowPackagePrice = mysqli_fetch_assoc($selectPackagePrice);
+                    $MealPrice = $rowPackagePrice['price'] * $rowBookingEvents['Num_Guests'];
+                    $locationPrice = $rowBookingEvents['Total_Amount'] - $MealPrice;
+                    echo '
+                    <div class="upcomig-reservation-box past" style="margin-left: 10px;">
+                            <div style="display:flex;margin-top:0px;margin-bottom:7px">
+                                <span style="font-weight: bold;font-size:15px;margin-right:95px">Events ID : ' . $rowBookingEvents['Events_ID'] . '</span>
+                                <span style="font-weight: bold;font-size:15px;">Event Type : ' . $rowBookingEvents['Event_Type'] . '</span>
+                            </div>
+                            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px">
+                                <tr>
+                                    <th style="padding:7px">Event Date</th>
+                                    <th style="padding:3px">Starting Time</th>
+                                    <th style="padding:3px">Ending Time</th>
+                                    <th style="padding:3px">Number Of Guests</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px">' . $rowBookingEvents['Reservation_Date'] . '</td>
+                                    <td style="padding:4px">' . $rowBookingEvents['Starting_Time'] . '</td>
+                                    <td style="padding:4px">' . $rowBookingEvents['Ending_Time'] . '</td>
+                                    <td style="padding:2px">' . $rowBookingEvents['Num_Guests'] . '</td>
+                                </tr>
+                            </table>
+                            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px;width:30%;margin-left:5%">
+                                <tr>
+                                    <th style="padding: 5px;">Location Amount </th>
+                                    <td style="padding: 5px;">' . $locationPrice . '</td>
+                                    <th style="padding: 5px;">Meal Amount </th>
+                                    <td style="padding: 5px;">' . $MealPrice . '</td>
+                                    <th style="padding: 5px;">Total Amount </th>
+                                    <td style="padding: 5px;">' . $rowBookingEvents['Total_Amount'] . '</td>
+                                </tr>
+                            </table>
+                            <div class="book-btn-container">
+                                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px" id="btn-feedback">Provide Feedback</button>
+                            </div>
+                    </div>
+                    ';
+                }
+            }
+        }
+        ?>
+
 
     </div>
     <?php include('customerfeedback-form.php'); ?>
