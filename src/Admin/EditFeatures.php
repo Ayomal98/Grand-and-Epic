@@ -100,9 +100,28 @@ if (!isset($_SESSION['First_Name'])) {
 					</td>
 				</tr>
 			</table>
-			</form>
-	
+	</form>
+	<?php
+//UPDATE
+if (isset($_POST['update'])) {
+	$Event_Type = $_POST['type'];
+    $Location_Price = $_POST['Location_Price'];
+    $DJ_Price = $_POST['DJ_Price'];
+	$Decoration_Price = $_POST['Decoration_Price'];
+	$Champaigne_Price = $_POST['Champaigne_Price'];
+	$Advance_Percentage = $_POST['Advance_Percentage'];
+    $query = "UPDATE event_location_price SET Location_Price='$Location_Price',DJ_Price='$DJ_Price',Decoration_Price='$Decoration_Price',Decoration_Price='$Decoration_Price',Champaigne_Price='$Champaigne_Price',Advance_Percentage='$Advance_Percentage' WHERE Event_Type='$Event_Type '";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+      echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+      echo '<script>window.location.href="EditFeatures.php"</script>';
+    } else {
+      echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+      // echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+    }
+  }
 
+?>
 
 	<?php
 	include("../../config/connection.php");
@@ -114,23 +133,21 @@ if (!isset($_SESSION['First_Name'])) {
 		$row = mysqli_fetch_assoc($query_run);
 		if (mysqli_num_rows($query_run) > 0) {
 	?>
-			
-		
 			<table align="left" style="color:white; font-size: 20px; width:110%;">
 				<tr>
-					<td>Location Price(LKR)</td>
+					<td>Location Price</td>
 					<td><input type="text" name="First_Name" value="<?php echo $row['Location_Price'] ?>" /></td>
 				</tr>
 				<tr>
-					<td>DJ Price(LKR)</td>
+					<td>DJ Price</td>
 					<td><input type="float" name="Last_Name" value="<?php echo $row['DJ_Price'] ?>" /></td>
 				</tr>
 				<tr>
-					<td>Decoration Price(LKR)</td>
+					<td>Decoration Price</td>
 					<td><input type="text" name="Email" value="<?php echo $row['Decoration_Price'] ?>" /></td>
 				</tr>
 				<tr>
-					<td>Champagne Price(LKR)</td>
+					<td>Champagne Price</td>
 					<td><input type="text" name="Contact_No" value="<?php echo $row['Champaigne_Price'] ?>" /></td>
 				</tr>
 				<tr>
@@ -147,13 +164,13 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 			</table>
 			</fieldset>
-		
-			
 	<?php
 		}
 	}
 
 	?>
+
+
 
 
 

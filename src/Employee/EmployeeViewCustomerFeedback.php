@@ -1,26 +1,14 @@
 <?php
-
-include("../../public/includes/session.php");
-
-checkSession();
-if (!isset($_SESSION['First_Name'])) {
-    header('Location:../Hotel_Website/HomePage-login.php');
-}
-
-if (isset($_POST['View'])) {
-    $Feedback_ID = $_POST['Feedback_ID'];
-    $Staff_Rate = $_POST['Staff_Rate'];
-    $ViewFeedback = mysqli_query($con, "SELECT Feedback_ID,Staff_Rate FROM customer_feedback WHERE Feedback_ID='$Feedback_ID'");
-  
-?>
-
-<?php
 include("../../public/includes/session.php");
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/index.php');
 }
+if (isset($_POST['Cancel'])) {
+	header('Location:EmloyeeViewCustomerFeedback.php');
+}
 ?>
+
 
 
 <html>
@@ -43,7 +31,7 @@ if (!isset($_SESSION['First_Name'])) {
 		<div id="user-detail-container">
 			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
 			<p style="margin-top: 2px; color:black"><?php echo "Logged in as " . $_SESSION['First_Name'] . "(Staff)</P>";
-			?>
+													?>
 			</P>
 			<hr style="color:teal">
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
@@ -89,45 +77,46 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 	<?php
-    include('../../config/connection.php');
-    $ViewFeedback = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Feedback_ID=$Feedback_ID");
-    if (mysqli_num_rows($ViewFeedback) > 0) {
-        echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
+	include('../../config/connection.php');
+	$ViewFeedback = mysqli_query($con, "SELECT * FROM customer_feedback");
+	if (mysqli_num_rows($ViewFeedback) > 0) {
+		echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
             <thead>
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Feedback ID</th>
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Staff Rate</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">View Feedback</th>
             </thead>';
-			while ($rowDetails = mysqli_fetch_assoc($ViewFeedback)) {
-				$id = $rowDetails['Feedback_ID'];
-				echo '<tbody>
+		while ($rowDetails = mysqli_fetch_assoc($ViewFeedback)) {
+			$id = $rowDetails['Feedback_ID'];
+			echo '<tbody>
 						<tr>
 							<td style="border: 1px solid white;padding: 5px;">' . $rowDetails['Feedback_ID'] . '</td>
 							<td style="border: 1px solid white;padding: 5px;">' . $rowDetails['Staff_Rate'] . '</td>
-							<td style="border: 1px solid white;padding: 5px;"><a href="EmployeeViewCUstomerFeedback.php?id=' . $id . '">View</a></td>
+							<td style="border: 1px solid white;padding: 5px;"><a href="EmloyeeViewCUstomerFeedback.php?id=' . $id . '">View</a></td>
 						</tr>';
-			}
-			echo '</table>';
 		}
-	
-		?>
-		 <?php if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $selectDetails = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Feedback_ID='$id'");
-        $rowDetails = mysqli_fetch_assoc($selectDetails);
-    ?>
-	 <form action="" method="POST" style="border:1px solid white;width:350px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
-            <label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Feedback</label>
-            <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback_ID</label>
+		echo '</table>';
+	}
 
-            <input type="hidden" name="Feedback_ID" value="<?php echo $id ?>">
-            <input type="text" name="Staff_Rate" id="" value="<?php echo $rowUserDetails['Staff_Rate'] ?>">
-            <input type="text" name="Feedback_Rate" id="" value="<?php echo $rowUserDetails['Feedback_Staff'] ?>">
-			<input type="submit" name="View" value="View" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
-        </form>
-    <?php 
+	?>
+	<?php if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+		$selectDetails = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Feedback_ID='$id'");
+		$rowDetails = mysqli_fetch_assoc($selectDetails);
+	?>
+		<form action="" method="POST" style="border:1px solid white;width:350px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
+			<label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Feedback</label>
+			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Staff Rate</label>
+			<input type="hidden" name="Feedback_ID" value="<?php echo $id ?>">
+			<input type="text" name="Staff_Rate" id="" value="<?php echo $rowDetails['Staff_Rate'] ?>">
+			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback Rate</label>
+			<input type="text" style="width:360px;height:80px;font-size:20px" name="Feedback_Rate" id="" value="<?php echo $rowDetails['Feedback_Staff'] ?>">
+			<input type="submit" name="Cancel" value="Cancel" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
+		</form>
+	<?php
 	} else {
-    } 
-}
+	}
+
 	?>
 
 
