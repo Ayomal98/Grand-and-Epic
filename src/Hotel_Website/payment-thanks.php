@@ -41,14 +41,14 @@ if ($_GET['type'] == 'events') {
         $starting_Time = $row["Starting_Time"];
         $ending_Time = $row["Ending_Time"];
         $mealPackage_ID = $row["MealPackage_ID"];
-        $totalAmount = $row["Location_Price"] + $row["Feature_Price"];
+        $feature_Price = $row["Feature_Price"];
+        $totalAmount = $row["Location_Price"] + $feature_Price;
         $paidAmount = ($totalAmount * $advancePercentageValue) / 100;
         $amountToBePaid = $totalAmount - $paidAmount;
         $paymentStatus = 0;
         $location_Price = $row["Location_Price"];
-        $feature_Price = $row["Feature_Price"];
         $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Events_ID,Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount) VALUES('$eventID','$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount')");
-        $insertToReservationTable = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservationID','$reservationType','$paymentStatus','$eventID','$customer_Name','$paidAmount','$amountToBePaid','$reservation_Date')");
+        $insertToReservationTable = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,User_Email,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservationID','$reservationType','$paymentStatus','$eventID','$customer_Name','$customer_Email','$paidAmount','$amountToBePaid','$reservation_Date')");
         if ($paymentSuccessEvent) {
             $html_evt = '<h1 style=\'text-align:center\'>Payment Details</h1>';
             $html_evt .= '<p>Dear ' . $customer_Name . ' ,</p>';
@@ -67,7 +67,7 @@ if ($_GET['type'] == 'events') {
     }
 } else if ($_GET['type'] == 'staying-in') {
     $stayingInId = $_GET['id'];
-    $reservationType = $_GET['type'];
+    $reservationtype = $_GET['type'];
     $selectTemp = mysqli_query($con, "SELECT * FROM stayingin_booking_temp WHERE StayingIn_ID='$stayingInId'");
     while ($rowStayingIn = mysqli_fetch_assoc($selectTemp)) {
         $stayingInId = getID("stayingin_booking", "S"); //generating stayingin ID
@@ -95,7 +95,7 @@ if ($_GET['type'] == 'events') {
         $rowName = mysqli_fetch_assoc($selectName);
         $userName = $rowName['First_Name'];
         $paymentSuccessStayingIn = mysqli_query($con, "INSERT into stayingin_booking (StayingIn_ID,Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price,Paid_Amount,Total_Amount) VALUES('$stayingInId','$occupancy','$noOccupants','$noRooms','" . $roomNumbers . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice','$paidAmountStayingIn','$totalAmountStayingIn')");
-        $insertToReservationTable_Stay = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservation_Stay_ID','$reservationType','$paymentStatus','$stayingInId','$userName','$paidAmountStayingIn','$amountToBePaidStayin','$checkInDate')");
+        $insertToReservationTable_Stay = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,User_Email,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservation_Stay_ID','$reservationtype','$paymentStatus','$stayingInId','$emailUser','$userName','$paidAmountStayingIn','$amountToBePaidStayin','$checkOutDate')");
         if ($paymentSuccessStayingIn) {
             // $selectStayingInDetails = "SELECT * FROM stayingin_booking WHERE StayingIn_ID='$stayingInId'";
             $html = '<h1 style=\'text-align:center\'>Payment Details</h1>';

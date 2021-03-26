@@ -45,13 +45,15 @@ $email = $_SESSION["User_Email"];
         </div>
     </div>
     <div class="body-container-myreservations">
-        <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:750px;"></i>
-        <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:760px;">Number Of Total Bookings : 6</label>
-        <form method='post' action="">
-            <input type="submit" value="Deactivate Account" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:280px;cursor:pointer;" name="Deactivate_Account">
-        </form>
-        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:30px;cursor:pointer;">
-        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:763px;right:440px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+        <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:710px;"></i>
+        <?php
+        $selectNoBookings = mysqli_query($con, "SELECT No_Bookings FROM customer WHERE Email='" . $email . "'");
+        $rowNoBookings = mysqli_fetch_assoc($selectNoBookings);
+        $noBookings = $rowNoBookings['No_Bookings'];
+        ?>
+        <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:720px;">Number Of Total Bookings : <?php echo $noBookings; ?></label>
+        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:30px;cursor:pointer;">
+        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:300px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
 
     </div>
     <h3><u>Upcoming Reservations</u></h3>
@@ -119,67 +121,6 @@ $email = $_SESSION["User_Email"];
         <!-- Including the early-checkout request form -->
         <?php include("./request-early-checkout-form.php") ?>
 
-        <!-- Including the customer edit profile form -->
-        <div class="bg-modal-customer-feedback" id="bg-modal-early-request">
-            <div class="modal-content early-request">
-
-                <div class="close close-early-checkout" id="close-early-checkout">+</div>
-                <img src="../../public/images/customer-feedback.png" alt="" class="early-logo">
-                <u style="color: white;">
-                    <h3 class="login-heading" style="color:white">Customer Feedback</h3>
-                </u>
-                <form action="" method="post">
-
-                    <label for="" style="color:white;font-weight:bolder;font-size:27px;margin-top:10px;">Feedback about the Hotel Service and Staff</label>
-                    <input type="text" name="feedback_staff" id="" style="margin-top:10px;height:100px">
-                    <input type="hidden" name="Reservation_ID" id="" style="margin-top:10px;height:100px">
-                    <div style="color:white;margin-top:20px;">
-                        <label for="" style="font-weight: lighter;font-size:18px;margin-right:20px">Rate Us :</label>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Excellent" name="Staff_Rate" id="">
-                            <label for="Excellent">Excellent</label>
-                        </span>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Good" name="Staff_Rate" id="">
-                            <label for="Good">Good</label>
-                        </span>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Fair" name="Staff_Rate" id="">
-                            <label for="Fair">Fair</label>
-                        </span>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Poor" name="Staff_Rate" id="">
-                            <label for="Poor">Poor</label>
-                        </span>
-                    </div>
-                    <label for="" style="color:white;font-weight:bolder;font-size:27px;margin-top:17px;">Feedback about the Hotel Website</label>
-                    <input type="text" name="feedback_website" id="" style="margin-top:10px;height:100px">
-                    <div style="color:white;margin-top:20px;">
-                        <label for="" style="font-weight: lighter;font-size:18px;margin-right:20px">Rate Us :</label>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Excellent" name="Website_Rate" id="">
-                            <label for="Excellent">Excellent</label>
-                        </span>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Good" name="Website_Rate" id="">
-                            <label for="Good">Good</label>
-                        </span>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Fair" name="Website_Rate" id="">
-                            <label for="Fair">Fair</label>
-                        </span>
-                        <span style="margin-right: 5px;">
-                            <input type="radio" value="Poor" name="Website_Rate" id="">
-                            <label for="Poor">Poor</label>
-                        </span>
-                    </div>
-                    <div style="display: inline-block;margin-top:5px">
-                        <input type="reset" value="Cancel" style="margin: 5px;padding: 7px;border-radius: 4px;border: none;background-color: #3498db;color: #fff;font-size: 15px;  cursor: pointer;">
-                        <input type="submit" name="Provide_Feedback" value="Provide Feedback" style="margin: 5px;padding: 7px;border-radius: 4px;border: none;background-color: #3498db;color: #fff;font-size: 15px;  cursor: pointer;">
-                    </div>
-                </form>
-            </div>
-        </div>
 
         <?php
         $table_no;
@@ -278,6 +219,10 @@ $email = $_SESSION["User_Email"];
         <br>
     </div>
     <div style="margin-bottom: 50px;">
+        <?php
+
+        $selectNoReservation = mysqli_query($con, "SELECT * FROM paid_confirmation");
+        ?>
         <u>
             <h3 style="text-align: center;">Past Reservations</h3>
         </u>
@@ -314,7 +259,7 @@ $email = $_SESSION["User_Email"];
     </div>
     <?php include('customerfeedback-form.php'); ?>
 
-
+    <?php include('./customer-edit-profile-form.php'); ?>
     <?php include("../../public/includes/footer-footer.php"); ?>
     <script src="../../public/Javascript/script.js"></script>
 
@@ -385,27 +330,6 @@ $email = $_SESSION["User_Email"];
 
 </html>
 
-<?php
-if (isset($_POST['Deactivate_Account'])) {
-    $customerEmail = $_SESSION['User_Email'];
-    $selectCustomer = mysqli_query($con, "SELECT * FROM Customer WHERE Email='$customerEmail'");
-    while ($row = mysqli_fetch_assoc($selectCustomer)) {
-        $firstName = $row['First_Name'];
-        $lastName = $row['Last_Name'];
-        $contactNo = $row['Contact_No'];
-        $insertToBackup = "INSERT INTO customer_backup(First_Name,Last_Name,Email,Contact_No) VALUES('$firstName','$lastName','$customerEmail','$contactNo')";
-        mysqli_query($con, $insertToBackup);
-    }
-    $deleteCustomer = mysqli_query($con, "DELETE FROM Customer WHERE Email='$customerEmail'");
-    $deleteCustomerLogin = mysqli_query($con, "DELETE FROM login_table WHERE Email='$customerEmail' AND User_Type='Customer'");
-    if ($deleteCustomer && $deleteCustomerLogin) {
-        echo "<script>window.location.href='index.php'</script>";
-        echo "<script>alert('Your Account Has Been Deactivated')</script>";
-    } else {
-        echo "<script>alert('Your Account Hasn't Been Deactivated')</script>";
-    }
-}
-?>
 <?php
 include('../../config/connection.php');
 include('../../public/includes/id-generator.php');

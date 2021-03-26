@@ -1,5 +1,8 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 include("../../public/includes/session.php");
 include('../../public/includes/id-generator.php');
 
@@ -10,16 +13,53 @@ if (!isset($_SESSION['First_Name'])) {
 
 if (isset($_POST['Payment_Accept'])) {
     $reservationID = $_POST['Reservation_ID'];
-    $customerNam = $_POST['Customer_Name'];
+    $customerName = $_POST['Customer_Name'];
     $paymentMethod = $_POST['payment-method'];
     $paidAmount = $_POST['Paid_Amount'];
+    $userEmail = $_POST['Customer_Email'];
     $date = $_POST['Date'];
     $status = 1;
     $amountToBePaid = 0;
     $payment_ID = getID('paid_confirmations', 'P');
     $updatePaymentStatus = mysqli_query($con, "UPDATE reservation SET Payment_Status='$status', Amount_To_Be_Paid='$amountToBePaid' WHERE Reservation_ID='$reservationID'");
-    $insertConfirmation = mysqli_query($con, "INSERT INTO paid_confirmations(Paid_ID,Reservation_ID,Payment_Accepted,Date_Accepted,Payment_Method) VALUES('$payment_ID','$reservationID','$paidAmount','" . $date . "','$paymentMethod')");
+    $insertConfirmation = mysqli_query($con, "INSERT INTO paid_confirmations(Paid_ID,Reservation_ID,Payment_Accepted,Date_Accepted,Payment_Method,Customer_Email) VALUES('$payment_ID','$reservationID','$paidAmount','" . $date . "','$paymentMethod','$userEmail')");
+    $getNoReservations = mysqli_query($con, "SELECT No_Bookings FROM customer WHERE Email='$userEmail'");
+    $rowNoRes = mysqli_fetch_assoc($getNoReservations);
+    $currentNumberOfRes = $rowNoRes["No_Bookings"];
+    $updatedNumberOfRes = $currentNumberOfRes + 1;
+    $updateResQuery = mysqli_query($con, "UPDATE customer SET No_Bookings='$updatedNumberOfRes' WHERE Email='$userEmail'");
     if ($insertConfirmation && $updatePaymentStatus) {
+        require '../../config/PHPMailer/src/Exception.php';
+        require '../../config/PHPMailer/src/PHPMailer.php';
+        require '../../config/PHPMailer/src/SMTP.php';
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+
+            $mail->isSMTP();                                            // Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+            $mail->Username   = 'grandandepic20@gmail.com';                     // SMTP username
+            $mail->Password   = 'grand&epicIs05';                               // SMTP password
+            $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
+            $mail->addAddress($userEmail);     // Add a recipient            
+
+            // Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = "Payment Successfull";
+            $mail->Body    = "Dear Mr.{$customerName}, <br><p>Thank you for selecting Grand & Epic, hope you all have enkoyed the stay at our hotel.Let's meet soon again</p>";
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
         echo '<script>alert("Payment Successfullt Accepted")</script>';
         header('location:ReceptionistAcceptPayments.php');
     }
@@ -141,12 +181,12 @@ if (isset($_POST['Payment_Accept'])) {
             <input type="hidden" name="Date" value="<?php echo $date ?>">
             <input type="hidden" name="Reservation_ID" value="<?php echo $id ?>">
             <input type="text" name="Customer_Name" id="" value="<?php echo $rowUserDetails['Customer_Name'] ?>">
-            <div style="display: inline-block;margin-top:20px;">
-                <label for="Payment Selection" style="color: white;font-size: 20px;">Payment Type</label>
-                <select name="payment-method">
-                    <option value="By-Cash">By Cash</option>
-                    <option value="By-Credit Card">By Credit Card</option>
-                </select>
+            <input type="hidden" name="Customer_Email" value="<?php echo $rowUserDetails['User_Email'] ?>" <div style="display: inline-block;margin-top:20px;">
+            <label for="Payment Selection" style="color: white;font-size: 20px;">Payment Type</label>
+            <select name="payment-method">
+                <option value="By-Cash">By Cash</option>
+                <option value="By-Credit Card">By Credit Card</option>
+            </select>
             </div>
             <label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Amount
             </label>

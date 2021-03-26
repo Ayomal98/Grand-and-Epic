@@ -13,7 +13,8 @@ if (isset($_POST['Submit'])) {
   $tpN = $_POST['contactNum'];
   $userType = 'Customer';
   $customerID = getID("customer", "C");
-  $sql = "INSERT INTO customer (Customer_ID,First_Name,Last_Name,Email,Password,Contact_No) VALUES ('" . $customerID . "','" . $firstName . "','" . $lastName . "','" . $email . "','" . $password . "','" . $tpN . "')";
+  $no_bookings = 0; //initial No.og Bookings
+  $sql = "INSERT INTO customer (Customer_ID,First_Name,Last_Name,Email,Password,Contact_No,No_Bookings) VALUES ('" . $customerID . "','" . $firstName . "','" . $lastName . "','" . $email . "','" . $password . "','" . $tpN . "','" . $no_bookings . "')";
   $login_sql = "INSERT INTO login_table(Email,Password,User_Type) VALUES('$email','$password','$userType')"; //insert query for the login
   mysqli_query($con, $login_sql);
   if ($con->query($sql) === TRUE) {

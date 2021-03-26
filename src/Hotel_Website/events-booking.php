@@ -23,7 +23,7 @@ if (isset($_POST['event-details'])) {
     }
 
     //to check whether the existing bookings are already there
-    $getBookingsOnDay = mysqli_query($con, "SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ");
+    $getBookingsOnDay = mysqli_query($con, "SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "'");
     if (mysqli_num_rows($getBookingsOnDay) > 0) {
         while ($rowAvailability = mysqli_fetch_assoc($getBookingsOnDay)) {
             $startDBTime = date("H:i:s", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
