@@ -52,8 +52,16 @@ $email = $_SESSION["User_Email"];
         $noBookings = $rowNoBookings['No_Bookings'];
         ?>
         <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:720px;">Number Of Total Bookings : <?php echo $noBookings; ?></label>
-        <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:30px;cursor:pointer;">
-        <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:300px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+        <?php if (($noBookings != 0) && ($noBookings % 5) == 0) {
+            echo '
+                <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:30px;cursor:pointer;">
+                <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:300px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+            ';
+        } else {
+            echo '
+            <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:100px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+            ';
+        } ?>
 
     </div>
     <h3><u>Upcoming Reservations</u></h3>
@@ -217,14 +225,13 @@ $email = $_SESSION["User_Email"];
             }
         }
         ?>
-        <br>
     </div>
+    <br>
 
-    </div>
-    <div style="margin-bottom: 50px;">
-        <u>
-            <h3 style="text-align: center;">Past Reservations</h3>
-        </u>
+    <u>
+        <h3 style="text-align: center;">Past Reservations</h3>
+    </u>
+    <div style="margin-bottom: 50px;" class="userBookings upcoming" id="user-bookings">
         <?php
         $paymentStatus = 1;
         $selectPastBookings = mysqli_query($con, "SELECT * FROM reservation WHERE User_Email='" . $email . "' AND Payment_Status='$paymentStatus'");
@@ -240,8 +247,8 @@ $email = $_SESSION["User_Email"];
                     $MealPrice = $rowPackagePrice['price'] * $rowBookingEvents['Num_Guests'];
                     $locationPrice = $rowBookingEvents['Total_Amount'] - $MealPrice;
                     echo '
-                    <div class="upcomig-reservation-box past" style="margin-left: 10px;">
-                            <div style="display:flex;margin-top:0px;margin-bottom:7px">
+                    <div class="upcomig-reservation-box" style="margin-left: 10px;height:100%;width:100%">
+                            <div style="display:flex;margin-top:-100px;">
                                 <span style="font-weight: bold;font-size:15px;margin-right:95px">Events ID : ' . $rowBookingEvents['Events_ID'] . '</span>
                                 <span style="font-weight: bold;font-size:15px;">Event Type : ' . $rowBookingEvents['Event_Type'] . '</span>
                             </div>
@@ -259,20 +266,68 @@ $email = $_SESSION["User_Email"];
                                     <td style="padding:2px">' . $rowBookingEvents['Num_Guests'] . '</td>
                                 </tr>
                             </table>
-                            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px;width:30%;margin-left:5%">
+                            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px;width:30%;margin-left:0%">
                                 <tr>
                                     <th style="padding: 5px;">Location Amount </th>
-                                    <td style="padding: 5px;">' . $locationPrice . '</td>
+                                    <td style="padding: 5px;">Rs. ' . $locationPrice . '.00</td>
                                     <th style="padding: 5px;">Meal Amount </th>
-                                    <td style="padding: 5px;">' . $MealPrice . '</td>
+                                    <td style="padding: 5px;">Rs. ' . $MealPrice . '.00</td>
                                     <th style="padding: 5px;">Total Amount </th>
-                                    <td style="padding: 5px;">' . $rowBookingEvents['Total_Amount'] . '</td>
+                                    <td style="padding: 5px;">Rs. ' . $rowBookingEvents['Total_Amount'] . '.00</td>
+                                </tr>
+                            </table>
+                            <div class="book-btn-container" style="margin-bottom:-120px">
+                                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button>
+                            </div>
+                    </div>
+                    ';
+                } else {
+                    $id = $rowPastBookings['Booking_ID'];
+                    $selectBookingsFromStayingIn = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE StayingIn_ID='" . $id . "'");
+                    $rowStayingIn = mysqli_fetch_assoc($selectBookingsFromStayingIn);
+                    $rooomNumbers = unserialize($rowStayingIn['Room_Numbers']);
+                    echo '
+                    <div class="upcomig-reservation-box" style="margin-left: 10px;height:100%;width:100%">
+                            <div style="display:flex;margin-top:0px;margin-bottom:7px">
+                                <span style="font-weight: bold;font-size:13.75px;margin-right:8px">Events ID : ' . $rowStayingIn['StayingIn_ID'] . '</span>
+                                <span style="font-weight: bold;font-size:13.75px;margin-right:8px">Room Type : ' . $rowStayingIn['Room_Type'] . '</span>
+                                <span style="font-weight: bold;font-size:15px;">Room Numbers : ' . implode(",", $rooomNumbers) . '</span>
+                            </div>
+                            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px">
+                                <tr>
+                                    <th style="padding:7px">Check In Date</th>
+                                    <th style="padding:3px">CheckOut Date</th>
+                                    <th style="padding:3px">CheckIn Time</th>
+                                    <th style="padding:3px">Number Of Guests</th>
+                                    <th style="padding:3px">Meal Type</th>
+                                    <th style="padding:3px">Reservation Type</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding:5px">' . $rowStayingIn['CheckIn_Date'] . '</td>
+                                    <td style="padding:4px">' . $rowStayingIn['CheckOut_Date'] . '</td>
+                                    <td style="padding:4px">' . $rowStayingIn['CheckIn_Time'] . '</td>
+                                    <td style="padding:2px">' . $rowStayingIn['CheckOut_Time'] . '</td>
+                                    <td style="padding:2px">' . $rowStayingIn['Meal_Selection'] . '</td>
+                                    <td style="padding:2px">' . $rowStayingIn['Reservation_Type'] . '</td>
+
+                                </tr>
+                            </table>
+                            <table border="1px solid black" style="margin-top: 15px;font-size:13px;border-radius:10px;width:50%;margin-left:5%">
+                                <tr>
+                                    <th style="padding: 10px;">Room Prce </th>
+                                    <td style="padding: 5px;">Rs. ' . $rowStayingIn['Room_Price'] . '.00</td>
+                                    <th style="padding: 10px;">Meal Price </th>
+                                    <td style="padding: 5px;">Rs. ' . $rowStayingIn['Meal_Price'] . '.00</td>
+                                    <th style="padding: 10px;">Total Amount </th>
+                                    <td style="padding: 5px;">Rs. ' . $rowStayingIn['Total_Amount'] . '.00</td>
                                 </tr>
                             </table>
                             <div class="book-btn-container">
-                                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px" id="btn-feedback">Provide Feedback</button>
+                                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button>
                             </div>
                     </div>
+                    
+                    
                     ';
                 }
             }
@@ -281,7 +336,6 @@ $email = $_SESSION["User_Email"];
 
 
     </div>
-    <?php include('customerfeedback-form.php'); ?>
 
     <?php include('./customer-edit-profile-form.php'); ?>
     <?php include("../../public/includes/footer-footer.php"); ?>
