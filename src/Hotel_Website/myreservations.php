@@ -7,6 +7,19 @@ if (!isset($_SESSION['First_Name'])) {
 }
 include("../../config/connection.php");
 $email = $_SESSION["User_Email"];
+
+if (isset($_POST['Delete_StayingIn'])) {
+    date_default_timezone_set('Asia/Colombo');
+    $date = date('Y-m-d', time()); // todays date
+    $checkInDate = $_POST['checkin_date'];
+    $StayingIn = $_POST['stayingin_id'];
+    $checkInBeforeFifteenDates = Date('Y-m-d', strtotime($date . '- 14 days')); //to get the fifteen dates from todate
+    if ($date > $checkInBeforeFifteenDates) {
+        echo '<script>
+                alert("You wont be getting any money back ")
+            </script>';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +99,7 @@ $email = $_SESSION["User_Email"];
                 $rooomType = $rowSelectedStayingIn["Room_Type"];
                 $amountToPay = (int)$rowSelectedStayingIn['Total_Amount'] - (int)$rowSelectedStayingIn['Paid_Amount'];
                 echo '<div class="upcomig-reservation-box">
+                        <form action="" method="POST">
                             <span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">' . $rooomType . ' Numbers   :' . implode(",", $rooomNumbers) . '</span>
                             <table border="1px solid black" style="font-size:13px;border-radius:10px">
                                     <tr>
@@ -110,12 +124,15 @@ $email = $_SESSION["User_Email"];
                                         <td style="padding-left: 15px;">Rs. ' . $rowSelectedStayingIn['Paid_Amount'] . '/=</td>
                                         <td style="padding-left: 15px;">Rs.' . $amountToPay . '/=</td>
                                     </tr>
-                            </table>                
+                            </table>      
+                            <input type="hidden" name="checkin_date" value=' . $rowSelectedStayingIn['CheckIn_Date'] . '>          
+                            <input type="hidden" name="stayingin_id" value=' . $rowSelectedStayingIn['StayingIn_ID'] . ' >
                             <div class="book-btn-container" style="margin-top:10px">
-                                <button class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:36%;height:40px;text-align:center;margin-top:25px" id="btn-early-checkout">Request Early Checkouts</button>
-                                <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
+                                <input type="submit" name="" class="book update" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:10px;width:55%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" value="Request Early Checkouts">
+                                <input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:14px;width:35%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">
                             </div>
-                        </div>';
+                        </form>
+                    </div>';
             }
         }
         ?>
@@ -176,8 +193,8 @@ $email = $_SESSION["User_Email"];
                                     <input type=\"text\" name=\"numguestes\" value=\"$numguests\" style=\"margin-top:-10px;padding-left:50px;\">
                                 </div>    
                                 <div class=\"book-btn-container\" style=\"margin-top:20px;display:flex;flex-direction:row;margin-bottom:15px;\">    
-                                    <a href=\"update-dinein-booking-form.php?dinein_id=$dinein_id\" target=\"_blank\"><input type=\"button\" type=\"text\" name=\"Update\" value=\"Update Booking\" class=\"book update\" style=\"padding: 15px 65px 25px 20px;font-size:15px;margin-left:20px;width:70%;height:25%;text-align:center;border:none;\"></a>
-                                    <input type=\"submit\" type=\"text\" name=\"Delete\" value=\"Cancel Booking\" class=\"book update\" style=\"padding: 15px 65px 5px 20px;font-size:15px;margin-left:10px;width:38%;height:40px;text-align:center;border:none;margin-left:20px;\">
+                                    <a href=\"update-dinein-booking-form.php?dinein_id=$dinein_id\" target=\"_blank\"><input type=\"button\" type=\"text\" name=\"Update\" value=\"Update Booking\" class=\"book update\" style=\"padding: 15px 65px 25px 20px;font-size:15px;margin-left:20px;width:70%;height:25%;text-align:center;border:none;border-radius:5px\"></a>
+                                    <input type=\"submit\" type=\"text\" name=\"Delete\" value=\"Cancel Booking\" class=\"book update\" style=\"padding: 15px 65px 5px 20px;font-size:15px;margin-left:10px;width:38%;height:40px;text-align:center;border:none;margin-left:20px;border-radius:5px\">
                                 </div>    
                             </form>
                             </div>";
@@ -190,35 +207,37 @@ $email = $_SESSION["User_Email"];
             while ($rowEvtBookings = mysqli_fetch_assoc($selectEvtBookings)) {
                 $amountEvtPay = (int)$rowEvtBookings['Total_Amount'] - (int)$rowEvtBookings['Paid_Amount'];
                 echo ' <div class="upcomig-reservation-box">
+                            <form action="" method="POST">
                                 <span style="font-weight: bolder;font-size:15px;margin-top:-40px;margin-left:25%;margin-bottom:10px;">Event Type :' . $rowEvtBookings['Event_Type'] . '</span>
                                 <table border="1px solid black" style="font-size:13px;border-radius:10px">
-                                <tr>
-                                    <th style="padding:5px 0px">Event Date</th>
-                                    <th style="padding:5px 0px">Starting Time</th>
-                                    <th style="padding:5px 0px">Ending Time</th>
-                                    <th style="padding:5px 0px">No_Guests</th>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left:7px">' . $rowEvtBookings['Reservation_Date'] . '</td>
-                                    <td style="padding-left:7px">' . $rowEvtBookings['Starting_Time'] . '</td>
-                                    <td style="padding-left:7px">' . $rowEvtBookings['Ending_Time'] . '</td>
-                                    <td style="padding-left:7px">' . $rowEvtBookings['Num_Guests'] . '</td>
-                                </tr>
-                            </table>
-                            <table border="1px solid black" style="font-size:13px;border-radius:10px;margin-top:20px;width:60%;margin-left:50px">
-                                <tr>
-                                    <th style="padding:5px">Amount Paid</th>
-                                    <th style="padding:5px">Amount to be Paid</th>
-                                </tr>
-                                <tr>
-                                    <td style="padding-left: 15px;">Rs. ' . $rowEvtBookings['Paid_Amount'] . '/=</td>
-                                    <td style="padding-left: 15px;">Rs.' . $amountEvtPay     . '/=</td>
-                                </tr>
-                            </table>
-                            <div class="book-btn-container" style="margin-top:10px">
-                                <button class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:36%;height:40px;text-align:center;margin-top:25px" id="btn-early-checkout">Request Early Checkouts</button>
-                                <button class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:35%;height:40px;text-align:center;margin-top:23px" id="cancel-stayingin">Cancel Booking</button>
-                            </div>
+                                    <tr>
+                                        <th style="padding:5px 0px">Event Date</th>
+                                        <th style="padding:5px 0px">Starting Time</th>
+                                        <th style="padding:5px 0px">Ending Time</th>
+                                        <th style="padding:5px 0px">No_Guests</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:7px">' . $rowEvtBookings['Reservation_Date'] . '</td>
+                                        <td style="padding-left:7px">' . $rowEvtBookings['Starting_Time'] . '</td>
+                                        <td style="padding-left:7px">' . $rowEvtBookings['Ending_Time'] . '</td>
+                                        <td style="padding-left:7px">' . $rowEvtBookings['Num_Guests'] . '</td>
+                                    </tr>
+                                </table>
+                                <table border="1px solid black" style="font-size:13px;border-radius:10px;margin-top:20px;width:60%;margin-left:50px">
+                                    <tr>
+                                        <th style="padding:5px">Amount Paid</th>
+                                        <th style="padding:5px">Amount to be Paid</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 15px;">Rs. ' . $rowEvtBookings['Paid_Amount'] . '/=</td>
+                                        <td style="padding-left: 15px;">Rs.' . $amountEvtPay     . '/=</td>
+                                    </tr>
+                                </table>
+                                <div class="book-btn-container" style="margin-top:10px">
+                                    <input type="submit" name="Update_Events" class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:38%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" value="Update Booking">
+                                    <input type="submit" name="Delete_Events" class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:40%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">
+                                </div>
+                            </form>
                         </div>
 
                ';
@@ -276,11 +295,10 @@ $email = $_SESSION["User_Email"];
                                     <td style="padding: 5px;">Rs. ' . $rowBookingEvents['Total_Amount'] . '.00</td>
                                 </tr>
                             </table>
-                            <div class="book-btn-container" style="margin-bottom:-120px">
-                                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button>
-                            </div>
-                    </div>
-                    ';
+                                <div class="book-btn-container" style="margin-bottom:-120px">
+                                        <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button>
+                                </div>
+                    </div>';
                 } else {
                     $id = $rowPastBookings['Booking_ID'];
                     $selectBookingsFromStayingIn = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE StayingIn_ID='" . $id . "'");
@@ -326,7 +344,6 @@ $email = $_SESSION["User_Email"];
                                 <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button>
                             </div>
                     </div>
-                    
                     
                     ';
                 }
