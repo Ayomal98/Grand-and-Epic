@@ -13,10 +13,5 @@ if($stmt = $con->query("SELECT Price,Meals_Name FROM meals")){
   }else{
   echo $connection->error;
   }
-  //$php_data_array[] = $row; // Adding to array
- // echo json_encode($php_data_array);
-  //echo "<script>
-        /*var my_2d = ".json_encode($php_data_array)."
-</script>";*/
 ?>
 

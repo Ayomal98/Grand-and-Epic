@@ -64,6 +64,13 @@ if (!isset($_SESSION['First_Name'])) {
                 </div>
             </div>
         </div>
+        <?php include("../../config/connection.php");
+
+$query = "SELECT * FROM employee WHERE User_Role='Hotel Manager' ";
+$query_run = mysqli_query($con, $query);
+while ($row = mysqli_fetch_array($query_run)) {
+
+?>
 
     </div>
     <h3>Offers</h2>
@@ -71,12 +78,43 @@ if (!isset($_SESSION['First_Name'])) {
             <div class="box">
                 <span class="fas fa-user" id="customer-icon"></span>
                 <div class="box-heading">Loyalty Offer</div>
-                <div class="box-content">We value customers as our best asset. Therefore if you have booked our hotel 6 times, you will get a <b>50% off on your 7th booking.</b> Hurry up and witness the amazing oppurtuinity </div>
+                <div class="box-content">       
+                 <?php include("../../config/connection.php");
+
+$query = "SELECT Context,Policies FROM promotions WHERE Promotion_Type='Loyalty' ";
+$query_run = mysqli_query($con, $query);
+while ($row = mysqli_fetch_array($query_run)) {
+
+?>
+<tr>
+				<?php echo $row["Context"]; ?>
+				<?php echo $row["Policies"]; ?>
+			</tr>
+		<?php
+		}
+    }
+		?>
+ </div>
             </div>
             <div class="box">
                 <span class="fas fa-gifts" id="creditcard-icon"></span>
                 <div class="box-heading" style="margin-top: 65px;">Seasonal Offer</div>
-                <div class="box-content" style="margin-top: 5px;">We are providing some attractive discounts from your complete amount of stay as the seasonal promotions during the christmas season, School vacations etc. Stay tuned for more interesting updates. </div>
+                <div class="box-content" style="margin-top: 5px;">
+                <?php include("../../config/connection.php");
+
+$query = "SELECT Context,Policies FROM promotions WHERE Promotion_Type='Last' ";
+$query_run = mysqli_query($con, $query);
+while ($row = mysqli_fetch_array($query_run)) {
+
+?>
+<tr>
+				<?php echo $row["Context"]; ?>
+				<?php echo $row["Policies"]; ?>
+			</tr>
+		<?php
+		}
+		?> 
+        </div>
                 <div style="margin-left:-130px;font-size:15px;margin-top:-10px"><b>20% Off - Available Only For Suit Rooms</b></div>
                 <div class="box-specials"><b>*Valid Until 25th Of December</b></div>
                 <a href="apply-promotions-suite.php" target="_blank"><input type="button" value="Apply Now" style="padding: 5px 5px;border:none;border-radius:5px;background-color:white;cursor:pointer;font-weight:bolder;position:absolute;top:84%;right:10%"></a>
@@ -84,7 +122,21 @@ if (!isset($_SESSION['First_Name'])) {
             <div class="box">
                 <span class="fas fa-hourglass-end" id="lastmin-icon"></span>
                 <div class="box-heading">Last-Minute Offer</div>
-                <div class="box-content">Worried for last minute bookings? Not anymore. There will be special discounts to the last minute bookings. Do not let your idea of a sudden espace fade from you. We are here to help. </div>
+                <div class="box-content"> <?php include("../../config/connection.php");
+
+$query = "SELECT Context,Policies FROM promotions WHERE Promotion_Type='Seasonal' ";
+$query_run = mysqli_query($con, $query);
+while ($row = mysqli_fetch_array($query_run)) {
+
+?>
+<tr>
+				<?php echo $row["Context"]; ?>
+				<?php echo $row["Policies"]; ?>
+			</tr>
+		<?php
+		}
+		?> 
+         </div>
             </div>
         </div>
         </div>
