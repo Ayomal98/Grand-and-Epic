@@ -23,7 +23,7 @@ if (isset($_POST['event-details'])) {
     }
 
     //to check whether the existing bookings are already there
-    $getBookingsOnDay = mysqli_query($con, "SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "'");
+    $getBookingsOnDay = mysqli_query($con, " SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ");
     if (mysqli_num_rows($getBookingsOnDay) > 0) {
         while ($rowAvailability = mysqli_fetch_assoc($getBookingsOnDay)) {
             $startDBTime = date("H:i:s", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
@@ -46,39 +46,71 @@ if (isset($_POST['event-details'])) {
                 echo '<script>alert("The timeslot and the date which you have selected is being already take")
                 window.location.href="events-booking-form.php"
             </script>';
-            }
-        }
-    }
-
-    //to select the location price and the other features according to the event-type by adding other features
-    $selectLocationPrice = mysqli_query($con, "SELECT * FROM event_location_features  WHERE Event_Type='" . $eventType . "'");
-    if (mysqli_num_rows($selectLocationPrice) > 0) {
-        while ($rowLocPrice = mysqli_fetch_assoc($selectLocationPrice)) {
-            $locationTotalPrice = $rowLocPrice['Location_Price'] * $eventDuration;
-            $locationPrice = $rowLocPrice['Location_Price'] * $eventDuration;
-            foreach ($additionalFeatures as $feature) {
-                if ($feature == 'DJMusic') {
-                    $featurePrice += $rowLocPrice['DJ_Price'];
-                } else if ($feature == 'Decorations') {
-                    $featurePrice += $rowLocPrice['Decoration_Price'];
-                } else if ($feature == 'ChampaigneTables') {
-                    $featurePrice += $rowLocPrice['Champaigne_Price'];
+            } else {
+                //to select the location price and the other features according to the event-type by adding other features
+                $selectLocationPrice = mysqli_query($con, "SELECT * FROM event_location_features  WHERE Event_Type='" . $eventType . "'");
+                if (mysqli_num_rows($selectLocationPrice) > 0) {
+                    while ($rowLocPrice = mysqli_fetch_assoc($selectLocationPrice)) {
+                        $locationTotalPrice = $rowLocPrice['Location_Price'] * $eventDuration;
+                        $locationPrice = $rowLocPrice['Location_Price'] * $eventDuration;
+                        foreach ($additionalFeatures as $feature) {
+                            if ($feature == 'DJMusic') {
+                                $featurePrice += $rowLocPrice['DJ_Price'];
+                            } else if ($feature == 'Decorations') {
+                                $featurePrice += $rowLocPrice['Decoration_Price'];
+                            } else if ($feature == 'ChampaigneTables') {
+                                $featurePrice += $rowLocPrice['Champaigne_Price'];
+                            }
+                        }
+                    }
+                }
+                $locationTotalPrice += $featurePrice;
+                $mealPackageID = 0; //inital meal packageID, since its not selected
+                $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice')";
+                mysqli_query($con, $insertEvent);
+                $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
+                if ($resultID = mysqli_query($con, $selectEventID)) {
+                    while ($rowEvent = mysqli_fetch_assoc($resultID)) {
+                        $eventID = $rowEvent["Events_ID"];
+                        header('location:meal-selection.php?events_id=' . $eventID . '');
+                    }
+                } else {
+                    header('location:./HomePage-login.php');
                 }
             }
         }
-    }
-    $locationTotalPrice += $featurePrice;
-    $mealPackageID = 0; //inital meal packageID, since its not selected
-    $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice')";
-    mysqli_query($con, $insertEvent);
-    $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
-    if ($resultID = mysqli_query($con, $selectEventID)) {
-        while ($rowEvent = mysqli_fetch_assoc($resultID)) {
-            $eventID = $rowEvent["Events_ID"];
-            header('location:meal-selection.php?events_id=' . $eventID . '');
-        }
     } else {
-        header('location:./HomePage-login.php');
+
+        //to select the location price and the other features according to the event-type by adding other features
+        $selectLocationPrice = mysqli_query($con, "SELECT * FROM event_location_features  WHERE Event_Type='" . $eventType . "'");
+        if (mysqli_num_rows($selectLocationPrice) > 0) {
+            while ($rowLocPrice = mysqli_fetch_assoc($selectLocationPrice)) {
+                $locationTotalPrice = $rowLocPrice['Location_Price'] * $eventDuration;
+                $locationPrice = $rowLocPrice['Location_Price'] * $eventDuration;
+                foreach ($additionalFeatures as $feature) {
+                    if ($feature == 'DJMusic') {
+                        $featurePrice += $rowLocPrice['DJ_Price'];
+                    } else if ($feature == 'Decorations') {
+                        $featurePrice += $rowLocPrice['Decoration_Price'];
+                    } else if ($feature == 'ChampaigneTables') {
+                        $featurePrice += $rowLocPrice['Champaigne_Price'];
+                    }
+                }
+            }
+        }
+        $locationTotalPrice += $featurePrice;
+        $mealPackageID = 0; //inital meal packageID, since its not selected
+        $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice')";
+        mysqli_query($con, $insertEvent);
+        $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
+        if ($resultID = mysqli_query($con, $selectEventID)) {
+            while ($rowEvent = mysqli_fetch_assoc($resultID)) {
+                $eventID = $rowEvent["Events_ID"];
+                header('location:meal-selection.php?events_id=' . $eventID . '');
+            }
+        } else {
+            header('location:./HomePage-login.php');
+        }
     }
 }
 //selecting the mealss
