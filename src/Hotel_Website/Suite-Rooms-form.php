@@ -25,6 +25,7 @@ if (!isset($_SESSION['First_Name'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            var roomtype = 'Suite Rooms';
             $("#check-in-date").on("input", function() {
                 var checkInDate = new Date($('#check-in-date').val());
                 var checkInDay = checkInDate.getDate();
@@ -41,15 +42,18 @@ if (!isset($_SESSION['First_Name'])) {
                     var checkOutdateSelected = [checkOutYear, checkOutMonth, checkOutDay].join('-');
                     $('#check-in-time').on("input", function() {
                         var checkInTimeSelected = $(this).find("option:selected").val();
-
                         $('#check-availability').click(function(e) {
+                            var checkOutTimeSelected = $('#check-out-time').val();
                             console.log(checkOutdateSelected);
                             console.log(checkIndateSelected);
                             console.log(checkInTimeSelected);
+                            console.log(checkOutTimeSelected);
                             $(".suite-icons-rooms-container").load("rooms-availability.php", {
                                 checkIndateSelected: checkIndateSelected,
                                 checkOutdateSelected: checkOutdateSelected,
-                                checkInTimeSelected: checkInTimeSelected
+                                checkInTimeSelected: checkInTimeSelected,
+                                checkOutTimeSelected: checkOutTimeSelected,
+                                roomtype: roomtype
                             })
                         })
                     })
@@ -291,6 +295,22 @@ if (!isset($_SESSION['First_Name'])) {
             }
         }
     </script>
+    <script>
+        //--    for setting the current day as the minimum date for the time being --
+        var today = new Date();
+        var dd = today.getDate() + 1;
+        var mm = today.getMonth() + 1;
+        var yy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = yy + '-' + mm + '-' + dd;
+        document.getElementById("check-in-date").setAttribute("min", today);
+    </script>
+
 </body>
 
 </html>
