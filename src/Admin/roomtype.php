@@ -129,12 +129,7 @@ $dataCount = json_encode($NoRooms); //encode the value into json format
                     label: 'Room Type Summary',
                     data: <?php echo $dataCount ?>
                 }]
-                color: [
-    'red',    // color for data at index 0
-    'blue',   // color for data at index 1
-    'green',  // color for data at index 2  // color for data at index 3
-    //...
-]
+               
             },
         
 

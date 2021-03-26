@@ -5,10 +5,10 @@ if(isset($_POST['insert'])){
     $Content_ID=$_POST['Content_ID'];  
     $Heading=$_POST['Heading'];
     $Content=$_POST['Content'];
-    //$img_url = addslashes(file_get_contents($_FILES["contentimage"]["tmp_name"]));
+    $img_url = addslashes(file_get_contents($_FILES["contentimage"]["tmp_name"]));
 
 
-      $query = "INSERT INTO content(Content_ID,Heading, Content/*, Img_url*/) VALUES ('".$Content_ID."','".$Heading."','".$Content."')";
+      $query = "INSERT INTO content(Content_ID,Heading, Content, Img_url) VALUES ('".$Content_ID."','".$Heading."','".$Content."','".$contentimage."')";
       $query_run = mysqli_query($con,$query);
 
       if ($query_run) {
