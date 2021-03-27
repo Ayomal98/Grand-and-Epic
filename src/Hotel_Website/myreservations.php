@@ -58,21 +58,21 @@ if (isset($_POST['Delete_StayingIn'])) {
         </div>
     </div>
     <div class="body-container-myreservations">
-        <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:710px;"></i>
+        <i class="fas fa-chart-bar" style="position:absolute;font-size:40px;left:50px;top:765px;"></i>
         <?php
         $selectNoBookings = mysqli_query($con, "SELECT No_Bookings FROM customer WHERE Email='" . $email . "'");
         $rowNoBookings = mysqli_fetch_assoc($selectNoBookings);
         $noBookings = $rowNoBookings['No_Bookings'];
         ?>
-        <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:720px;">Number Of Total Bookings : <?php echo $noBookings; ?></label>
+        <label for="" style="position:absolute;font-size:20px;left:100px;font-weight:bolder;top:775px;">Number Of Total Bookings : <?php echo $noBookings; ?></label>
         <?php if (($noBookings != 0) && ($noBookings % 5) == 0) {
             echo '
-                <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:30px;cursor:pointer;">
-                <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:300px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+                <input type="button" value="Apply Customer Loyalty Promotion" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:733px;right:30px;cursor:pointer;">
+                <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:733px;right:300px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
             ';
         } else {
             echo '
-            <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:723px;right:100px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
+            <input type="button" value="Edit Profile" style="padding:10px;border:none;border-radius:10px;background-color:black;color:white;position:absolute;top:768px;right:100px;cursor:pointer;" onclick="editProfile()" id="edit-cusdetails-btn">
             ';
         } ?>
 
@@ -258,6 +258,7 @@ if (isset($_POST['Delete_StayingIn'])) {
             while ($rowPastBookings = mysqli_fetch_assoc($selectPastBookings)) {
                 if ($rowPastBookings["Reservation_Type"] == 'events') {
                     $id = $rowPastBookings['Booking_ID'];
+                    $reservationID = $rowPastBookings['Reservation_ID'];
                     $selectBookingsFromEvents = mysqli_query($con, "SELECT * FROM events_booking WHERE Events_ID='" . $id . "'");
                     $rowBookingEvents = mysqli_fetch_assoc($selectBookingsFromEvents);
                     $packageID = $rowBookingEvents['MealPackage_ID'];
@@ -296,11 +297,12 @@ if (isset($_POST['Delete_StayingIn'])) {
                                 </tr>
                             </table>
                                 <div class="book-btn-container" style="margin-bottom:-120px">
-                                        <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button>
+                                        <a href="customerfeedback-form.php?id=' . $reservationID . '" target="_blank"><button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button></a>
                                 </div>
                     </div>';
                 } else {
                     $id = $rowPastBookings['Booking_ID'];
+                    $reservationID = $rowPastBookings['Reservation_ID'];
                     $selectBookingsFromStayingIn = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE StayingIn_ID='" . $id . "'");
                     $rowStayingIn = mysqli_fetch_assoc($selectBookingsFromStayingIn);
                     $rooomNumbers = unserialize($rowStayingIn['Room_Numbers']);
@@ -341,7 +343,7 @@ if (isset($_POST['Delete_StayingIn'])) {
                                 </tr>
                             </table>
                             <div class="book-btn-container">
-                                <button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button>
+                                <a href="customerfeedback-form.php?id=' . $reservationID . '" target="_blank"><button class="book update" style="padding: 15px 15px 25px 15px;font-size:15px;margin-left:100px;width:40%;height:40%;text-align:center;margin-top:30px;border-radius:5px" id="btn-feedback">Provide Feedback</button></a>
                             </div>
                     </div>
                     
