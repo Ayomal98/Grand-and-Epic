@@ -105,7 +105,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 				<tr>
 				<th align="center" style="font-size:20px">Image</th>
-					<td align="left"><input type="file" accept="image/*" name="contentimage" id="fileToUpload"></td>
+					<td align="left"><input type="file" name="contentimage"></td>
 				</tr>
 
 				<tr>
