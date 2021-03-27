@@ -539,12 +539,10 @@ input:focus{
   opacity: 0.98;
   width: 100%;
   height: 120%;
-  top: 500px;
   position: absolute;
   justify-content: center;
   align-items: center;
   display: flex;
-  display: none;
   transition: all ease-in 0.4s;
   margin-bottom: 50px;
   background-color: grey;

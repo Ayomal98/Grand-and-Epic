@@ -128,7 +128,7 @@ if (isset($_POST['Delete_StayingIn'])) {
                             <input type="hidden" name="checkin_date" value=' . $rowSelectedStayingIn['CheckIn_Date'] . '>          
                             <input type="hidden" name="stayingin_id" value=' . $rowSelectedStayingIn['StayingIn_ID'] . ' >
                             <div class="book-btn-container" style="margin-top:10px">
-                                <input type="submit" name="" class="book update" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:10px;width:55%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" value="Request Early Checkouts">
+                                <a href="request-early-checkout-form.php?id=' . $rowSelectedStayingIn['StayingIn_ID'] . '" target="_blank"><button name="" class="book update" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:10px;width:55%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" >Request Early Checkouts</button></a>
                                 <input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:14px;width:35%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">
                             </div>
                         </form>
@@ -145,7 +145,6 @@ if (isset($_POST['Delete_StayingIn'])) {
             <span style="font-weight: bold;font-size:15px;">Amount Paid: Rs. 16,000/=</span>
             <span style="font-weight: bold;font-size:15px;">Amount left to paid: Rs.64,000/=</span> -->
         <!-- Including the early-checkout request form -->
-        <?php include("./request-early-checkout-form.php") ?>
 
 
         <?php
