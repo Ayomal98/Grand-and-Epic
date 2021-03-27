@@ -71,6 +71,20 @@
         })
     </script>
 </head>
+<?php
+include('../../config/connection.php');
+$eventsID = $_GET['id'];
+$selectEventsDetails = mysqli_query($con, "SELECT * FROM events_booking WHERE Events_ID='$eventsID'");
+$getRowEventDetails = mysqli_fetch_assoc($selectEventsDetails);
+$eventType = $getRowEventDetails["Event_Type"];
+$startingTime = $getRowEventDetails["Starting_Time"];
+$endingTime = $getRowEventDetails["Ending_Time"];
+$startingTimeInHours = date("H", strtotime($startingTime));
+$startingTimeHM = date("H:i", strtotime($startingTime));
+$endingTimeHM = date("H:i", strtotime($endingTime));
+$timeInHours = date("H", (strtotime($endingTime) - strtotime($startingTime)) - 1);
+$eventFeatureDetails = unserialize($getRowEventDetails["Selected_Features"]);
+?>
 
 <body style="background:url('../../public/images/event-form.jpeg');width:100%;height:100%;background-size:cover">
     <div class="suite-form-header" style="height: 12vh;">
@@ -81,16 +95,28 @@
         <div class="events-booking-form" id="events-booking-form">
             <h2 style="position:absolute;top:150px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
             <div class="customer-details-events">
-                <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:20px;" required>
-                <input type="email" name="customer-email" id="" placeholder="Email address" style="padding:10px;margin:10px;" required>
-                <input type="number" name="number-of-guests" placeholder="No-Guests" style="padding:10px;margin:10px;width:130px;" min="30" max="250" step="1" style="width:110px;" required>
+                <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:20px;" value="<?php echo $getRowEventDetails["Customer_Name"] ?>" required>
+                <input type="email" name="customer-email" id="" placeholder="Email address" style="padding:10px;margin:10px;" value="<?php echo $getRowEventDetails["Customer_Email"] ?>" required>
+
+                <input type="number" name="number-of-guests" placeholder="No-Guests" style="padding:10px;margin:10px;width:130px;" min="30" max="250" step="1" style="width:110px;" value="<?php echo $getRowEventDetails["Num_Guests"] ?>" required>
+                <label for="" style="color:white;font-weight:bolder">Previosuly Selected Starting Time => <?php echo $startingTimeHM; ?> </label>
+                <label for="" style="color:white;font-weight:bolder;margin-left:580px;">Previosuly Selected Ending Time => <?php echo $endingTimeHM; ?> </label>
             </div>
             <div class="events-booking-wrapper">
                 <label for="type-of-reservation" style="font-size:25px;position:absolute;top:295px;left:12%">Reservation Type</label>
                 <i class="fas fa-glass-cheers" style="position: absolute;top:280px;left:17%"></i>
                 <select name="Reservation-type-events" id="meal-types" style="position:absolute;top:340px;left:15%;padding:5px;" onclick="getReservationType(event)" required>
-                    <option value="Wedding">Wedding</option>
-                    <option value="Party">Party</option>
+                    <?php
+                    if ($eventType == 'Wedding') {
+                    ?>
+                        <option value="Wedding" selected="selected">Wedding</option>
+                        <option value="Party">Party</option>
+                    <?php } else {
+
+                    ?>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Party" selected="selected">Party</option>
+                    <?php } ?>
                 </select>
 
             </div>
@@ -98,7 +124,7 @@
                 <div class="date-container">
                     <i class="fas fa-calendar-alt" style="position: absolute;top:274px;left:34%"></i>
                     <label for="Reservation-Date" " style=" font-size:25px;position:absolute;top:285px;left:30%;">Reservation Date</label><br>
-                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:330px;left:30%;padding:5px" onchange="dateHandler(event)" required>
+                    <input type="date" name="events-reservation-date" id="datefield" style=" position: absolute;top:330px;left:30%;padding:5px" onchange="dateHandler(event)" value="<?php echo $getRowEventDetails['Reservation_Date'] ?>" required>
                 </div>
                 <div class="time-details-events">
                     <i class="fas fa-clock" style="position: absolute;top:273px;left:64%;"></i>
@@ -106,9 +132,28 @@
                     <div class="time-details-shower">
                         <label for="" style="position:absolute;top:340px;left:48%;font-size:25px;font-size:20px;"> Preferred Starting time-slot</label>
                         <select style="position:absolute;top:375px;left:53%;padding:4px" name="preferred-timeslot" id="preferred-timeslot" onclick="timeShow(event)" required>
-                            <option value="Morning">Morning</option>
-                            <option value="Afternoon">Afternoon</option>
-                            <option value="Night">Night</option>
+                            <?php
+                            if ($startingTime >= 8 && $startingTime <= 11) {
+                                echo '
+                                        <option value="Morning" selected="selected">Morning</option>
+                                        <option value="Afternoon">Afternoon</option>
+                                        <option value="Night">Night</option>
+                                 ';
+                            } else if ($startingTime >= 12 && $startingTime <= 17) {
+                                echo '
+                                        <option value="Morning" >Morning</option>
+                                        <option value="Afternoon" selected="selected">Afternoon</option>
+                                        <option value="Night">Night</option>
+                                    ';
+                            } else {
+                                echo '
+                                        <option value="Morning" >Morning</option>
+                                        <option value="Afternoon" >Afternoon</option>
+                                        <option value="Night" selected="selected">Night</option>
+                                    ';
+                            }
+                            ?>
+
                         </select>
                         <label for="" style="position:absolute;top:340px;left:65%;font-size:25px;font-size:20px;">Starting time</label>
                         <select name="morning-time" style="position:absolute;top:375px;left:65%;display:none;padding:5px" id="morning-times">
@@ -123,9 +168,9 @@
                         </select>
                         <!-- <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:68%"> -->
                         <label for="" style="position:absolute;top:345px;left:74%;font-size:15px;font-size:15px;">Time Duration(In Hours)</label>
-                        <input type="number" name="event-duration" min="1" max="5" style="position:absolute;top:375px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
+                        <input type="number" name="event-duration" min="3" max="5" style="position:absolute;top:375px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" value="<?php echo $timeInHours; ?>" required>
                         <label for="" style="position: absolute;top:345px;left:87%;font-size:20px">Ending time</label>
-                        <input type="text" name="ending-time" id="ending-time" value="" style="position:absolute;top:375px;left:86.5%;padding:5px;width:120px" required>
+                        <input type="text" name="ending-time" id="ending-time" style="position:absolute;top:375px;left:86.5%;padding:5px;width:120px" required>
                     </div>
                 </div>
             </div>
@@ -133,11 +178,24 @@
                 <i class="fas fa-icons" style="position:absolute;top:440px;left:62%;"></i>
                 <label for="" style="font-size: 25px;position:absolute;top:460px;left:55%;">Additional Features</label>
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:45%">DJ Music</label>
-                <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:501px;left:50%;cursor:pointer">
+                <?php if (in_array("DJMusic", $eventFeatureDetails)) {
+                    echo ' <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:501px;left:50%;cursor:pointer" checked="checked">';
+                } else {
+                    echo ' 
+                    <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:501px;left:50%;cursor:pointer">';
+                } ?>
+                <?php if (in_array("Decorations", $eventFeatureDetails)) {
+                    echo '<input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:501px;left:61%;cursor:pointer" checked="checked">';
+                } else {
+                    echo '<input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:501px;left:61%;cursor:pointer">';
+                } ?>
+                <?php if (in_array("ChampaigneTables", $eventFeatureDetails)) {
+                    echo '<input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:501px;left:74%;cursor:pointer" checked="checked">';
+                } else {
+                    echo '<input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:501px;left:74%;cursor:pointer">';
+                } ?>
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:55%">Decorations</label>
-                <input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:501px;left:61%;cursor:pointer">
                 <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:65%">Champaigne Tables</label>
-                <input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:501px;left:74%;cursor:pointer">
             </div>
 
             <div class="payment-cancel-btns">

@@ -1593,7 +1593,7 @@ form.staying-in-form > label {
 .customer-details-events {
   padding: 30px;
   position: absolute;
-  top: 140px;
+  top: 170px;
   left: 30%;
 }
 
@@ -1625,16 +1625,16 @@ form.staying-in-form > label {
 .event-meal-selection-btn{
   display: inline-block;
   position: absolute;
-  top: 540px;
+  top: 580px;
   padding: 15px;
-  left: 50%;
+  left: 62%;
   cursor: pointer;
   background-color: #b88b4a;
   border: none;
   color: white;
 }
 .cancel-evt-btn{
-  left: 40%;
+  left: 52%;
   padding: 15px 20px;
 }
 .event-meal-selection-btn:hover {

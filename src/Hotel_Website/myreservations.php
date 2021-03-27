@@ -240,7 +240,7 @@ if (isset($_POST['Delete_StayingIn'])) {
                                     </tr>
                                 </table>
                                 <div class="book-btn-container" style="margin-top:10px">
-                                    <input type="submit" name="Update_Events" class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:38%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" value="Update Booking">
+                                    <a href="update-events-booking-form.php?id=' . $rowEvtBookings['Events_ID'] . '"><input type="submit" name="Update_Events" class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:38%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" value="Update Booking"></a>
                                     <input type="submit" name="Delete_Events" class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:40%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">
                                 </div>
                             </form>

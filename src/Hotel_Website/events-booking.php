@@ -66,7 +66,9 @@ if (isset($_POST['event-details'])) {
                 }
                 $locationTotalPrice += $featurePrice;
                 $mealPackageID = 0; //inital meal packageID, since its not selected
-                $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice')";
+                $serializedAdditionalFeatures = serialize($additionalFeatures);
+                echo $serializedAdditionalFeatures;
+                $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "')";
                 mysqli_query($con, $insertEvent);
                 $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
                 if ($resultID = mysqli_query($con, $selectEventID)) {
@@ -100,7 +102,8 @@ if (isset($_POST['event-details'])) {
         }
         $locationTotalPrice += $featurePrice;
         $mealPackageID = 0; //inital meal packageID, since its not selected
-        $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice')";
+        $serializedAdditionalFeatures = serialize($additionalFeatures);
+        $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "')";
         mysqli_query($con, $insertEvent);
         $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
         if ($resultID = mysqli_query($con, $selectEventID)) {
