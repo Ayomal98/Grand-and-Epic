@@ -91,12 +91,12 @@ $eventFeatureDetails = unserialize($getRowEventDetails["Selected_Features"]);
         <h3 style="font-weight: bolder;color:white">Event Details & Location Availability</h3>
         <h3 style="color:black">Meal Package Selection & Payment</h3>
     </div>
-    <form action="events-booking.php" method="post" id="event-booking">
+    <form action="update-events-booking.php" method="post" id="event-booking">
         <div class="events-booking-form" id="events-booking-form">
             <h2 style="position:absolute;top:150px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
             <div class="customer-details-events">
-                <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:20px;" value="<?php echo $getRowEventDetails["Customer_Name"] ?>" required>
-                <input type="email" name="customer-email" id="" placeholder="Email address" style="padding:10px;margin:10px;" value="<?php echo $getRowEventDetails["Customer_Email"] ?>" required>
+                <input type="text" name="customer-name" id="" placeholder="Customer Name" style="padding:10px;margin:20px;" value="<?php echo $getRowEventDetails["Customer_Name"] ?>" readonly>
+                <input type="email" name="customer-email" id="" placeholder="Email address" style="padding:10px;margin:10px;" value="<?php echo $getRowEventDetails["Customer_Email"] ?>" readonly>
 
                 <input type="number" name="number-of-guests" placeholder="No-Guests" style="padding:10px;margin:10px;width:130px;" min="30" max="250" step="1" style="width:110px;" value="<?php echo $getRowEventDetails["Num_Guests"] ?>" required>
                 <label for="" style="color:white;font-weight:bolder">Previosuly Selected Starting Time => <?php echo $startingTimeHM; ?> </label>
@@ -171,43 +171,43 @@ $eventFeatureDetails = unserialize($getRowEventDetails["Selected_Features"]);
                         <input type="number" name="event-duration" min="3" max="5" style="position:absolute;top:375px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" value="<?php echo $timeInHours; ?>" required>
                         <label for="" style="position: absolute;top:345px;left:87%;font-size:20px">Ending time</label>
                         <input type="text" name="ending-time" id="ending-time" style="position:absolute;top:375px;left:86.5%;padding:5px;width:120px" required>
+                        <input type="hidden" name="events_id" value="<?php echo $eventsID; ?>" </div>
+                    </div>
+                </div>
+                <div class="additional-features" style="display: inline-block;">
+                    <i class="fas fa-icons" style="position:absolute;top:440px;left:62%;"></i>
+                    <label for="" style="font-size: 25px;position:absolute;top:460px;left:55%;">Additional Features</label>
+                    <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:45%">DJ Music</label>
+                    <?php if (in_array("DJMusic", $eventFeatureDetails)) {
+                        echo ' <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:501px;left:50%;cursor:pointer" checked="checked">';
+                    } else {
+                        echo ' 
+                    <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:501px;left:50%;cursor:pointer">';
+                    } ?>
+                    <?php if (in_array("Decorations", $eventFeatureDetails)) {
+                        echo '<input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:501px;left:61%;cursor:pointer" checked="checked">';
+                    } else {
+                        echo '<input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:501px;left:61%;cursor:pointer">';
+                    } ?>
+                    <?php if (in_array("ChampaigneTables", $eventFeatureDetails)) {
+                        echo '<input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:501px;left:74%;cursor:pointer" checked="checked">';
+                    } else {
+                        echo '<input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:501px;left:74%;cursor:pointer">';
+                    } ?>
+                    <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:55%">Decorations</label>
+                    <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:65%">Champaigne Tables</label>
+                </div>
+
+                <div class="payment-cancel-btns">
+                    <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:215px;left:185px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
+                    <div class="payment-cancel-btns">
+                        <input type="submit" id="meal-btn" value="Update & Proceed to Package Selection" name="update-event-details" class="event-meal-selection-btn">
+                        <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
+                    </div>
+                    <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:52%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
                     </div>
                 </div>
             </div>
-            <div class="additional-features" style="display: inline-block;">
-                <i class="fas fa-icons" style="position:absolute;top:440px;left:62%;"></i>
-                <label for="" style="font-size: 25px;position:absolute;top:460px;left:55%;">Additional Features</label>
-                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:45%">DJ Music</label>
-                <?php if (in_array("DJMusic", $eventFeatureDetails)) {
-                    echo ' <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:501px;left:50%;cursor:pointer" checked="checked">';
-                } else {
-                    echo ' 
-                    <input type="checkbox" name="additional[]" id="" value="DJMusic" style="font-size: 20px;position:absolute;top:501px;left:50%;cursor:pointer">';
-                } ?>
-                <?php if (in_array("Decorations", $eventFeatureDetails)) {
-                    echo '<input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:501px;left:61%;cursor:pointer" checked="checked">';
-                } else {
-                    echo '<input type="checkbox" name="additional[]" value="Decorations" id="" style="font-size: 20px;position:absolute;top:501px;left:61%;cursor:pointer">';
-                } ?>
-                <?php if (in_array("ChampaigneTables", $eventFeatureDetails)) {
-                    echo '<input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:501px;left:74%;cursor:pointer" checked="checked">';
-                } else {
-                    echo '<input type="checkbox" name="additional[]" value="ChampaigneTables" id="" style="font-size: 20px;position:absolute;top:501px;left:74%;cursor:pointer">';
-                } ?>
-                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:55%">Decorations</label>
-                <label for="DJ-Music" style="font-size: 15px;position:absolute;top:498px;left:65%">Champaigne Tables</label>
-            </div>
-
-            <div class="payment-cancel-btns">
-                <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:215px;left:185px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
-                <div class="payment-cancel-btns">
-                    <input type="submit" id="meal-btn" value="Submit & Proceed to Package Selection" name="event-details" class="event-meal-selection-btn">
-                    <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
-                </div>
-                <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:52%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
-                </div>
-            </div>
-        </div>
     </form>
 
     <!-- <div class="meal-section" id="meal-section" style="display: none;">

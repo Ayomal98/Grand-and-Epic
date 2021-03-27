@@ -1,10 +1,9 @@
 <?php include('../../config/connection.php');
 
 //entering the event details
-if (isset($_POST['event-details'])) {
+if (isset($_POST['update-event-details'])) {
+    $existingEventID = $_POST['events_id'];
     $additionalFeatures = $_POST['additional'];
-    $customerName = $_POST['customer-name'];
-    $customerEmail = $_POST['customer-email'];
     $noOfGuests = $_POST['number-of-guests'];
     $eventType = $_POST['Reservation-type-events'];
     $eventDate = $_POST['events-reservation-date'];
@@ -38,10 +37,6 @@ if (isset($_POST['event-details'])) {
                 echo '<script>alert("The timeslot and the date which you have selected is being already take 2")
                             window.location.href="events-booking-form.php"
                         </script>';
-            } else if ($startDBTime > $startInputTime && $endInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take 3")
-                            window.location.href="events-booking-form.php"
-                        </script>';
             } else if ($startInputTime > $startDBTime && $endInputTime < $endDBTime) {
                 echo '<script>alert("The timeslot and the date which you have selected is being already take 4")
                 window.location.href="events-booking-form.php"
@@ -67,17 +62,14 @@ if (isset($_POST['event-details'])) {
                 $locationTotalPrice += $featurePrice;
                 $mealPackageID = 0; //inital meal packageID, since its not selected
                 $serializedAdditionalFeatures = serialize($additionalFeatures);
-                echo $serializedAdditionalFeatures;
-                $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "')";
-                mysqli_query($con, $insertEvent);
-                $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
-                if ($resultID = mysqli_query($con, $selectEventID)) {
-                    while ($rowEvent = mysqli_fetch_assoc($resultID)) {
-                        $eventID = $rowEvent["Events_ID"];
-                        header('location:meal-selection.php?events_id=' . $eventID . '');
-                    }
+                // echo $serializedAdditionalFeatures;
+                // $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "";
+                $updateEvent = "UPDATE events_booking SET Num_Guests='$noOFGuests',Event_Type='$eventType',Reservation_Date='$eventDate',Starting_Time='$startingTime',Ending_Time='$endingTime',Selected_Features='$serializedAdditionalFeatures',Location_Price='$locationPrice' WHERE Events_ID='" . $existingEventID . "'";
+                $updateEventQuery = mysqli_query($con, $updateEvent);
+                if ($updateEventQuery) {
+                    header('location:meal-selection.php?events_id=' . $existingEventID . '');
                 } else {
-                    header('location:./HomePage-login.php');
+                    header('location:./HomePage-login.php?id=' . $existingEventID . '');
                 }
             }
         }
