@@ -45,6 +45,7 @@ $rowBookingDetails = mysqli_fetch_assoc($getStayingInBookingDetailsQuery);
                     <input type="text" name="reason" id="" style="width: 80%;height:80px;display: block;margin: 15px auto; padding: 10px; border-radius: 4px; border-color: black;">
                 </div>
                 <input type="hidden" name="user_email" value="<?php echo $rowBookingDetails['User_Email'] ?>">
+                <input type="hidden" name="id" value="<?php echo $stayingInID ?>">
                 <div style="display: inline-block;">
                     <input type="reset" value="Cancel" style="margin: 5px;padding: 7px;border-radius: 4px;border: none;background-color: #3498db;color: #fff;font-size: 15px;  cursor: pointer;">
                     <input type="submit" name="Request-early-checkout" value="Request Early Checkout" style="margin: 5px;padding: 7px;border-radius: 4px;border: none;background-color: #3498db;color: #fff;font-size: 15px;  cursor: pointer;">
@@ -61,6 +62,7 @@ $rowBookingDetails = mysqli_fetch_assoc($getStayingInBookingDetailsQuery);
 include('../../config/connection.php');
 include('../../public/includes/id-generator.php');
 if (isset($_POST['Request-early-checkout'])) {
+    $stayingInID = $_POST['id'];
     $checkedInDate = $_POST['checked_in_date'];
     $checkedOutDate = $_POST['checked_out_date'];
     $requested_checkout_date = $_POST['requested_checkout_date'];
@@ -72,7 +74,7 @@ if (isset($_POST['Request-early-checkout'])) {
     $remarks = 0;
     $earlyCheckOutID = getID("early_checkout_table", "EC");
 
-    $requestEalryCheckOut = mysqli_query($con, "INSERT INTO early_checkout_table (Early_Checkout_ID,Reservation_ID,Customer_ID,Date_CheckedIn,Date_CheckedOut,Requested_CheckedOut,Reason,User_Email,Remarks) VALUES('$earlyCheckOutID','$stayingInID','$customerID','$checkedInDate','$checkedOutDate','$requested_checkout_date','$emailUser','$remarks')");
+    $requestEalryCheckOut = mysqli_query($con, "INSERT INTO early_checkout_table (Early_Checkout_ID,Reservation_ID,Customer_ID,Date_CheckedIn,Date_CheckedOut,Requested_CheckedOut,Reason,User_Email,Remarks) VALUES('$earlyCheckOutID','$stayingInID','$customerID','$checkedInDate','$checkedOutDate','$requested_checkout_date','$reason','$emailUser','$remarks')");
     if ($requestEalryCheckOut) {
         echo '<script>alert("Early Checkout has been requested")
         window.location.href="HomePage-login.php"</script>';

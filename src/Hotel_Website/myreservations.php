@@ -97,6 +97,7 @@ if (isset($_POST['Delete_StayingIn'])) {
             while ($rowSelectedStayingIn = mysqli_fetch_assoc($selectStayingInBookings)) {
                 $rooomNumbers = unserialize($rowSelectedStayingIn['Room_Numbers']);
                 $rooomType = $rowSelectedStayingIn["Room_Type"];
+                $stayingInID = $rowSelectedStayingIn['StayingIn_ID'];
                 $amountToPay = (int)$rowSelectedStayingIn['Total_Amount'] - (int)$rowSelectedStayingIn['Paid_Amount'];
                 echo '<div class="upcomig-reservation-box">
                         <form action="" method="POST">
@@ -127,9 +128,15 @@ if (isset($_POST['Delete_StayingIn'])) {
                             </table>      
                             <input type="hidden" name="checkin_date" value=' . $rowSelectedStayingIn['CheckIn_Date'] . '>          
                             <input type="hidden" name="stayingin_id" value=' . $rowSelectedStayingIn['StayingIn_ID'] . ' >
-                            <div class="book-btn-container" style="margin-top:10px">
-                                <a href="request-early-checkout-form.php?id=' . $rowSelectedStayingIn['StayingIn_ID'] . '" target="_blank"><button name="" class="book update" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:10px;width:55%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" >Request Early Checkouts</button></a>
-                                <input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:14px;width:35%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">
+                            <div class="book-btn-container" style="margin-top:10px">';
+                $checkearlyRequest = mysqli_query($con, "SELECT * FROM early_checkout_table WHERE Reservation_ID='$stayingInID' ");
+                if (mysqli_num_rows($checkearlyRequest) > 0) {
+                    echo ' <a href="request-early-checkout-form.php?id=' . $rowSelectedStayingIn['StayingIn_ID'] . '" target="_blank"><button name="" class="book update" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:10px;width:55%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" >Request Early Checkouts</button></a>
+                                        <input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:14px;width:35%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking"> ';
+                } else {
+                    echo '<input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:80px;width:95%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">';
+                }
+                echo '
                             </div>
                         </form>
                     </div>';
