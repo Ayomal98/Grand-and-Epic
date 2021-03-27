@@ -115,19 +115,27 @@ $dataCount = json_encode($NoRooms); //encode the value into json format
 
 </head>
 
-<body>
-    <div class="container">
+<body bgcolor="black">
+<div class="chart-container" style="position:absolute;top:250px; height:1000px; width:1000px">
         <canvas id="myChart"></canvas>
     </div>
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
         let massChart = new Chart(myChart, {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 labels: <?php echo $data ?>,
+
                 datasets: [{
                     label: 'Room Type Summary',
-                    data: <?php echo $dataCount ?>
+                    data: <?php echo $dataCount ?>,
+                    backgroundColor: [
+                         '#ff6384',
+                         '#1CE4D9',
+                         '#3BEC01'
+                    ],
+                
+
                 }]
                
             },
