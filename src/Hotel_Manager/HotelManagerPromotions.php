@@ -86,171 +86,121 @@ checkSession();
 	</table>
 	
 
-	<table style ="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;" >
+	<table style="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;">
 		<tr>
-		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Customer Loyalty Promotions</p>		
-		</th>
-		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Last Minute Promotions</p>		
-		</th>
-		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Seasonal Promotions</p>		
-        </th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px; color :white;">Loyalty Promotions</p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px; color :white;">Last Minute Promotions</p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px; color :white;">Seasonal Promotions</p>
+			</th>
 		</tr>
-		
-		<td style ="border: 1px solid white;">
-		
-			<table width="100%">
-				<tr>
-				<td align ="center">
-					<img src = "../../public/images/loyalty.png" height = "90px">
-				</td>
-				<td align="center">
-					<textarea name="Message" rows="5" cols="0" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
-				</tr>
-			</table>
-			
-		</td>
-		<td style ="border: 1px solid white;" >
-            <table width="100%">
-				<tr>
-				<td align ="center">
-					<img src = "../../public/images/lastminute.png" height = "90px">
-				</td>
-				<td align="center">
-					<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
-				</tr>
-			</table>
-        </td>
-        <td style ="border: 1px solid white;" >
-            <table width="100%">
-				<tr>
-				<td align ="center">
-					<img src = "../../public/images/Presents.png" height = "80px">
-				</td>
-				<td align="center">
-					<textarea name="Message" rows="5" cols="20" placeholder="Terms & Conditions" style="font-size: 20px;"></textarea>
-				</tr>
-			</table>
-        </td>
-        </tr>
-   
-    <table  style ="position:absolute; top : 600px; width:350px;width : 97%;">
-    <tr>
-        <td>
-            <p style = "font-family :Lato; font-size:20px; color :white;">To Create a new Promotion</p>
-        </td>
-        <td>
-            <img src = "../../public/images/point.png" height = "80px">
-        </td>
-        <td>
-            <form>
-                <fieldset >
-                    <legend style = "color:white; font-size: 20px">New Promotion</legend>    
-                    <table style = "color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;" >
-                        <tr>
-                            <td align="left">Promotion Type: </td>
-                            <td align="left"><textarea name="Message" rows="1" cols="25" placeholder="Type" style="font-size: 20px;"></textarea></td>      
-                        </tr>
-                        <tr>
-                            <td align="left">Context of Promotions:</td>
-                            <td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Context" style="font-size: 20px;"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="left">Constraints and Policies</td>
-                            <td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Constarints" style="font-size: 20px;"></textarea></td>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </table>
-                    <br>
-                    <table style = "color:white; font-size: 20px; width:81%;">
-                        <tr>
-                            <td align="right">
-                                <input type="button" class="button" value="UPDATE PROMOTION">
-                                <input type="button" class="button" value="SEND TO ADMIN">
-                            </td>
-                         </tr> 
-                    </table>     
-                </fieldset>
-                </form>
-        </td>
-    </tr>
-    </table>
-    </table>
- 
-    <table  style ="position:absolute; top : 1000px; width:350px;width : 86%;">
-        <tr>
-            <td>
-                <p style = "font-family :Lato; font-size:20px; color :white;">To View Booking Analysis</p>
-            </td>
-            <td align ="left">
-                <img src = "../../public/images/point.png" height = "80px">
-            </td>
-            <td align ="left">
-                <p style = "font-family :Lato; font-size:20px; color:cornflowerblue;">Booking Analysis Overview</p>
-            </td>
-            <td>
-                <img src = "../../public/images/pie.png" height = "100%">
-			</td>
-		</tr>
-	</table>
-	<form action="" method="POST">
-        <fieldset style=" position:absolute; top:1300px; width: 75%; left:160px">
-            <legend style="color:white; font-size: 20px">Update and Delete Promotions</legend>
-            <input type="text" name="Employee_ID" placeholder="Enter id to Search" />
-            <input type="submit" name="search" value="Search by ID" class="button">
-        </fieldset>
-    </form>
 
-    <!-- Search -->
-   
-            <form action="" method="POST">
-                <fieldset style=" position:absolute; top:1450px; width: 75%; left:160px">
-                    <table align="center" style="color:white; font-size: 22px; width:75%;">
-					<tr>
-                            <td>Promotion Type:</td>
-                            <td>
-								<select id="types" name="PromotionType" class="inputs">
-
-									<option value disabled selected>Select the Promotion Type</option>
-
-                                    <option value="Loylaty Promotion"
-										
-									>Loylaty Promotion</option>
-
-									<option value="Credit Card Promotion"
-										
-									>Credit Card Promotion</option>
-
-									<option value="Last Minute Promotion"
-										
-									>Seasonal Promotion</option>
-
-								</select>
+		<form action="PromotionManage.php" method="POST">
+				<td style="border: 1px solid white;">
+					<table width="100%">
+						<tr>
+							<td align="center">
+								<img src="../../public/images/loyalty.png" width="125" height="100">
 							</td>
-                        </tr>
-                        <tr>
-                            <td align="left">Context of Promotions:</td>
-                            <td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Context" style="font-size: 20px;"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="left">Constraints and Policies</td>
-                            <td align="left"><textarea name="Message" rows="3" cols="25" placeholder="Constarints" style="font-size: 20px;"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td style="position:relative;left:180px">
-                                <input type="submit" class="button" name="update" value="UPDATE"></a>
-                                <input type="submit" class="button" name="delete" value="DELETE"></a>
-								<input type="submit" class="button" name="delete" value="SEND TO ADMIN"></a>
-                            </td>
-                        </tr>
-                    </table>
-                </fieldset>
-            </form>
-    <?php
+							<td align="center">
+								<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<?php
+						include("../../config/connection.php");
+						$query = "SELECT Context,Policies FROM promotions where Promotion_type='Loyalty'";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+							echo   $row["Context"] .
+								'</textarea><textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						' . $row["Policies"] . '
+							</textarea>'
+						?>
+						</textarea>
+
+								<input type="hidden" name="type" value="Loyalty">
+						</tr>
+						<tr>
+							<td align="center">
+								<input type="submit" class="button" name="update" value="UPDATE">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</form>
+
+		<!--LAST MINUTE-->
+		<form action="PromotionManage.php" method="POST">
+				<td style="border: 1px solid white;">
+					<table width="100%">
+						<tr>
+							<td align="center">
+								<img src="../../public/images/lastminute.png" width="125" height="100">
+							</td>
+							<td align="center">
+								<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<?php
+						include("../../config/connection.php");
+						$query = "SELECT Context,Policies FROM promotions where Promotion_type='Last'";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+							echo   $row["Context"] .
+								'</textarea><textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						' . $row["Policies"] . '
+							</textarea>'
+						?>
+						</textarea>
+
+								<input type="hidden" name="type" value="Last">
+						</tr>
+						<tr>
+							<td align="center">
+								<input type="submit" class="button" name="update" value="UPDATE">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</form>
+		
+
+		<!--SEASONAL-->
+		<form action="PromotionManage.php" method="POST">
+				<td style="border: 1px solid white;">
+					<table width="100%">
+						<tr>
+							<td align="center">
+								<img src="../../public/images/presents.jpeg" width="125" height="100">
+							</td>
+							<td align="center">
+								<textarea name="Context" rows="5" cols="20" placeholder="Context" style="font-size: 20px;">
+						<?php
+						include("../../config/connection.php");
+						$query = "SELECT Context,Policies FROM promotions where Promotion_type='Seasonal'";
+						$query_run = mysqli_query($con, $query);
+						while ($row = mysqli_fetch_array($query_run))
+							echo   $row["Context"] .
+								'</textarea><textarea name="Policies" rows="5" cols="20" placeholder="Policies" style="font-size: 20px;">
+						' . $row["Policies"] . '
+							</textarea>'
+						?>
+						</textarea>
+
+								<input type="hidden" name="type" value="Seasonal">
+						</tr>
+						<tr>
+							<td align="center">
+								<input type="submit" class="button" name="update" value="UPDATE">
+							</td>
+						</tr>
+					</table>
+				</td>
+				</form>
+				</td>
+			</tr>
+		</table>
+	</table>
     
     ?>
 	<script>
