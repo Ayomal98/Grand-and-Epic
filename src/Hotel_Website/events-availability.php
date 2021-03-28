@@ -13,6 +13,7 @@ $day = $datearray[2];
 echo $timeSlot;
 $monthName = date('F', mktime(0, 0, 0, $monthNum, 10));
 $getBookingsOnDay = "SELECT * FROM events_booking WHERE Reservation_Date=' $dateSelected ' ";
+
 $exceceuteSearch = mysqli_query($con, $getBookingsOnDay);
 if (mysqli_num_rows($exceceuteSearch) > 0) {
     echo '<div><i class="fas fa-times-circle" style="position:absolute;top:5%;left:90%;color:black;font-size:20px;cursor:pointer" onclick="closeAvailability()"></i></div>
@@ -41,6 +42,4 @@ if (mysqli_num_rows($exceceuteSearch) > 0) {
                     <div style="color: black;position:absolute;right:16%;top:92%"><i class="fas fa-check"><span style="margin-left: 5px;">Available</span></i></div>
                     <div style="color: black;position:absolute;top:77%;font-weight:bolder">* Please note that there will be a <br>delay of one hour after each <br>reservation</div>
                 </div> ';
-} else {
-    echo '<h1 style="color:black">There isnt any booking today</h1>';
 }

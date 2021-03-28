@@ -58,7 +58,6 @@
                         After a day of exploring – or even just idling, it is a perfect refuge to return to a long shower.</div>
                     <div class="view-book-wrapper">
                         <button class="view" style="border:none"><a href="Superior-Rooms.php">View Room</a></button>
-                        <button class="book" style="border:none"><a href="Superior-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
                 </div>
                 <div class="card-rooms">
@@ -71,7 +70,6 @@
                         are constant, yet ever changing. The rooms themselves are tempting too, with earthy tones, traditional woven tapestries, and fluffy pillows.</div>
                     <div class="view-book-wrapper">
                         <button class="view" style="border:none"><a href="Panaromic-Rooms.php">View Room</a></button>
-                        <button class="book" style="border:none"><a href="Panaromic-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
 
                 </div>
@@ -87,7 +85,6 @@
                         but then, there is the Jacuzzi tempting you in too.</div>
                     <div class="view-book-wrapper">
                         <button class="view" style="border:none"><a href="Suite-Rooms.php">View Room</a></button>
-                        <button class="book" style="border:none"><a href="Suite-Rooms-form.php" target="_blank">Book Now</a></button>
                     </div>
                 </div>
             </div>

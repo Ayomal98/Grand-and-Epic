@@ -67,7 +67,7 @@ if (!isset($_SESSION['First_Name'])) {
 
         </td>
         <td>
-          <img src="../../public/images/Uvini.png" height="25%">
+          <img src="../../public/images/Uvini.png" width="60" height="60">
         </td>
       </tr>
     </table>
@@ -89,115 +89,13 @@ if (!isset($_SESSION['First_Name'])) {
       });
     }
   </script>
-  <table style="position:absolute; top : 350px; left:0px;">
-    <tr>
-      <th>
-        <p style="font-family :Lato; font-size:20px; color :blue;">Bookings Overview of the Year</p>
-      </th>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="../../public/images/chart5.png" height="70%">
-      </td>
-    </tr>
-  </table>
+  <button class="button1"style="position:absolute;top:17%;right:70%;color:black;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='roomtype.php'">Room type analysis</button>
+  <button class="button1"style="position:absolute;top:17%;right:50%;color:black;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='mealprice.php'">Meal Price analysis</button>
 
-  </div>
-
-  <table style="position:absolute; top : 350px; left:850px;">
-    <tr>
-      <th>
-        <p style="font-family :Lato; font-size:20px; color :blue;">Bookings on Rooms-current month</p>
-      </th>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="../../public/images/chart2.png" height="70%">
-      </td>
-    </tr>
-  </table>
-
-  </div>
-
-  </div>
-
-  <table style="position:absolute; top : 800px; left:850px;">
-    <tr>
-      <th>
-        <p style="font-family :Lato; font-size:20px; color :blue;">General Reservations</p>
-      </th>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="../../public/images/chart3.png" height="70%">
-      </td>
-    </tr>
-  </table>
-
-  </div>
-
-  <table style="position:absolute; top : 800px; left:850px;">
-    <tr>
-      <th>
-        <p style="font-family :Lato; font-size:20px; color :blue;">General Reservations</p>
-      </th>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="../../public/images/chart3.png" height="70%">
-      </td>
-    </tr>
-  </table>
-
-  </div>
-
-  <table style="position:absolute; top : 800px; left:0px;">
-    <tr>
-      <th>
-        <p style="font-family :Lato; font-size:20px; color :blue;">Meal preference</p>
-      </th>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="../../public/images/chart4.png" height="70%">
-      </td>
-    </tr>
-  </table>
-
-  </div>
-  <table style="position:absolute; top :1200px; left:0px;">
-    <tr>
-      <th>
-        <p style="font-family :Lato; font-size:20px; color :blue;">Meal preference - Dine-in</p>
-      </th>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="../../public/images/chart6.png" height="70%">
-      </td>
-    </tr>
-  </table>
-
-  </div>
-  <table style="position:absolute; top :1200px; left:850px;">
-    <tr>
-      <th>
-        <p style="font-family :Lato; font-size:20px; color :blue;">Bookings on Rooms-upcoming month</p>
-      </th>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="../../public/images/chart8.png" height="70%">
-      </td>
-    </tr>
-  </table>
-
-  </div>
-
-  <button class="button1" style="position:absolute;top:112%;right:5%;color:white;background-color:blue;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer">
-    <p><b>Generte Report</b></p>
-    <?php
-    require 'AdminViewStats.php';
+  <button class="button1" style="position:absolute;top:22%;right:50%;color:white;background-color:blue;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer">
+    <p><b>Generte Overall Report</b></p>
+ 
+   <!-- require 'AdminViewStats.php';
 
 // create an API client instance
 $client = new AdminViewStats("username", "apikey");
@@ -223,7 +121,8 @@ echo $pdf;
     function funcCloseUserDetails() {
       document.getElementById('user-detail-container').style.display = "none";
     }
-  </script>
+  </script>-->
+
 </body>
 
 </html>

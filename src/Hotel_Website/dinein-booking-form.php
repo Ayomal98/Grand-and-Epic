@@ -191,7 +191,7 @@ $email = $_SESSION['User_Email'];
 
     <script>
         function getInsertedTable(e) {
-            let no_guests = document.getElementById('number-of-guest').value;
+            let no_guests = document.getElementById('number-of-guest').value; //no.of inputed guests
             let table_no = "table-" + e.target.value;
             let guests_allowed = document.getElementById(table_no + '-cus').value // number of guests allowed for selected table
             let guestsHandler = document.getElementById('table-availability-checker');
@@ -204,25 +204,6 @@ $email = $_SESSION['User_Email'];
 
             }
         }
-        // let Guests_evt = document.getElementById("number-of-guest");
-        // let no_Guests = 0;
-        // let table_no = document.getElementById("table-no");
-        // const guestsHandler = document.getElementById('table-availability-checker');
-        // Guests_evt.addEventListener("input", (e) => {
-        //     no_Guests = e.target.value
-        // })
-        // table_no.addEventListener("input", (e) => {
-        //     let inputValue = e.target.value;
-        //     let tableValues = <?php echo json_encode($tableParticipant); ?>;
-        //     console.log(no_Guests)
-        //     if (no_Guests > tableValues[inputValue]) {
-        //         guestsHandler.innerHTML = "Please Select another table"
-        //         console.log("*Please select another table");
-        //     } else {
-        //         guestsHandler.innerHTML = "";
-        //         console.log("Selected table is sufficient enough");
-        //     }
-        // })
     </script>
 </body>
 

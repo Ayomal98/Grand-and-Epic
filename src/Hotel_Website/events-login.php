@@ -61,12 +61,32 @@ if (!isset($_SESSION['First_Name'])) {
                             delish appetisers, to a rich main course, to divine desserts, all of it ensure, your function leaves an aftertaste that is fondly remembered
                             for years to come.</p><br>
                         <p style="margin-left: 70px;color:black;color:white">Here are some of the special features which we provide,</P><br>
-                        <ul style="list-style-type:disc;padding-left:12em;color:black;">
-                            <li style="font-weight:700;">DJ music - complete package per day for Rs.75000.00</li>
-                            <li style="font-weight:700;">Decorations - According to your preference </li>
-                            <li style="font-weight:700;">Champagne table- Rs.22000.00</li>
-                        </ul>
-                        <a href="events-booking-form.php" style="position: absolute;top: 187%; right: 15%;" target="_blank">
+                        <h3 style="color:white;margin-left:-260px">Wedding</h3>
+                        <h3 style="color:white;margin-left:280px;margin-top:-40px">Parties</h3>
+                        <?php
+                        include('../../config/connection.php');
+                        $selectWeddingPriceDetails = mysqli_query($con, "SELECT * FROM event_location_features WHERE Event_Type='Wedding'");
+                        $rowPriceWedding = mysqli_fetch_assoc($selectWeddingPriceDetails);
+                        echo '
+                        <ul style="list-style-type:disc;padding-left:12em;color:black;margin-left:-90px;margin-top:5px">
+                            <li style="font-weight:700;">DJ music - complete package for Rs. ' . $rowPriceWedding["DJ_Price"] . '/=</li>
+                            <li style="font-weight:700;">Decorations - Rs. ' . $rowPriceWedding['Decoration_Price'] . '/=</li>
+                            <li style="font-weight:700;">Champagne table- Rs. ' . $rowPriceWedding['Champaigne_Price'] . '/=</li>
+                        </ul>';
+                        ?>
+                        <?php
+                        include('../../config/connection.php');
+                        $selectPartyPriceDetails = mysqli_query($con, "SELECT * FROM event_location_features WHERE Event_Type='Party'");
+                        $rowPriceParty = mysqli_fetch_assoc($selectPartyPriceDetails);
+                        echo '
+                        <ul style="list-style-type:disc;padding-left:12em;color:black;margin-left:290px;margin-top:-55px">
+                            <li style="font-weight:700;">DJ music - complete package for Rs. ' . $rowPriceParty["DJ_Price"] . '/=</li>
+                            <li style="font-weight:700;">Decorations - Rs. ' . $rowPriceParty['Decoration_Price'] . '/=</li>
+                            <li style="font-weight:700;">Champagne table- Rs. ' . $rowPriceParty['Champaigne_Price'] . '/=</li>
+                        </ul>';
+                        ?>
+
+                        <a href="events-booking-form.php" style="position: absolute;top: 194%; right: 15%;" target="_blank">
                             <input type="button" value="Book-Now" name="book-wedding" class="wedding-btn">
                         </a>
                     </div>

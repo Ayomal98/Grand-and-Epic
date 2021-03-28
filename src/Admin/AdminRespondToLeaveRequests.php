@@ -88,45 +88,40 @@ if (!isset($_SESSION['First_Name'])) {
 			});
 		}
 	</script>
-	<form>
-		<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
-			<legend style="color:white; font-size: 20px">Respond to Leave Requests of Co-admins</legend>
-			<table style="color:white; font-size: 20px; width:88%;">
-				<tr>
-					<td align="left">Manager ID:</td>
-					<td align="left"><input type="text" name="id" size="20" value="M04"></td>
-				</tr>
-				<tr>
-					<td align="left">Leave Start Date:</td>
-					<td align="left"><input type="text" name="startdate" size="20" value="05/26/2020"></td>
-				</tr>
-				<tr>
-					<td align="left">Leave End Date:</td>
-					<td align="left"><input type="text" name="enddate" size="20" value="05/27/2020"></td>
-				</tr>
-				<tr>
-					<td align="left">Reason for the leave:</td>
-					<td align="left"><textarea name="Message" rows="5" cols="53">Medical Leave</textarea></td>
-				</tr>
-			</table>
+	<?php
+    date_default_timezone_set('Asia/Colombo');
+    $date = date('Y-m-d', time());
+    echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">' . $date . '</span>    ';
+    ?>
+    <?php
+    include('../../config/connection.php');
+    $tempStatus = 0;
+    $selectLeaveDate = mysqli_query($con, "SELECT * FROM leave_request WHERE Start_Date='" . $date+2 . "' AND Status='" . $tempStatus . "' AND Employee_ID like 'C%' ");
+    if (mysqli_num_rows($selectReservationDate) > 0) {
+        echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
+            <thead>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Employee ID</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Start Date</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">End Date</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Section</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reason</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Status</th>
+            </thead>';
+        while ($rowResDetails = mysqli_fetch_assoc($selectLeaveDate)) {
+            $id = $rowResDetails['Employee_ID'];
+            echo '<tbody>
+                    <tr>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Employee_ID'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Start_Date'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['End_Date'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Section'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reason'] . '</td>
+                    </tr>';
+        }
+        echo '</table>';
+    }
 
-			<br>
-			<table style="color:white; font-size: 20px; width:75%;">
-				<tr>
-					<td align="left">
-						<a href="#" class="button" style="padding:10px 20px; border-radius:50%">&laquo;</a>
-						<a href="#" class="button" style="padding:10px 20px; border-radius:50%">&raquo;</a>
-					</td>
-					<td align="right">
-						<input type="button" class="button" value="ACCEPT">
-						<input type="button" class="button" value="DECLINE">
-					</td>
-
-				</tr>
-			</table>
-
-		</fieldset>
-	</form>
+    ?>
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";

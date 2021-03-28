@@ -87,93 +87,93 @@ if (!isset($_SESSION['First_Name'])) {
 			});
 		}
 	</script>
-
-	<!--<form action="AdminAddContent.php" method="POST" enctype="multipart/form-data">-->
-	<form action="ContentManage.php" method="POST" enctype="multipart/form-data">
-		<fieldset style=" position:absolute; top:280px; left:50px; width: 35%;">
-			<legend style="color:white; font-size: 30px">Add New Post</legend>
-			<table style="width:100%; color:white; border: 1px solid white;">
+	<form action="" method="POST">
+		<fieldset style=" position:absolute; top:250px;left:150px; width: 45%;">
+			<table align="left" style="color:white; font-size: 20px; width:110%;">
 				<tr>
-					<th align="center" style="font-size:20px">Heading</th>
+					<td>Event Type</td>
+					<td align="left"><select id="type" name="typelist">
+							<option value="Wedding">Wedding</option>
+							<option value="Party">Party</option>
+						</select>
+						<input type="submit" class="button" name="search" value="Search by ID">
+					</td>
+				</tr>
+			</table>
+	</form>
+	<?php
+//UPDATE
+if (isset($_POST['update'])) {
+	$Event_Type = $_POST['type'];
+    $Location_Price = $_POST['Location_Price'];
+    $DJ_Price = $_POST['DJ_Price'];
+	$Decoration_Price = $_POST['Decoration_Price'];
+	$Champaigne_Price = $_POST['Champaigne_Price'];
+	$Advance_Percentage = $_POST['Advance_Percentage'];
+    $query = "UPDATE event_location_price SET Location_Price='$Location_Price',DJ_Price='$DJ_Price',Decoration_Price='$Decoration_Price',Decoration_Price='$Decoration_Price',Champaigne_Price='$Champaigne_Price',Advance_Percentage='$Advance_Percentage' WHERE Event_Type='$Event_Type '";
+    $query_run = mysqli_query($con, $query);
+    if ($query_run) {
+      echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+      echo '<script>window.location.href="EditFeatures.php"</script>';
+    } else {
+      echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+      // echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+    }
+  }
 
-					<td align="center"><textarea name="Heading" rows="2" cols="50" placeholder="Add Heading here:"></textarea></td>
+?>
+
+	<?php
+	include("../../config/connection.php");
+	if (isset($_POST['search'])) {
+		$Event_Type = $_POST['typelist'];
+
+		$query = "SELECT * FROM event_location_features where Event_Type='$Event_Type '";
+		$query_run = mysqli_query($con, $query);
+		$row = mysqli_fetch_assoc($query_run);
+		if (mysqli_num_rows($query_run) > 0) {
+	?>
+			<table align="left" style="color:white; font-size: 20px; width:110%;">
+				<tr>
+					<td>Location Price</td>
+					<td><input type="text" name="First_Name" value="<?php echo $row['Location_Price'] ?>" /></td>
 				</tr>
 				<tr>
-					<th align="center" style="font-size:20px">Content</th>
-				
-					<td align="center"><textarea name="Content" rows="15" cols="50" placeholder="Add Content here:"></textarea></td>
+					<td>DJ Price</td>
+					<td><input type="float" name="Last_Name" value="<?php echo $row['DJ_Price'] ?>" /></td>
 				</tr>
 				<tr>
-				<th align="center" style="font-size:20px">Image</th>
-					<td align="left"><input type="file" name="contentimage"></td>
+					<td>Decoration Price</td>
+					<td><input type="text" name="Email" value="<?php echo $row['Decoration_Price'] ?>" /></td>
 				</tr>
-
 				<tr>
-					<td></td>
-					<td align="left">
-						<input type="submit" class="button" name="ADD" value="ADD NEW POST">
-
+					<td>Champagne Price</td>
+					<td><input type="text" name="Contact_No" value="<?php echo $row['Champaigne_Price'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Advance Percentage</td>
+					<td><input type="text" name="Contact_No" value="<?php echo $row['Advance_Percentage'] ?>" /></td>
+				</tr>
+				<tr>
+					<td align="center" style="width:50%;">
+						<input type="submit" class="button" name="update" value="UPDATE">
 						<input type="reset" class="button" value="  RESET " name="reset">
+
 					</td>
+
 				</tr>
 			</table>
-		</fieldset>
-	</form>
+			</fieldset>
+	<?php
+		}
+	}
 
-<!--VIEW-->
-<form action="ContentManage.php" method="POST">
-		<fieldset style=" position:absolute; top:280px;left:650px; width: 45%;">
-			<legend style="color:white; font-size: 30px">Past Posts</legend>
-			<table style="width:100%; color:white; border: 1px solid white;">
-	
-			<?php include("../../config/connection.php");
+	?>
 
-$query = "SELECT * FROM content WHERE Content_ID='8'";
-$query_run = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($query_run)) {
 
-?>
-	<tr><input type="text" name="Content_ID" value="<?php echo $row['Content_ID'] ?>" /></tr>
-	<tr><input type="text" name="Heading" value="<?php echo $row['Heading'] ?>" /></tr>
-	<tr><input type="text" name="Content" value="<?php echo $row['Content'] ?>" /></tr>
-			
-<?php
-}
-?>
-				
-					<!--<td align="left">
-					<?php
-					/*include("../../config/connection.php");
 
-					$next = mysqli_query($mysqli, "SELECT * FROM content WHERE Content_ID>$Content_ID order by Content_ID ASC");
-					if($row = mysqli_fetch_array($next))
-					{
-					  echo '<a href="AdminManageContent.php"?Content_ID='.$row['Content_ID'].'"><button class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>';
-					} 
-					
-					?>
-						<!--<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>-->
-						<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&raquo;</a>
-					</td>*/
-					?>-->
 
-					<form action="ContentManage.php" method="POST">
-					<td align="right">
-					<input type="submit" class="button" name="update" value="UPDATE">
-						</td>
 
-						<form action="ContentManage.php" method="POST">
-					<td align="right">
-					<input type="submit" class="button" name="delete" value="DELETE POST">
-						
-						</td>
-						
-		
-					</td>
-				</tr>
-			</table>
-		</fieldset>
-	</form>
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";

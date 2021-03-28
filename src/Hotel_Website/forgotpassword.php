@@ -16,7 +16,6 @@ if (isset($_POST["resendEmail"])) {
     if (mysqli_num_rows($result) == 1) {
         while ($row = mysqli_fetch_assoc($result)) {
             if ($row['User_Type'] == 'Customer') {
-                echo '<script>alert("found")</script>';
                 $customercode = uniqid(true);
                 $query = "INSERT into reset_password_customer (code,email) VALUES ('$customercode','$emailaddress')";
                 mysqli_query($con, $query);

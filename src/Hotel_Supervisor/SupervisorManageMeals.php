@@ -1,5 +1,7 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
+include('../../public/includes/id-generator.php');
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -82,10 +84,6 @@ checkSession();
 
 			<table align="center" style="color:white; font-size: 20px; width:88%; ">
 				<tr>
-					<td>Meal ID:</td>
-					<td align="center"><input type="text" name="mealid" placeholder="Ex:M001" size="20" required></td>
-				</tr>
-				<tr>
 					<td>Meal Name:</td>
 					<td align="center"><input type="text" name="mealname" size="20" required></td>
 				</tr>
@@ -124,10 +122,10 @@ checkSession();
 
 	
  <!-- Insert New Meal -->
-<?php include("../../config/connection.php");
+<?php 
 if(isset($_POST['insert'])){
 
-    $mealid=$_POST['mealid'];  
+    $mealid=getID("meals", "M");  
     $mealname=$_POST['mealname'];
     $price=$_POST['price'];
     $mealimage = addslashes(file_get_contents($_FILES["mealimage"]["tmp_name"]));
@@ -164,7 +162,7 @@ if(isset($_POST['insert'])){
 
 	<!-- SEARCH -->
 	<?php
-	include("../../config/connection.php");
+	
 	if (isset($_POST['search'])) {
 		$Meals_ID = $_POST['Meals_ID'];
 
@@ -179,7 +177,7 @@ if(isset($_POST['insert'])){
 						<table style="color:white; font-size: 20px; width:95%;">
 							<tr style="border: 1px solid white;">
 								<td>Meal ID:</td>
-								<td><input type="text" name="mealid" value="<?php echo $row['Meals_ID'] ?>" /></td>
+								<td><input type="text" name="mealid" value="<?php echo $row['Meals_ID'] ?>" readonly /></td>
 							</tr>
 							<tr>
 								<td>Meal Name:</td>
@@ -273,7 +271,7 @@ if(isset($_POST['insert'])){
 		</tr>
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$query = "SELECT * FROM meals";
 					$query_run = mysqli_query($con,$query);
@@ -311,9 +309,8 @@ if(isset($_POST['insert'])){
 
 
 <!-- Update -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['update'])) {
-	$mealid = $_POST['mealid'];
 	$mealname = $_POST['mealname'];
 	$price = $_POST['price'];
 	$mealtype = $_POST['mealtype'];
@@ -321,7 +318,7 @@ if (isset($_POST['update'])) {
 
 	if($mealimage=="")
 	{
-		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Type='$mealtype' where Meals_ID='$_POST[mealid]'";
+		$query = "UPDATE meals SET Meals_Name='$mealname',Price='$price',Meal_Type='$mealtype' where Meals_ID='$_POST[mealid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
@@ -334,7 +331,7 @@ if (isset($_POST['update'])) {
 		}
 	}
 	else{
-		$query = "UPDATE meals SET Meals_ID='$mealid',Meals_Name='$mealname',Price='$price',Meal_Type='$mealtype',Meal_Image='$mealimage' where Meals_ID='$_POST[mealid]'";
+		$query = "UPDATE meals SET Meals_Name='$mealname',Price='$price',Meal_Type='$mealtype',Meal_Image='$mealimage' where Meals_ID='$_POST[mealid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
@@ -352,7 +349,7 @@ if (isset($_POST['update'])) {
 
 
 <!-- Delete -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['delete'])) {
 	$mealname = $_POST['mealname'];
 	$price = $_POST['price'];

@@ -1,10 +1,9 @@
 <?php include('../../config/connection.php');
 
 //entering the event details
-if (isset($_POST['event-details'])) {
+if (isset($_POST['update-event-details'])) {
+    $existingEventID = $_POST['events_id'];
     $additionalFeatures = $_POST['additional'];
-    $customerName = $_POST['customer-name'];
-    $customerEmail = $_POST['customer-email'];
     $noOfGuests = $_POST['number-of-guests'];
     $eventType = $_POST['Reservation-type-events'];
     $eventDate = $_POST['events-reservation-date'];
@@ -23,23 +22,19 @@ if (isset($_POST['event-details'])) {
     }
 
     //to check whether the existing bookings are already there
-    $getBookingsOnDay = mysqli_query($con, " SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ORDER BY Starting_Time ASC ");
+    $getBookingsOnDay = mysqli_query($con, " SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ");
     if (mysqli_num_rows($getBookingsOnDay) > 0) {
         while ($rowAvailability = mysqli_fetch_assoc($getBookingsOnDay)) {
-            $startDBTime = date("H", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
-            $startInputTime = date("H", strtotime($startingTime));
-            $endDBTime = date("H", strtotime($rowAvailability['Ending_Time']));
-            $endInputTime = date("H", strtotime($endingTime));
+            $startDBTime = date("H:i:s", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
+            $startInputTime = date("H:i:s", strtotime($startingTime));
+            $endDBTime = date("H:i:s", strtotime($rowAvailability['Ending_Time']));
+            $endInputTime = date("H:i:s", strtotime($endingTime));
             if (($startInputTime == $startDBTime) || ($endInputTime == $endDBTime) || ($startInputTime == $endDBTime) || ($endDBTime == $startInputTime)) {
                 echo '<script>alert("The timeslot and the date which you have selected is being already take 1")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($startInputTime > $startDBTime && $startInputTime < $endDBTime) {
                 echo '<script>alert("The timeslot and the date which you have selected is being already take 2")
-                            window.location.href="events-booking-form.php"
-                        </script>';
-            } else if ($startDBTime > $startInputTime && $endInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take 3")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($startInputTime > $startDBTime && $endInputTime < $endDBTime) {
@@ -67,17 +62,14 @@ if (isset($_POST['event-details'])) {
                 $locationTotalPrice += $featurePrice;
                 $mealPackageID = 0; //inital meal packageID, since its not selected
                 $serializedAdditionalFeatures = serialize($additionalFeatures);
-                echo $serializedAdditionalFeatures;
-                $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "')";
-                mysqli_query($con, $insertEvent);
-                $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
-                if ($resultID = mysqli_query($con, $selectEventID)) {
-                    while ($rowEvent = mysqli_fetch_assoc($resultID)) {
-                        $eventID = $rowEvent["Events_ID"];
-                        header('location:meal-selection.php?events_id=' . $eventID . '');
-                    }
+                // echo $serializedAdditionalFeatures;
+                // $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "";
+                $updateEvent = "UPDATE events_booking SET Num_Guests='$noOFGuests',Event_Type='$eventType',Reservation_Date='$eventDate',Starting_Time='$startingTime',Ending_Time='$endingTime',Selected_Features='$serializedAdditionalFeatures',Location_Price='$locationPrice' WHERE Events_ID='" . $existingEventID . "'";
+                $updateEventQuery = mysqli_query($con, $updateEvent);
+                if ($updateEventQuery) {
+                    header('location:update-meal-selection.php?events_id=' . $existingEventID . '');
                 } else {
-                    header('location:./HomePage-login.php');
+                    header('location:./HomePage-login.php?id=' . $existingEventID . '');
                 }
             }
         }
@@ -120,7 +112,7 @@ if (isset($_POST['event-details'])) {
 if (isset($_POST['Select_Meal'])) {
     $packageID = $_POST['packageID'];
     $eventsID = $_POST['eventsID'];
-    $priceSql = "SELECT * from events_booking_temp WHERE Events_ID='$eventsID' ";
+    $priceSql = "SELECT * from events_booking WHERE Events_ID='$eventsID' ";
     $packagePriceSql = "SELECT price from events_meals_packages WHERE Package_ID='$packageID'";
     $evtExc = mysqli_query($con, $priceSql);
     $priceExc = mysqli_query($con, $packagePriceSql);
@@ -131,12 +123,12 @@ if (isset($_POST['Select_Meal'])) {
         $totalPrice = $row["Location_Price"] + $row["Feature_Price"];
     }
     while ($row = mysqli_fetch_assoc($priceExc)) {
-        $totalPrice += $row["price"] * $noOFGuests;
+        $mealPrice = $row["price"] * $noOFGuests;
     }
-    $updateTotalPrice = "UPDATE events_booking_temp SET MealPackage_ID='" . $packageID . "',Price='$totalPrice' WHERE Events_ID='$eventsID' ";
+    $updateTotalPrice = "UPDATE events_booking SET MealPackage_ID='" . $packageID . "',Meal_Price='$mealPrice' WHERE Events_ID='$eventsID' ";
     if (mysqli_query($con, $updateTotalPrice)) {
         echo '<script>console.log(' . $packageID . ')</script>';
-        header('location:meal-selection.php?events_id=' . $eventsID . '');
+        header('location:update-meal-selection.php?events_id=' . $eventsID . '');
     } else {
         echo "Not updated";
     }

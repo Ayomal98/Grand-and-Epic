@@ -1,5 +1,7 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
+include('../../public/includes/id-generator.php');
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -83,10 +85,6 @@ checkSession();
 				<table style = "color:white; font-size:20px; width:100%;">
 
 					<tr>
-						<td>Meal Package ID:</td>
-						<td><input type="text" name="mealpackid" size="20" required></td>
-					</tr>
-					<tr>
                         <td>Meal Package Name: </td>
                         <td><input type="text" name="mealpackname" size="20"></td>
                     </tr>
@@ -135,10 +133,10 @@ checkSession();
 
 
  <!-- Insert New Meal Package -->
- <?php include("../../config/connection.php");
+ <?php 
 if(isset($_POST['insert'])){
 
-    $mealpackid=$_POST['mealpackid'];  
+    $mealpackid=getID("events_meals_packages", "MP");  
     $mealpackname=$_POST['mealpackname'];
 	$meal1=$_POST['meal1'];
     $meal1image = addslashes(file_get_contents($_FILES["meal1image"]["tmp_name"]));
@@ -182,7 +180,7 @@ if(isset($_POST['insert'])){
 
 	<!-- SEARCH -->
 	<?php
-	include("../../config/connection.php");
+	
 	if (isset($_POST['search'])) {
 		$Package_ID = $_POST['Package_ID'];
 
@@ -198,7 +196,7 @@ if(isset($_POST['insert'])){
 					<table style="color:white; font-size: 20px; width:94%;">
 						<tr>
 							<td>Meal Package ID:</td>
-							<td><input type="text" name="mealpackid" value="<?php echo $row['Package_ID'] ?>" /></td>
+							<td><input type="text" name="mealpackid" value="<?php echo $row['Package_ID'] ?>" readonly/></td>
 						</tr>
 						<tr>
 							<td>Meal Package Name: </td>
@@ -268,8 +266,8 @@ if(isset($_POST['insert'])){
 ?>
 
 	<!-- View Table-->
-	<div>
-	<table style="position:absolute; left:50px; top:900px; border: 1px solid white; color:white; width:92%">
+	<div class="overflowtable1">
+	<table style="color:white; width:100%">
 		<tr>
 			<th colspan="13"><h2>Meal Package Details</h2></th>
 		</tr>
@@ -290,7 +288,7 @@ if(isset($_POST['insert'])){
 		</tr>
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$query = "SELECT * FROM events_meals_packages";
 					$query_run = mysqli_query($con,$query);
@@ -334,10 +332,9 @@ if(isset($_POST['insert'])){
 
 
 <!-- Update -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['update'])) {
-	
-	$mealpackid=$_POST['mealpackid'];  
+	 
     $mealpackname=$_POST['mealpackname'];
 	$meal1=$_POST['meal1'];
     $meal1image = addslashes(file_get_contents($_FILES["meal1image"]["tmp_name"]));
@@ -353,7 +350,7 @@ if (isset($_POST['update'])) {
 
 	if($meal1image=="" && $meal2image=="" && $meal3image=="" && $meal4image=="" && $meal5image=="")
 	{
-		$query = "UPDATE events_meals_packages SET Package_ID='$mealpackid',Package_Name='$mealpackname', Meal1='$meal1', Meal2='$meal2', Meal3='$meal3', Meal4='$meal4', Meal5='$meal5', Price='$price' where Package_ID='$_POST[mealpackid]'";
+		$query = "UPDATE events_meals_packages SET Package_Name='$mealpackname', Meal1='$meal1', Meal2='$meal2', Meal3='$meal3', Meal4='$meal4', Meal5='$meal5', Price='$price' where Package_ID='$_POST[mealpackid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {
@@ -366,7 +363,7 @@ if (isset($_POST['update'])) {
 		}
 	}
 	else{
-		$query = "UPDATE events_meals_packages SET Package_ID='$mealpackid',Package_Name='$mealpackname', Meal1='$meal1', Meal1_Image='$meal1image', Meal2='$meal2', Meal2_Image='$meal2image', Meal3='$meal3', Meal3_Image='$meal3image', Meal4='$meal4', Meal4_Image='$meal4image', Meal5='$meal5', Meal5_Image='$meal5image', Price='$price' where Package_ID='$_POST[mealpackid]'";
+		$query = "UPDATE events_meals_packages SET Package_Name='$mealpackname', Meal1='$meal1', Meal1_Image='$meal1image', Meal2='$meal2', Meal2_Image='$meal2image', Meal3='$meal3', Meal3_Image='$meal3image', Meal4='$meal4', Meal4_Image='$meal4image', Meal5='$meal5', Meal5_Image='$meal5image', Price='$price' where Package_ID='$_POST[mealpackid]'";
 		$query_run = mysqli_query($con, $query);
 
 		if ($query_run) {

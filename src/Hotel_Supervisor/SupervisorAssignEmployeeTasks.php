@@ -1,5 +1,6 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -124,7 +125,7 @@ checkSession();
 
 	
  <!-- Assign New Task -->
- <?php include("../../config/connection.php");
+ <?php 
 if(isset($_POST['insert'])){
 
     $employeeid=$_POST['employeeid'];  
@@ -162,7 +163,7 @@ if(isset($_POST['insert'])){
 
 <!-- SEARCH -->
 <?php
-	include("../../config/connection.php");
+	
 	if (isset($_POST['search'])) {
 		$Employee_ID = $_POST['Employee_ID'];
 
@@ -258,7 +259,8 @@ if(isset($_POST['insert'])){
 	<div class="dbtablescroll">
 	<table border="1px solid white" style="color:white; width:100%; top:400px;">
 		<tr>
-			<th colspan="6"><h2>Assigned Task Details</h2></th>
+            <th><img src="../../public/images/roomService.png" height="70px"></th>
+			<th colspan="5"><h2>Assigned Task Details</h2></th>
 		</tr>
 		<tr>
 			<th>Employee ID:</th>
@@ -270,7 +272,7 @@ if(isset($_POST['insert'])){
 		</tr>
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$view_query = "SELECT * FROM employee_tasks";
 					$view_query_run = mysqli_query($con,$view_query);
@@ -293,448 +295,169 @@ if(isset($_POST['insert'])){
 	</table>
 	</div>
 
-
-
 	<!-- View Leave Requests of Employees -->
+    <form>
+    <fieldset style="font-size: 20px; position:absolute; top:1400px; width: 45%; right:0%">
+    <legend style = "color:white;">View Leave Requests</legend>
+	<table border="1px solid white" style="color:white; width:100%">
+		<tr>
+			<th>Employee ID:</th>
+			<th>Leave Start Date:</th>
+			<th>Leave End Date:</th>
+			<th>Reason for the leave:</th>
+			<th>Accepted/Not Accepted:</th>
+		</tr>
 
-		<form>
-		<fieldset style="font-size: 20px; position:absolute; top:1400px; width: 48%; left:0%">
-		<legend style = "color:white;">View Leave Requests</legend>
-			<table border="1px solid white" style="width:100%" >
-				<tr>
-					<td align ="center">
-						<img src = "../../public/images/BIgCal.png" height = "200px" >
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<table border="1px solid white" style ="width:100%;">
-							<tr>
-								<th>
-									<p style = "font-family :Lato; font-size:20px; color :white;">Employee ID</p>		
-								</th>
-								<th>
-									<p style = "font-family :Lato; font-size:20px; color :white;">Leave Start Date</p>		
-								</th>
-								<th>
-									<p style = "font-family :Lato; font-size:20px; color :white;">Leave End Date</p>		
-								</th>
-								<th>
-									<p style = "font-family :Lato; font-size:20px; color :white;">Section</p>		
-								</th>
-								<th>
-									<p style = "font-family :Lato; font-size:20px; color :white;">Leave request Accepted/Not Accepted</p>		
-								</th>
-							</tr>
-							<tr>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">E53</p>
-								</td> 
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">05/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">05/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Room Service</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Accepted</p>  
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">E02</p>
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">10/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">17/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Dine-in</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Not Accepted</p>  
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">E23</p>
-								</td> 
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">27/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">30/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Room Service</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Not Accepted</p>  
-								</td>
-							</tr>
-							<tr>
-							    <td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">E12</p>
-								</td> 
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">15/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">16/05/2020</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Room Service</p>  
-								</td>
-								<td>
-									<p style = "font-family :Lato; font-size:15px; color :white;">Accepted</p>  
-								</td>
-							</tr>
-							<tr>
-								<td></td>   
-								<td></td> 
-								<td></td> 
-								<td></td>
-								<td align= "right">
-									<p style = "font-family :Lato; font-size:15px; color :rgb(240, 16, 16); cursor: pointer;"><u>Show more rows</u></p>
-								</td>
-							</tr>
-						</table>
-		</fieldset>
-		</form>
+			<?php
+					$query = "SELECT * FROM leave_request WHERE Employee_ID LIKE '%E%' ORDER BY Start_Date ASC";
+					$query_run = mysqli_query($con,$query);
+
+					while($row = mysqli_fetch_array($query_run))
+					{
+                        $showStatus = $row["Status"];
+
+					    if ($showStatus == 0) {
+						    $showStatus = 'Not Accepted';
+					    } else {
+						    $showStatus = 'Accepted';
+					    }
+			?>
+						<tr>
+							<td><?php echo $row['Employee_ID'] ?></td>
+							<td><?php echo $row['Start_Date'] ?></td>
+							<td><?php echo $row['End_Date'] ?></td>
+							<td><?php echo $row['Reason'] ?></td>
+							<td><?php echo $showStatus ?></td>
+						</tr>
+				<?php
+					}
+				?>
+
+	</table>
+    </fieldset>
+    </form>
 	
+	
+
 <!-- View Booking Details -->
-<form>
-<fieldset style="font-size: 20px; position:absolute; top:-20px; width: 88%; left:105%">
-	<legend style = "color:white;">View Booking Details</legend>
-    <table border="1px solid white" style="width:100%" >
-    <tr>
-        <th>
-			<p style = "font-family :Lato; font-size:20px; color :white;">For Staying-in</p>		
-        </th>
-    </tr>
-    <tr>
-        <td align ="center">
-            <img src ="../../public/images/BIgCal.png" height = "200px" >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <table border="1px solid white" style ="width:100%;">
-                <tr>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Room No</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Room Type</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">isBooked</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">isStayingFullDay</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Time Checked-in</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Time Checked-out</p>		
-                    </th>
-                    </tr>
-                    <tr>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">S123</p>
-                       </td> 
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">Superior</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">16.30 PM</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">Null</p>  
-                       </td>
-                    </tr>
-                    <tr>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">P123</p>
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">Panoramic</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">10.00 AM</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">Null</p>  
-                       </td>
-                    </tr>
-                    <tr>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">Su123</p>
-                       </td> 
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">Suite</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">8.00 AM</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">8.00 PM</p>  
-                       </td>
-                    </tr>
-                    <tr>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">P124</p>
-                        </td> 
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Panoramic</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">0</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">0</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Null</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Null</p>  
-                        </td>
-                     </tr>
-                     <tr>
-                    <td></td>   
-                    <td></td> 
-                    <td></td> 
-                    <td></td>
-                    <td></td>  
-                    <td align= "right">
-                        <p style = "font-family :Lato; font-size:15px; color :rgb(240, 16, 16); cursor: pointer;"><u>Show more rows</u></p>
-                    </td>
-                     </tr>
-            </table>
-        </td>
-    </tr>
-	</table>
-    <table border="1px solid white" style ="width:100%;" >
-    <tr>
-        <th>
-			<p style = "font-family :Lato; font-size:20px; color :white;">For Dine-in</p>		
-        </th>
-    </tr>
-    <tr>
-        <td align ="center">
-            <img src ="../../public/images/BIgCal.png" height = "200px" >
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <table border="1px solid white" style ="width:100%;">
-                <tr>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Table No</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Meal Preference</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">isBooked</p>		
-                    </th>
-                    <th>
-                        <p style = "font-family :Lato; font-size:20px; color :white;">Time Period</p>		
-                    </th>
-                    </tr>
-                    <tr>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">T12</p>
-                       </td> 
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">Dine-in Area</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                       </td>
-                       <td>
-                        <p style = "font-family :Lato; font-size:15px; color :white;">12.30 PM - 16.30 PM </p>  
-                       </td>
-                    </tr>
-                    <tr>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">T10</p>
-                        </td> 
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">Events</p>  
-                        </td>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                        </td>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">18.30 PM - 21.30 PM </p>  
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">T02</p>
-                        </td> 
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">Breakfast</p>  
-                        </td>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                        </td>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">9.00 AM - 10.00 AM </p>  
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">T11</p>
-                        </td> 
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">Dine-in Area</p>  
-                        </td>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">0</p>  
-                        </td>
-                        <td>
-                         <p style = "font-family :Lato; font-size:15px; color :white;">12.30 PM - 16.30 PM </p>  
-                        </td>
-                     </tr>
-                     <tr>
-                    <td></td>   
-                    <td></td> 
-                    <td></td>  
-                    <td align= "right">
-                        <p style = "font-family :Lato; font-size:15px; color :rgb(240, 16, 16); cursor: pointer;"><u>Show more rows</u></p>
-                    </td>
-                     </tr>
-            </table>
-        </td>
-    </tr>
-	</table>
+
+    <!-- View Stayingin Booking Details -->
+    <div class="staytable">
+        <table border="1px solid white" style="color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="4"><h2>View Staying Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>CheckIn Date:</th>
+                <th>CheckOut Date:</th>
+                <th>Room No:</th>
+                <th>Room Type:</th>
+                <th>Reservation Type:</th>
+            </tr>
+
+            <?php
+                $query = "SELECT * FROM stayingin_booking ORDER BY CheckIn_Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['CheckIn_Date'] ?></td>
+                <td><?php echo $row['CheckOut_Date'] ?></td>
+                <td><?php echo $row['Room_Numbers'] ?></td>
+                <td><?php echo $row['Room_Type'] ?></td>
+                <td><?php echo $row['Reservation_Type']?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
+
+
+
+    <!-- View Dinein Booking Details -->
+    <div class="dinetable">
+        <table border="1px solid white" style="color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="3"><h2>View Dine-in Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>Date:</th>
+                <th>Table No:</th>
+                <th>Meal Period:</th>
+                <th>Number of Guests:</th>
+            </tr>
+
+            <?php
+                $query = "SELECT * FROM dinein_booking ORDER BY Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['Date'] ?></td>
+                <td><?php echo $row['Table_No'] ?></td>
+                <td><?php echo $row['Meal_Period'] ?></td>
+                <td><?php echo $row['Num_Guests'] ?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
+
+
+
+    <!-- View Events Booking Details -->
+    <div class="eventtable">
+        <table border="1px solid white" style="color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="4"><h2>View Events Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>Reservation Date:</th>
+                <th>Starting Time:</th>
+                <th>Ending Time:</th>
+                <th>Event Type:</th>
+                <th>Meal Preference:</th>
+            </tr>
+
+            <?php
+                $query = "SELECT * FROM events_booking ORDER BY Reservation_Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['Reservation_Date'] ?></td>
+                <td><?php echo $row['Starting_Time'] ?></td>
+                <td><?php echo $row['Ending_Time'] ?></td>
+                <td><?php echo $row['Event_Type'] ?></td>
+                <td><?php echo $row['MealPackage_ID']?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
 	
-	<table border="1px solid white" style ="width:100%;" >
-    <tr>
-        <th>
-			<p style = "font-family :Lato; font-size:20px; color :white;">For Events</p>		
-        </th>
-    </tr>
-    <tr>
-        <td align ="center">
-            <img src ="../../public/images/BIgCal.png" height = "200px" >
-        </td>
-    </tr>
-    <tr>
-        <td>
-	         <table border="1px solid white" style ="width:100%;">
-                    <tr>
-                        <th>
-                            <p style = "font-family :Lato; font-size:20px; color :white;">Location</p>		
-                        </th>
-                        <th>
-                            <p style = "font-family :Lato; font-size:20px; color :white;">Meal Schedule</p>		
-                        </th>
-                        <th>
-                            <p style = "font-family :Lato; font-size:20px; color :white;">isBooked</p>		
-                        </th>
-                        <th>
-                            <p style = "font-family :Lato; font-size:20px; color :white;">Time Period</p>		
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Pool Area</p>
-                        </td> 
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Full Day</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">9.00 AM - 10.00 PM</p>  
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Banquet Hall</p>
-                        </td> 
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Half Day</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">11.00 AM - 18.30PM </p>  
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Garden</p>
-                        </td> 
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Half Day</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">1</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">9.00 AM - 1 PM </p>  
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">T11</p>
-                        </td> 
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Dine-in Area</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">0</p>  
-                        </td>
-                        <td>
-                            <p style = "font-family :Lato; font-size:15px; color :white;">Null </p>  
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>   
-                        <td></td> 
-                        <td></td>  
-                        <td align= "right">
-                            <p style = "font-family :Lato; font-size:15px; color :rgb(240, 16, 16);cursor:pointer;"><u>Show more rows</u></p>
-                        </td>
-                    </tr>
-            </table>
-		</td>
-	</tr>
-	</table>
-</fieldset>
-</form>
-    
+
     <script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
@@ -751,7 +474,7 @@ if(isset($_POST['insert'])){
 
 
 <!-- Update -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['update'])) {
 	
     $employeeid=$_POST['employeeid'];  
@@ -778,7 +501,7 @@ if (isset($_POST['update'])) {
 
 
 <!-- Delete -->
-<?php include("../../config/connection.php");
+<?php 
 if (isset($_POST['delete'])) {
 	
     $employeeid=$_POST['employeeid'];  
@@ -801,4 +524,3 @@ if (isset($_POST['delete'])) {
 	}
 }
 ?>
-	

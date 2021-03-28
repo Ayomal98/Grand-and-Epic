@@ -7,6 +7,8 @@ if (!isset($_SESSION['First_Name'])) {
 ?>
 
 
+
+
 <html>
 
 <head>
@@ -73,46 +75,57 @@ if (!isset($_SESSION['First_Name'])) {
 	</script>
 
 
-	<form>
-		<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
-			<legend style="color:white; font-size: 20px">Duty Roaster</legend>
 
-			<table style="color:white; font-size: 20px; width:88%;">
+<form action="" method="POST">
+		<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
+			<table align="center" style="color:white; font-size: 20px; width:88%;">
+
+			<?php
+				include("../../config/connection.php");
+
+					$query = "SELECT * FROM employee_tasks where Employee_ID='$_SESSION[Employee_ID]' ; ";
+					$query_run = mysqli_query($con,$query);
+
+					while($row = mysqli_fetch_array($query_run))
+					{
+			?>
 				<tr>
-					<td align="left">Assigned Section:</td>
-					<td align="center"><input type="text" name="section" size="20" value="Room Service"></td>
+					<td align="center" colspan="2"><h1>DUTY ROASTER</h1></td>
 				</tr>
 				<tr>
-					<td align="left">Assigned Date:</td>
-					<td align="center"><input type="text" name="date" size="50" value="05/22/2020"></td>
+					<td>Assigned Date:</td>
+					<td><?php echo $row['Assigned_Date'] ?></td>
 				</tr>
 				<tr>
-					<td align="left">Allocated Room Numbers:</td>
-					<td align="center"><input type="text" name="rnmbr" size="50" value="S22 / S23"></td>
+					<td>Assigned Section:</td>
+					<td><?php echo $row['Assigned_Section'] ?></td>
 				</tr>
 				<tr>
-					<td align="left">Allocated Table Numbers:</td>
-					<td align="center"><input type="text" name="rnmbr" size="50" value="-"></td>
+					<td>Room Numbers:</td>
+					<td><?php echo $row['Allo_Room_Numbers'] ?></td>
 				</tr>
 				<tr>
-					<td align="left">Allocated Locations:</td>
-					<td align="center"><input type="text" name="rnmbr" size="50" value="-"></td>
+					<td>Table Numbers:</td>
+					<td><?php echo $row['Allo_Table_Numbers'] ?></td>
 				</tr>
 				<tr>
-					<td align="left">Availability:</td>
-					<td align="left">
-						<input checked="checked" type="radio" name="availablity" value="notavailable" style="margin-left:80px;">Not Available
-						<input type="radio" name="availablity" value="available" style="margin-left:80px;">Available
-					</td>
+					<td>Locations: </td>
+					<td><?php echo $row['Allo_Locations'] ?></td>
 				</tr>
+				
+			<?php
+				}
+			?>
+
 			</table>
+		</form>
 
 			<br>
 			<table style="color:white; font-size: 20px; width:81%;">
 				<tr>
 					<td align="right">
-						<input type="button" class="button" value="CANCEL">
-						<input type="button" class="button" value="UPDATE">
+						<input type="button" class="button" value="BACK TO DASHBOARD" onclick="window.location.href='EmployeeDashboard.php'" >
+
 					</td>
 
 				</tr>
@@ -121,6 +134,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 		</fieldset>
 	</form>
+	
 
 	<script>
 		function funcUserDetails() {
@@ -131,6 +145,22 @@ if (!isset($_SESSION['First_Name'])) {
 			document.getElementById('user-detail-container').style.display = "none";
 		}
 	</script>
+	<script>
+	//--    for setting the current day as the minimum date for the time being --
+	var today = new Date();
+	var dd = today.getDate() + 1;
+	var mm = today.getMonth() + 1;
+	var yy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd;
+	}
+	if (mm < 10) {
+		mm = '0' + mm;
+	}
+	today = yy + '-' + mm + '-' + dd;
+	document.getElementById("datefield").setAttribute("min", today);
+	document.getElementById("endfield").setAttribute("min", today);
+</script>
 
 </body>
 

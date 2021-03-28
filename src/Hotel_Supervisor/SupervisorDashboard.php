@@ -1,5 +1,6 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -149,9 +150,6 @@ checkSession();
 						<td align="center">
 							<img src="../../public/images/mpack1.png" height="70px">
 						</td>
-						<td rowspan="3" align="center">
-							<img src="../../public/images/mpack.png" height="70px">
-						</td>
 					</tr>
 					<tr>
 						<td align="center">
@@ -174,24 +172,15 @@ checkSession();
 						<td align="center">
 							<img src="../../public/images/roomService.png" height="80px">
 						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">15</p>
-						</td>
 					</tr>
 					<tr>
 						<td align="center">
 							<img src="../../public/images/cutlery.png" height="80px">
 						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">18</p>
-						</td>
 					</tr>
 					<tr>
 						<td align="center">
 							<img src="../../public/images/tie.png" height="80px">
-						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">2</p>
 						</td>
 					</tr>
 				</table>
@@ -201,10 +190,7 @@ checkSession();
 				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/leave.png" height="70px">
-						</td>
-						<td align="center">
-							<img src="../../public/images/leaveBig.png" height="80px">
+							<img src="../../public/images/BigCal.png" height="160px">
 						</td>
 					</tr>
 				</table>
@@ -220,7 +206,7 @@ checkSession();
 			<table align="center" style="color:white; font-size: 20px; width:88%;">
 
 			<?php
-				include("../../config/connection.php");
+				
 
 					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
 					$query_run = mysqli_query($con,$query);

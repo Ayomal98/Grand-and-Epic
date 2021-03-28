@@ -1,5 +1,7 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
+include('../../public/includes/id-generator.php');
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -71,54 +73,140 @@ checkSession();
 	}
 	</script>
 	
-	
-	<form>
-	<fieldset style = " position:absolute; top:280px; width: 75%; left:160px">
-		<legend style = "color:white; font-size: 20px">Request a Leave</legend>
-		
-		<table style = "color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;" >
-			<tr>
-				<td align="left">Supervisor ID:</td>
-				<td align="left"><input type="text" name="id" size="20"></td>
-			</tr>
-			<tr>
-				<td align="left">Leave Start Date:</td>
-				<td align="left"><input type="date" name="startdate" size="20"></td>
-			</tr>
-			<tr>
-				<td align="left">Leave End Date:</td>
-				<td align="left"><input type="date" name="enddate" size="20"></td>
-			</tr>
-			<tr>
-				<td align="left">Reason for the leave:</td>
-				<td align="left"><textarea name="Message" rows="5" cols="53" placeholder="Leave your reason here:"></textarea></td>
-			</tr>
-		</table>
-		
-		<br>
-		<table style = "color:white; font-size: 20px; width:81%;">
-			<tr>
-				<td align="right">
-					<input type="button" class="button" value="CANCEL">
-					<input type="button" class="button" value="SUBMIT">
-				</td>
-				
-			</tr>
-		</table>
-		
-		
-	</fieldset>
-	</form>
-    
-    <script>
-		function funcUserDetails() {
-			document.getElementById('user-detail-container').style.display = "block";
-		}
 
-		function funcCloseUserDetails() {
-			document.getElementById('user-detail-container').style.display = "none";
-		}
-	</script>
-	
-	</body>
+
+	<form method="post" action="">
+		<fieldset style=" position:absolute; top:280px; width: 75%; left:160px">
+			<legend style="color:white; font-size: 20px">Request a Leave</legend>
+
+			<table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
+				<tr>
+					<td>Supervisor ID:</td>
+					<td><input type="text" name="id" size="20" value=<?php echo $_SESSION["Employee_ID"]; ?>></td>
+				</tr>
+				<tr>
+					<td>Leave Start Date:</td>
+					<td><input type="date" name="startdate" id="datefield" size="20"></td>
+				</tr>
+				<tr>
+					<td>Leave End Date:</td>
+					<td><input type="date" name="enddate" id="endfield" size="20"></td>
+				</tr>
+				<tr>
+					<td>Section:</td>
+					<td><input type="text" name="section" size="50"></td>
+				</tr>
+				<tr>
+					<td>Reason for the leave:</td>
+					<td><textarea name="Message" rows="5" cols="53" placeholder="Leave your reason here:"></textarea></td>
+				</tr>
+			</table>
+
+			<br>
+			<table style="color:white; font-size: 20px; width:81%;">
+				<tr>
+					<td align="right">
+						<input type="reset" class="button" value="CANCEL">
+						<input type="submit" class="button" name="Submit" value="SUBMIT">
+					</td>
+
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+
+
+	<h1 style="text-align:center; color:white; margin-top:300px"><u><b>Leave Request Info</b></u></h1>
+	<table border="3px solid white" style="color:white; border-collapse:collapse; margin-top:20px; margin-left:450px">
+		<thead>
+			<tr>
+				<th style="padding:15px">Start Date</th>
+				<th style="padding:15px">End Date</th>
+				<th style="padding:8px">Reason</th>
+				<th style="padding:8px">Status</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<?php
+			$employeeID = $_SESSION['Employee_ID'];
+			$showLR = "SELECT * FROM leave_request WHERE Employee_ID='$employeeID' ";
+			$result = mysqli_query($con, $showLR);
+			if (mysqli_num_rows($result) > 0) {
+				while ($row = mysqli_fetch_assoc($result)) {
+					$startDate = $row["Start_Date"];
+					$endDate = $row["End_Date"];
+					$reason = $row["Reason"];
+					$showStatus = $row["Status"];
+					if ($showStatus == 0) {
+						$showStatus = 'Not Accepted';
+					} else {
+						$showStatus = 'Accepted';
+					}
+					echo 	'<tr>
+								<td style="padding:15px">' . $startDate . '</td>
+								<td style="padding:15px">' . $endDate . '</td>
+								<td style="padding:15px 25px">' . $reason . '</td>
+								<td style="padding:15px">' . $showStatus . '</td> 
+							</tr>';
+				}
+			} else {
+				echo '<h2>No Leave Request Have been taken </h2>';
+			}
+			?>
+		</tbody>
+	</table>
+
+
+</body>
+<script>
+	function funcUserDetails() {
+		document.getElementById('user-detail-container').style.display = "block";
+	}
+
+	function funcCloseUserDetails() {
+		document.getElementById('user-detail-container').style.display = "none";
+	}
+</script>
+
+<script>
+
+	//--  for setting the current day as the minimum date for the time being --
+	var today = new Date();
+	var dd = today.getDate() + 1;
+	var mm = today.getMonth() + 1;
+	var yy = today.getFullYear();
+	if (dd < 10) {
+		dd = '0' + dd;
+	}
+	if (mm < 10) {
+		mm = '0' + mm;
+	}
+	today = yy + '-' + mm + '-' + dd;
+	document.getElementById("datefield").setAttribute("min", today);
+	document.getElementById("endfield").setAttribute("min", today);
+</script>
+
+
 </html>
+
+<?php
+if (isset($_POST["Submit"])) {
+	$leaveRequestID = getID("leave_request", "L");
+	$employeeID = $_SESSION['Employee_ID'];
+	$startDate = mysqli_real_escape_string($con, $_POST['startdate']);
+	$endDate = mysqli_real_escape_string($con, $_POST['enddate']);
+	$section = mysqli_real_escape_string($con, $_POST['section']);
+	$reason = mysqli_real_escape_string($con, $_POST['Message']);
+
+	$status = 0;
+	$insertLR = "INSERT INTO leave_request(ID,Employee_ID,Start_Date,End_Date,Type_Employee,Reason,Status) VALUES ('" . $leaveRequestID . "','$employeeID','$startDate','$endDate','$section','$reason','$status')";
+	if (mysqli_query($con, $insertLR)) {
+		echo "<script>alert('Your Leave Request Has been sent')
+					  window.location.href='SupervisorLeaveRequest.php'
+			  </script>";
+	} else {
+		echo $leaveRequestID;
+	}
+}
+?>

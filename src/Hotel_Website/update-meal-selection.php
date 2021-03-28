@@ -50,6 +50,9 @@
 </style>
 
 <body>
+    <?php
+    $eventID = $_GET['events_id'];
+    ?>
     <div class="suite-form-header" style="height: 12vh;">
         <h3 style="color:black;font-size:35px">Event Details & Location Availability</h3>
         <div style="border-right:1px solid white;line-height:10px"></div>
@@ -94,7 +97,7 @@
                                 <div class="amount-events" style="margin-top:25px;margin-left:1200px"><span> Whole Plate For Rs.' . $row["price"] . '/=</span></div>
                                 <input type="submit" style="padding:13px;border-radius:5px;margin-left:600px;margin-bottom:15px;background-color:green;color:white;border:none" value="Select the Package" name="Select_Meal" id="addCart" onsubmit="handleSubmit()">
                                 <input type="hidden" value=' . $row["Package_ID"] . ' name="packageID">
-                                <input type="hidden" value=' . $_GET["events_id"] . ' name="eventsID">
+                                <input type="hidden" value=' . $eventID . ' name="eventsID">
                             </div>
                             </form>';
         }
@@ -104,7 +107,7 @@
         <div style="display:none;position:absolute;top:10px;background-color: black;opacity:0.95;width:100%;height:100%;justify-content:center;align-items:center;height:100vh" id="payments">
             <?php
             $eventID = $_GET["events_id"];
-            $getEventDetails = "SELECT * FROM events_booking_temp WHERE Events_ID='$eventID'";
+            $getEventDetails = "SELECT * FROM events_booking WHERE Events_ID='$eventID'";
             $excecuteEventDetails = mysqli_query($con, $getEventDetails);
             $getAdvancePercentage = mysqli_query($con, "SELECT Advance_Percentage FROM advance_amount_table WHERE Reservation_Type='Events'");
             $rowAdvance = mysqli_fetch_assoc($getAdvancePercentage);
@@ -120,7 +123,7 @@
                     }
                     $totalMealPrice = $mealPrice * $noGuests;
                     $locationPrice = $row["Location_Price"];
-                    $totalAmountBooking = $row["Location_Price"] + $totalMealPrice + $row["Feature_Price"];
+                    $totalAmountBooking = $row["Location_Price"] + $totalMealPrice;
                     $advancePrice = ($totalAmountBooking * $advancePercentageValue) / 100;
 
                     echo '
@@ -153,8 +156,6 @@
                     
                                     <h3 style="margin-left:20px;margin-top:30px">From ' . $row['Starting_Time'] . ' to ' . $row['Ending_Time'] . '</h4>
                                         <h4 style="position:absolute;top:25%;left:65%;">Rs.' . $locationPrice . ' /=</h4>
-                                        <h3 style="margin-left:20px;margin-top:10px">Additional Features</h3>
-                                        <h4 style="position: absolute;top:32%;left:65%;">Rs.' . $row['Feature_Price'] . ' /=</h4>
                                 </div>
                                 <div class="location-payment" style="margin-left:40px;margin-top:40px">
                                     <u>
