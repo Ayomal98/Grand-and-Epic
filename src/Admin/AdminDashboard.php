@@ -57,6 +57,12 @@ if (!isset($_SESSION['First_Name'])) {
 			<a href="AdminViewStats.php">
 				<font size="4 px">View Stats</font>
 			</a>
+			<a href="EditFeatures.php">
+				<font size="4 px">Edit Feature Prices</font>
+			</a>
+			<a href="AdminViewCustomerFeedback.php">
+				<font size="4 px">View Feedback</font>
+			</a>
 		</div>
 	</div>
 	<div class="top-right">
@@ -115,7 +121,16 @@ if (!isset($_SESSION['First_Name'])) {
 				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminManageContent.php">Manage Content on Website</a></p>
 			</th>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminAddPromotion.php">Add Promotions</a></p>
+				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminAddPromotion.php">Manage Promotions</a></p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px; color :white;"><a href="ViewStats.php">View Statistics</a></p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px; color :white;"><a href="EditFeatures.php">Update Feature Prices</a></p>
+			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminViewCustomerFeedback.php">View Customer Feedback</a></p>
 			</th>
 		</tr>
 		<tr>
@@ -179,9 +194,7 @@ if (!isset($_SESSION['First_Name'])) {
 						<td align="center">
 							<img src="../../public/images/webcontent.png" height="40%">
 						</td>
-						<td align="center">
-							<img src="../../public/images/BigWebcontent.png" height="30%">
-						</td>
+						
 					</tr>
 				</table>
 			</td>
@@ -198,22 +211,47 @@ if (!isset($_SESSION['First_Name'])) {
 					</tr>
 				</table>
 			</td>
-		</tr>
-
-	</table>
-
-	<table style="position:absolute; top:1100px; left:200px;">
-		<tr>
-			<th>
-				<p style="font-size:30px; color:white;">Booking Overview of the Year</p>
-			</th>
-		</tr>
-		<tr>
-			<td align="center">
-				<img src="../../public/images/graph.png" height="100%">
+			<td style="border: 1px solid white;">
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/discount.png" height="50%">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td style="border: 1px solid white;">
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/discount.png" height="50%">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td style="border: 1px solid white;">
+				<table width="100%">
+					<tr>
+						<td align="center">
+							<img src="../../public/images/discount.png" height="50%">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
+
 	</table>
+
+	
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
