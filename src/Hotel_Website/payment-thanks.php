@@ -58,7 +58,8 @@ if ($_GET['type'] == 'events') {
         $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Events_ID,Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount,Selected_Features,Location_Price,Meal_Price) VALUES('$eventID','$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount','$features','$location_Price','$mealPrice')");
         $insertToReservationTable = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,User_Email,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservationID','$reservationType','$paymentStatus','$eventID','$customer_Name','$customer_Email','$paidAmount','$amountToBePaid','$reservation_Date')");
         if ($paymentSuccessEvent) {
-            $html_evt = '<u><h1 style=\'text-align:center\'>Payment Details</h1></u>';
+            $html_evt = '<img src=\'../../public/images/Logo.png\' style=\'margin-left:600px;height:100px;margin-top:20px;margin-bottom:10px\'>';
+            $html_evt .= '<h1 style=\'text-align:center\'><u>Payment Details</u></h1>';
             $html_evt .= '<p>Dear ' . $customer_Name . ' ,</p>';
             $html_evt .= '<p>Thank you for trusting us on celebrate your special day & giving us the chance provide it even more beautiful.We are Looking Forward to having you.Given below are the brief payment details which you have made. </p>';
             $html_evt .= '<h2>Location Deatils</h2>';

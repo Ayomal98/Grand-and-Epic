@@ -23,13 +23,13 @@ if (isset($_POST['event-details'])) {
     }
 
     //to check whether the existing bookings are already there
-    $getBookingsOnDay = mysqli_query($con, " SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ");
+    $getBookingsOnDay = mysqli_query($con, " SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ORDER BY Starting_Time ASC ");
     if (mysqli_num_rows($getBookingsOnDay) > 0) {
         while ($rowAvailability = mysqli_fetch_assoc($getBookingsOnDay)) {
-            $startDBTime = date("H:i:s", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
-            $startInputTime = date("H:i:s", strtotime($startingTime));
-            $endDBTime = date("H:i:s", strtotime($rowAvailability['Ending_Time']));
-            $endInputTime = date("H:i:s", strtotime($endingTime));
+            $startDBTime = date("H", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
+            $startInputTime = date("H", strtotime($startingTime));
+            $endDBTime = date("H", strtotime($rowAvailability['Ending_Time']));
+            $endInputTime = date("H", strtotime($endingTime));
             if (($startInputTime == $startDBTime) || ($endInputTime == $endDBTime) || ($startInputTime == $endDBTime) || ($endDBTime == $startInputTime)) {
                 echo '<script>alert("The timeslot and the date which you have selected is being already take 1")
                             window.location.href="events-booking-form.php"
