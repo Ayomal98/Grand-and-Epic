@@ -238,8 +238,8 @@ if (!isset($_SESSION['First_Name'])) {
                                 <table style="color:white; font-size: 20px; width:81%;">
                                     <tr>
                                         <td align="right">
-                                            <input type="submit" class="button" value="INSERT ROOM TYPE" name="Insert" form="room_form">
-                                            <input type="button" class="button" value="SEND TO ADMIN">
+                                            <input type="submit" class="button" value="SEND TO ADMIN" name="Insert" form="room_form">
+                                           
                                         </td>
                                     </tr>
                                 </table>
@@ -364,8 +364,9 @@ if (isset($_POST['Insert'])) {
     $amenities = $_POST['amenities'];
     $description = $_POST['description'];
     $other = $_POST['other'];
+    $status = 0;
 
-    $sql = "INSERT into rooms(Room_Type,NoRooms,Price,Room_View,NoGuests,BedType,NoBeds,Bathroom,Amenities,Description,Other) VALUES (' $roomType ','$noRooms ','$price','$roomView ',' $noGuests ','$bedType ',' $noBeds ',' $bathroom ','$amenities ','$description ','$other')";
+    $sql = "INSERT into rooms_temp(Room_Type,NoRooms,Price,Room_View,NoGuests,BedType,NoBeds,Bathroom,Amenities,Description,Other,Status) VALUES (' $roomType ','$noRooms ','$price','$roomView ',' $noGuests ','$bedType ',' $noBeds ',' $bathroom ','$amenities ','$description ','$other','$status')";
     $query_run = mysqli_query($con, $sql);
 
     if ($query_run) {
