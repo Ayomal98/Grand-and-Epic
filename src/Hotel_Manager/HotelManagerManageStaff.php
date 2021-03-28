@@ -1,13 +1,126 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 include("../../public/includes/session.php");
-
+include("../../config/connection.php");
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
     header('Location:../Hotel_Website/HomePage-login.php');
 }
+if (isset($_POST['Accept'])) {
+	$EmployeeID = $_POST['Employee_ID'];
+	$startDate = $_POST['Start_Date']; 
+	$endDate = $_POST['End_Date']; 
+	$typeEmployee = $_POST['Type_Employee'];
+    $reason =  $_POST['Reason']; 
+    $query = "SELECT Email from employee WHERE Employee_ID='$EmployeeID'";
+    $row=mysqli_fetch_assoc(mysqli_query($con,$query));
+    $email = $row["Email"];
+    $status = 1;
+	$acceptanceReply = mysqli_query($con,"UPDATE leave_request SET Status='$status' WHERE Employee_ID='$EmployeeID'");
+	if ($acceptanceReply) {
+		echo "<script>
+            alert('Leave has been accepted');
+          </script>";
+		header('location:HotelManagerManageStaff.php');
+		//sending the reservation confirmation mail to the customer
+		require '../../config/PHPMailer/src/Exception.php';
+		require '../../config/PHPMailer/src/PHPMailer.php';
+		require '../../config/PHPMailer/src/SMTP.php';
+		$mail = new PHPMailer(true);
 
+		try {
+			//Server settings
+
+			$mail->isSMTP();                                            // Send using SMTP
+			$mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+			$mail->Username   = 'grandandepic20@gmail.com';                     // SMTP username
+			$mail->Password   = 'grand&epicIs05';                               // SMTP password
+			$mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+			$mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+			//Recipients
+			$mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
+			$mail->addAddress($email);     // Add a recipient            // Name is optional
+
+			// Content
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$mail->Subject = 'Accept Leave Request';
+			$mail->Body    = 'Request has been accepted';
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			$mail->send();
+			echo '<script>alert("Message Sent")</script>';
+            header('location:HotelManagerManageStaff.php');
+		} catch (Exception $e) {
+			echo '<script>alert("Message could not be sent. Mailer Error: {$mail->ErrorInfo}")</script>';
+            header('location:HotelManagerManageStaff.php');
+		}
+	} else {
+		echo '<script> alert("Data Not Added") </script>';
+	}
+    
+}
+if (isset($_POST['Decline'])) {
+	$EmployeeID = $_POST['Employee_ID'];
+	$startDate = $_POST['Start_Date']; 
+	$endDate = $_POST['End_Date']; 
+	$typeEmployee = $_POST['Type_Employee'];
+    $reason =  $_POST['Reason']; 
+    $query = "SELECT Email from employee WHERE Employee_ID='$EmployeeID'";
+    $row=mysqli_fetch_assoc(mysqli_query($con,$query));
+    $email = $row["Email"];
+    $status = 1;
+    $declineReply = mysqli_query($con,"DELETE from leave_request WHERE Employee_ID='$EmployeeID'");
+	if ($declineReply) {
+		echo "<script>
+            alert('Leave has been accepted');
+          </script>";
+		header('location:HotelManagerManageStaff.php');
+		//sending the reservation confirmation mail to the customer
+		require '../../config/PHPMailer/src/Exception.php';
+		require '../../config/PHPMailer/src/PHPMailer.php';
+		require '../../config/PHPMailer/src/SMTP.php';
+		$mail = new PHPMailer(true);
+
+		try {
+			//Server settings
+
+			$mail->isSMTP();                                            // Send using SMTP
+			$mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+			$mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+			$mail->Username   = 'grandandepic20@gmail.com';                     // SMTP username
+			$mail->Password   = 'grand&epicIs05';                               // SMTP password
+			$mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+			$mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+			//Recipients
+			$mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
+			$mail->addAddress($email);     // Add a recipient            // Name is optional
+
+			// Content
+			$mail->isHTML(true);                                  // Set email format to HTML
+			$mail->Subject = 'Decline Leave Request';
+			$mail->Body    = 'Request has been declined';
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			$mail->send();
+			echo '<script>alert("Message Sent")</script>';
+            header('location:HotelManagerManageStaff.php');
+		} catch (Exception $e) {
+			echo '<script>alert("Message could not be sent. Mailer Error: {$mail->ErrorInfo}")</script>';
+            header('location:HotelManagerManageStaff.php');
+		}
+	} else {
+		echo '<script> alert("Data Not Added") </script>';
+	}
+  
+}
 ?>
+
+
 <html>
 
 <head>
@@ -247,220 +360,69 @@ if (!isset($_SESSION['First_Name'])) {
     }
     ?>
 
+<!-- view customer feedback records  -->
+	<?php
+	include('../../config/connection.php');
+	$tempStatus = 0;
+	$selectLeaveRequest = mysqli_query($con, "SELECT * FROM leave_request WHERE Status='" . $tempStatus . "' ");
+	if (mysqli_num_rows($selectLeaveRequest) > 0) {
+		echo '<table style="color:white;border:1px solid white;position:absolute;margin-left:54%;top:1300px; width:46%;">
+            <thead>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Employee Id</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Start Date</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">End Date</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Employee Type</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Status</th>
+            </thead>';
 
-    <!-- Respond To Leave Requests -->
-
-    <table style="width:100%;position:absolute">
-        <tr>
-            <th rowspan="5">
-                <form>
-                    <fieldset style=" position:absolute; top:844px; width: 45%;right:0%">
-                        <legend style="color:white; font-size: 20px">Respond to Leave Requests of Employees</legend>
-                        <table style="color:white; font-size: 20px; width:100%;">
-                            <tr>
-                                <td align="left">Employee ID:</td>
-                                <td align="left"><input type="text" name="id" size="20" value="E004"></td>
-
-                            </tr>
-                            <tr>
-                                <td align="left">Leave Start Date:</td>
-                                <td align="left"><input type="text" name="startdate" size="20" value="05/26/2020"></td>
-                            </tr>
-                            <tr>
-                                <td align="left">Leave End Date:</td>
-                                <td align="left"><input type="text" name="enddate" size="20" value="05/27/2020"></td>
-                            </tr>
-                            <tr>
-                                <td align="left">Reason for the leave:</td>
-                                <td align="left"><textarea name="Message" rows="5" cols="53">Medical Leave</textarea></td>
-                            </tr>
-                        </table>
-
-                        <table style="color:white; font-size: 20px; width:75%;">
-                            <tr>
-                                <td align="left">
-                                    <a href="#" class="button" style="padding:10px 20px; border-radius:50%">&laquo;</a>
-                                    <a href="#" class="button" style="padding:10px 20px; border-radius:50%">&raquo;</a>
-                                </td>
-                                <td align="right">
-                                    <input type="button" class="button" value="ACCEPT">
-                                    <input type="button" class="button" value="DECLINE">
-                                </td>
-
-                            </tr>
-                        </table>
-
-                    </fieldset>
-                </form>
-            </th>
-        </tr>
-    </table>
-
-    <!-- Current Duty Toaster -->
-
-    <table style="border: 1px solid white;width:52%; position:absolute; top:1365px">
-        <tr>
-            <td></td>
-            <td align="center">
-                <p style="font-family :Lato; font-size:25px; color :white"><b>Current Duty Roster</b></p>
+		while ($rowResDetails = mysqli_fetch_assoc($selectLeaveRequest)) {
+			$id = $rowResDetails['ID'];
+			echo '<tbody>
+                    <tr>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Employee_ID'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Start_Date'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['End_Date'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Type_Employee'] . '</td>
+                       
+                        <td style="border: 1px solid white;padding: 5px;"><a href="HotelManagerManageStaff.php?id=' . $id . '">Request</a></td>
+                    </tr>';
+		}
+		echo '</table>';
+	}
+	?>
+    <!-- filter feedback  -->
+	<?php if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+		$selectDetails = mysqli_query($con, "SELECT * FROM leave_request WHERE ID='$id'");
+		$rowUserDetails = mysqli_fetch_assoc($selectDetails);
+	?>
+		<form action="" method="POST" style="border:1px solid white;width:600px;height:600px;display: flex;flex-direction: column;padding:10px 35px;margin-left:820px;position:absolute;top:1450px;">
+			<label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Leave Requests</label>
+			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Employee ID</label>
+			<input type="hidden" name="ID" value="<?php echo $id ?>">
+			<input type="text" name="Employee_ID" id="" value="<?php echo $rowUserDetails['Employee_ID'] ?>">
+			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Start Date</label>
+			<input type="text" rows="5" name="Start_Date" id="" value="<?php echo $rowUserDetails['Start_Date'] ?>">
+			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">End Date</label>
+			<input type="text" rows="5" name="End_Date" id="" value="<?php echo $rowUserDetails['End_Date'] ?>">
+            <label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Type Employee</label>
+			<input type="text" rows="5" name="Type_Employee" id="" value="<?php echo $rowUserDetails['Type_Employee'] ?>">
+			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Reason</label>
+			<input type="text" rows="5" name="Reason" id="" value="<?php echo $rowUserDetails['Reason'] ?>">
+            <table>
+            <tr>
+            <td>
+			<input type="submit" name="Accept" value="Accept" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px; margin-top:25px;">
             </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:20px; color :white;">Employee ID</p>
+            <td>
+			<input type="submit" name="Decline" value="Decline" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px; margin-top:25px;">
             </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:20px; color :white;">Employee Name</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:20px; color :white;">Section Assigned</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">S001</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Hasini Vidushanka</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Supervisor</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">R001</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Anushka De Silva</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Receptionist</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E001</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Shehan Gunawardena</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Superior Rooms</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E002</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Nuwangi Dewage</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Dine-In Area</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E003</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Savindi Karunaratne</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Panoramic Rooms</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E004 </p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Harini Munasinghe</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Reception</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E005</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Thenuri Sakalasooriya</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Room Service</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E006</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Sewumi Dissanayike</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Room Service</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E007</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Sachini Samarasinghe</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Room Service</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E008</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Ravinath Mahadurage</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Dine-In Area</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E009</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Thisaru Silva</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Room Service</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E010</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Kavindi Sachinthanee</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Event Coordination</p>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">E011</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Hashara Kumarasinghe</p>
-            </td>
-            <td style="border: 1px solid white;">
-                <p style="font-family :Lato; font-size:15px; color :white;">Dine-In Area</p>
-            </td>
-        </tr>
-
-    </table>
+            </tr>
+            </table>
+		</form>
+	<?php
+	} else {
+	} ?>
     <script>
         function funcUserDetails() {
             document.getElementById('user-detail-container').style.display = "block";
@@ -473,9 +435,10 @@ if (!isset($_SESSION['First_Name'])) {
 </body>
 
 </html>
-<!-- VIEW TABLE -->
+
+<!-- VIEW Employee TABLE -->
 <div class="dtablescroll">
-    <table align="center" style="color:white;width:100%;font-size:17px;">
+    <table align="center" style="color:white;width:100%;font-size:17px;top:746px">
         <tr>
             <th colspan="6">
                 <h4>Employee Details</h2>
@@ -504,6 +467,44 @@ if (!isset($_SESSION['First_Name'])) {
                 <td><?php echo $row["Email"]; ?></td>
                 <td><?php echo $row["Contact_No"]; ?></td>
                 <td><?php echo $row["User_Role"]; ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+
+    </table>
+</div>
+
+<div class="dtablescroll">
+    <table align="center" style="color:white;width:100%;font-size:17px;">
+        <tr>
+            <th colspan="6">
+                <h4>Duty Roster</h2>
+            </th>
+        </tr>
+        <tr>
+            <th>Employee ID</th>
+            <th>Assigned Date</th>
+            <th>Assigned Section</th>
+            <th>Allocated Room Numbers</th>
+            <th>Allocated Table Numbers</th>
+            <th>Allocated Locations</th>
+        </tr>
+
+        <?php include("../../config/connection.php");
+
+        $query = "SELECT * FROM employee_tasks";
+        $query_run = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_array($query_run)) {
+
+        ?>
+            <tr>
+                <td><?php echo $row["Employee_ID"]; ?></td>
+                <td><?php echo $row["Assigned_Date"]; ?></td>
+                <td><?php echo $row["Assigned_Section"]; ?></td>
+                <td><?php echo $row["Allo_Room_Numbers"]; ?></td>
+                <td><?php echo $row["Allo_Table_Numbers"]; ?></td>
+                <td><?php echo $row["Allo_Locations"]; ?></td>
             </tr>
         <?php
         }

@@ -124,49 +124,55 @@ if (!isset($_SESSION['First_Name'])) {
 <form action="ContentManage.php" method="POST">
 		<fieldset style=" position:absolute; top:280px;left:650px; width: 45%;">
 			<legend style="color:white; font-size: 30px">Past Posts</legend>
-			<table style="width:100%; color:white; border: 1px solid white;">
+			
 	
 			<?php include("../../config/connection.php");
 
-$query = "SELECT * FROM content WHERE Content_ID='8'";
+$query = "SELECT * FROM content ";
 $query_run = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($query_run)) {
 
 ?>
-	<tr><input type="text" name="Content_ID" value="<?php echo $row['Content_ID'] ?>" /></tr>
-	<tr><input type="text" name="Heading" value="<?php echo $row['Heading'] ?>" /></tr>
-	<tr><input type="text" name="Content" value="<?php echo $row['Content'] ?>" /></tr>
+<table style="width:100%; color:white; border: 1px solid white;">
+	<tr>
+	<th>Content ID</th>
+	<th><input type="text" name="Content_ID" value="<?php echo $row['Content_ID'] ?>" /></th>
+	</tr>
+	<tr>
+	<th>Heading</th>
+	<th><input type="text" name="Heading" value="<?php echo $row['Heading'] ?>" /></th>
+	</tr>
+	<tr>
+	<th>Content</th>
+	<th><input type="text" name="Content" rows="5" value="<?php echo $row['Content'] ?>" /></th>
+	</tr>
+	<tr>
+	<th>Image</th>
+	<th><?php echo '<img src="data:image;base64, ' . base64_encode($row['Img_url']) . '" alt="Image" style="width: 200px; height: 150px" >' ?></th>
+	</tr>
+	<tr>
+								<td>Update Content Image:</td>
+								<td>
+									<input type="file" accept="image/*" name="mealimage" id="fileToUpload">
+								</td>
+							</tr>
+	
 			
-<?php
-}
-?>
-				
-					<!--<td align="left">
-					<?php
-					/*include("../../config/connection.php");
 
-					$next = mysqli_query($mysqli, "SELECT * FROM content WHERE Content_ID>$Content_ID order by Content_ID ASC");
-					if($row = mysqli_fetch_array($next))
-					{
-					  echo '<a href="AdminManageContent.php"?Content_ID='.$row['Content_ID'].'"><button class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>';
-					} 
-					
-					?>
-						<!--<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&laquo;</a>-->
-						<a href="#" class="button" style="padding:5px 20px; border-radius:50%">&raquo;</a>
-					</td>*/
-					?>-->
-
+					<tr>
 					<form action="ContentManage.php" method="POST">
 					<td align="right">
 					<input type="submit" class="button" name="update" value="UPDATE">
 						</td>
 
 						<form action="ContentManage.php" method="POST">
-					<td align="right">
+					<td align="left">
 					<input type="submit" class="button" name="delete" value="DELETE POST">
 						
 						</td>
+						<?php
+}
+?>
 						
 		
 					</td>

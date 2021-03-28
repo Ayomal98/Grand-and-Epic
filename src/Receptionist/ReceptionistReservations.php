@@ -116,9 +116,6 @@ checkSession();
                                     <p style = "font-family :Lato; font-size:20px; color :white;">Reservation ID</p>		
                                 </th>
                                 <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Payment ID</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
                                     <p style = "font-family :Lato; font-size:20px; color :white;">Payment Received</p>		
                                 </th>
                                 <th style ="border: 1px solid white;">
