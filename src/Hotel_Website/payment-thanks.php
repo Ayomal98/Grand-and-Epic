@@ -108,6 +108,8 @@ if ($_GET['type'] == 'events') {
         $reservationType = $rowStayingIn['Reservation_Type'];
         $checkInDate = $rowStayingIn['CheckIn_Date'];
         $checkOutDate = $rowStayingIn['CheckOut_Date'];
+        $dateDifference = strtotime($checkOutDate) - strtotime($checkInDate);
+        $duration = round(($dateDifference) / (60 * 60 * 24));
         $checkInTime = $rowStayingIn['CheckIn_Time'];
         $checkOutTime = $rowStayingIn['CheckOut_Time'];
         $roomType = $rowStayingIn['Room_Type'];
@@ -127,18 +129,47 @@ if ($_GET['type'] == 'events') {
         if ($paymentSuccessStayingIn) {
             // $selectStayingInDetails = "SELECT * FROM stayingin_booking WHERE StayingIn_ID='$stayingInId'";
             $html = '<h1 style=\'text-align:center\'>Payment Details</h1>';
-            if ($roomType == 'Suite Rooms' && $mealSelection = 'Customized') {
-                $html .= '<h2>Room Details Suites</h2>';
+            if ($mealSelection == 'Customized') {
+                $html .= '<h2>Room Details</h2>';
                 $html .= '<table><thead><tr><th style=\'border:1px solid black\'>Room Type</th><th style=\'border:1px solid black\'>No.Rooms</th><th style=\'border:1px solid black\'>Check-In Date</th><th style=\'border:1px solid black\'>Check-Out Date</th><th style=\'border:1px solid black\'>Check-In Time</th><th style=\'border:1px solid black\'>Check-Out Time</th><th style=\'border:1px solid black\'>No.Of Participants</th></tr></thead>';
                 $html .= '<tr><td style=\'border:1px solid black\'>' . $roomType . '</td><td style=\'border:1px solid black\'>' . $noRooms . '</td><td style=\'border:1px solid black\'>' . $checkInDate . '</td><td style=\'border:1px solid black\'>' . $checkOutDate . '</td><td style=\'border:1px solid black\'>' . $checkInTime . '</td><td style=\'border:1px solid black\'>' . $checkOutTime . '</td><td style=\'border:1px solid black\'>' . $noOccupants . '</td></tr>';
                 $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($totalAmountStayingIn, 2) . "</td></tr>";
                 $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:bolder'>Total Amount</td></tr>";
                 $html .= "</table>";
                 $html .= '<h2>Meal Details</h2>';
-            } else {
-                $html .= "<h2>Room Details Heading</h2><table style='border:1px solid black'><thead><tr><th style='border:1px solid black'>Room Type</th><th style='border:1px solid black'>Occupancy of Room Type</th><th style='border:1px solid black'>No.Rooms</th><th style='border:1px solid black'>Check-In Date</th><th style='border:1px solid black'>Check-Out Date</th><th style='border:1px solid black'>Check-In Time</th><th style='border:1px solid black'>Check-Out Time</th><th style='border:1px solid black'>No.Of Participants</th></tr></thead>";
-                $html .= "<tr><td style='border:1px solid black'>' . $roomType . '</td><td style='border:1px solid black'>' . $noRooms . '</td><td style='border:1px solid black'>' . $occupancy . '</td><td style='border:1px solid black'>' . $checkInDate . '</td><td style='border:1px solid black'>' . $checkOutDate . '</td><td style='border:1px solid black'>' . $checkInTime . '</td><td style='border:1px solid black'>' . $checkOutTime . '</td><td style='border:1px solid black'>' . $noOccupants . '</td></tr>";
-                $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($totalAmountStayingIn, 2) . "</td></tr>";
+            } else if ($mealSelection == 'Set-Menu') {
+
+                $html = '<img src=\'../../public/images/Logo.png\' style=\'margin-left:300px;height:100px;margin-top:-50px;margin-bottom:10px\'>';
+                $html .= '<h1 style=\'text-align:center\'><u>Payment Details</u></h1>';
+                $html .= '<p>Dear ' . $userName . ' ,</p>';
+                $html .= '<p>Thank you for trusting us on Selecting as us your holiday destination.We are Looking Forward to having you Again & hopefully you did aslo have great time here.Given below are the brief payment details which you have made. </p>';
+                $html .= "<h2 style='text-align:center'>Room Details</h2>";
+                $html .= "<table><thead><tr><th style='border:1px solid black'>Room Type</th><th style='border:1px solid black'>Reservation Type</th><th style='border:1px solid black'>No.Rooms</th><th style='border:1px solid black'>Duration</th><th style='border:1px solid black'>Check-In Date</th><th style='border:1px solid black'>Check-Out Date</th><th style='border:1px solid black'>Check-In Time</th><th style='border:1px solid black'>Check-Out Time</th><th style='border:1px solid black'>No.Of Participants</th></tr></thead>";
+                $html .= "<tr><<td style='border:1px solid black'> $roomType </td><td style='border:1px solid black'> $reservationType </td><td style='border:1px solid black'>$noRooms </td><td style='border:1px solid black'>$duration Days</td><td style='border:1px solid black'>$checkInDate </td><td style='border:1px solid black'>$checkOutDate </td><td style='border:1px solid black'>$checkInTime</td><td style='border:1px solid black'>$checkOutTime </td><td style='border:1px solid black'>$noOccupants </td></tr>";
+                $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($roomPrice, 2) . "</td></tr>";
+                $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><th>Total Room Price</th></tr>";
+                $html .= "</table>";
+                $html .= "<h2 style='text-align:center'>Meal Details</h2>";
+                $selectSetMenuFood = mysqli_query($con, "SELECT * FROM stayingin_setmenu");
+                $html .= "<table><thead><tr><th style='border:1px solid black'>Meal Type</th><th style='border:1px solid black'>First Meal</th><th style='border:1px solid black'>Second Meal</th><th style='border:1px solid black'>Third Meal</th><th style='border:1px solid black'>Fourth Meal</th><th style='border:1px solid black'>Fifth Meal</th><th style='border:1px solid black'>Price For Meal</th></tr></thead>";
+                while ($rowSetMenuFood = mysqli_fetch_assoc($selectSetMenuFood)) {
+                    if ($reservationType == 'Half-board') {
+                        if ($rowSetMenuFood["Meal_Type"] == 'Breakfast') {
+                            $html .= '<tr><td style="border:1px solid black">' . $rowSetMenuFood['Meal_Type'] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal1"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal2"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal3"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal4"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal5"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Price"] . '</td></tr>';
+                        } else if ($rowSetMenuFood["Meal_Type"] == 'Dinner') {
+                            $html .= '<tr><td style="border:1px solid black">' . $rowSetMenuFood['Meal_Type'] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal1"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal2"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal3"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal4"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal5"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Price"] . '</td></tr>';
+                        }
+                    } else if ($reservationType == 'Full-Board') {
+                        $html .= '<tr><td style="border:1px solid black">' . $rowSetMenuFood['Meal_Type'] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal1"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal2"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal3"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal4"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Meal5"] . '</td><td style="border:1px solid black">' . $rowSetMenuFood["Price"] . '</td></tr>';
+                    }
+                }
+                $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($mealPrice, 2) . "</td></tr>";
+                $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><th>Total Meal Price</th></tr>";
+                $html .= "</table>";
+                $html .= "<h2 style='text-align:center'>Total Payment Details</h2>";
+                $html .= '<table style="margin-left:150px"><thead><tr><th style=\'border:1px solid black\'>Booking ID</th><th style=\'border:1px solid black\'>Room Price</th><th style=\'border:1px solid black\'>Meal Price</th><th style=\'border:1px solid black\'>Total Price</th></tr></thead>';
+                $html .= '<tr><th style=\'border:1px solid black\'>' . $stayingInId . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($roomPrice, 2) . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($mealPrice, 2) . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($totalAmountStayingIn, 2) . '</th></tr></thead>';
+                $html .= "</table>";
             }
             $deleteTempStayDetails =  mysqli_query($con, "DELETE FROM stayingin_booking_temp WHERE StayingIn_ID='" . $stayingInId . "'");
             if ($deleteTempStayDetails) {

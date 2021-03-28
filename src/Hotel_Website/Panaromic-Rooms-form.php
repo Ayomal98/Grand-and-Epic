@@ -25,6 +25,7 @@ if (!isset($_SESSION['First_Name'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            var roomtype = 'Panaromic Rooms';
             $("#check-in-date").on("input", function() {
                 var checkInDate = new Date($('#check-in-date').val());
                 var checkInDay = checkInDate.getDate();
@@ -49,7 +50,9 @@ if (!isset($_SESSION['First_Name'])) {
                             $(".suite-icons-rooms-container").load("rooms-availability.php", {
                                 checkIndateSelected: checkIndateSelected,
                                 checkOutdateSelected: checkOutdateSelected,
-                                checkInTimeSelected: checkInTimeSelected
+                                checkInTimeSelected: checkInTimeSelected,
+                                checkOutTimeSelected: checkOutTimeSelected,
+                                roomtype: roomtype
                             })
                         })
                     })

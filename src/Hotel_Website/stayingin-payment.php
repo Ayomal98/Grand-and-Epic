@@ -56,7 +56,7 @@
                                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;"><u>Price For the Rooms</u></div>
                                     <label for="">' . $row['Room_Type'] . ' x ' . $row['No_Rooms'] . ' </label><label for="" style="font-weight:bolder;position:absolute;top:28%;right:15%">&nbsp;Rs.' . $row['Room_Price'] . '/=</label>
                                     <div class="room-payment" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:10px;"><u>Price For Meals</u></div>
-                                    <label for="total amount meals" style="font-weight: bolder;font-size:20px;">Total Amount for Meals </label>&nbsp;<span style="font-weight: bolder;position:absolute;top:37.0%;right:18.75%"> Rs.' . $row['Meal_Price'] . '/=</span>
+                                    <label for="total amount meals" style="font-weight: bolder;font-size:20px;">Total Amount for Meals </label>&nbsp;<span style="font-weight: bolder;margin-left:105px"> Rs.' . $row['Meal_Price'] . '/=</span>
                                     <div class="total-amount" style="font-weight: bolder;font-size:30px;margin-bottom:10px;margin-top:20px;"><u>Total Amount</u></div>
                                     <label for="">Total Amount for the Booking <br><br></label><span style="font-weight: bolder;position:absolute;top:48%;right:15.25%">Rs.' . $total_amount . '/=</span>
                                     <input type="hidden" name="Total_Amount" value=' . $total_amount . '>
