@@ -105,8 +105,8 @@ checkSession();
 						<td align="center"><input type="text" name="allotablenumbers" size="50"></td>
 					</tr>
 					<tr id="location">
-						<td align="left">Allocated Locations:</td>
-						<td align="center"><input type="text" name="allolocations" size="50"></td>
+						<td align="left">Event Type:</td>
+						<td align="center"><input type="text" name="eventtype" size="50"></td>
 					</tr>
 				</table>
 				
@@ -133,9 +133,9 @@ if(isset($_POST['insert'])){
     $assignedsection=$_POST['assignedsection'];
     $alloroomnumbers=$_POST['alloroomnumbers'];
     $allotablenumbers=$_POST['allotablenumbers'];
-    $allolocations=$_POST['allolocations'];
+    $eventtype=$_POST['eventtype'];
 
-      $add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Allo_Locations) VALUES ('".$employeeid."','".$assigneddate."','".$assignedsection."','".$alloroomnumbers."','".$allotablenumbers."','".$allolocations."')";
+      $add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Event_Type) VALUES ('".$employeeid."','".$assigneddate."','".$assignedsection."','".$alloroomnumbers."','".$allotablenumbers."','".$eventtype."')";
       $add_query_run = mysqli_query($con,$add_query);
 
       if ($add_query_run) {
@@ -167,7 +167,7 @@ if(isset($_POST['insert'])){
 	if (isset($_POST['search'])) {
 		$Employee_ID = $_POST['Employee_ID'];
 
-		$search_query = "SELECT * FROM employee_tasks where Employee_ID='$Employee_ID' ";
+		$search_query = "SELECT * FROM employee_tasks where Employee_ID='$Employee_ID' ORDER BY Employee_ID ASC ";
 		$search_query_run = mysqli_query($con, $search_query);
 		if (mysqli_num_rows($search_query_run) == 1) {
 
@@ -228,8 +228,8 @@ if(isset($_POST['insert'])){
 								<td><input type="text" name="allotablenumbers" value="<?php echo $row['Allo_Table_Numbers'] ?>" /></td>
 							</tr>
                             <tr>
-								<td>Allocated Locations:</td>
-								<td><input type="text" name="allolocations" value="<?php echo $row['Allo_Locations'] ?>" /></td>
+								<td>Event Type:</td>
+								<td><input type="text" name="eventtype" value="<?php echo $row['Event_Type'] ?>" /></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -268,7 +268,7 @@ if(isset($_POST['insert'])){
 			<th>Assigned Section:</th>
 			<th>Allocated Room Numbers:</th>
 			<th>Allocated Table Numbers:</th>
-            <th>Allocated Locations:</th>
+            <th>Event Type:</th>
 		</tr>
 
 			<?php
@@ -286,7 +286,7 @@ if(isset($_POST['insert'])){
 							<td><?php echo $row['Assigned_Section'] ?></td>
 							<td><?php echo $row['Allo_Room_Numbers'] ?></td>
 							<td><?php echo $row['Allo_Table_Numbers'] ?></td>
-                            <td><?php echo $row['Allo_Locations'] ?></td>
+                            <td><?php echo $row['Event_Type'] ?></td>
 						</tr>
 				<?php
 					}
@@ -299,7 +299,7 @@ if(isset($_POST['insert'])){
     <form>
     <fieldset style="font-size: 20px; position:absolute; top:1400px; width: 45%; right:0%">
     <legend style = "color:white;">View Leave Requests</legend>
-	<table border="1px solid white" style="color:white; width:100%">
+	<table border="3px solid white" style="border-collapse:collapse; color:white; width:100%">
 		<tr>
 			<th>Employee ID:</th>
 			<th>Leave Start Date:</th>
@@ -342,8 +342,8 @@ if(isset($_POST['insert'])){
 <!-- View Booking Details -->
 
     <!-- View Stayingin Booking Details -->
-    <div class="staytable">
-        <table border="1px solid white" style="color:white; width:100%">
+    <div class="staytablesupervisor">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
                 <th colspan="4"><h2>View Staying Booking Details</h2></th>
@@ -382,8 +382,8 @@ if(isset($_POST['insert'])){
 
 
     <!-- View Dinein Booking Details -->
-    <div class="dinetable">
-        <table border="1px solid white" style="color:white; width:100%">
+    <div class="dinetablesupervisor">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
                 <th colspan="3"><h2>View Dine-in Booking Details</h2></th>
@@ -420,8 +420,8 @@ if(isset($_POST['insert'])){
 
 
     <!-- View Events Booking Details -->
-    <div class="eventtable">
-        <table border="1px solid white" style="color:white; width:100%">
+    <div class="eventtablesupervisor">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
                 <th colspan="4"><h2>View Events Booking Details</h2></th>
@@ -482,9 +482,9 @@ if (isset($_POST['update'])) {
     $assignedsection=$_POST['assignedsection'];
     $alloroomnumbers=$_POST['alloroomnumbers'];
     $allotablenumbers=$_POST['allotablenumbers'];
-    $allolocations=$_POST['allolocations'];
+    $eventtype=$_POST['eventtype'];
 
-		$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='$alloroomnumbers', Allo_Table_Numbers='$allotablenumbers', Allo_Locations='$allolocations' where Employee_ID='$_POST[employeeid]'";
+		$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='$alloroomnumbers', Allo_Table_Numbers='$allotablenumbers', Event_Type='$eventtype' where Employee_ID='$_POST[employeeid]'";
 		$update_query_run = mysqli_query($con, $update_query);
 
 		if ($update_query_run) {
@@ -509,7 +509,7 @@ if (isset($_POST['delete'])) {
     $assignedsection=$_POST['assignedsection'];
     $alloroomnumbers=$_POST['alloroomnumbers'];
     $allotablenumbers=$_POST['allotablenumbers'];
-    $allolocations=$_POST['allolocations'];
+    $eventtype=$_POST['eventtype'];
 
 	$delete_query = "DELETE from employee_tasks where Employee_ID='$_POST[employeeid]'";
 	$delete_run = mysqli_query($con, $delete_query);
