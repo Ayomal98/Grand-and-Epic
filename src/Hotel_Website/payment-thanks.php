@@ -40,23 +40,49 @@ if ($_GET['type'] == 'events') {
         $reservation_Date = $row["Reservation_Date"];
         $starting_Time = $row["Starting_Time"];
         $ending_Time = $row["Ending_Time"];
+        $timeDuration = date("H", (strtotime($ending_Time) - strtotime($starting_Time)) - 1);
         $mealPackage_ID = $row["MealPackage_ID"];
         $feature_Price = $row["Feature_Price"];
-        $totalAmount = $row["Location_Price"] + $feature_Price;
+        $location_Price = $row["Location_Price"];
+        $totalAmount = $row["Price"];
+        $mealPrice = $totalAmount - ($location_Price + $feature_Price);
         $paidAmount = ($totalAmount * $advancePercentageValue) / 100;
         $amountToBePaid = $totalAmount - $paidAmount;
         $paymentStatus = 0;
-        $location_Price = $row["Location_Price"];
         $features = $row["Selected_Features"];
-        $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Events_ID,Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount,Selected_Features) VALUES('$eventID','$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount','$features')");
+        $getFeaturePrice = mysqli_query($con, "SELECT * FROM event_location_features WHERE Event_Type='" . $event_Type . "'");
+        $rowFeaturePrice = mysqli_fetch_assoc($getFeaturePrice);
+        $dj_price = $rowFeaturePrice['DJ_Price'];
+        $decoration_price = $rowFeaturePrice['Decoration_Price'];
+        $champaigne_price = $rowFeaturePrice['Champaigne_Price'];
+        $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Events_ID,Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount,Selected_Features,Location_Price,Meal_Price) VALUES('$eventID','$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount','$features','$location_Price','$mealPrice')");
         $insertToReservationTable = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,User_Email,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservationID','$reservationType','$paymentStatus','$eventID','$customer_Name','$customer_Email','$paidAmount','$amountToBePaid','$reservation_Date')");
         if ($paymentSuccessEvent) {
-            $html_evt = '<h1 style=\'text-align:center\'>Payment Details</h1>';
+            $html_evt = '<u><h1 style=\'text-align:center\'>Payment Details</h1></u>';
             $html_evt .= '<p>Dear ' . $customer_Name . ' ,</p>';
             $html_evt .= '<p>Thank you for trusting us on celebrate your special day & giving us the chance provide it even more beautiful.We are Looking Forward to having you.Given below are the brief payment details which you have made. </p>';
-            $html_evt .= '<table><thead><tr><th style=\'border:1px solid black\'>Event Type</th><th style=\'border:1px solid black\'>No Guests</th><th style=\'border:1px solid black\'>Reservation Date</th><th style=\'border:1px solid black\'>Starting Time</th><th style=\'border:1px solid black\'>Ending Time</th><th style=\'border:1px solid black\'>Location Price</th><th style=\'border:1px solid black\'>Feature Prices</th></tr></thead>';
-            $html_evt .= '<tr><td style=\'border:1px solid black\'>' . $event_Type . '</td><td style=\'border:1px solid black\'>' . $num_Guests . '</td><td style=\'border:1px solid black\'>' . $reservation_Date . '</td><td style=\'border:1px solid black\'>' . $starting_Time . '</td><td style=\'border:1px solid black\'>' . $ending_Time . '</td><td style=\'border:1px solid black\'>' . $location_Price . '</td><td style=\'border:1px solid black\'>' . $feature_Price . '</td></tr>';
+            $html_evt .= '<h2>Location Deatils</h2>';
+            $html_evt .= '<table><thead><tr><th style=\'border:1px solid black\'>Event Type</th><th style=\'border:1px solid black\'>No Guests</th><th style=\'border:1px solid black\'>Reservation Date</th><th style=\'border:1px solid black\'>Starting Time</th><th style=\'border:1px solid black\'>Ending Time</th><th style=\'border:1px solid black\'>Event Duration</th><th style=\'border:1px solid black\'>Location Price</th></tr></thead>';
+            $html_evt .= '<tr><td style=\'border:1px solid black\'>' . $event_Type . '</td><td style=\'border:1px solid black\'>' . $num_Guests . '</td><td style=\'border:1px solid black\'>' . $reservation_Date . '</td><td style=\'border:1px solid black\'>' . $starting_Time . '</td><td style=\'border:1px solid black\'>' . $ending_Time . '</td><td style=\'border:1px solid black\'>' . $timeDuration . ' hours</td><td style=\'border:1px solid black\'>' . $location_Price . '</td></tr>';
             $html_evt .= "</table>";
+            $html_evt .= "<h2>Feature Details Details</h1>";
+            $html_evt .= '<table><thead><tr><th style=\'border:1px solid black\'>Feature Name </th><th style=\'border:1px solid black\'>Feature Price</th></tr></thead>';
+            $featuresArr = unserialize($features);
+            foreach ($featuresArr as $feature) {
+                $html_evt .= '<tr><td style=\'border:1px solid black\'>' . $feature . '</td>';
+                if ($feature == 'DJMusic') {
+                    $html_evt .= '<td style=\'border:1px solid black\'>' . $dj_price . '</td></tr>';
+                } else if ($feature == 'Decorations') {
+                    $html_evt .= '<td style=\'border:1px solid black\'>' . $decoration_price . '</td></tr>';
+                } else {
+                    $html_evt .= '<td style=\'border:1px solid black\'>' . $champaigne_price . '</td></tr>';
+                }
+            }
+            $html_evt .= '</table>';
+            $html_evt .= '<h2>Total Price</h2>';
+            $html_evt .= '<table><thead><tr><th style=\'border:1px solid black\'>Location Price</th><th style=\'border:1px solid black\'>Feature Price</th><th style=\'border:1px solid black\'>Meal Price</th><th style=\'border:1px solid black\'>Total Price</th></tr></thead>';
+            $html_evt .= '<tr><td style=\'border:1px solid black\'>' . $location_Price . '</td><td style=\'border:1px solid black\'>' . $feature_Price . '</td><td style=\'border:1px solid black\'>' . $mealPrice . '</td><td style=\'border:1px solid black\'>' . $totalAmount . '</td></tr>';
+            $html_evt .= '</table>';
             $deleteTempEvtDetails = mysqli_query($con, "DELETE FROM events_booking_temp WHERE Events_ID='$events_ID'");
             if ($deleteTempEvtDetails) {
                 $mpdf = new \Mpdf\Mpdf();

@@ -67,7 +67,7 @@ if (isset($_POST['update-event-details'])) {
                 $updateEvent = "UPDATE events_booking SET Num_Guests='$noOFGuests',Event_Type='$eventType',Reservation_Date='$eventDate',Starting_Time='$startingTime',Ending_Time='$endingTime',Selected_Features='$serializedAdditionalFeatures',Location_Price='$locationPrice' WHERE Events_ID='" . $existingEventID . "'";
                 $updateEventQuery = mysqli_query($con, $updateEvent);
                 if ($updateEventQuery) {
-                    header('location:meal-selection.php?events_id=' . $existingEventID . '');
+                    header('location:update-meal-selection.php?events_id=' . $existingEventID . '');
                 } else {
                     header('location:./HomePage-login.php?id=' . $existingEventID . '');
                 }
@@ -112,7 +112,7 @@ if (isset($_POST['update-event-details'])) {
 if (isset($_POST['Select_Meal'])) {
     $packageID = $_POST['packageID'];
     $eventsID = $_POST['eventsID'];
-    $priceSql = "SELECT * from events_booking_temp WHERE Events_ID='$eventsID' ";
+    $priceSql = "SELECT * from events_booking WHERE Events_ID='$eventsID' ";
     $packagePriceSql = "SELECT price from events_meals_packages WHERE Package_ID='$packageID'";
     $evtExc = mysqli_query($con, $priceSql);
     $priceExc = mysqli_query($con, $packagePriceSql);
@@ -123,12 +123,12 @@ if (isset($_POST['Select_Meal'])) {
         $totalPrice = $row["Location_Price"] + $row["Feature_Price"];
     }
     while ($row = mysqli_fetch_assoc($priceExc)) {
-        $totalPrice += $row["price"] * $noOFGuests;
+        $mealPrice = $row["price"] * $noOFGuests;
     }
-    $updateTotalPrice = "UPDATE events_booking_temp SET MealPackage_ID='" . $packageID . "',Price='$totalPrice' WHERE Events_ID='$eventsID' ";
+    $updateTotalPrice = "UPDATE events_booking SET MealPackage_ID='" . $packageID . "',Meal_Price='$mealPrice' WHERE Events_ID='$eventsID' ";
     if (mysqli_query($con, $updateTotalPrice)) {
         echo '<script>console.log(' . $packageID . ')</script>';
-        header('location:meal-selection.php?events_id=' . $eventsID . '');
+        header('location:update-meal-selection.php?events_id=' . $eventsID . '');
     } else {
         echo "Not updated";
     }

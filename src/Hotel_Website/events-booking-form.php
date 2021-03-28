@@ -123,7 +123,7 @@
                         </select>
                         <!-- <input type="time" name="starting-time" id="" style="position:absolute;top:280px;left:68%"> -->
                         <label for="" style="position:absolute;top:345px;left:74%;font-size:15px;font-size:15px;">Time Duration(In Hours)</label>
-                        <input type="number" name="event-duration" min="1" max="5" style="position:absolute;top:375px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
+                        <input type="number" name="event-duration" min="3" max="5" style="position:absolute;top:375px;left:76%;font-size:15px;font-size:20px;padding:3px" oninput="addHours(event)" required>
                         <label for="" style="position: absolute;top:345px;left:87%;font-size:20px">Ending time</label>
                         <input type="text" name="ending-time" id="ending-time" value="" style="position:absolute;top:375px;left:86.5%;padding:5px;width:120px" required>
                     </div>
