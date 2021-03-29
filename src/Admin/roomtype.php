@@ -116,27 +116,31 @@ $dataCount = json_encode($NoRooms); //encode the value into json format
 </head>
 
 <body bgcolor="black">
-<div class="chart-container" style="position:absolute;top:250px; height:1000px; width:1000px">
+<div class="chart-container" style="position:absolute;top:250px; height:500px; width:1000px">
         <canvas id="myChart"></canvas>
     </div>
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
         let massChart = new Chart(myChart, {
+            title:{
+        text: "Title in Big Fonts",
+        fontSize: 50,
+      },
             type: 'pie',
             data: {
                 labels: <?php echo $data ?>,
 
                 datasets: [{
-                    label: 'Room Type Summary',
                     data: <?php echo $dataCount ?>,
                     backgroundColor: [
-                         '#ff6384',
-                         '#1CE4D9',
+                         '#FF6384',
+                         '#36A2EB',
                          '#3BEC01'
                     ],
                 
 
                 }]
+                
                
             },
         
@@ -150,21 +154,19 @@ $dataCount = json_encode($NoRooms); //encode the value into json format
     </div>
     <button class="button1"style="position:absolute;top:57%;right:20%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='AdminViewStats.php'"><< Back </button>
     <script>
-function displayEmbeddedPdf (event){
-      event.preventDefault();
-      let pdfSource = $(this).data("pdf");
+    function PrintDive()
+{
 
-      let pdfDisplay=`<embed class="embed-responsive-item embedded-pdf" 
-      src="http://localhost/Grand-and-Epic/src/Admin/roomtype.php">`
-
-      $(this).parent().append(pdfDisplay);
-    }
-
-    $( document ).ready(function() {
-      $(".open-pdf").click(displayEmbeddedPdf) 
-    });
-    </script>
-
+    var divContents = document.getElementById("invoiceID").innerHTML;
+    var printWindow = window.open('', '', 'height=1000,width=800');
+    printWindow.document.write('<html><head><title></title>');
+    printWindow.document.write('</head><body >');
+    printWindow.document.write(divContents);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+}
+</script>
 </body>
 
 </html>

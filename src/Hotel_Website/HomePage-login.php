@@ -44,22 +44,55 @@ if (!isset($_SESSION['First_Name'])) {
 
     </div>
     <div class="body-container">
-        <h3>Bookings</h3><br />
+    <h3>Bookings</h3><br />
         <div class="booking-container">
             <div class="card">
-                <div class="card-img" id="img01"></div>
+    <?php include("../../config/connection.php");
+
+$query = "SELECT Heading,Content,Img_url FROM content WHERE Content_ID='1' ";
+$query_run = mysqli_query($con, $query);
+while ($row = mysqli_fetch_array($query_run)) {
+
+?>
+        
+                <div class="card-img" ><?php echo '<img src="data:image;base64, ' . base64_encode($row["Img_url"]) . '" alt="Image" style="width: 200px; height: 150px"' ?></div>
                 <div class="card-content">
-                    <h1 class="card-header">Staying-In</h>
-                        <p class="card-para">Have you been feeling the need of escaping from your hectic lifestyle and find a perfect hideaway to spend your family with.A place where you won’t be disturbed by the polluted and busy towns and inhale the purest air and enjoy the tranquillity of a place where you can enjoy nature.This is the perfect gateway that you needed all this time.</p>
-                        <a href="staying-in-login.php" class="card-link">Read more</a>
+   
+                 
+<tr>
+<h1 class="card-header"><?php echo $row["Heading"]; ?></h>
+<p class="card-para"><?php echo $row["Content"]; ?></p>
+<a href="staying-in-login.php" class="card-link">Read more</a>
+			</tr>
+		<?php
+		}
+    
+		?>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-img" id="img02"></div>
-                <div class="card-content">
-                    <h1 class="card-header">Dine-In</h>
-                        <p class="card-para">Welcome to Grand and Epic where you feel the cozy comfort. Select your favorite food, from the wide range to feel the reality in Sri Lanka. Our interior with stunning designs along with some magical positive vibes allows you to enjoy every bite of it. Let our menu stimulate your soul and teleport you to another dimension while watching the world go by.</p>
+            <?php include("../../config/connection.php");
+
+$query = "SELECT Heading,Content,Img_url FROM content WHERE Content_ID='2'";
+$query_run = mysqli_query($con, $query);
+while ($row = mysqli_fetch_array($query_run)) {
+
+?>
+        
+                <div class="card-img" ><?php echo '<img src="data:image;base64, ' . base64_encode($row["Img_url"]) . '" alt="Image" style="width: 200px; height: 150px"' ?></div>
+                <div class="card-content" style="width: 200px; height: 150px">
+   
+                 
+<tr>
+<h1 class="card-header"><?php echo $row["Heading"]; ?></h>
+<p class="card-para"><?php echo $row["Content"]; ?></p>
+<a href="staying-in-login.php" class="card-link">Read more</a>
+			</tr>
+		<?php
+		}
+    
+		?>
                         <a href="dinein-login.php" class="card-link">Read more</a>
                 </div>
             </div>

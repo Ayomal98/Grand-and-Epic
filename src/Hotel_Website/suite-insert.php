@@ -12,7 +12,13 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     $mealSelection = $_POST['meal-selection']; //meal-type
     $emailUser = $_POST['emailUser'];
     $roomType = $_POST['room_type'];
-    $occupancy = 'Suite';
+    if ($roomType == 'Suite Rooms') {
+        $occupancy = 'Suite';
+    } else if ($roomType == 'Panaromic Rooms') {
+        $occupancy = "Panaromic";
+    } else {
+        $occupancy = "Superior";
+    }
     $noRooms = $_POST['No-Rooms'];
     $roomPrice;
     $mealPrice;
