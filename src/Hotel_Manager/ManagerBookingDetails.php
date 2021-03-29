@@ -44,7 +44,6 @@ checkSession();
                 <a href="HotelManagerPromotions.php"><font size = "4 px">Promotions</font></a>
                 <a href="HotelManagerCustomerFeedback.php"><font size = "4 px">Customer Feedback</font></a>
                 <a href="HotelManagerManageRoom.php"><font size = "4 px">Manage Rooms</font></a>
-				<a href="HotelManagerEarlyCheckOuts.php"><font size = "4 px">Early Check-Outs</font></a>
 				</div>
 		</div>
 		<div class = "top-right">
@@ -77,20 +76,26 @@ checkSession();
 	</script>
 	
     <!-- View Booking Details -->
-
+      
     <!-- View Stayingin Booking Details -->
     <div class="staytablemanager">
         <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
-                <th colspan="4"><h2>View Staying Booking Details</h2></th>
+                <th colspan="10"><h2>View Staying Booking Details</h2></th>
             </tr>
             <tr>
-                <th>CheckIn Date:</th>
-                <th>CheckOut Date:</th>
-                <th>Room No:</th>
-                <th>Room Type:</th>
-                <th>Reservation Type:</th>
+                <th>Staying ID</th>
+                <th>Occupancy</th>
+                <th>No: of Occupants</th>
+                <th>Room No</th>
+                <th>Reservation Type</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
+                <th>Check In Time</th>
+                <th>Check Out Time</th>
+                <th>Paid Amount</th>
+                <th>Total Amount</th>
             </tr>
 
             <?php
@@ -99,14 +104,21 @@ checkSession();
 
                 while($row = mysqli_fetch_array($query_run))
                 {
+                    $roomNumbers = unserialize($row['Room_Numbers']);
             ?>
 
             <tr>
+                <td><?php echo $row['StayingIn_ID'] ?></td>
+                <td><?php echo $row['Occupancy'] ?></td>
+                <td><?php echo $row['No_Occupants'] ?></td>
+                <td><?php echo implode(",",$roomNumbers) ?></td>
+                <td><?php echo $row['Reservation_Type'] ?></td>
                 <td><?php echo $row['CheckIn_Date'] ?></td>
                 <td><?php echo $row['CheckOut_Date'] ?></td>
-                <td><?php echo $row['Room_Numbers'] ?></td>
-                <td><?php echo $row['Room_Type'] ?></td>
-                <td><?php echo $row['Reservation_Type']?></td>
+                <td><?php echo $row['CheckIn_Time'] ?></td>
+                <td><?php echo $row['CheckOut_Time'] ?></td>
+                <td><?php echo $row['Paid_Amount'] ?></td>
+                <td><?php echo $row['Total_Amount']?></td>
             </tr>
 
             <?php
@@ -115,7 +127,48 @@ checkSession();
 
         </table>
     </div>
+      
+<!-- Earlycheckouts -->
+    <div class="dtablescrollearly">
+    <table border="2px solid white" style="border-collapse:collapse; color:white;width:100%;font-size:17px;top:1000px">
+        <tr>
+            <th colspan="7">
+                <h2>Special Cases - Early Check-outs</h2>
+            </th>
+        </tr>
+        <tr>
+            <th>Reservatio ID</th>
+            <th>Customer ID</th>
+            <th>Date Checked In</th>
+            <th>Date Checked Out</th>
+            <th>Requested Date</th>
+            <th>Reason</th>
+			<th>User Email</th>
+        </tr>
 
+        <?php include("../../config/connection.php");
+
+        $query = "SELECT * FROM early_checkout_table";
+        $query_run = mysqli_query($con, $query);
+        while ($row = mysqli_fetch_array($query_run)) {
+
+        ?>
+            <tr>
+                <td><?php echo $row["Reservation_ID"]; ?></td>
+                <td><?php echo $row["Customer_ID"]; ?></td>
+                <td><?php echo $row["Date_CheckedIn"]; ?></td>
+                <td><?php echo $row["Date_CheckedOut"]; ?></td>
+                <td><?php echo $row["Requested_CheckedOut"]; ?></td>
+                <td><?php echo $row["Reason"]; ?></td>
+				<td><?php echo $row["User_Email"]; ?></td>
+			
+            </tr>
+        <?php
+        }
+        ?>
+
+    </table>
+</div>
 
 
     <!-- View Dinein Booking Details -->

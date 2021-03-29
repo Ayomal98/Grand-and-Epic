@@ -21,9 +21,9 @@ if (isset($_POST['Accept'])) {
 	$acceptanceReply = mysqli_query($con,"UPDATE leave_request SET Status='$status' WHERE Employee_ID='$EmployeeID'");
 	if ($acceptanceReply) {
 		echo "<script>
-            alert('Leave has been accepted');
-          </script>";
-		header('location:HotelManagerManageStaff.php');
+		alert('Leave request has been accepted!');
+		window.location.href='HotelManagerManageStaff.php';
+		</script>";
 		//sending the reservation confirmation mail to the customer
 		require '../../config/PHPMailer/src/Exception.php';
 		require '../../config/PHPMailer/src/PHPMailer.php';
@@ -48,15 +48,16 @@ if (isset($_POST['Accept'])) {
 			// Content
 			$mail->isHTML(true);                                  // Set email format to HTML
 			$mail->Subject = 'Accept Leave Request';
-			$mail->Body    = 'Request has been accepted';
+			$mail->Body    = 'Dear Satff Member, <p>Your Leave Request has been accepted.</p>';
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 			$mail->send();
-			echo '<script>alert("Message Sent")</script>';
-            header('location:HotelManagerManageStaff.php');
+			echo "<script>
+		    alert('Mail has been sent!');
+		    window.location.href='HotelManagerManageStaff.php';
+		    </script>";
 		} catch (Exception $e) {
-			echo '<script>alert("Message could not be sent. Mailer Error: {$mail->ErrorInfo}")</script>';
-            header('location:HotelManagerManageStaff.php');
+			echo "<script>alert('Message could not be sent.Mailer Error: {$mail->ErrorInfo}'); window.location.href='HotelManagerManageStaff.php';</script>";
 		}
 	} else {
 		echo '<script> alert("Data Not Added") </script>';
@@ -75,10 +76,10 @@ if (isset($_POST['Decline'])) {
     $status = 1;
     $declineReply = mysqli_query($con,"DELETE from leave_request WHERE Employee_ID='$EmployeeID'");
 	if ($declineReply) {
-		echo "<script>
-            alert('Leave has been accepted');
-          </script>";
-		header('location:HotelManagerManageStaff.php');
+        echo "<script>
+		alert('Leave Request has been Declined!');
+		window.location.href='HotelManagerManageStaff.php';
+		</script>";
 		//sending the reservation confirmation mail to the customer
 		require '../../config/PHPMailer/src/Exception.php';
 		require '../../config/PHPMailer/src/PHPMailer.php';
@@ -103,18 +104,20 @@ if (isset($_POST['Decline'])) {
 			// Content
 			$mail->isHTML(true);                                  // Set email format to HTML
 			$mail->Subject = 'Decline Leave Request';
-			$mail->Body    = 'Request has been declined';
+			$mail->Body    = 'Dear Satff Member, <p>Your Leave Request has been declined.</p>';
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 			$mail->send();
-			echo '<script>alert("Message Sent")</script>';
-            header('location:HotelManagerManageStaff.php');
+			echo "<script>
+		    alert('Mail has been sent!');
+		    window.location.href='HotelManagerManageStaff.php';
+		    </script>";
 		} catch (Exception $e) {
 			echo '<script>alert("Message could not be sent. Mailer Error: {$mail->ErrorInfo}")</script>';
             header('location:HotelManagerManageStaff.php');
 		}
 	} else {
-		echo '<script> alert("Data Not Added") </script>';
+		echo "<script>alert('Message could not be sent.Mailer Error: {$mail->ErrorInfo}'); window.location.href='HotelManagerManageStaff.php';</script>";
 	}
   
 }
@@ -168,9 +171,6 @@ if (isset($_POST['Decline'])) {
             </a>
             <a href="HotelManagerManageRoom.php">
                 <font size="4 px">Manage Rooms</font>
-            </a>
-            <a href="HotelManagerEarlyCheckOuts.php">
-                <font size="4 px">Early Check-Outs</font>
             </a>
         </div>
     </div>
@@ -360,7 +360,7 @@ if (isset($_POST['Decline'])) {
     }
     ?>
 
-<!-- view customer feedback records  -->
+<!-- view leave requests  -->
 	<?php
 	include('../../config/connection.php');
 	$tempStatus = 0;
@@ -396,7 +396,7 @@ if (isset($_POST['Decline'])) {
 		$selectDetails = mysqli_query($con, "SELECT * FROM leave_request WHERE ID='$id'");
 		$rowUserDetails = mysqli_fetch_assoc($selectDetails);
 	?>
-		<form action="" method="POST" style="border:1px solid white;width:600px;height:600px;display: flex;flex-direction: column;padding:10px 35px;margin-left:820px;position:absolute;top:1450px;">
+		<form action="" method="POST" style="border:1px solid white;width:600px;height:600px;display: flex;flex-direction: column;padding:10px 35px;margin-left:820px;position:absolute;top:1400px;">
 			<label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Leave Requests</label>
 			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Employee ID</label>
 			<input type="hidden" name="ID" value="<?php echo $id ?>">
