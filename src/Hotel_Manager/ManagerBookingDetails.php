@@ -79,8 +79,8 @@ checkSession();
     <!-- View Booking Details -->
 
     <!-- View Stayingin Booking Details -->
-    <div class="staytable">
-        <table border="1px solid white" style="color:white; width:100%">
+    <div class="staytablemanager">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
                 <th colspan="4"><h2>View Staying Booking Details</h2></th>
@@ -119,8 +119,8 @@ checkSession();
 
 
     <!-- View Dinein Booking Details -->
-    <div class="dinetable">
-        <table border="1px solid white" style="color:white; width:100%">
+    <div class="dinetablemanager">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
                 <th colspan="3"><h2>View Dine-in Booking Details</h2></th>
@@ -155,8 +155,8 @@ checkSession();
     </div>
     
     <!-- View Events Booking Details -->
-    <div class="eventtable">
-        <table border="1px solid white" style="color:white; width:100%">
+    <div class="eventtablemanager">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
                 <th colspan="4"><h2>View Events Booking Details</h2></th>

@@ -355,19 +355,19 @@ if(isset($_POST['insert'])){
                 <th>Room Type:</th>
                 <th>Reservation Type:</th>
             </tr>
-
             <?php
                 $query = "SELECT * FROM stayingin_booking ORDER BY CheckIn_Date ASC";
                 $query_run = mysqli_query($con,$query);
 
                 while($row = mysqli_fetch_array($query_run))
+					$roomNumbers = unserialize($row['Room_Numbers']);
                 {
             ?>
 
             <tr>
                 <td><?php echo $row['CheckIn_Date'] ?></td>
                 <td><?php echo $row['CheckOut_Date'] ?></td>
-                <td><?php echo $row['Room_Numbers'] ?></td>
+                <td><?php echo implode(",",$roomNumbers) ?></td>
                 <td><?php echo $row['Room_Type'] ?></td>
                 <td><?php echo $row['Reservation_Type']?></td>
             </tr>

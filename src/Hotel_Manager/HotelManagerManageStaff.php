@@ -475,7 +475,7 @@ if (isset($_POST['Decline'])) {
     </table>
 </div>
 
-<div class="dtablescroll">
+<div class="dtablescrollduty">
     <table align="center" style="color:white;width:100%;font-size:17px;">
         <tr>
             <th colspan="6">
