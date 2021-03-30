@@ -826,7 +826,7 @@ input:focus{
 }
 
 .card {
-  width: 130%;
+  width:  130%;
   height: 55vh;
   display: flex;
   background: #fff;

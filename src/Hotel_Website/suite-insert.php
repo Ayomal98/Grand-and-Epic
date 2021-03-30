@@ -12,7 +12,13 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     $mealSelection = $_POST['meal-selection']; //meal-type
     $emailUser = $_POST['emailUser'];
     $roomType = $_POST['room_type'];
-    $occupancy = 'Suite';
+    if ($roomType == 'Suite Rooms') {
+        $occupancy = 'Suite';
+    } else if ($roomType == 'Panaromic Rooms') {
+        $occupancy = "Panaromic";
+    } else {
+        $occupancy = "Superior";
+    }
     $noRooms = $_POST['No-Rooms'];
     $roomPrice;
     $mealPrice;
@@ -45,9 +51,11 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
         }
     } else if ($reservationType == 'Room & Breakfast') {
         if ($mealSelection == 'Set-Menu') {
+            $dateDifference = strtotime($checkOutDate) - strtotime($checkInDate);
+            $duration = round(($dateDifference) / (60 * 60 * 24));
             $selectMealPrice = mysqli_query($con, "SELECT Price FROM stayingin_setmenu WHERE Meal_Type='Breakfast'");
             $rowBreakfastprice = mysqli_fetch_assoc($selectMealPrice);
-            $mealPrice = $rowBreakfastprice['Price'];
+            $mealPrice = $rowBreakfastprice['Price'] * $duration;
             $insertRoomDetails = mysqli_query($con, "INSERT into stayingin_booking_temp (Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price) VALUES('$occupancy','$noOccupants','$noRooms','" . $encoded_rooms . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice')");
             $stayingIn_ID;
             $selectTempBookingID = mysqli_query($con, "SELECT StayingIn_ID FROM stayingin_booking_temp WHERE User_Email='$emailUser'");
@@ -72,12 +80,15 @@ if (isset($_POST['Next']) || isset($_POST['Meal-Selection'])) {
     } else {
         //to select the price for the meals accordingly for set menu & full board
         if ($mealSelection == 'Set-Menu' && $reservationType == 'Full-Board') {
+            $dateDifference = strtotime($checkOutDate) - strtotime($checkInDate);
+            $duration = round(($dateDifference) / (60 * 60 * 24));
             $selectMealPrice = mysqli_query($con, "SELECT * FROM stayingin_setmenu");
             if (mysqli_num_rows($selectMealPrice) > 0) {
                 while ($rowMeals = mysqli_fetch_assoc($selectMealPrice)) {
                     $mealPrice += (int) $rowMeals['Price'];
                 }
             }
+            $mealPrice = $mealPrice * $duration;
             // //select the availability
             // $selectSuiteAvailability = mysqli_query($con, "SELECT * WHERE `CheckIn_Date`>='" . $checkInDate . "' AND `CheckOut_Date`<='" . $checkOutDate . "' ");
 

@@ -89,11 +89,10 @@ if (!isset($_SESSION['First_Name'])) {
       });
     }
   </script>
-  <button class="button1"style="position:absolute;top:17%;right:70%;color:black;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='roomtype.php'">Room type analysis</button>
-  <button class="button1"style="position:absolute;top:17%;right:50%;color:black;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='mealprice.php'">Meal Price analysis</button>
+  <button class="button1"style="position:absolute;top:17%;right:60%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='roomtype.php'">Overall Booking Analysis</button>
+  <button class="button1"style="position:absolute;top:17%;right:40%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='mealprice.php'">Meal Price analysis</button>
 
-  <button class="button1" style="position:absolute;top:22%;right:50%;color:white;background-color:blue;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer">
-    <p><b>Generte Overall Report</b></p>
+ 
  
    <!-- require 'AdminViewStats.php';
 

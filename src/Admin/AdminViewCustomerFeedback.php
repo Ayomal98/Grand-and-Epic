@@ -121,14 +121,18 @@ if (isset($_POST['Cancel'])) {
         $selectDetails = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Feedback_ID='$id'");
         $rowDetails = mysqli_fetch_assoc($selectDetails);
     ?>
-	 <form action="" method="POST" style="border:1px solid white;width:850px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 500px;margin-top:50px;">
+	 <form action="" method="POST" style="border:1px solid white;width:850px;height:600px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 300px;margin-top:50px;">
             <label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Feedback</label>
-            <tr><label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback_ID</label>
+            
 
-            <input type="hidden" name="Feedback_ID" value="<?php echo $id ?>"></tr>
+            <input type="hidden" name="Feedback_ID" value="<?php echo $id ?>"></br>
+            <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Rate For Website</label>
             <input type="text" name="Staff_Rate" id="" value="<?php echo $rowDetails['Website_Rate'] ?>">
+            <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback for website</label>
             <input type="text" name="Feedback_Staff" id="" value="<?php echo $rowDetails['Feedback_Website'] ?>">
+            <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Rate For Staff</label>
             <input type="text" name="Website_Rate" id="" value="<?php echo $rowDetails['Staff_Rate'] ?>">
+            <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback for staff</label>
             <input type="text" name="Feedback_Website" id="" value="<?php echo $rowDetails['Feedback_Staff'] ?>">
 			<input type="submit" name="Cancel" value="Cancel" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
         </form>
@@ -137,7 +141,7 @@ if (isset($_POST['Cancel'])) {
     } 
 
 	?>
-
+ 
 
 	<script>
 		function funcUserDetails() {
