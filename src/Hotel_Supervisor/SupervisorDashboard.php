@@ -273,6 +273,7 @@ checkSession();
 			?>
 
 			</table>
+		</fieldset>
 		</form>
 
 

@@ -1,6 +1,6 @@
 <?php
 include("../../public/includes/session.php");
-include("../../config/connection.php");
+
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/index.php');
@@ -15,11 +15,6 @@ if (!isset($_SESSION['First_Name'])) {
 	<title>
 		Admin Dashboard
 	</title>
-	<style>
-		body {
-			height: 5500px;
-		}
-	</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -343,17 +338,15 @@ if (!isset($_SESSION['First_Name'])) {
 			
 				</table>
 			</td>
-		
-
-	
-	<!-- User Profie -->
+			</table>
+			<!-- User Profie -->
 	<form action="" method="POST">
-		<fieldset style=" position:absolute; top:980px; width: 75%; left:160px">
+		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
 			<table align="center" style="color:white; font-size: 20px; width:88%;">
 
 			<?php
 				
-
+				include("../../config/connection.php");
 					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
 					$query_run = mysqli_query($con,$query);
 
@@ -391,7 +384,7 @@ if (!isset($_SESSION['First_Name'])) {
 					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
 				</tr>
 				<tr>
-					<td>Employee ID:</td>
+					<td>Supervisor ID:</td>
 					<td><input type="text" name="id" readonly value="<?php echo $row['Employee_ID'] ?>" /></td>
 				</tr>
 				<tr>
@@ -418,7 +411,10 @@ if (!isset($_SESSION['First_Name'])) {
 			?>
 
 			</table>
+			</fieldset>
 		</form>
+
+
 
 
 	
