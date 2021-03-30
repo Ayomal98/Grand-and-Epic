@@ -475,13 +475,8 @@ if (isset($_POST['Decline'])) {
     </table>
 </div>
 
-<<<<<<< HEAD
-<div class="dtablescroll">
-    <table align="center" style="color:white;width:100%;font-size:17px;top:890px">
-=======
 <div class="dtablescrollduty">
     <table align="center" style="color:white;width:100%;font-size:17px;">
->>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
         <tr>
             <th colspan="6">
                 <h4>Duty Roster</h2>
