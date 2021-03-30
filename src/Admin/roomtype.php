@@ -192,7 +192,11 @@ if (isset($_POST['print'])) {
   ?>
 
 
+<<<<<<< HEAD
   <div class="chart-container" id="1" style="position:absolute;top:300px; height:100px; width:500px;left:100px">
+=======
+  <div class="chart-container" id="1" style="position:absolute;top:300px; height:100px; width:500px;left:10px">
+>>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
     <h2 style="color:white" style="text-align:center">Overall Staying-In Boooking Room Type Analyis</h2>
     <canvas id="myChart-1"></canvas>
   </div>
@@ -201,6 +205,7 @@ if (isset($_POST['print'])) {
 
 
   <div class="chart-container" id="2" style="position:absolute;top:300px; height:100px; width:500px;right:200px">
+<<<<<<< HEAD
     <h2 style="color:white" style="text-align:center">Overall Dine-In Boooking Analyis</h2>
     <canvas id="myChart-2"></canvas>
   </div>
@@ -211,6 +216,18 @@ if (isset($_POST['print'])) {
   </div>
 
   <!--script for #mychart-1-->
+=======
+    <h2 style="color:white" style="text-align:center">Overall Staying-In Boooking Reservation Type Analyis</h2>
+    <canvas id="myChart-2"></canvas>
+  </div>
+
+  <div class="chart-container" id="3" style="position:absolute;top:700px; height:100px; width:500px;left:10px">
+    <h2 style="color:white" style="text-align:center">Overall Events Boooking Reservation Type Analyis</h2>
+    <canvas id="myChart-3"></canvas>
+  </div>
+
+  //script for #mychart-1
+>>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
   <script>
     let myChart = document.getElementById('myChart-1').getContext('2d');
     let massChart = new Chart(myChart, {
@@ -236,7 +253,11 @@ if (isset($_POST['print'])) {
     })
   </script>
 
+<<<<<<< HEAD
   <!--script for #mychart-2-->
+=======
+  //script for #mychart-2
+>>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
   <script>
     let myChart1 = document.getElementById('myChart-2').getContext('2d');
     let massChart1 = new Chart(myChart1, {
@@ -264,7 +285,11 @@ if (isset($_POST['print'])) {
     })
   </script>
 
+<<<<<<< HEAD
   <!--script for #mychart-3-->
+=======
+  //script for #mychart-3
+>>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
   <script>
     let myChart2 = document.getElementById('myChart-3').getContext('2d');
     let massChart2 = new Chart(myChart2, {

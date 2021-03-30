@@ -76,6 +76,9 @@ if (!isset($_SESSION['First_Name'])) {
                 </div>
             <?php } ?>
         </div>
+        <?php include("../../public/includes/footer-index.php"); ?>
+        <script src="../../public/javascript/script.js"></script>
+        <script src="../../public/Javascript/sticky-nav.js"></script>
 
 
 </body>

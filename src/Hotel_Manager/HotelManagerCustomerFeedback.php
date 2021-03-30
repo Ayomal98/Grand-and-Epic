@@ -204,7 +204,6 @@ if (isset($_POST['Accept'])) {
 	$date = date('Y-m-d', time());
 	echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">' . $date . '</span>    ';
 	?>
-
 	<!-- view customer feedback records  -->
 	<?php
 	include('../../config/connection.php');
@@ -212,38 +211,6 @@ if (isset($_POST['Accept'])) {
 	$selectCustomerFeedback = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Status='" . $tempStatus . "' ");
 	if (mysqli_num_rows($selectCustomerFeedback) > 0) {
 		echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
-	<script>
-	/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-	var dropdown = document.getElementsByClassName("dropdown-btn");
-	var i;
-
-	for (i = 0; i < dropdown.length; i++) {
-	  dropdown[i].addEventListener("click", function() {
-	  this.classList.toggle("active");
-	  var dropdownContent = this.nextElementSibling;
-	  if (dropdownContent.style.display === "block") {
-	  dropdownContent.style.display = "none";
-	  } else {
-	  dropdownContent.style.display = "block";
-	  }
-	  });
-	}
-	</script>
-	 <!-- to generate today date  -->
-	 <?php
-    date_default_timezone_set('Asia/Colombo');
-    $date = date('Y-m-d', time());
-    echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">' . $date . '</span>    ';
-    ?>
-
-	 <!-- view customer feedback records  -->
-	 <?php
-    include('../../config/connection.php');
-    $tempStatus = 0;
-    $selectCustomerFeedback= mysqli_query($con, "SELECT * FROM customer_feedback WHERE Status='" . $tempStatus . "' ");
-    if (mysqli_num_rows($selectCustomerFeedback) > 0) {
-        echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
-
             <thead>
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reservation Id</th>
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Feedback ID</th>
@@ -253,14 +220,9 @@ if (isset($_POST['Accept'])) {
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Feedback Status</th>
             </thead>';
 
-
 		while ($rowResDetails = mysqli_fetch_assoc($selectCustomerFeedback)) {
 			$id = $rowResDetails['Feedback_ID'];
 			echo '<tbody>
-
-        while ($rowResDetails = mysqli_fetch_assoc($selectCustomerFeedback)) {
-            $id = $rowResDetails['Feedback_ID'];
-            echo '<tbody>
                     <tr>
                         <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reservation_ID'] . '</td>
                         <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Feedback_ID'] . '</td>
@@ -275,34 +237,6 @@ if (isset($_POST['Accept'])) {
 
 	?>
 
-	<!-- filter feedback  -->
-	<?php if (isset($_GET['id'])) {
-		$id = $_GET['id'];
-		$selectDetails = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Feedback_ID='$id'");
-		$rowUserDetails = mysqli_fetch_assoc($selectDetails);
-	?>
-		<form action="" method="POST" style="border:1px solid white;width:1000px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 170px;margin-top:50px;">
-			<label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Feedback</label>
-			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback for staff</label>
-			<input type="hidden" name="Feedback_ID" value="<?php echo $id ?>">
-			<input type="text" name="Feedback_Satff" id="" value="<?php echo $rowUserDetails['Feedback_Staff'] ?>">
-			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Feedback for Website</label>
-			<input type="text" rows="5" name="Feedback_Website" id="" value="<?php echo $rowUserDetails['Feedback_Website'] ?>">
-			<input type='hidden' name='user_email' value="<?php echo $rowUserDetails['User_Email'] ?>">
-			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Reply</label>
-			<input type="text" name='feedback' placeholder="Reply">
-			<input type="submit" name="Accept" value="Send Reply" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
-		</form>
-	<?php
-	} else {
-	} ?>
-
-
-        }
-        echo '</table>';
-    }
-
-    ?>
 
 	 <!-- filter feedback  -->
 	  <?php if (isset($_GET['id'])) {

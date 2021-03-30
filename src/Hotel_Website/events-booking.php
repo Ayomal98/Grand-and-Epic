@@ -14,16 +14,20 @@ if (isset($_POST['event-details'])) {
     $timeSlot = $_POST['preferred-timeslot'];
     $locationTotalPrice;
     $featurePrice = 0;
+    $startingTimePeriod;
     if ($timeSlot == 'Morning') {
         $startingTime = $_POST['morning-time'];
+        $startingTimePeriod = "Morning";
     } else if ($timeSlot == 'Afternoon') {
         $startingTime = $_POST['afternoon-time'];
+        $startingTimePeriod = "Afternoon";
     } else {
         $startingTime = $_POST['dinner-time'];
+        $startingTimePeriod = "Night";
     }
 
     //to check whether the existing bookings are already there
-    $getBookingsOnDay = mysqli_query($con, " SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' ORDER BY Starting_Time ASC ");
+    $getBookingsOnDay = mysqli_query($con, " SELECT * FROM events_booking WHERE Reservation_Date='" . $eventDate . "' AND Starting_Time_Period='" . $startingTimePeriod . "' ORDER BY Starting_Time ASC");
     if (mysqli_num_rows($getBookingsOnDay) > 0) {
         while ($rowAvailability = mysqli_fetch_assoc($getBookingsOnDay)) {
             $startDBTime = date("H", strtotime($rowAvailability['Starting_Time'])); //converting the time which takes from db to date format
@@ -31,19 +35,19 @@ if (isset($_POST['event-details'])) {
             $endDBTime = date("H", strtotime($rowAvailability['Ending_Time']));
             $endInputTime = date("H", strtotime($endingTime));
             if (($startInputTime == $startDBTime) || ($endInputTime == $endDBTime) || ($startInputTime == $endDBTime) || ($endDBTime == $startInputTime)) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take 1")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take ")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($startInputTime > $startDBTime && $startInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take 2")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take ")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($startDBTime > $startInputTime && $endInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take 3")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take ")
                             window.location.href="events-booking-form.php"
                         </script>';
             } else if ($startInputTime > $startDBTime && $endInputTime < $endDBTime) {
-                echo '<script>alert("The timeslot and the date which you have selected is being already take 4")
+                echo '<script>alert("The timeslot and the date which you have selected is being already take ")
                 window.location.href="events-booking-form.php"
             </script>';
             } else {
@@ -68,7 +72,7 @@ if (isset($_POST['event-details'])) {
                 $mealPackageID = 0; //inital meal packageID, since its not selected
                 $serializedAdditionalFeatures = serialize($additionalFeatures);
                 echo $serializedAdditionalFeatures;
-                $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "')";
+                $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features,Starting_Time_Period) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "','" . $startingTimePeriod . ")";
                 mysqli_query($con, $insertEvent);
                 $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
                 if ($resultID = mysqli_query($con, $selectEventID)) {
@@ -103,7 +107,7 @@ if (isset($_POST['event-details'])) {
         $locationTotalPrice += $featurePrice;
         $mealPackageID = 0; //inital meal packageID, since its not selected
         $serializedAdditionalFeatures = serialize($additionalFeatures);
-        $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "')";
+        $insertEvent = "INSERT into events_booking_temp (Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Price,Feature_Price,Location_Price,Selected_Features,Starting_Time_Period) VALUES ('$customerName','$customerEmail','$noOfGuests','$eventType','$eventDate','$startingTime','$endingTime','$mealPackageID','$locationTotalPrice','$featurePrice','$locationPrice','" . $serializedAdditionalFeatures . "','" . $startingTimePeriod . "')";
         mysqli_query($con, $insertEvent);
         $selectEventID = "SELECT * from events_booking_temp WHERE Customer_Email='$customerEmail' ";
         if ($resultID = mysqli_query($con, $selectEventID)) {

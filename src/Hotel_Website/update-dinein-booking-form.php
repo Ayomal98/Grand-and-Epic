@@ -110,7 +110,7 @@ while ($row = mysqli_fetch_assoc($sql_run)) {
             <div class="customer-details">
                 <input type="text" style="width:28%" name="customer-name" id="" placeholder="Customer Name" value="<?php echo $customer_name ?>" required>
                 <input type="text" style="width:45%" name="customer-email" id="" placeholder="Email address" value="<?php echo $customer_email ?> " required>
-                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" value="<?php echo $num_guests ?>" style="width:110px;" required>
+                <input type="number" name="number-of-guests" placeholder="No-Guests" min="1" max="15" step="1" value="<?php echo $num_guests ?>" style="width:110px;" id="number-of-guest" required>
             </div>
             <div class="dine-in-details-wrapper" style="display:flex;align-items:center;">
                 <div class="meal-container">
@@ -161,12 +161,14 @@ while ($row = mysqli_fetch_assoc($sql_run)) {
                 <div class="table-showing-container">
                     <?php include("showtables.php"); ?>
                 </div>
-                <input type="button" value="Check-Availability" name="check-availability" class="check-availability-btn"><i class="fas fa-check" style="position:absolute;top:66%;right:42%;"></i></input>
+                <input type="button" value="Check-Availability" name="check-availability" class="check-availability-btn"><i class="fas fa-check" style="position:absolute;top:66%;right:35%;"></i></input>
                 <div style="display:flex;flex-direction:column">
 
-                    <br><input type="number" name="table-no" placeholder="Table-No" style="position:absolute;top:75%;right:32%;width:180px; height:40px;padding:10px" min="1" max="<?php echo $number_of_tables; ?>" value="<?php echo $table_no ?>"><br>
+                    <br><input type="number" name="table-no" placeholder="Table-No" style="position:absolute;top:75%;right:25%;width:180px; height:40px;padding:10px" min="1" max="<?php echo $number_of_tables; ?>" value="<?php echo $table_no ?>" oninput="getInsertedTable(event)"><br>
                     <div class="dot not-avb"></div><span style="margin-top: -35px;margin-left:150px;">Not Available</span><br>
                     <div class="dot"></div><span style="margin-top: -35px;margin-left:150px;">Available</span><br>
+                    <div id="table-availability-checker" style="position:absolute;color:red;top:82%;right:25%"></div>
+
                 </div>
             </div>
             <div class="btn-wrapper" style="display: inline-block;margin:auto 10px;">
@@ -211,6 +213,24 @@ while ($row = mysqli_fetch_assoc($sql_run)) {
         }
         today = yy + '-' + mm + '-' + dd;
         document.getElementById("datefield").setAttribute("min", today);
+    </script>
+
+
+    <script>
+        function getInsertedTable(e) {
+            let no_guests = document.getElementById('number-of-guest').value; //no.of inputed guests
+            let table_no = "table-" + e.target.value;
+            let guests_allowed = document.getElementById(table_no + '-cus').value // number of guests allowed for selected table
+            let guestsHandler = document.getElementById('table-availability-checker');
+            if (no_guests > guests_allowed) {
+                guestsHandler.innerHTML = "Please Select another table";
+            } else if (no_guests == guests_allowed || parseInt(no_guests) + 1 == guests_allowed) {
+                guestsHandler.innerHTML = "";
+            } else {
+                guestsHandler.innerHTML = "Please Select another table";
+
+            }
+        }
     </script>
 </body>
 
