@@ -1,5 +1,6 @@
 <?php
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/index.php');
@@ -16,7 +17,7 @@ if (!isset($_SESSION['First_Name'])) {
 	</title>
 	<style>
 		body {
-			height: 1500px;
+			height: 5500px;
 		}
 	</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
@@ -95,10 +96,10 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	</script>
 
-	<table style="position:absolute; top : 205px; width : 350px;">
+	<table style="position:absolute; top : 220px; width : 350px;">
 		<tr>
 			<td>
-				<img src="../../public/images/Employee.png" height="40%">
+				<img src="../../public/images/Employee.png" width="150" height="150">
 			</td>
 			<td>
 				<p style="font-family :Lato; font-size:20px; color :white;">System-Administrator Dashboard</p>
@@ -124,7 +125,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminAddPromotion.php">Manage Promotions</a></p>
 			</th>
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;"><a href="ViewStats.php">View Statistics</a></p>
+				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminViewStats.php">View Statistics</a></p>
 			</th>
 			<th style="border: 1px solid white;">
 				<p style="font-family :Lato; font-size:20px; color :white;"><a href="EditFeatures.php">Update Feature Prices</a></p>
@@ -148,21 +149,21 @@ if (!isset($_SESSION['First_Name'])) {
 				</table>
 
 			</td>
+
+			<!--VIEW BOOKING DETAILS-->
 			<td style="border: 1px solid white;">
 
 				<table width="100%">
 					<tr>
-						<td align="center">
-							<img src="../../public/images/Calendar.png" height="50%">
-						</td>
-						<td rowspan="2" align="center">
-							<img src="../../public/images/Duty.png" height="75%">
+
+						<td colspan="2" align="center">
+							<p style="color: white; font-size: 20px;">Booking<br>Details</p>
 						</td>
 					</tr>
 					<tr></tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/hotel.png" height="50%">
+							<img src="../../public/images/hotel.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">12</p>
@@ -170,7 +171,7 @@ if (!isset($_SESSION['First_Name'])) {
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/cutlery.png" height="50%">
+							<img src="../../public/images/cutlery.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">16</p>
@@ -178,7 +179,7 @@ if (!isset($_SESSION['First_Name'])) {
 					</tr>
 					<tr>
 						<td align="center">
-							<img src="../../public/images/tie.png" height="50%">
+							<img src="../../public/images/tie.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
 							<p style="color: white; font-size: 20px;">2</p>
@@ -188,68 +189,237 @@ if (!isset($_SESSION['First_Name'])) {
 
 			</td>
 
+			<!--VIEW BOOKING DETAILS-->
+
 			<td style="border: 1px solid white;">
-				<table width="100%">
+			<table width="100%">
 					<tr>
-						<td align="center">
-							<img src="../../public/images/webcontent.png" height="40%">
-						</td>
 						
+						<td colspan="2"align="center">
+							<p style="color: white; font-size: 22px;">Contents</p>
+						</td>
 					</tr>
+					<tr></tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/bed1.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Staying-In</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/meal1.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Dine-In</p>
+						</td>
+					</tr>
+				
+						
+					
 				</table>
 			</td>
 
 			<td style="border: 1px solid white;">
 				<table width="100%">
-					<tr>
-						<td align="center">
-							<img src="../../public/images/discount.png" height="50%">
-						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
+				<tr>
+						
+						<td colspan="2"align="center">
+							<p style="color: white; font-size: 22px;">Promotion<br>Types</p>
 						</td>
 					</tr>
-				</table>
-			</td>
-			<td style="border: 1px solid white;">
-				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/discount.png" height="50%">
+							<img src="../../public/images/credit1.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
-							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
+							<p style="color: white; font-size: 18px;">Loyalty</p>
 						</td>
 					</tr>
-				</table>
-			</td>
-			<td style="border: 1px solid white;">
-				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/discount.png" height="50%">
+							<img src="../../public/images/clock.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
-							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
+							<p style="color: white; font-size: 18px;">Last-Minute</p>
 						</td>
 					</tr>
-				</table>
-			</td>
-			<td style="border: 1px solid white;">
-				<table width="100%">
 					<tr>
 						<td align="center">
-							<img src="../../public/images/discount.png" height="50%">
+							<img src="../../public/images/presents.jpeg" height="50px" weight="50px">
 						</td>
 						<td align="center">
-							<p style="color: white; font-size: 20px;">Existing<br>Promotions - 2</p>
+							<p style="color: white; font-size: 18px;">Seasonal</p>
 						</td>
 					</tr>
-				</table>
-			</td>
-		</tr>
 
-	</table>
+				</table>
+			</td>
+			<td style="border: 1px solid white;">
+				<table width="100%">
+					<tr>
+					
+						<td colspan="2" align="center">
+							<p style="color: white; font-size: 22px;">Analyse<br>Types</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/booking.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Booking analysis</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/food12.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Meals analysis</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td style="border: 1px solid white;">
+				<table width="100%">
+				
+					<tr>
+					<td colspan="2" align="center">
+						<p style="color: white; font-size: 22px;">Features</p>
+					</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/music.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">DJ Music</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/decos.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Decoration</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/champ.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Champaigne</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td style="border: 1px solid white;">
+				<table width="100%">
+				<tr>
+					<td colspan="2" align="center">
+						<p style="color: white; font-size: 22px;">Feedback and Rating</p>
+					</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/chef.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Staff</p>
+						</td>
+					</tr>
+					<tr>
+						<td align="center">
+							<img src="../../public/images/laptop.png" height="50px" weight="50px">
+						</td>
+						<td align="center">
+							<p style="color: white; font-size: 18px;">Website</p>
+						</td>
+					</tr>
+			
+				</table>
+			</td>
+		
+
+	
+	<!-- User Profie -->
+	<form action="" method="POST">
+		<fieldset style=" position:absolute; top:980px; width: 75%; left:160px">
+			<table align="center" style="color:white; font-size: 20px; width:88%;">
+
+			<?php
+				
+
+					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
+					$query_run = mysqli_query($con,$query);
+
+					
+					// Update Profile
+					if (isset($_POST['update'])) {
+
+						$id = $_POST['id'];
+						$fname = $_POST['fname'];
+						$lname = $_POST['lname'];
+						$email = $_POST['email'];
+						$tel = $_POST['tel'];
+					
+							$update_query = " UPDATE employee SET Last_Name='$lname', Email='$email', Contact_No='$tel' where Employee_ID='$_POST[id]' ";
+							$update_run = mysqli_query($con, $update_query);
+					
+							if ($update_run) {
+								echo "<script>
+								alert('Your Details has been Updated');
+								window.location.href='SupervisorDashboard.php';
+								</script>";
+							} else {
+								echo '<script> alert("Data Not Updated") </script>';
+							}
+					}
+
+
+
+					
+					while($row = mysqli_fetch_array($query_run))
+					{
+			?>
+
+				<tr>
+					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
+				</tr>
+				<tr>
+					<td>Employee ID:</td>
+					<td><input type="text" name="id" readonly value="<?php echo $row['Employee_ID'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>First Name:</td>
+					<td><input type="text" name="fname" readonly value="<?php echo $row['First_Name'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Last Name:</td>
+					<td><input type="text" name="lname" value="<?php echo $row['Last_Name'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>Email Address:</td>
+					<td><input type="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
+				</tr>
+				<tr>
+					<td>TP Number: </td>
+					<td><input type="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
+				</tr>
+				<tr>
+					<td><input type="submit" class="button" name="update" value="UPDATE PROFILE"></td>
+				</tr>
+			<?php
+				}
+			?>
+
+			</table>
+		</form>
+
 
 	
 	<script>

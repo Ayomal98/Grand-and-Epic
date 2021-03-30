@@ -38,8 +38,8 @@ if (!isset($_SESSION['First_Name'])) {
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-			<a href="AdminDashboard.php">
-				<font size="4 px">Dashboard</font>
+			<a href="AdminManageCoAdmins.php">
+				<font size="4 px">Manage Co-admins(H.M)</font>
 			</a>
 			<a href="AdminRespondToLeaveRequests.php">
 				<font size="4px">Respond to Leave Requests</font>
@@ -47,14 +47,20 @@ if (!isset($_SESSION['First_Name'])) {
 			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
 			</a>
-			<a href="AdminManageCoAdmins.php">
-				<font size="4 px">Manage Co-Admins</font>
+			<a href="AdminManageContent.php">
+				<font size="4 px">Manage Content on web-site</font>
 			</a>
 			<a href="AdminAddPromotion.php">
-				<font size="4 px">Add promotion</font>
+				<font size="4 px">Manage promotion</font>
 			</a>
 			<a href="AdminViewStats.php">
 				<font size="4 px">View Stats</font>
+			</a>
+			<a href="EditFeatures.php">
+				<font size="4 px">Edit Feature Prices</font>
+			</a>
+			<a href="AdminViewCustomerFeedback.php">
+				<font size="4 px">View Feedback</font>
 			</a>
 		</div>
 	</div>

@@ -6,6 +6,23 @@ if (!isset($_SESSION['First_Name'])) {
 }
 
 ?>
+<?php
+include('../../config/vendor/autoload.php');
+
+include("../../config/connection.php");
+if (isset($_POST['print'])) {
+  $html = '';
+  $html .='<img src=\'../../public/images/Logo.png\' style=\'height:100px;width:135px;margin-top:20px;margin-bottom:10px\'>';
+  
+  $html .= '<p>This information is highly confidential and not supposed to share with any unaunthorized parties.</p>';
+  $html .=$_SESSION['First_Name'];
+  $html .='<p>System Administrator</p>';
+  $html .='<img src=\'../../public/images/footer.png\' style=\'width:1000px;height:100px\'>';
+  $mpdf = new \Mpdf\Mpdf();
+  $mpdf->WriteHTML($html);
+  $mpdf->Output("mystats.pdf", 'D');
+}
+?>
 <html>
 
 <head>
@@ -23,7 +40,7 @@ if (!isset($_SESSION['First_Name'])) {
 </head>
 
 
-
+<body bgcolor="black">
 	<center>
 		<img src="../../public/images/Logo.png" width="20%">
 		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
@@ -34,6 +51,9 @@ if (!isset($_SESSION['First_Name'])) {
 			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
 		</div>
 	</center>
+  <form action="roomtype.php" method="POST" style="margin-left: 1300px;">
+    <input type="submit" class="button" name="print" value="print" style="padding:10px;border-radius:5px;boder:none">
+  </form>
     <div class="sidenav">
     <button class="dropdown-btn">View Stats
       <i class="fa fa-caret-down"></i>
@@ -116,7 +136,7 @@ $dataPrice = json_encode($mealsPrice); //encode the value into json format
 </head>
 
 <body>
-    <div class="container">
+    <div class="container"id="2" style="position:absolute;top:250px; height:500px; width:1000px">
         <canvas id="myChart"></canvas>
     </div>
     <script>
@@ -127,7 +147,13 @@ $dataPrice = json_encode($mealsPrice); //encode the value into json format
                 labels: <?php echo $data ?>,
                 datasets: [{
                     label: 'Meal Price',
-                    data: <?php echo $dataPrice ?>
+                    data: <?php echo $dataPrice ?>,
+                    backgroundColor: [
+              '#FF6384',
+              '#36A2EB',
+              '#3BEC01',
+              '#FF6384'
+            ],
                 }]
             },
             options: {
@@ -136,11 +162,10 @@ $dataPrice = json_encode($mealsPrice); //encode the value into json format
 
         })
     </script>
-      <button class="button1"style="position:absolute;top:57%;right:20%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='AdminViewStats.php'"><< Back </button>
+      <button class="button1"style="position:absolute;top:35%;right:20%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='AdminViewStats.php'"><< Back </button>
 
 <div class="parent-container">
-    <h3 class="pdf-name">To Print the results</h3><button type="button" class="open-pdf" 
-    data-pdf="source">Click Here</button>
+    
     </div>
 </body>
 

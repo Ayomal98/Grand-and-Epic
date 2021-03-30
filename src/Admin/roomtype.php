@@ -1,40 +1,61 @@
 <?php
 include("../../public/includes/session.php");
+include('../../config/vendor/autoload.php');
+
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
-	header('Location:../Hotel_Website/index.php');
+  header('Location:../Hotel_Website/index.php');
 }
 
 ?>
+<?php
+include('../../config/vendor/autoload.php');
+
+include("../../config/connection.php");
+if (isset($_POST['print'])) {
+  $html = '';
+  $mpdf = new \Mpdf\Mpdf();
+  $mpdf->WriteHTML($html);
+  $mpdf->Output("mystats.pdf", 'D');
+}
+?>
+<!DOCTYPE html>
 <html>
 
 <head>
-	<link rel="stylesheet" href="../../public/css/employee.css">
+  <link rel="stylesheet" href="../../public/css/employee.css">
 
-	<title>
-		Respond Leave Requests
-	</title>
-	<style>
-		body {
-			height: 700px;
-		}
-	</style>
-	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
+  <title>
+    Respond Leave Requests
+  </title>
+  <style>
+    body {
+      height: 700px;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+
 </head>
 
+<body bgcolor="black">
 
 
-	<center>
-		<img src="../../public/images/Logo.png" width="20%">
-		<span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
-		<div id="user-detail-container">
-			<span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
-			<p style="margin-top: 2px; color:black"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
-			<hr style="color:teal">
-			<a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
-		</div>
-	</center>
-    <div class="sidenav">
+  <center>
+    <img src="../../public/images/Logo.png" width="20%">
+    <span class="far fa-caret-square-down" style="color:white;font-size:30px;position:absolute;right:0px;top:20px;" onclick="funcUserDetails()"></span>
+    <div id="user-detail-container">
+      <span class="fa fa-window-close" style="margin-left:130px;" onclick="funcCloseUserDetails()"></span>
+      <p style="margin-top: 2px; color:black"><?php echo "Logged in as " . $_SESSION['First_Name']; ?></P>
+      <hr style="color:teal">
+      <a href="../Hotel_Website/logout.php"><input type="button" value="Log-out" name="logout-btn" style="margin-top:-7px;margin-left:85px;padding:0px;background-color:black;color:white;border-radius:5px;cursor:pointer"></a>
+    </div>
+  </center>
+  <!-- 
+  <form action="stats-generator.php" method="POST" style="margin-left: 1300px;">
+    <input type="submit" class="button" name="print" value="print" style="padding:10px;border-radius:5px;boder:none">
+  </form> -->
+  <div class="sidenav">
     <button class="dropdown-btn">View Stats
       <i class="fa fa-caret-down"></i>
     </button>
@@ -59,114 +80,235 @@ if (!isset($_SESSION['First_Name'])) {
       </a>
     </div>
   </div>
-	<div class="top-right">
-		<table width="100%">
-			<tr>
-				<td>
+  <div class="top-right">
+    <table width="100%">
+      <tr>
+        <td>
 
-				</td>
-				<td>
-					<img src="../../public/images/Uvini.png" width="60" height="60">
-				</td>
-			</tr>
-		</table>
-	</div>
-	<script>
-		/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-		var dropdown = document.getElementsByClassName("dropdown-btn");
-		var i;
+        </td>
+        <td>
+          <img src="../../public/images/Uvini.png" width="60" height="60">
+        </td>
+      </tr>
+    </table>
+  </div>
 
-		for (i = 0; i < dropdown.length; i++) {
-			dropdown[i].addEventListener("click", function() {
-				this.classList.toggle("active");
-				var dropdownContent = this.nextElementSibling;
-				if (dropdownContent.style.display === "block") {
-					dropdownContent.style.display = "none";
-				} else {
-					dropdownContent.style.display = "block";
-				}
-			});
-		}
-	</script>
-    <?php include("../../config/connection.php");
-$select = mysqli_query($con, "SELECT * FROM rooms");
-$Room_Type = array();
-$NoRooms = array();
-if (mysqli_num_rows($select) > 0) {
-    while ($row = mysqli_fetch_assoc($select)) {
-        array_push($Room_Type, $row['Room_Type']); //pushing the values to the array
-        array_push($NoRooms, (int)$row['NoRooms']);
+  <script>
+    /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
     }
-}
-$data = json_encode($Room_Type); //encode the value into json format
-$dataCount = json_encode($NoRooms); //encode the value into json format
+  </script>
+  <?php include("../../config/connection.php");
+  $selectNoSuite = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='Suite Rooms'");
+  $selectNoSuperior = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='Superior Rooms'");
+  $selectNoPanaromic = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='Panaromic Rooms'");
 
-?>
+  $selectFullBoard = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Reservation_Type='Full-Board'");
+  $selectHalfBoard = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Reservation_Type='Half-Board'");
+  $selectRoomOnly = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Reservation_Type='Room Only'");
+  $selectRoomBreakfast = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Reservation_Type='Room & Breakfast'");
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Room Type Summary</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+  $selectWeddings = mysqli_query($con, "SELECT * FROM events_booking WHERE Event_Type='Wedding'");
+  $selectParties = mysqli_query($con, "SELECT * FROM events_booking WHERE Event_Type='Party'");
 
-</head>
 
-<body bgcolor="black">
-<div class="chart-container" style="position:absolute;top:250px; height:500px; width:1000px">
-        <canvas id="myChart"></canvas>
-    </div>
-    <script>
-        let myChart = document.getElementById('myChart').getContext('2d');
-        let massChart = new Chart(myChart, {
-            title:{
-        text: "Title in Big Fonts",
-        fontSize: 50,
+
+  $countSuperior = 0;
+  $countSuite = 0;
+  $countPanaromic = 0;
+  $countFullBoard = 0;
+  $countHalfBoard = 0;
+  $countRoomOnly = 0;
+  $countRoomBreakfast = 0;
+  $countWeddings = 0;
+  $countParties = 0;
+  while ($row = mysqli_fetch_assoc($selectNoSuite)) {
+    $countSuite++;
+  }
+  while ($row = mysqli_fetch_assoc($selectNoSuperior)) {
+    $countSuperior++;
+  }
+  while ($row = mysqli_fetch_assoc($selectNoPanaromic)) {
+    $countPanaromic++;
+  }
+  while ($row = mysqli_fetch_assoc($selectFullBoard)) {
+    $countFullBoard++;
+  }
+  while ($row = mysqli_fetch_assoc($selectHalfBoard)) {
+    $countHalfBoard++;
+  }
+  while ($row = mysqli_fetch_assoc($selectRoomOnly)) {
+    $countRoomOnly++;
+  }
+  while ($row = mysqli_fetch_assoc($selectRoomBreakfast)) {
+    $countRoomBreakfast++;
+  }
+  while ($row = mysqli_fetch_assoc($selectWeddings)) {
+    $countWeddings++;
+  }
+  while ($row = mysqli_fetch_assoc($selectParties)) {
+    $countParties++;
+  }
+  $Room_Type = array("Suite-Room", "Panaromic-Room", "Superior-Room");
+  $NoRooms = array($countSuite, $countPanaromic, $countSuperior);
+  $Reservation_Type = array("Full-Board", "Half-Board", "Room Only", "Room & Breakfast");
+  $No_reservation = array($countFullBoard, $countHalfBoard, $countRoomOnly, $countRoomBreakfast);
+  $Event_Type = array("Wedding", "Parties");
+  $No_reservation_evnets = array($countWeddings, $countParties);
+
+  // if (mysqli_num_rows($select) > 0) {
+  //   while ($row = mysqli_fetch_assoc($select)) {
+  //     if ($row['Meal_Selection'] == 'Set-Menu') {
+  //       $count++;
+  //       array_push($NoRooms, $count);
+  //     } else if ($row['Meal_Selection'] == 'Customized') {
+  //       $count1++;
+  //       array_push($NoRooms, $count1);
+  //     } //pushing the values to the array
+  //   }
+  // }
+  $data = json_encode($Room_Type); //encode the value into json format
+  $dataCount = json_encode($NoRooms); //encode the value into json format
+
+  $data1 = json_encode($Reservation_Type); //encode the value into json format
+  $dataCount1 = json_encode($No_reservation); //encode the value into json format
+
+  $data2 = json_encode($Event_Type); //encode the value into json format
+  $dataCount2 = json_encode($No_reservation_evnets); //encode the value into json format
+
+  ?>
+
+
+  <div class="chart-container" id="1" style="position:absolute;top:300px; height:100px; width:500px;left:100px">
+    <h2 style="color:white" style="text-align:center">Overall Staying-In Boooking Room Type Analyis</h2>
+    <canvas id="myChart-1"></canvas>
+  </div>
+
+
+
+
+  <div class="chart-container" id="2" style="position:absolute;top:300px; height:100px; width:500px;right:200px">
+    <h2 style="color:white" style="text-align:center">Overall Dine-In Boooking Analyis</h2>
+    <canvas id="myChart-2"></canvas>
+  </div>
+
+  <div class="chart-container" id="3" style="position:absolute;top:650px; height:100px; width:500px;left:500px">
+    <h2 style="color:white" style="text-align:center">Overall Events Boooking Analyis-Event Type</h2>
+    <canvas id="myChart-3"></canvas>
+  </div>
+
+  <!--script for #mychart-1-->
+  <script>
+    let myChart = document.getElementById('myChart-1').getContext('2d');
+    let massChart = new Chart(myChart, {
+
+      type: 'pie',
+      data: {
+        labels: <?php echo $data ?>,
+
+        datasets: [{
+          data: <?php echo $dataCount ?>,
+          backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+
+          ],
+
+        }]
+
+
       },
-            type: 'pie',
-            data: {
-                labels: <?php echo $data ?>,
 
-                datasets: [{
-                    data: <?php echo $dataCount ?>,
-                    backgroundColor: [
-                         '#FF6384',
-                         '#36A2EB',
-                         '#3BEC01'
-                    ],
-                
 
-                }]
-                
-               
-            },
-        
+    })
+  </script>
 
-        })
-    </script>
+  <!--script for #mychart-2-->
+  <script>
+    let myChart1 = document.getElementById('myChart-2').getContext('2d');
+    let massChart1 = new Chart(myChart1, {
 
-<div class="parent-container">
-    <h3 class="pdf-name">To Print the results</h3><button type="button" class="open-pdf" 
-    data-pdf="source">Click Here</button>
-    </div>
-    <button class="button1"style="position:absolute;top:57%;right:20%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='AdminViewStats.php'"><< Back </button>
-    <script>
-    function PrintDive()
-{
+      type: 'pie',
+      data: {
+        labels: <?php echo $data1 ?>,
 
-    var divContents = document.getElementById("invoiceID").innerHTML;
-    var printWindow = window.open('', '', 'height=1000,width=800');
-    printWindow.document.write('<html><head><title></title>');
-    printWindow.document.write('</head><body >');
-    printWindow.document.write(divContents);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
-}
-</script>
+        datasets: [{
+          data: <?php echo $dataCount1 ?>,
+          backgroundColor: [
+            '#FF6384',
+            '#36A2EB',
+            '#CACABF',
+            '#A6B22B',
+          ],
+
+
+        }]
+
+
+      },
+
+
+    })
+  </script>
+
+  <!--script for #mychart-3-->
+  <script>
+    let myChart2 = document.getElementById('myChart-3').getContext('2d');
+    let massChart2 = new Chart(myChart2, {
+
+      type: 'pie',
+      data: {
+        labels: <?php echo $data2 ?>,
+
+        datasets: [{
+          data: <?php echo $dataCount2 ?>,
+          backgroundColor: [
+            '#FF6384',
+            '#36A2EB'
+          ],
+
+
+        }]
+
+
+      },
+
+
+    })
+  </script>
+
+
+
+
+
+  <button style="position:absolute;top:37%;right:20%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='AdminViewStats.php'">
+    << Back </button>-->
+
+
+      <script>
+        function funcUserDetails() {
+          document.getElementById('user-detail-container').style.display = "block";
+        }
+
+        function funcCloseUserDetails() {
+          document.getElementById('user-detail-container').style.display = "none";
+        }
+      </script>
+
+
 </body>
 
 </html>
