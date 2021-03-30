@@ -106,8 +106,13 @@ if (!isset($_SESSION['First_Name'])) {
 					<td align="center"><input type="text" name="allotablenumbers" size="50"></td>
 				</tr>
 				<tr id="location">
+<<<<<<< HEAD
 					<td align="left">Allocated Locations:</td>
 					<td align="center"><input type="text" name="allolocations" size="50"></td>
+=======
+					<td align="left">Event Type:</td>
+					<td align="center"><input type="text" name="eventtype" size="50"></td> 
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 				</tr>
 			</table>
 
@@ -134,9 +139,15 @@ if (!isset($_SESSION['First_Name'])) {
 		$assignedsection = $_POST['assignedsection'];
 		$alloroomnumbers = $_POST['alloroomnumbers'];
 		$allotablenumbers = $_POST['allotablenumbers'];
+<<<<<<< HEAD
 		$allolocations = $_POST['allolocations'];
 
 		$add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Allo_Locations) VALUES ('" . $employeeid . "','" . $assigneddate . "','" . $assignedsection . "','" . $alloroomnumbers . "','" . $allotablenumbers . "','" . $allolocations . "')";
+=======
+		$eventtype = $_POST['eventtype'];
+
+		$add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Event_Type) VALUES ('" . $employeeid . "','" . $assigneddate . "','" . $assignedsection . "','" . $alloroomnumbers . "','" . $allotablenumbers . "','" . $eventtype . "')";
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 		$add_query_run = mysqli_query($con, $add_query);
 
 		if ($add_query_run) {
@@ -152,6 +163,17 @@ if (!isset($_SESSION['First_Name'])) {
 		}
 	}
 	?>
+<<<<<<< HEAD
+
+	<form action="" method="POST">
+		<fieldset style=" position:absolute; top:700px; width: 45%; right:0%;">
+			<legend style="color:white; font-size: 20px">Update and Delete Tasks</legend>
+			<input type="text" name="Employee_ID" placeholder="Enter id to Search" />
+			<input type="submit" class="button" name="search" value="Search by ID">
+		</fieldset>
+	</form>
+=======
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 
 	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:700px; width: 45%; right:0%;">
@@ -165,6 +187,12 @@ if (!isset($_SESSION['First_Name'])) {
 	<!-- SEARCH -->
 	<?php
 
+<<<<<<< HEAD
+	<!-- SEARCH -->
+	<?php
+
+=======
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 	if (isset($_POST['search'])) {
 		$Employee_ID = $_POST['Employee_ID'];
 
@@ -220,8 +248,13 @@ if (!isset($_SESSION['First_Name'])) {
 								<td><input type="text" name="allotablenumbers" value="<?php echo $row['Allo_Table_Numbers'] ?>" /></td>
 							</tr>
 							<tr>
+<<<<<<< HEAD
 								<td>Allocated Locations:</td>
 								<td><input type="text" name="allolocations" value="<?php echo $row['Allo_Locations'] ?>" /></td>
+=======
+								<td>Event Type:</td>
+								<td><input type="text" name="eventtype" value="<?php echo $row['Event_Type'] ?>" /></td>
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 							</tr>
 							<tr>
 								<td></td>
@@ -262,7 +295,11 @@ if (!isset($_SESSION['First_Name'])) {
 				<th>Assigned Section:</th>
 				<th>Allocated Room Numbers:</th>
 				<th>Allocated Table Numbers:</th>
+<<<<<<< HEAD
 				<th>Allocated Locations:</th>
+=======
+				<th>Event Type:</th>
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 			</tr>
 
 			<?php
@@ -279,7 +316,11 @@ if (!isset($_SESSION['First_Name'])) {
 					<td><?php echo $row['Assigned_Section'] ?></td>
 					<td><?php echo $row['Allo_Room_Numbers'] ?></td>
 					<td><?php echo $row['Allo_Table_Numbers'] ?></td>
+<<<<<<< HEAD
 					<td><?php echo $row['Allo_Locations'] ?></td>
+=======
+					<td><?php echo $row['Event_Type'] ?></td>
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 				</tr>
 			<?php
 			}
@@ -324,6 +365,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<?php
 				}
 				?>
+<<<<<<< HEAD
 
 			</table>
 		</fieldset>
@@ -335,6 +377,19 @@ if (!isset($_SESSION['First_Name'])) {
 
 	<!-- View Stayingin Booking Details -->
 	<div class="staytable">
+=======
+
+			</table>
+		</fieldset>
+	</form>
+
+
+
+	<!-- View Booking Details -->
+
+	<!-- View Stayingin Booking Details -->
+	<div class="staytablesupervisor">
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 		<table border="1px solid white" style="color:white; width:100%">
 			<tr>
 				<th><img src="../../public/images/BigCal.png" height="70px"></th>
@@ -376,7 +431,11 @@ if (!isset($_SESSION['First_Name'])) {
 
 
 	<!-- View Dinein Booking Details -->
+<<<<<<< HEAD
 	<div class="dinetable">
+=======
+	<div class="dinetablesupervisor">
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 		<table border="1px solid white" style="color:white; width:100%">
 			<tr>
 				<th><img src="../../public/images/BigCal.png" height="70px"></th>
@@ -398,6 +457,135 @@ if (!isset($_SESSION['First_Name'])) {
 			while ($row = mysqli_fetch_array($query_run)) {
 			?>
 
+<<<<<<< HEAD
+=======
+	</table>
+    </fieldset>
+    </form>
+	
+	
+
+<!-- View Booking Details -->
+
+    <!-- View Stayingin Booking Details -->
+    <div class="staytable">
+        <table border="1px solid white" style="color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="4"><h2>View Staying Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>CheckIn Date:</th>
+                <th>CheckOut Date:</th>
+                <th>Room No:</th>
+                <th>Room Type:</th>
+                <th>Reservation Type:</th>
+            </tr>
+            <?php
+                $query = "SELECT * FROM stayingin_booking ORDER BY CheckIn_Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+					$roomNumbers = unserialize($row['Room_Numbers']);
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['CheckIn_Date'] ?></td>
+                <td><?php echo $row['CheckOut_Date'] ?></td>
+                <td><?php echo implode(",",$roomNumbers) ?></td>
+                <td><?php echo $row['Room_Type'] ?></td>
+                <td><?php echo $row['Reservation_Type']?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
+
+
+
+    <!-- View Dinein Booking Details -->
+    <div class="dinetable">
+        <table border="1px solid white" style="color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="3"><h2>View Dine-in Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>Date:</th>
+                <th>Table No:</th>
+                <th>Meal Period:</th>
+                <th>Number of Guests:</th>
+            </tr>
+
+            <?php
+                $query = "SELECT * FROM dinein_booking ORDER BY Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['Date'] ?></td>
+                <td><?php echo $row['Table_No'] ?></td>
+                <td><?php echo $row['Meal_Period'] ?></td>
+                <td><?php echo $row['Num_Guests'] ?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
+
+
+
+    <!-- View Events Booking Details -->
+    <div class="eventtable">
+        <table border="1px solid white" style="color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="4"><h2>View Events Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>Reservation Date:</th>
+                <th>Starting Time:</th>
+                <th>Ending Time:</th>
+                <th>Event Type:</th>
+                <th>Meal Preference:</th>
+            </tr>
+
+            <?php
+                $query = "SELECT * FROM events_booking ORDER BY Reservation_Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['Reservation_Date'] ?></td>
+                <td><?php echo $row['Starting_Time'] ?></td>
+                <td><?php echo $row['Ending_Time'] ?></td>
+                <td><?php echo $row['Event_Type'] ?></td>
+                <td><?php echo $row['MealPackage_ID']?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
+	
+
+    <script>
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 				<tr>
 					<td><?php echo $row['Date'] ?></td>
 					<td><?php echo $row['Table_No'] ?></td>
@@ -415,7 +603,11 @@ if (!isset($_SESSION['First_Name'])) {
 
 
 	<!-- View Events Booking Details -->
+<<<<<<< HEAD
 	<div class="eventtable">
+=======
+	<div class="eventtablesupervisor">
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 		<table border="1px solid white" style="color:white; width:100%">
 			<tr>
 				<th><img src="../../public/images/BigCal.png" height="70px"></th>
@@ -479,9 +671,15 @@ if (isset($_POST['update'])) {
 	$assignedsection = $_POST['assignedsection'];
 	$alloroomnumbers = $_POST['alloroomnumbers'];
 	$allotablenumbers = $_POST['allotablenumbers'];
+<<<<<<< HEAD
 	$allolocations = $_POST['allolocations'];
 
 	$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='$alloroomnumbers', Allo_Table_Numbers='$allotablenumbers', Allo_Locations='$allolocations' where Employee_ID='$_POST[employeeid]'";
+=======
+	$eventtype = $_POST['eventtype'];
+
+	$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='$alloroomnumbers', Allo_Table_Numbers='$allotablenumbers', Event_Type='$eventtype' where Employee_ID='$_POST[employeeid]'";
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 	$update_query_run = mysqli_query($con, $update_query);
 
 	if ($update_query_run) {
@@ -506,7 +704,11 @@ if (isset($_POST['delete'])) {
 	$assignedsection = $_POST['assignedsection'];
 	$alloroomnumbers = $_POST['alloroomnumbers'];
 	$allotablenumbers = $_POST['allotablenumbers'];
+<<<<<<< HEAD
 	$allolocations = $_POST['allolocations'];
+=======
+	$eventtype = $_POST['eventtype'];
+>>>>>>> 6be77e1eec1844a790df3f9015f9c3f095242de9
 
 	$delete_query = "DELETE from employee_tasks where Employee_ID='$_POST[employeeid]'";
 	$delete_run = mysqli_query($con, $delete_query);
