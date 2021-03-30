@@ -264,16 +264,6 @@ select {
 	overflow: auto;
 	float: left;
 }
-.dtablescrollearly{
-	font-size:18px;
-	width: 100%;
-	top: -135px;
-	position:relative;
-	border:1px solid white;
-	max-height: 70%;
-	overflow: auto;
-	float : center;
-}
 
 .dbtablescroll{
 	font-size: 18px; 
@@ -281,7 +271,7 @@ select {
 	top:200px; 
 	position:relative; 
 	border: 1px solid white;
-	max-height: 100%;
+	max-height: 85%;
 	overflow: auto;
 	float: left;
 }
@@ -315,8 +305,8 @@ select {
 .dinetablesupervisor{
 	font-size: 18px; 
 	width:50%; 
-	top:100px; 
-	position:absolute; 
+	top:350px; 
+	position:relative; 
 	border: 1px solid white;
 	max-height: 50%;
 	overflow: auto;
@@ -337,7 +327,7 @@ select {
 .staytablemanager{
 	font-size: 18px; 
 	width:100%; 
-	top:-195px; 
+	top:-200px; 
 	position:relative; 
 	border: 1px solid white;
 	max-height: 50%;
@@ -348,7 +338,7 @@ select {
 .dinetablemanager{
 	font-size: 18px; 
 	width:100%; 
-	top:-75px; 
+	top:-100px; 
 	position:relative; 
 	border: 1px solid white;
 	max-height: 50%;

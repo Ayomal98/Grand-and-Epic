@@ -254,6 +254,7 @@ checkSession();
 			?>
 
 			</table>
+		</fieldset>
 		</form>
 
 
