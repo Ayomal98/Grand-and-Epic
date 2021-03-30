@@ -50,7 +50,7 @@ if (isset($_POST['Update'])) {
           window.location.href='myreservations.php';
           </script>";
   } else {
-    $updatequery = "UPDATE dinein_booking SET Table_No='$tableno',Customer_email='$emailaddress',Num_Guests='$numguests',Meal_Period='$mealperiod',Date='$date',Time='$timeperiod' WHERE Dinein_ID=$dinein_id ";
+    $updatequery = "UPDATE dinein_booking SET Table_No='$tableno',Customer_email='$emailaddress',Num_Guests='$numguests',Meal_Period='$mealperiod',Date='$date',Time='$timeperiod' WHERE Dinein_ID='$dinein_id' ";
     if ($con->query($updatequery) === TRUE) {
       echo "<script>
              alert('Your booking details has been Updated Successfully');

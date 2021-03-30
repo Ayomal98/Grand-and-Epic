@@ -16,8 +16,9 @@ if (isset($_POST['Delete_StayingIn'])) {
     $checkInBeforeFifteenDates = Date('Y-m-d', strtotime($date . '- 14 days')); //to get the fifteen dates from todate
     if ($date > $checkInBeforeFifteenDates) {
         echo '<script>
-                alert("You wont be getting any money back ")
+                alert("You wont be getting the Advance amount since its before 14 days ")
             </script>';
+    } else {
     }
 }
 ?>
@@ -130,11 +131,11 @@ if (isset($_POST['Delete_StayingIn'])) {
                             <input type="hidden" name="stayingin_id" value=' . $rowSelectedStayingIn['StayingIn_ID'] . ' >
                             <div class="book-btn-container" style="margin-top:10px">';
                 $checkearlyRequest = mysqli_query($con, "SELECT * FROM early_checkout_table WHERE Reservation_ID='$stayingInID' ");
-                if (mysqli_num_rows($checkearlyRequest) > 0) {
+                if (mysqli_num_rows($checkearlyRequest) == 0) {
                     echo ' <a href="request-early-checkout-form.php?id=' . $rowSelectedStayingIn['StayingIn_ID'] . '" target="_blank"><button name="" class="book update" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:10px;width:55%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" >Request Early Checkouts</button></a>
                                         <input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:14px;width:35%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking"> ';
                 } else {
-                    echo '<input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:80px;width:95%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">';
+                    echo '<input type="submit" name="Delete_StayingIn" class="book delete" style="padding: 10px 10px 10px 10px;font-size:12px;margin-left:80px;width:95%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking" onclick="return confirm("Are you sure?")">';
                 }
                 echo '
                             </div>
@@ -240,7 +241,7 @@ if (isset($_POST['Delete_StayingIn'])) {
                                     </tr>
                                 </table>
                                 <div class="book-btn-container" style="margin-top:10px">
-                                    <a href="update-events-booking-form.php?id=' . $rowEvtBookings['Events_ID'] . '"><input type="submit" name="Update_Events" class="book update" style="padding: 10px 10px 10px 10px;font-size:13px;margin-left:10px;width:38%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" value="Update Booking"></a>
+                                    <a href="update-events-booking-form.php?id=' . $rowEvtBookings['Events_ID'] . '"><input type="submit" name="Update_Events" class="book update" style="padding: 10px 8px 10px 0px;font-size:11px;margin-left:10px;width:38%;height:40px;text-align:center;margin-top:25px;border-radius:5px" id="btn-early-checkout" value="Update Location-Details"></a>
                                     <input type="submit" name="Delete_Events" class="book delete" style="padding: 10px 10px 10px 10px;font-size:14px;margin-left:50px;width:40%;height:40px;text-align:center;margin-top:23px;border-radius:5px" id="cancel-stayingin" value="Cancel Booking">
                                 </div>
                             </form>

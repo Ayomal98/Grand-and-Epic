@@ -39,152 +39,48 @@ if (!isset($_SESSION['First_Name'])) {
             <span class="text2">Epic
             </span>
         </div>
-
-
-
     </div>
+
     <div class="body-container">
-    <h3>Bookings</h3><br />
+        <h3>Bookings</h3><br />
         <div class="booking-container">
-            <div class="card">
-    <?php include("../../config/connection.php");
-
-$query = "SELECT Heading,Content,Img_url FROM content WHERE Content_ID='1' ";
-$query_run = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($query_run)) {
-
-?>
-        
-                <div class="card-img" ><?php echo '<img src="data:image;base64, ' . base64_encode($row["Img_url"]) . '" alt="Image" style="width: 200px; height: 150px"' ?></div>
-                <div class="card-content">
-   
-                 
-<tr>
-<h1 class="card-header"><?php echo $row["Heading"]; ?></h>
-<p class="card-para"><?php echo $row["Content"]; ?></p>
-<a href="staying-in-login.php" class="card-link">Read more</a>
-			</tr>
-		<?php
-		}
-    
-		?>
-                </div>
-            </div>
-
-            <div class="card">
-            <?php include("../../config/connection.php");
-
-$query = "SELECT Heading,Content,Img_url FROM content WHERE Content_ID='2'";
-$query_run = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($query_run)) {
-
-?>
-        
-                <div class="card-img" ><?php echo '<img src="data:image;base64, ' . base64_encode($row["Img_url"]) . '" alt="Image" style="width: 200px; height: 150px"' ?></div>
-                <div class="card-content" style="width: 200px; height: 150px">
-   
-                 
-<tr>
-<h1 class="card-header"><?php echo $row["Heading"]; ?></h>
-<p class="card-para"><?php echo $row["Content"]; ?></p>
-<a href="staying-in-login.php" class="card-link">Read more</a>
-			</tr>
-		<?php
-		}
-    
-		?>
-                        <a href="dinein-login.php" class="card-link">Read more</a>
-                </div>
-            </div>
+            <?php
+            include('../../config/connection.php');
+            $selectContent = "SELECT * FROM content";
+            $getContent = mysqli_query($con, $selectContent);
+            while ($rowContent = mysqli_fetch_assoc($getContent)) {
+                echo '
+                    <div class="card">
+                        <div style="background-position: center;width: 100%;height: 100%;background-size: cover;background-repeat: no-repeat;"><img src="data:image;base64,' . base64_encode($rowContent["Img_url"]) . '" style=" height: 100%;width:100%"></div>
+                        <div class="card-content">
+                            <h1 class="card-header">' . $rowContent["Heading"] . '</h1>
+                            <p class="card-para">' . $rowContent["Content"] . ' ?></p>
+                        </div>
+                    </div>
+                    ';
+            ?>
+            <?php } ?>
         </div>
-        <?php include("../../config/connection.php");
-
-$query = "SELECT * FROM employee WHERE User_Role='Hotel Manager' ";
-$query_run = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($query_run)) {
-
-?>
 
     </div>
     <h3>Offers</h2>
         <div class="offers-container">
-            <div class="box">
-                <span class="fas fa-user" id="customer-icon"></span>
-                <div class="box-heading">Loyalty Offer</div>
-                <div class="box-content">       
-                 <?php include("../../config/connection.php");
-
-$query = "SELECT Context,Policies FROM promotions WHERE Promotion_Type='Loyalty' ";
-$query_run = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($query_run)) {
-
-?>
-<tr>
-				<?php echo $row["Context"]; ?>
-				<?php echo $row["Policies"]; ?>
-			</tr>
-		<?php
-		}
-    }
-		?>
- </div>
-            </div>
-            <div class="box">
-                <span class="fas fa-gifts" id="creditcard-icon"></span>
-                <div class="box-heading" style="margin-top: 65px;">Seasonal Offer</div>
-                <div class="box-content" style="margin-top: 5px;">
-                <?php include("../../config/connection.php");
-
-$query = "SELECT Context,Policies FROM promotions WHERE Promotion_Type='Last' ";
-$query_run = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($query_run)) {
-
-?>
-<tr>
-				<?php echo $row["Context"]; ?>
-				<?php echo $row["Policies"]; ?>
-			</tr>
-		<?php
-		}
-		?> 
+            <?php
+            $selectPromotion = mysqli_query($con, "SELECT * FROM promotions");
+            while ($rowPromotions = mysqli_fetch_assoc($selectPromotion)) {
+            ?>
+                <div class="box">
+                    <span class="fas fa-user" id="customer-icon"></span>
+                    <div class="box-heading"><?php echo $rowPromotions["Promotion_type"] ?></div>
+                    <div class="box-content"><?php echo $rowPromotions["Context"] ?> <b><?php echo $rowPromotions["Policies"] ?></b> Hurry up and witness the amazing oppurtuinity </div>
+                </div>
+            <?php } ?>
         </div>
-                <div style="margin-left:-130px;font-size:15px;margin-top:-10px"><b>20% Off - Available Only For Suit Rooms</b></div>
-                <div class="box-specials"><b>*Valid Until 25th Of December</b></div>
-                <a href="apply-promotions-suite.php" target="_blank"><input type="button" value="Apply Now" style="padding: 5px 5px;border:none;border-radius:5px;background-color:white;cursor:pointer;font-weight:bolder;position:absolute;top:84%;right:10%"></a>
-            </div>
-            <div class="box">
-                <span class="fas fa-hourglass-end" id="lastmin-icon"></span>
-                <div class="box-heading">Last-Minute Offer</div>
-                <div class="box-content"> <?php include("../../config/connection.php");
-
-$query = "SELECT Context,Policies FROM promotions WHERE Promotion_Type='Seasonal' ";
-$query_run = mysqli_query($con, $query);
-while ($row = mysqli_fetch_array($query_run)) {
-
-?>
-<tr>
-				<?php echo $row["Context"]; ?>
-				<?php echo $row["Policies"]; ?>
-			</tr>
-		<?php
-		}
-		?> 
-         </div>
-            </div>
-        </div>
-        </div>
-        <?php include("../../public/includes/footer-footer.php"); ?>
-        <script src="../../public/Javascript/script.js"></script>
+        <?php include("../../public/includes/footer-index.php"); ?>
+        <script src="../../public/javascript/script.js"></script>
         <script src="../../public/Javascript/sticky-nav.js"></script>
-        <script>
-            function funcUserDetails() {
-                document.getElementById('user-detail-container').style.display = "block";
-            }
 
-            function funcCloseUserDetails() {
-                document.getElementById('user-detail-container').style.display = "none";
-            }
-        </script>
+
 </body>
 
 </html>

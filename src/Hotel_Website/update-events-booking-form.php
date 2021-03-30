@@ -91,7 +91,7 @@ $eventFeatureDetails = unserialize($getRowEventDetails["Selected_Features"]);
         <h3 style="font-weight: bolder;color:white">Event Details & Location Availability</h3>
         <h3 style="color:black">Meal Package Selection & Payment</h3>
     </div>
-    <form action="update-events-booking.php" method="post" id="event-booking">
+    <form action="update-events-location.php" method="post" id="event-booking">
         <div class="events-booking-form" id="events-booking-form">
             <h2 style="position:absolute;top:150px;left:30%;text-align:center">Reservation Form For Wedding & Parties</h2>
             <div class="customer-details-events">
@@ -199,12 +199,12 @@ $eventFeatureDetails = unserialize($getRowEventDetails["Selected_Features"]);
                 </div>
 
                 <div class="payment-cancel-btns">
-                    <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:215px;left:185px;padding:14px 18px 14px 18px;width:9.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
+                    <label for=""></label><input type="button" value="Check-Availability" id="check-availability" name="See-Price-btn" style="position: absolute;top:215px;left:185px;padding:5px 15px 10px 15px;width:10.5%;cursor:pointer;background:#b88b4a;border:none;color:white;font-weight:bolder;" onclick="checkAvailability()">
                     <div class="payment-cancel-btns">
-                        <input type="submit" id="meal-btn" value="Update & Proceed to Package Selection" name="update-event-details" class="event-meal-selection-btn">
+                        <input type="submit" id="meal-btn" value="Update Location Selection" name="update-event-details" class="event-meal-selection-btn">
                         <input type="reset" value="Cancel" name="Cancel-btn" class="event-meal-selection-btn cancel-evt-btn">
                     </div>
-                    <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:52%;position:absolute;height:290px;width:25%;padding:14px 5px;border-radius:5px;" id="check-availability-shower">
+                    <div class="check-availability-shower" id="check-availability-shower" style="display:none;background-color:white;left:8%;top:52%;position:absolute;height:350px;width:28%;border-radius:5px;" id="check-availability-shower">
                     </div>
                 </div>
             </div>

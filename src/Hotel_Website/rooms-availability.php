@@ -13,10 +13,10 @@ include('../../config/connection.php');
 $bookedRoomsArr = array(); //to contain unserialized arr values
 $bookedRooms = array();
 $selectBookedRooms = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` >= '" . $checkIndateSelected . "' AND `CheckOut_Date` <='" . $checkOutdateSelected . "'"); //query to get all the booking between checkin date and check out date
-$selectBookedRoomsChkOut = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` <= '" . $checkIndateSelected . "' AND `CheckOut_Date` ='" . $checkIndateSelected . "'"); //query to get all the booking where the inputed checkin date is as same as reserved checkout date
-$selectBookedRoomsChkIn = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` = '" . $checkOutdateSelected . "' AND `CheckOut_Date` >='" . $checkIndateSelected . "'"); //query to get all the booking between checkin date and check out date
+$selectBookedRoomsChkOut = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` <= '" . $checkIndateSelected . "' AND `CheckOut_Date` <='" . $checkOutdateSelected . "'"); //query to get all the booking where the inputed checkin date is as same as reserved checkout date
+$selectBookedRoomsChkIn = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` <= '" . $checkIndateSelected . "' AND `CheckOut_Date` >='" . $checkOutdateSelected . "'"); //query to get all the booking between checkin date and check out date
 // $selectBookedRoomsChkInMiddle = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` < '" . $checkIndateSelected . "' AND `CheckOut_Date` <='" . $checkOutdateSelected . "'"); //query to get all the booking between checkin date and check out date
-$selectBookedRoomsChkoutMiddle = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` > '" . $checkIndateSelected . "' AND `CheckOut_Date` >='" . $checkOutdateSelected . "'"); //query to get all the booking between checkin date and check out date
+$selectBookedRoomsChkoutMiddle = mysqli_query($con, "SELECT * FROM stayingin_booking WHERE Room_Type='" . $roomType . " ' AND `CheckIn_Date` >= '" . $checkIndateSelected . "' AND `CheckOut_Date` >='" . $checkOutdateSelected . "'"); //query to get all the booking between checkin date and check out date
 
 if (mysqli_num_rows($selectBookedRooms) > 0) {
     while ($bookedRooms = mysqli_fetch_assoc($selectBookedRooms)) {
@@ -62,7 +62,6 @@ $getNoRooms = mysqli_query($con, "SELECT * from rooms where Room_Type=' $roomTyp
 $noRooms = mysqli_fetch_assoc($getNoRooms);
 for ($roomNo = 1; $roomNo <= $noRooms['NoRooms']; $roomNo++) {
     if (in_array($roomNo, $bookedRooms)) {
-
         echo    '<div class="suite-icon gold main">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span class="suite-icon-label">Room' . $roomNo . '</span>

@@ -45,6 +45,7 @@ if ($_GET['type'] == 'events') {
         $feature_Price = $row["Feature_Price"];
         $location_Price = $row["Location_Price"];
         $totalAmount = $row["Price"];
+        $starting_Time_period = $row['Starting_Time_Period'];
         $mealPrice = $totalAmount - ($location_Price + $feature_Price);
         $paidAmount = ($totalAmount * $advancePercentageValue) / 100;
         $amountToBePaid = $totalAmount - $paidAmount;
@@ -55,7 +56,7 @@ if ($_GET['type'] == 'events') {
         $dj_price = $rowFeaturePrice['DJ_Price'];
         $decoration_price = $rowFeaturePrice['Decoration_Price'];
         $champaigne_price = $rowFeaturePrice['Champaigne_Price'];
-        $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Events_ID,Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount,Selected_Features,Location_Price,Meal_Price) VALUES('$eventID','$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount','$features','$location_Price','$mealPrice')");
+        $paymentSuccessEvent = mysqli_query($con, "INSERT into events_booking(Events_ID,Customer_Name,Customer_Email,Num_Guests,Event_Type,Reservation_Date,Starting_Time,Ending_Time,MealPackage_ID,Total_Amount,Paid_amount,Selected_Features,Location_Price,Meal_Price,Starting_Time_Period) VALUES('$eventID','$customer_Name','$customer_Email','$num_Guests','$event_Type','$reservation_Date','$starting_Time','$ending_Time','$mealPackage_ID','$totalAmount','$paidAmount','$features','$location_Price','$mealPrice','$starting_Time_period')");
         $insertToReservationTable = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,User_Email,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservationID','$reservationType','$paymentStatus','$eventID','$customer_Name','$customer_Email','$paidAmount','$amountToBePaid','$reservation_Date')");
         if ($paymentSuccessEvent) {
             $html_evt = '<img src=\'../../public/images/Logo.png\' style=\'margin-left:600px;height:100px;margin-top:20px;margin-bottom:10px\'>';
@@ -84,19 +85,21 @@ if ($_GET['type'] == 'events') {
             $html_evt .= '<table><thead><tr><th style=\'border:1px solid black\'>Location Price</th><th style=\'border:1px solid black\'>Feature Price</th><th style=\'border:1px solid black\'>Meal Price</th><th style=\'border:1px solid black\'>Total Price</th></tr></thead>';
             $html_evt .= '<tr><td style=\'border:1px solid black\'>' . $location_Price . '</td><td style=\'border:1px solid black\'>' . $feature_Price . '</td><td style=\'border:1px solid black\'>' . $mealPrice . '</td><td style=\'border:1px solid black\'>' . $totalAmount . '</td></tr>';
             $html_evt .= '</table>';
-            $deleteTempEvtDetails = mysqli_query($con, "DELETE FROM events_booking_temp WHERE Events_ID='$events_ID'");
-            if ($deleteTempEvtDetails) {
-                $mpdf = new \Mpdf\Mpdf();
-                $mpdf->WriteHTML($html_evt);
-                $file = time() . '.pdf';
-                $mpdf->Output($file, 'D');
-            }
+
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->WriteHTML($html_evt);
+            $file = time() . '.pdf';
+            $mpdf->Output($file, 'D');
         }
     }
 } else if ($_GET['type'] == 'staying-in') {
     $stayingInId = $_GET['id'];
+    $tempid = $stayingInId;
     $reservationtype = $_GET['type'];
     $selectTemp = mysqli_query($con, "SELECT * FROM stayingin_booking_temp WHERE StayingIn_ID='$stayingInId'");
+    $getAdvancePercentage = mysqli_query($con, "SELECT Advance_Percentage FROM advance_amount_table WHERE Reservation_Type='Staying-In'");
+    $rowAdvance = mysqli_fetch_assoc($getAdvancePercentage);
+    $advancePercentageValue = $rowAdvance['Advance_Percentage'];
     while ($rowStayingIn = mysqli_fetch_assoc($selectTemp)) {
         $stayingInId = getID("stayingin_booking", "S"); //generating stayingin ID
         $reservation_Stay_ID = getID('Reservation', 'R');
@@ -119,24 +122,67 @@ if ($_GET['type'] == 'events') {
         $paymentStatus = 0;
         // echo $roomNumbers;
         $totalAmountStayingIn = $mealPrice + $roomPrice;
-        $paidAmountStayingIn = $totalAmountStayingIn * 0.2;
+        $paidAmountStayingIn = ($totalAmountStayingIn * $advancePercentageValue) / 100;
         $amountToBePaidStayin = $totalAmountStayingIn - $paidAmountStayingIn;
         $selectName = mysqli_query($con, "SELECT First_Name FROM customer WHERE Email='" . $emailUser . "'");
         $rowName = mysqli_fetch_assoc($selectName);
         $userName = $rowName['First_Name'];
         $paymentSuccessStayingIn = mysqli_query($con, "INSERT into stayingin_booking (StayingIn_ID,Occupancy,No_Occupants,No_Rooms,Room_Numbers,Meal_Selection,Reservation_Type,CheckIn_Date,CheckOut_Date,CheckIn_Time,CheckOut_Time,Room_Type,User_Email,Room_Price,Meal_Price,Paid_Amount,Total_Amount) VALUES('$stayingInId','$occupancy','$noOccupants','$noRooms','" . $roomNumbers . "','$mealSelection','$reservationType','$checkInDate','$checkOutDate','$checkInTime','$checkOutTime','$roomType','$emailUser','$roomPrice','$mealPrice','$paidAmountStayingIn','$totalAmountStayingIn')");
         $insertToReservationTable_Stay = mysqli_query($con, "INSERT into reservation (Reservation_ID,Reservation_Type,Payment_Status,Booking_ID,User_Email,Customer_Name,Amount_Paid,Amount_To_Be_Paid,Reservation_Date) VALUES('$reservation_Stay_ID','$reservationtype','$paymentStatus','$stayingInId','$emailUser','$userName','$paidAmountStayingIn','$amountToBePaidStayin','$checkOutDate')");
+        if ($mealSelection == 'Customized') {
+            $updateID = mysqli_query($con, "UPDATE customize_meals_stayingin SET Stayingin_booking_id='$stayingInId' WHERE Stayingin_booking_id='$tempid'");
+            $selectCusMeals = mysqli_query($con, "SELECT * FROM customize_meals_stayingin WHERE Stayingin_booking_id='" . $stayingInId . "'");
+            $rowMealPrice = mysqli_fetch_assoc($selectCusMeals);
+            $toalMealPrice = $rowMealPrice['Total_Price'];
+        }
         if ($paymentSuccessStayingIn) {
             // $selectStayingInDetails = "SELECT * FROM stayingin_booking WHERE StayingIn_ID='$stayingInId'";
             $html = '<h1 style=\'text-align:center\'>Payment Details</h1>';
             if ($mealSelection == 'Customized') {
+                // $meals_arr = array(); //meal array that going to send to the db
+                // $quantity_arr = array();
+                // // session_start();
+                // // $selectedMeals = $_SESSION['meal_cart'];
+                // // foreach ($selectedMeals as $meal) {
+                // //     foreach ($meal as $keys => $values) {
+                // //         if ($keys == 'meal_name') {
+                // //             array_push($meals_arr, $values);
+                // //         }
+                // //         if ($keys == 'quantity') {
+                // //             array_push($quantity_arr, $values);
+                // //         }
+                // //         // echo $keys . ':' . $values . '<br>';
+                // //     }
+                // // }
+                // // unset($_SESSION['meal_cart']);
+                // $mealNames = unserialize($rowCustomizedMeals);
+                // $mealQuantity = unserialize($rowCustomizedMeals["Selected_Meals_Quantity"]);
+                // $associativeNameQuantity = array();
+                // $i = 0;
+                // foreach ($mealNames as $mealName) {
+                //     $associativeNameQuantity[] = $mealName;
+                //     // for ($j = 0; $j <= $i; $j++) {
+                //     //     $associativeNameQuantity[$mealName] = $mealQuantity[$i];
+                //     // }
+                //     // $i++;
+                // }
                 $html .= '<h2>Room Details</h2>';
                 $html .= '<table><thead><tr><th style=\'border:1px solid black\'>Room Type</th><th style=\'border:1px solid black\'>No.Rooms</th><th style=\'border:1px solid black\'>Check-In Date</th><th style=\'border:1px solid black\'>Check-Out Date</th><th style=\'border:1px solid black\'>Check-In Time</th><th style=\'border:1px solid black\'>Check-Out Time</th><th style=\'border:1px solid black\'>No.Of Participants</th></tr></thead>';
                 $html .= '<tr><td style=\'border:1px solid black\'>' . $roomType . '</td><td style=\'border:1px solid black\'>' . $noRooms . '</td><td style=\'border:1px solid black\'>' . $checkInDate . '</td><td style=\'border:1px solid black\'>' . $checkOutDate . '</td><td style=\'border:1px solid black\'>' . $checkInTime . '</td><td style=\'border:1px solid black\'>' . $checkOutTime . '</td><td style=\'border:1px solid black\'>' . $noOccupants . '</td></tr>';
                 $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($totalAmountStayingIn, 2) . "</td></tr>";
                 $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td style='font-weight:bolder'>Total Amount</td></tr>";
                 $html .= "</table>";
-                $html .= '<h2>Meal Details</h2>';
+                $html .= '<h2>Meal Details  </h2>';
+                // $html .= "<table><thead><tr><th>Meal Quantity(per 1 portion)</th></tr></thead>";
+                // $html .= "<tr><td></td><td></td></tr>";
+                // $i = 0;
+                // foreach ($meals_arr as $meal) {
+                //     // $i++;
+                //     // for ($j = 0; $j <= $i; $j++)
+                //     // $quantity = $quantity_arr[$i];
+                //     $html .= "<tr><td>'.$meal.'</td></tr>";
+                // }
+                // $html .= "</table>";
             } else if ($mealSelection == 'Set-Menu') {
 
                 $html = '<img src=\'../../public/images/Logo.png\' style=\'margin-left:300px;height:100px;margin-top:-50px;margin-bottom:10px\'>';
@@ -170,14 +216,28 @@ if ($_GET['type'] == 'events') {
                 $html .= '<table style="margin-left:150px"><thead><tr><th style=\'border:1px solid black\'>Booking ID</th><th style=\'border:1px solid black\'>Room Price</th><th style=\'border:1px solid black\'>Meal Price</th><th style=\'border:1px solid black\'>Total Price</th></tr></thead>';
                 $html .= '<tr><th style=\'border:1px solid black\'>' . $stayingInId . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($roomPrice, 2) . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($mealPrice, 2) . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($totalAmountStayingIn, 2) . '</th></tr></thead>';
                 $html .= "</table>";
+            } else if ($reservationType = "Room Only") {
+
+                $html = '<img src=\'../../public/images/Logo.png\' style=\'margin-left:300px;height:100px;margin-top:-50px;margin-bottom:10px\'>';
+                $html .= '<h1 style=\'text-align:center\'><u>Payment Details</u></h1>';
+                $html .= '<p>Dear ' . $userName . ' ,</p>';
+                $html .= '<p>Thank you for trusting us on Selecting as us your holiday destination.We are Looking Forward to having you Again & hopefully you did aslo have great time here.Given below are the brief payment details which you have made. </p>';
+                $html .= "<h2 style='text-align:center'>Room Details</h2>";
+                $html .= "<table><thead><tr><th style='border:1px solid black'>Room Type</th><th style='border:1px solid black'>Reservation Type</th><th style='border:1px solid black'>No.Rooms</th><th style='border:1px solid black'>Duration</th><th style='border:1px solid black'>Check-In Date</th><th style='border:1px solid black'>Check-Out Date</th><th style='border:1px solid black'>Check-In Time</th><th style='border:1px solid black'>Check-Out Time</th><th style='border:1px solid black'>No.Of Participants</th></tr></thead>";
+                $html .= "<tr><<td style='border:1px solid black'> $roomType </td><td style='border:1px solid black'> $reservationType </td><td style='border:1px solid black'>$noRooms </td><td style='border:1px solid black'>$duration Days</td><td style='border:1px solid black'>$checkInDate </td><td style='border:1px solid black'>$checkOutDate </td><td style='border:1px solid black'>$checkInTime</td><td style='border:1px solid black'>$checkOutTime </td><td style='border:1px solid black'>$noOccupants </td></tr>";
+                $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style='border:1px solid black'>Rs." . number_format($roomPrice, 2) . "</td></tr>";
+                $html .= "<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><th>Total Room Price</th></tr>";
+                $html .= "</table>";
+                $html .= "<h2 style='text-align:center'>Total Payment Details</h2>";
+                $html .= '<table style="margin-left:150px"><thead><tr><th style=\'border:1px solid black\'>Booking ID</th><th style=\'border:1px solid black\'>Room Price</th><th style=\'border:1px solid black\'>Total Price</th></tr></thead>';
+                $html .= '<tr><th style=\'border:1px solid black\'>' . $stayingInId . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($roomPrice, 2) . '</th><th style=\'border:1px solid black\'>Rs.' . number_format($totalAmountStayingIn, 2) . '</th></tr></thead>';
+                $html .= "</table>";
             }
-            $deleteTempStayDetails =  mysqli_query($con, "DELETE FROM stayingin_booking_temp WHERE StayingIn_ID='" . $stayingInId . "'");
-            if ($deleteTempStayDetails) {
-                $mpdf = new \Mpdf\Mpdf();
-                $mpdf->WriteHTML($html);
-                $file = time() . '.pdf';
-                $mpdf->Output($file, 'D');
-            }
+
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->WriteHTML($html);
+            $file = time() . '.pdf';
+            $mpdf->Output($file, 'D');
         }
     }
 }

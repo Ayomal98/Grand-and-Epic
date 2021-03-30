@@ -25,6 +25,7 @@ if (!isset($_SESSION['First_Name'])) {
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
+            var roomtype = 'Superior Rooms';
             $("#check-in-date").on("input", function() {
                 var checkInDate = new Date($('#check-in-date').val());
                 var checkInDay = checkInDate.getDate();
@@ -41,15 +42,18 @@ if (!isset($_SESSION['First_Name'])) {
                     var checkOutdateSelected = [checkOutYear, checkOutMonth, checkOutDay].join('-');
                     $('#check-in-time').on("input", function() {
                         var checkInTimeSelected = $(this).find("option:selected").val();
-
                         $('#check-availability').click(function(e) {
+                            var checkOutTimeSelected = $('#check-out-time').val();
                             console.log(checkOutdateSelected);
                             console.log(checkIndateSelected);
                             console.log(checkInTimeSelected);
+                            console.log(checkOutTimeSelected);
                             $(".suite-icons-rooms-container").load("rooms-availability.php", {
                                 checkIndateSelected: checkIndateSelected,
                                 checkOutdateSelected: checkOutdateSelected,
-                                checkInTimeSelected: checkInTimeSelected
+                                checkInTimeSelected: checkInTimeSelected,
+                                checkOutTimeSelected: checkOutTimeSelected,
+                                roomtype: roomtype
                             })
                         })
                     })
@@ -81,7 +85,7 @@ if (!isset($_SESSION['First_Name'])) {
                     <div class="form-page-fields">
                         <div style="margin-left: -520px;margin-top:-25px">
                             <label for="reservation-type" style="font-size:20px;margin-right:5px;">Reservation Type</label>
-                            <select name=" reservation-type" id="reservation-type" style="padding:5px" required>
+                            <select name=" reservation-type" id="reservation-type" onchange="DisplayMealTypes(event)" style="padding:5px" required>
                                 <option value="Full-Board">Full Board</option>
                                 <option value="Half-Board">Half Board</option>
                                 <option value="Room Only">Room Only</option>
@@ -91,7 +95,7 @@ if (!isset($_SESSION['First_Name'])) {
                         <div class="occupancy-number-details" style="margin-left: -80px;font-size:20px">
                             <div class="occupancy-number-details-container">
                                 <label for="kids">No.Of Occupants</label>
-                                <input type="number" min="1" max="15" style="width: 70%;height:50%" name="No-Occupants" id="predict-rooms" style="padding:5px" oninput="predictNoRooms(event)" required>
+                                <input type="number" min="1" max="25" style="width: 70%;height:50%" name="No-Occupants" id="predict-rooms" style="padding:5px" oninput="predictNoRooms(event)" required>
                             </div>
                         </div>
                         <input type="hidden" name="room_type" value="Superior Rooms">
@@ -128,7 +132,7 @@ if (!isset($_SESSION['First_Name'])) {
                         </div>
                     </div>
                     <div class="form-page-fields">
-                        <div class="meal-selection-fields" style="position:relative;top:-260px;right:-190%">
+                        <div class="meal-selection-fields" id="meal-selection-fields" style="position:relative;top:-260px;right:-190%">
                             <label for="meal-selection" style="font-size:20px;">Meal Selection</label><br>
                             <select name="meal-selection" id="meal-type" onclick="selectMealType()" style="padding:7px;margin-top:10px" required>
                                 <option value="Set-Menu">Set Menu</option>
@@ -170,7 +174,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 
                     <input type="hidden" name="emailUser" value="<?php echo $_SESSION['User_Email']; ?>">
-                    <div class="button-container-suite-form" style="margin-top:-10px;">
+                    <div class="button-container-suite-form" style="margin-top:30px;">
                         <input type="submit" name="Next" value="Next" id="next" style="padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="userPayment()">
                         <input type="submit" name="Meal-Selection" value="Meal Selection" id="meal-selection" style="display:none;padding:5px;color:white;background-color: goldenrod;border:none;width:170px;height:60px;font-size:22px;cursor:pointer;" onclick="mealSelect()">
                     </div>
@@ -207,6 +211,8 @@ if (!isset($_SESSION['First_Name'])) {
                 document.getElementById('meal-selection').style.display = 'block'
             }
         }
+
+
 
         function predictNoRooms(e) {
             let noParticpants = e.target.value;
@@ -279,12 +285,34 @@ if (!isset($_SESSION['First_Name'])) {
         }
 
 
-
-
-
         //adding event listener for the showing from payment page to meals page
         document.getElementById("previous-meal-btn").addEventListener('click', PaymentToMeals);
+
+        function DisplayMealTypes(e) {
+            if (e.target.value == 'Room Only') {
+                console.log('Room Only')
+                document.getElementById('meal-selection-fields').style.display = "none";
+            } else {
+                document.getElementById("meal-selection-fields").style.display = "block";
+            }
+        }
     </script>
+    <script>
+        //--    for setting the current day as the minimum date for the time being --
+        var today = new Date();
+        var dd = today.getDate() + 1;
+        var mm = today.getMonth() + 1;
+        var yy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+        today = yy + '-' + mm + '-' + dd;
+        document.getElementById("check-in-date").setAttribute("min", today);
+    </script>
+
 </body>
 
 </html>

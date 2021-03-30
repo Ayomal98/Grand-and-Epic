@@ -32,7 +32,7 @@ if (mysqli_num_rows($result) > 0) {
         $contactNoUp = mysqli_real_escape_string($con, $_POST['contactNum']);
         $updateCusQuery = "UPDATE customer set First_Name='$first_nameUp',Last_Name='$last_nameUp',Contact_No='$contactNoUp' WHERE Email='$email' ";
         if (mysqli_query($con, $updateCusQuery)) {
-            echo "<script>alert('User Details Updated Successfully')</script>";
+            // echo "<script>alert('User Details Updated Successfully')</script>";
         } else {
             echo "Record Not Updated";
         }
