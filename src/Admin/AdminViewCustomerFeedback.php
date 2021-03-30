@@ -141,7 +141,7 @@ if (isset($_POST['Cancel'])) {
     } 
 
 	?>
-
+ 
 
 	<script>
 		function funcUserDetails() {

@@ -87,8 +87,8 @@ if (!isset($_SESSION['First_Name'])) {
 			});
 		}
 	</script>
-	<form action="" method="POST">
-		<fieldset style=" position:absolute; top:250px;left:150px; width: 45%;">
+	<fieldset style=" position:absolute; top:250px;left:50px; width: 45%;">
+		<form action="" method="POST">
 			<table align="left" style="color:white; font-size: 20px; width:110%;">
 				<tr>
 					<td>Event Type</td>
@@ -96,80 +96,138 @@ if (!isset($_SESSION['First_Name'])) {
 							<option value="Wedding">Wedding</option>
 							<option value="Party">Party</option>
 						</select>
-						<input type="submit" class="button" name="search" value="Search by ID">
+						<input type="submit" class="button" name="search" value="Search by Type">
 					</td>
 				</tr>
 			</table>
-	</form>
-	<?php
-//UPDATE
-if (isset($_POST['update'])) {
-	$Event_Type = $_POST['type'];
-    $Location_Price = $_POST['Location_Price'];
-    $DJ_Price = $_POST['DJ_Price'];
-	$Decoration_Price = $_POST['Decoration_Price'];
-	$Champaigne_Price = $_POST['Champaigne_Price'];
-	$Advance_Percentage = $_POST['Advance_Percentage'];
-    $query = "UPDATE event_location_price SET Location_Price='$Location_Price',DJ_Price='$DJ_Price',Decoration_Price='$Decoration_Price',Decoration_Price='$Decoration_Price',Champaigne_Price='$Champaigne_Price',Advance_Percentage='$Advance_Percentage' WHERE Event_Type='$Event_Type '";
-    $query_run = mysqli_query($con, $query);
-    if ($query_run) {
-      echo '<script type="text/javascript">alert("Data updated successfully")</script>';
-      echo '<script>window.location.href="EditFeatures.php"</script>';
-    } else {
-      echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
-      // echo '<script>window.location.href=AdminAddPromotion.php"</script>';
-    }
-  }
+		</form>
 
-?>
+		<?php
+		//UPDATE
+		include("../../config/connection.php");
+		if (isset($_POST['update'])) {
+			$Event_Type = $_POST['event_type'];
+			$Location_Price = $_POST['Location_Price'];
+			$DJ_Price = $_POST['DJ_Price'];
+			$Decoration_Price = $_POST['Decoration_Price'];
+			$Champaigne_Price = $_POST['Champaigne_Price'];
+			$query = "UPDATE event_location_features SET Location_Price='$Location_Price',DJ_Price='$DJ_Price',Decoration_Price='$Decoration_Price',Decoration_Price='$Decoration_Price',Champaigne_Price='$Champaigne_Price' WHERE Event_Type='$Event_Type '";
+			$query_run = mysqli_query($con, $query);
+			if ($query_run) {
+				echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+				echo '<script>window.location.href="EditFeatures.php"</script>';
+			} else {
+				echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+				// echo '<script>window.location.href=AdminAddPromotion.php"</script>';
+			}
+		}
 
-	<?php
-	include("../../config/connection.php");
-	if (isset($_POST['search'])) {
-		$Event_Type = $_POST['typelist'];
+		?>
+		<!--RETRIEVE-->
+		<?php
+		include("../../config/connection.php");
+		if (isset($_POST['search'])) {
+			$Event_Type = $_POST['typelist'];
 
-		$query = "SELECT * FROM event_location_features where Event_Type='$Event_Type '";
-		$query_run = mysqli_query($con, $query);
-		$row = mysqli_fetch_assoc($query_run);
-		if (mysqli_num_rows($query_run) > 0) {
-	?>
+			$query = "SELECT * FROM event_location_features where Event_Type='$Event_Type '";
+			$query_run = mysqli_query($con, $query);
+			$row = mysqli_fetch_assoc($query_run);
+			if (mysqli_num_rows($query_run) > 0) {
+		?>
+				<form action="" method="POST">
+					<table align="left" style="color:white; font-size: 20px; width:110%">
+						<tr>
+							<td>Location Price</td>
+							<td><input type="text" name="Location_Price" value="<?php echo $row['Location_Price'] ?>" /></td>
+						</tr>
+						<tr>
+							<td>DJ Price</td>
+							<td><input type="text" name="DJ_Price" value="<?php echo $row['DJ_Price'] ?>" /></td>
+						</tr>
+						<tr>
+							<td>Decoration Price</td>
+							<td><input type="text" name="Decoration_Price" value="<?php echo $row['Decoration_Price'] ?>" /></td>
+						</tr>
+						<tr>
+							<td>Champagne Price</td>
+							<td><input type="text" name="Champaigne_Price" value="<?php echo $row['Champaigne_Price'] ?>" /></td>
+						</tr>
+						<input type="hidden" name="event_type" value="<?php echo $Event_Type ?>">
+						<tr>
+							<td align="center" style="width:50%;">
+								<input type="submit" class="button" name="update" value="UPDATE">
+								<input type="reset" class="button" value="  RESET " name="reset">
+							</td>
+
+						</tr>
+					</table>
+				</form>
+		<?php
+			}
+		}
+
+		?>
+	</fieldset>
+	<fieldset style="position:absolute; top:250px;left:850px; width: 35%;">
+		<form action="" method="POST">
 			<table align="left" style="color:white; font-size: 20px; width:110%;">
 				<tr>
-					<td>Location Price</td>
-					<td><input type="text" name="First_Name" value="<?php echo $row['Location_Price'] ?>" /></td>
-				</tr>
-				<tr>
-					<td>DJ Price</td>
-					<td><input type="float" name="Last_Name" value="<?php echo $row['DJ_Price'] ?>" /></td>
-				</tr>
-				<tr>
-					<td>Decoration Price</td>
-					<td><input type="text" name="Email" value="<?php echo $row['Decoration_Price'] ?>" /></td>
-				</tr>
-				<tr>
-					<td>Champagne Price</td>
-					<td><input type="text" name="Contact_No" value="<?php echo $row['Champaigne_Price'] ?>" /></td>
-				</tr>
-				<tr>
-					<td>Advance Percentage</td>
-					<td><input type="text" name="Contact_No" value="<?php echo $row['Advance_Percentage'] ?>" /></td>
-				</tr>
-				<tr>
-					<td align="center" style="width:50%;">
-						<input type="submit" class="button" name="update" value="UPDATE">
-						<input type="reset" class="button" value="  RESET " name="reset">
-
+					<td>Reservation Type</td>
+					<td align="left"><select id="type" name="reservation_type">
+							<option value="Events">Events</option>
+							<option value="Staying-In">Staying In</option>
+						</select>
+						<input type="submit" class="button" name="search_reservation" value="Search by Reservation">
 					</td>
-
 				</tr>
 			</table>
-			</fieldset>
+		</form>
+		<?php
+		include("../../config/connection.php");
+		if (isset($_POST['search_reservation'])) {
+			$reservationType = $_POST['reservation_type'];
+			$queryreservation = "SELECT * FROM advance_amount_table where Reservation_Type='" . $reservationType . "'";
+			$query_run_reservation = mysqli_query($con, $queryreservation);
+			$row_reservation = mysqli_fetch_assoc($query_run_reservation);
+			if (mysqli_num_rows($query_run_reservation) > 0) {
+		?>
+				<form action="" method="POST">
+					<table align="left" style="color:white; font-size: 20px; width:110%;">
+						<input type="hidden" name="reservation_type" value="<?php echo $row_reservation['Reservation_Type'] ?>" /></td>
+						<tr>
+							<td>Advance Percentage</td>
+							<td><input type="text" name="Advance_Percentage" value="<?php echo $row_reservation['Advance_Percentage'] ?>" /></td>
+						</tr>
+						<tr>
+							<td align="center" style="width:50%;">
+								<input type="submit" class="button" name="update_advance_percentage" value="UPDATE">
+								<input type="reset" class="button" value="  RESET " name="reset">
+							</td>
+						</tr>
+					</table>
+				</form>
+		<?php	}
+		}
+		?>
+	</fieldset>
 	<?php
+	//UPDATE
+	include("../../config/connection.php");
+	if (isset($_POST['update_advance_percentage'])) {
+		$Reservation_Type = $_POST['reservation_type'];
+		$Advance_Percentage = $_POST['Advance_Percentage'];
+		$queryUpdateReservation = "UPDATE advance_amount_table SET Advance_Percentage='$Advance_Percentage' WHERE Reservation_Type='$Reservation_Type'";
+		$query_run_update = mysqli_query($con, $queryUpdateReservation);
+		if ($query_run_update) {
+			echo '<script type="text/javascript">alert("Data updated successfully")</script>';
+			echo '<script>window.location.href="EditFeatures.php"</script>';
+		} else {
+			echo '<script type="text/javascript">alert("Data update is unsuccessful. Please try again")</script>';
+			// echo '<script>window.location.href=AdminAddPromotion.php"</script>';
 		}
 	}
 
 	?>
-
 
 
 

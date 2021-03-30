@@ -1,4 +1,4 @@
-<<?php
+<?php
 include("../../public/includes/session.php");
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
@@ -195,17 +195,19 @@ if (!isset($_SESSION['First_Name'])) {
 
 		$query = "SELECT * FROM stayingin_booking WHERE Occupancy='".$Occupancy."'AND Meal_Selection='".$Meal_Selection."'AND Reservation_Type='".$Reservation_Type."'AND Room_Type='".$Room_Type."' AND CheckIn_Date='".$CheckIn_Date."' AND CheckOut_Date='".$CheckOut_Date."'";
 		$query_run = mysqli_query($con, $query);
-
-		while ($row = mysqli_fetch_array($query_run)) {     
-
 		while ($row = mysqli_fetch_array($query_run)) {
           
 
-           
+            
 
 		?>
 
         <!--Any Occupancy-->
+
+
+
+
+
             <tr>
 				<td><?php echo $row["StayingIn_ID"]; ?></td>
                 <td><?php echo $row["Occupancy"]; ?></td>

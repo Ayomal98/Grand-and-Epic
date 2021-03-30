@@ -39,11 +39,11 @@ if (!isset($_SESSION['First_Name'])) {
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
-			<a href="AdminDashboard.php">
-				<font size="4 px">Dashboard</font>
-			</a>
 			<a href="AdminManageCoAdmins.php">
-				<font size="4px">Manage Co-admins(H.M)</font>
+				<font size="4 px">Manage Co-admins(H.M)</font>
+			</a>
+			<a href="AdminRespondToLeaveRequests.php">
+				<font size="4px">Respond to Leave Requests</font>
 			</a>
 			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
@@ -57,9 +57,15 @@ if (!isset($_SESSION['First_Name'])) {
 			<a href="AdminViewStats.php">
 				<font size="4 px">View Stats</font>
 			</a>
+			<a href="EditFeatures.php">
+				<font size="4 px">Edit Feature Prices</font>
+			</a>
+			<a href="AdminViewCustomerFeedback.php">
+				<font size="4 px">View Feedback</font>
+			</a>
 		</div>
 	</div>
-	<div class="top-right">
+	<div class="top-right" >
 		<table width="100%">
 			<tr>
 				<td>
@@ -88,40 +94,69 @@ if (!isset($_SESSION['First_Name'])) {
 			});
 		}
 	</script>
-	<?php
-    date_default_timezone_set('Asia/Colombo');
-    $date = date('Y-m-d', time());
-    echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">' . $date . '</span>    ';
-    ?>
-    <?php
-    include('../../config/connection.php');
-    $tempStatus = 0;
-    $selectLeaveDate = mysqli_query($con, "SELECT * FROM leave_request WHERE Start_Date='" . $date+2 . "' AND Status='" . $tempStatus . "' AND Employee_ID like 'C%' ");
-    if (mysqli_num_rows($selectReservationDate) > 0) {
-        echo '<table style="color:white;border:1px solid white;margin-left:12%;margin-top:-100px;width: 80%;">
+<?php
+	include('../../config/connection.php');
+	$tempStatus = 0;
+	$selectLeaveRequest = mysqli_query($con, "SELECT * FROM leave_request WHERE Status='" . $tempStatus . "' ");
+	if (mysqli_num_rows($selectLeaveRequest) > 0) {
+		echo '<table style="color:white;border:1px solid white;position:absolute;margin-left:25%;top:300px; width:46%;">
             <thead>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Employee ID</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Employee Id</th>
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Start Date</th>
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">End Date</th>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Section</th>
-                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Reason</th>
+                <th style="border: 1px solid white;padding: 10px;font-size:20px;">Employee Type</th>
                 <th style="border: 1px solid white;padding: 10px;font-size:20px;">Status</th>
             </thead>';
-        while ($rowResDetails = mysqli_fetch_assoc($selectLeaveDate)) {
-            $id = $rowResDetails['Employee_ID'];
-            echo '<tbody>
+
+		while ($rowResDetails = mysqli_fetch_assoc($selectLeaveRequest)) {
+			$id = $rowResDetails['ID'];
+			echo '<tbody>
                     <tr>
                         <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Employee_ID'] . '</td>
                         <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Start_Date'] . '</td>
                         <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['End_Date'] . '</td>
-                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Section'] . '</td>
-                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Reason'] . '</td>
+                        <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Type_Employee'] . '</td>
+                       
+                        <td style="border: 1px solid white;padding: 5px;"><a href="AdminRespondToLeaveRequests.php?id=' . $id . '">Requested</a></td>
                     </tr>';
-        }
-        echo '</table>';
-    }
+		}
+		echo '</table>';
+	}
+	?>
+	<?php if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+		$selectDetails = mysqli_query($con, "SELECT * FROM leave_request WHERE ID='$id'");
+		$rowUserDetails = mysqli_fetch_assoc($selectDetails);
+	?>
+	<form action="" method="POST" style="border:1px solid white;width:600px;height:600px;display: flex;flex-direction: column;padding:10px 35px;margin-left:380px;position:absolute;top:450px;">
+			<label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Leave Requests</label>
+			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Employee ID</label>
+			<input type="hidden" name="ID" value="<?php echo $id ?>">
+			<input type="text" name="Employee_ID" id="" value="<?php echo $rowUserDetails['Employee_ID'] ?>">
+			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Start Date</label>
+			<input type="text" rows="5" name="Start_Date" id="" value="<?php echo $rowUserDetails['Start_Date'] ?>">
+			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">End Date</label>
+			<input type="text" rows="5" name="End_Date" id="" value="<?php echo $rowUserDetails['End_Date'] ?>">
+            <label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Type Employee</label>
+			<input type="text" rows="5" name="Type_Employee" id="" value="<?php echo $rowUserDetails['Type_Employee'] ?>">
+			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Reason</label>
+			<input type="text" rows="5" name="Reason" id="" value="<?php echo $rowUserDetails['Reason'] ?>">
+            <table>
+            <tr>
+            <td>
+			<input type="submit" name="Accept" value="Accept" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px; margin-top:25px;">
+            </td>
+            <td>
+			<input type="submit" name="Decline" value="Decline" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px; margin-top:25px;">
+            </td>
+            </tr>
+            </table>
+		</form>
+		<?php
+	} else {
+	} ?>
 
-    ?>
+
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
