@@ -1,6 +1,7 @@
 <?php
 
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -72,186 +73,133 @@ checkSession();
 	}
 	</script>
 	
-	<table style ="position:absolute; top : 240px; width:350px;" >
-		<tr>
-            <td>
-                <img src = "../../public/images/room.png" height = "80px">
-            </td>
-		<td>
-			<p style = "font-family :Lato; font-size:22px; color :white;">Reservations</p>		
-		</td>
-		</tr>
-	</table>
-	
+   <!-- View Booking Details -->
+      
+    <!-- View Stayingin Booking Details -->
+    <div class="staytablemanager">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="10"><h2>View Staying Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>Staying ID</th>
+                <th>Occupancy</th>
+                <th>No: of Occupants</th>
+                <th>Room No</th>
+                <th>Reservation Type</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
+                <th>Check In Time</th>
+                <th>Check Out Time</th>
+                <th>Paid Amount</th>
+                <th>Total Amount</th>
+            </tr>
 
-	<table style ="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;" >
-		<tr>
-		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Reservations</p>		
-		</th>
-		
-		</tr>
-		<tr>
-		<td style ="border: 1px solid white;">
-		
-			<table width="100%">
-				<tr>
-				
-				<td align="center">
-                    <img src = "../../public/images/BIgCal.png" height = "80px">
-				</td>
-				</tr>
-				<tr>
-                    <td>
-                        <table style ="width:100%;border: 1px solid white;">
-                            <tr>
+            <?php
+                $query = "SELECT * FROM stayingin_booking ORDER BY CheckIn_Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+                    $roomNumbers = unserialize($row['Room_Numbers']);
+            ?>
+
+            <tr>
+                <td><?php echo $row['StayingIn_ID'] ?></td>
+                <td><?php echo $row['Occupancy'] ?></td>
+                <td><?php echo $row['No_Occupants'] ?></td>
+                <td><?php echo implode(",",$roomNumbers) ?></td>
+                <td><?php echo $row['Reservation_Type'] ?></td>
+                <td><?php echo $row['CheckIn_Date'] ?></td>
+                <td><?php echo $row['CheckOut_Date'] ?></td>
+                <td><?php echo $row['CheckIn_Time'] ?></td>
+                <td><?php echo $row['CheckOut_Time'] ?></td>
+                <td><?php echo $row['Paid_Amount'] ?></td>
+                <td><?php echo $row['Total_Amount']?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
+
+
+    <!-- View Dinein Booking Details -->
+    <div class="dinetablemanager">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="3"><h2>View Dine-in Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>Date:</th>
+                <th>Table No:</th>
+                <th>Meal Period:</th>
+                <th>Number of Guests:</th>
+            </tr>
+
+            <?php
+                $query = "SELECT * FROM dinein_booking ORDER BY Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['Date'] ?></td>
+                <td><?php echo $row['Table_No'] ?></td>
+                <td><?php echo $row['Meal_Period'] ?></td>
+                <td><?php echo $row['Num_Guests'] ?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
     
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Customer ID</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Customer Name</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Reservation ID</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Payment Received</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Payment Completed</p>		
-                                </th>
-                               
-                                </tr>
-                                <tr>
-                    
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">C1111</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Hasitha Athukorala</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">R203</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">P111</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating1" value="excellent" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating1" value="good" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating2" value="excellent" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating2" value="good" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">C1222</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Lakith Hewawasam</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">R2004</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">P122</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating3" value="excellent" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating3" value="good" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating4" value="excellent" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating4" value="good" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">C333</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Sarath Mahadurage</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">R5555</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">P123</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating5" value="excellent" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating5" value="good" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating6" value="excellent" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating6" value="good" disabled style="margin-left:65px;">No
-                                        </p>		
-                                 </tr>
-                                 <tr>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">C444</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Pardeepa Wickremasinghe</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">R5678</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">P124</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating7" value="excellent" checked style="margin-left:65px;">No
-                                            <input type="radio" name="rating7" value="good" disabled style="margin-left:65px;">Yes
-                                        </p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating8" value="excellent" checked style="margin-left:65px;">No
-                                            <input type="radio" name="rating8" value="good" disabled style="margin-left:65px;">Yes
-                                        </p>		
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                <td></td>   
-                                <td></td> 
-                                <td></td> 
-                                <td></td>
-                                <td></td>
-                                
-                                <td align= "right">
-                                    <p style = "font-family :Lato; font-size:15px; color :rgb(240, 16, 16);cursor:pointer;"><u>Show more rows</u></p>
-                                </td>
+    <!-- View Events Booking Details -->
+    <div class="eventtablemanager">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
+            <tr>
+                <th><img src="../../public/images/BigCal.png" height="70px"></th>
+                <th colspan="4"><h2>View Events Booking Details</h2></th>
+            </tr>
+            <tr>
+                <th>Reservation Date:</th>
+                <th>Starting Time:</th>
+                <th>Ending Time:</th>
+                <th>Event Type:</th>
+                <th>Meal Preference:</th>
+            </tr>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="button" class="button" value="UPDATE RESERVATIONS">
-                    </td>
-                </tr>
-             </table>
-			
-		</td>
-		</tr>
-		
-	</table>
+            <?php
+                $query = "SELECT * FROM events_booking ORDER BY Reservation_Date ASC";
+                $query_run = mysqli_query($con,$query);
+
+                while($row = mysqli_fetch_array($query_run))
+                {
+            ?>
+
+            <tr>
+                <td><?php echo $row['Reservation_Date'] ?></td>
+                <td><?php echo $row['Starting_Time'] ?></td>
+                <td><?php echo $row['Ending_Time'] ?></td>
+                <td><?php echo $row['Event_Type'] ?></td>
+                <td><?php echo $row['MealPackage_ID']?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+    </div>
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";

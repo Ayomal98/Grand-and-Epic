@@ -12,19 +12,19 @@ checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/HomePage-login.php');
 }
+
 if (isset($_POST['Accept'])) {
-	$feedbackID = $_POST['Feedback_ID']; //--replace the reservation with the feedbackID
-	$staffRate = $_POST['Feedback_Satff']; //change the name to the input field name of line 191
-	$websiteRate = $_POST['Feedback_Website']; //change the name to the input field name of line 193
+	$feedbackID = $_POST['Feedback_ID'];
+	$date = $_POST['Date'];
 	$customerEmail = $_POST['user_email'];
-	$reply = $_POST['feedback']; //--change the name to feedback
+	$feedback = $_POST['feedback'];
 	$status = 1;
 	$feedbackReply = mysqli_query($con, "UPDATE customer_feedback SET Status='$status' WHERE Feedback_ID='$feedbackID'");
 	if ($feedbackReply) {
 		echo "<script>
-            alert('Your feedback has been recorded');
-          </script>";
-		header('location:HotelManagerCustomerFeedback.php');
+		alert('Customer Feedback Has been sent');
+		window.location.href='HotelManagerCustomerFeedback.php';
+		</script>";
 		//sending the reservation confirmation mail to the customer
 		require '../../config/PHPMailer/src/Exception.php';
 		require '../../config/PHPMailer/src/PHPMailer.php';
@@ -44,15 +44,17 @@ if (isset($_POST['Accept'])) {
 
 			//Recipients
 			$mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
-			$mail->addAddress($customerEmail);     // Add a recipient            // Name is optional
+			$mail->addAddress($customerEmail);     // Add a recipient            
 
 			// Content
 			$mail->isHTML(true);                                  // Set email format to HTML
-			$mail->Subject = 'Customer Feedback Reply';
-			$mail->Body    = 'Welcome to the Grand & Epic Family';
+			$mail->Subject = "Customer Feedback Accepted";
+			$mail->Body    = $feedback;
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 			$mail->send();
+
+
 			echo 'Message has been sent';
 		} catch (Exception $e) {
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -61,60 +63,6 @@ if (isset($_POST['Accept'])) {
 		echo '<script> alert("Data Not Added") </script>';
 	}
 }
-	if(!isset($_SESSION['First_Name'])){
-		header('Location:../Hotel_Website/HomePage-login.php');
-	}
-	if (isset($_POST['Accept'])) {
-		$reservationID = $_POST['Reservation_ID'];
-		$staffRate = $_POST['Staff_Rate'];
-		$websiteRate = $_POST['Website_Rate'];
-		$date = $_POST['Date'];
-		$customerEmail = $_POST['User_Email'];
-		$reply = $_POST['user_email'];
-		$status = 1;
-		$feedbackReply = mysqli_query($con, "UPDATE customer_feedback SET Status='$status' WHERE Reservation_ID='$reservationID'");
-		if ($feedbackReply) {
-			echo '<script>alert("Feedback Accepted")</script>';
-			header('location:HotelManagerCustomerFeedback.php');
-
-			  //sending the reservation confirmation mail to the customer
-			  require '../../config/PHPMailer/src/Exception.php';
-			  require '../../config/PHPMailer/src/PHPMailer.php';
-			  require '../../config/PHPMailer/src/SMTP.php';
-			  $mail = new PHPMailer(true);
-	   
-			  try {
-				  //Server settings
-	   
-				  $mail->isSMTP();                                            // Send using SMTP
-				  $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-				  $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-				  $mail->Username   = 'grandandepic20@gmail.com';                     // SMTP username
-				  $mail->Password   = 'grand&epicIs05';                               // SMTP password
-				  $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-				  $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-	   
-				  //Recipients
-				  $mail->setFrom('grandandepic20@gmail.com', 'Grand & Epic');
-				  $mail->addAddress($customerEmail);     // Add a recipient            
-	   
-				  // Content
-				  $mail->isHTML(true);                                  // Set email format to HTML
-				  $mail->Subject = "Account has been Created - Grand & Epic";
-				  $mail->Body    = "Dear Customer, <p>Welcome to Grand & Epic Family.<p><p>Your data have successfully been added to the Company's System.Here are the Sign-In details.</p><b style=\"margin-left:30px\">Your Password: {$rePass}</b> <br> <b style=\"margin-left:30px\">Your Employee ID: {$empID}</b>";
-				  $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-	   
-				  $mail->send();
-				  echo 'Message has been sent';
-			  } catch (Exception $e) {
-				  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-			  }
-
-			 } else {
-			   echo '<script> alert("Data Not Added") </script>';
-		   }
-		
-	}
 ?>
 <html>
 
@@ -163,9 +111,6 @@ if (isset($_POST['Accept'])) {
 			</a>
 			<a href="HotelManagerManageRoom.php">
 				<font size="4 px">Manage Rooms</font>
-			</a>
-			<a href="HotelManagerEarlyCheckOuts.php">
-				<font size="4 px">Early Check-Outs</font>
 			</a>
 		</div>
 	</div>
@@ -230,7 +175,6 @@ if (isset($_POST['Accept'])) {
                         <td style="border: 1px solid white;padding: 5px;">' . $rowResDetails['Website_Rate'] . '</td>
                         <td style="border: 1px solid white;padding: 5px;"><a href="HotelManagerCustomerFeedback.php?id=' . $id . '">Feedback</a></td>
                     </tr>';
-
 		}
 		echo '</table>';
 	}
@@ -238,29 +182,29 @@ if (isset($_POST['Accept'])) {
 	?>
 
 
-	 <!-- filter feedback  -->
-	  <?php if (isset($_GET['id'])) {
-        $id = $_GET['id'];
-        $selectDetails = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Feedback_ID='$id'");
-        $rowUserDetails = mysqli_fetch_assoc($selectDetails);
-    ?>
-        <form action="" method="POST" style="border:1px solid white;width:1000px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 170px;margin-top:50px;">
-            <label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Feedback</label>
-            <label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback for staff</label>
-            <input type="hidden" name="Date" value="<?php echo $date ?>">
-            <input type="hidden" name="Feedback_ID" value="<?php echo $id ?>">
-            <input type="text" name="Feedback_Satff" id="" value="<?php echo $rowUserDetails['Feedback_Staff'] ?>">  
-            <label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Feedback for Website</label>
-            <input type="text" rows = "5" name="Feedback_Website" id="" value="<?php echo $rowUserDetails['Feedback_Website'] ?>">
-			<input type='hidden' name='user_email' value="<?php echo $rowUserDetails['User_Email']?>">
+	<!-- filter feedback  -->
+	<?php if (isset($_GET['id'])) {
+		$id = $_GET['id'];
+		$selectDetails = mysqli_query($con, "SELECT * FROM customer_feedback WHERE Feedback_ID='$id'");
+		$rowUserDetails = mysqli_fetch_assoc($selectDetails);
+	?>
+		<form action="" method="POST" style="border:1px solid white;width:1000px;height:400px;display: flex;flex-direction: column;padding:10px 35px;margin-left: 170px;margin-top:50px;">
+			<label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Feedback</label>
+			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback for staff</label>
+			<input type="hidden" name="Date" value="<?php echo $date ?>">
+			<input type="hidden" name="Feedback_ID" value="<?php echo $id ?>">
+			<input type="text" name="Feedback_Satff" id="" value="<?php echo $rowUserDetails['Feedback_Staff'] ?>">
+			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Feedback for Website</label>
+			<input type="text" rows="5" name="Feedback_Website" id="" value="<?php echo $rowUserDetails['Feedback_Website'] ?>">
+			<input type='hidden' name='user_email' value="<?php echo $rowUserDetails['User_Email'] ?>">
 			<label for="Date" style="color:white;font-size: 20px;margin-top:20px;">Reply</label>
 			<input type="text" name='feedback' placeholder="Reply">
-            <input type="submit" name="Accept" value="Send Reply" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
-        </form>
-    <?php 
+			<input type="submit" name="Accept" value="Send Reply" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
+		</form>
+	<?php
 	} else {
-    } ?>
-	
+	} ?>
+
 
 
 	<script>

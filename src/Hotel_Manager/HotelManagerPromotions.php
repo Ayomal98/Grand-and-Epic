@@ -42,7 +42,6 @@ checkSession();
 				<a href="ManagerBookingDetails.php"><font size = "4 px">Booking Details</font></a>
 				<a href="HotelManagerCustomerFeedback.php"><font size = "4 px">Customer Feedback</font></a>
 				<a href="HotelManagerManageRoom.php"><font size = "4 px">Manage Room</font></a>
-				<a href="HotelManagerEarlyCheckOuts.php"><font size = "4 px">Early Check-Outs</font></a>
 				</div>
 		</div>
 		<div class = "top-right">
