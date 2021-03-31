@@ -228,7 +228,7 @@ if (isset($_POST['Decline'])) {
                     </tr>
                     <tr>
                         <td align="left">First Name:</td>
-                        <td align="center"><input type="text" pattern="[A-Za-z]+" name="empFname" size="20" class="inputs" form="manager_form" required></td>
+                        <td align="center"><input type="text" pattern="[A-Za-z]+$" name="empFname" size="20" class="inputs" form="manager_form" required></td>
                     </tr>
                     <tr>
                         <td align="left">Last Name:</td>
@@ -276,7 +276,7 @@ if (isset($_POST['Decline'])) {
     if (isset($_POST['search'])) {
         $Employee_ID = $_POST['Employee_ID'];
 
-        $query = "SELECT * FROM employee where Employee_ID='$Employee_ID' ";
+        $query = "SELECT * FROM employee where Employee_ID='$Employee_ID' AND User_Role!='Admin' AND User_Role!='Hotel Manager'";
         $query_run = mysqli_query($con, $query);
         if (mysqli_num_rows($query_run) == 1) {
             while ($row = mysqli_fetch_array($query_run)) {
@@ -290,19 +290,19 @@ if (isset($_POST['Decline'])) {
                             </tr>
                             <tr>
                                 <td width="200 px">First Name:</td>
-                                <td width="200 px"><input type="text" name="First_Name" value="<?php echo $row['First_Name']; ?>" /></td>
+                                <td width="200 px"><input type="text" pattern="[A-Za-z]+$" name="First_Name" value="<?php echo $row['First_Name']; ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Last Name:</td>
-                                <td><input type="text" name="Last_Name" value="<?php echo $row['Last_Name']; ?>" /></td>
+                                <td><input type="text" pattern="[A-Za-z]+$" name="Last_Name" value="<?php echo $row['Last_Name']; ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Email:</td>
-                                <td><input type="email" name="Email" value="<?php echo $row['Email']; ?>" /></td>
+                                <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="Email" value="<?php echo $row['Email']; ?>" /></td>
                             </tr>
                             <tr>
                                 <td>Contact No:</td>
-                                <td><input type="tel" name="Contact_No" value="<?php echo $row['Contact_No']; ?>" /></td>
+                                <td><input type="tel" pattern="[0][1-9][0-9]{8}" name="Contact_No" value="<?php echo $row['Contact_No']; ?>" /></td>
                             </tr>
                             <tr>
                                 <td>User Role:</td>
@@ -390,13 +390,13 @@ if (isset($_POST['Decline'])) {
 		echo '</table>';
 	}
 	?>
-    <!-- filter feedback  -->
+    <!-- filter requests  -->
 	<?php if (isset($_GET['id'])) {
 		$id = $_GET['id'];
 		$selectDetails = mysqli_query($con, "SELECT * FROM leave_request WHERE ID='$id'");
 		$rowUserDetails = mysqli_fetch_assoc($selectDetails);
 	?>
-		<form action="" method="POST" style="border:1px solid white;width:600px;height:600px;display: flex;flex-direction: column;padding:10px 35px;margin-left:820px;position:absolute;top:1400px;">
+		<form action="" method="POST" style="border:1px solid white;width:600px;height:600px;display: flex;flex-direction: column;padding:10px 35px;margin-left:820px;position:absolute;top:1600px;">
 			<label style="color:white;font-size: 35px;text-align: center;font-weight: bolder;">Leave Requests</label>
 			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Employee ID</label>
 			<input type="hidden" name="ID" value="<?php echo $id ?>">
@@ -438,7 +438,7 @@ if (isset($_POST['Decline'])) {
 
 <!-- VIEW Employee TABLE -->
 <div class="dtablescroll">
-    <table align="center" style="color:white;width:100%;font-size:17px;top:746px">
+    <table align="center" border="1px solid white" style="border-collapse:collapse; color:white;width:100%;font-size:17px;top:746px">
         <tr>
             <th colspan="6">
                 <h4>Employee Details</h2>
@@ -474,9 +474,9 @@ if (isset($_POST['Decline'])) {
 
     </table>
 </div>
-
+<!-- VIEW Duty Roster-->
 <div class="dtablescrollduty">
-    <table align="center" style="color:white;width:100%;font-size:17px;">
+    <table align="center" border="1px solid white" style="color:white;width:100%;font-size:17px;">
         <tr>
             <th colspan="6">
                 <h4>Duty Roster</h2>

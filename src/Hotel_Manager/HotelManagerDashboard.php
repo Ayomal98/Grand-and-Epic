@@ -171,20 +171,6 @@ checkSession();
         </td>
 		</tr>	
     </table>
-
-	
-    <table style ="position:absolute; top : 1300px; left:150px;">
-        <tr>
-            <th>
-                <p style = "font-family :Lato; font-size:20px; color :white;">Bookings Overview of the Year</p>	
-            </th>
-        </tr>
-        <tr>
-            <td align = "center">
-                <img src = "../../public/images/bar.png" height = "650px" >
-            </td>
-        </tr>
-    </table>
 	
  <!-- User Profie -->
  <form action="" method="POST">
@@ -240,15 +226,15 @@ checkSession();
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><input type="text" name="lname" value="<?php echo $row['Last_Name'] ?>" /></td>
+					<td><input type="text" name="lname" pattern="^[A-Za-z ]+$" value="<?php echo $row['Last_Name'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
+					<td><input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="<?php echo $row['Email'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
+					<td><input type="tel" name="tel" pattern="[0][1-9][0-9]{8}" value="<?php echo $row['Contact_No'] ?>" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" class="button" name="update" value="UPDATE PROFILE"></td>
