@@ -184,7 +184,7 @@ if (!isset($_SESSION['First_Name'])) {
             <tr>
                 <td>
                     <fieldset>
-                        <legend style="color:white; font-size: 26px"><b>New Room</b></legend>
+                        <legend style="color:white; font-size: 26px"><b>New Room Type</b></legend>
                         <table style="color:white; font-size: 20px; width:90%; margin-left:auto; margin-right:auto;">
                             <form method="POST" id="room_form" action="">
                                 <tr>
@@ -193,7 +193,7 @@ if (!isset($_SESSION['First_Name'])) {
                                 </tr>
                                 <tr>
                                     <td align="left">No: of Rooms:</td>
-                                    <td align="left"><input type="text" name="noRooms" rows="1" cols="25" style="font-size: 20px;" form="room_form" required></textarea></td>
+                                    <td align="left"><input type="number" min="5" max="20" name="noRooms" rows="1" cols="25" style="font-size: 20px;width:905px;margin:8px 0; padding: 5px 29px" form="room_form"   required></textarea></td>
                                 </tr>
                                 <tr>
                                     <td align="left">Price Estimated:</td>
@@ -212,7 +212,7 @@ if (!isset($_SESSION['First_Name'])) {
                                 </tr>
                                 <tr>
                                     <td align="left">No of Guests:</td>
-                                    <td align="left"><input type="text" name="noGuests" rows="1" cols="25" style="font-size: 20px;" form="room_form" required></td>
+                                    <td align="left"><input type="number" min="1" max="5"name="noGuests" rows="1" cols="25" style="font-size: 20px;width:905px;margin:8px 0; padding: 5px 29px" form="room_form" required></td>
                                 </tr>
                                 <tr>
                                     <td align="left">Bed Type:</td>
@@ -220,7 +220,7 @@ if (!isset($_SESSION['First_Name'])) {
                                 </tr>
                                 <tr>
                                     <td align="left">No of Beds:</td>
-                                    <td align="left"><input type="text" name="noBeds" rows="1" cols="25" style="font-size: 20px;" form="room_form" required></td>
+                                    <td align="left"><input type="number" min="1" max="3" name="noBeds" rows="1" cols="25" style="font-size: 20px;width:905px;margin:8px 0; padding: 5px 29px" form="room_form" required></td>
                                 </tr>
                                 <tr>
                                     <td align="left">Bathroom:</td>
@@ -277,11 +277,11 @@ if (!isset($_SESSION['First_Name'])) {
                             <table align="center" style="color:white; font-size: 22px; width:75%;">
                                 <tr>
                                     <td align="left">Room Type:</td>
-                                    <td align="left"><textarea name="roomType" rows="1" cols="25" style="font-size: 20px;" form="roomform" required><?php echo $row['Room_Type']; ?></textarea></td>
+                                    <td align="left"><textarea name="roomType" rows="1" cols="25" style="font-size: 20px;width:722px;margin:8px 0; padding: 5px 29px" form="roomform" required><?php echo $row['Room_Type']; ?></textarea></td>
                                 </tr>
                                 <tr>
                                     <td align="left">No: of Rooms:</td>
-                                    <td align="left"><input type="text" name="noRooms" value="<?php echo $row['NoRooms']; ?>" rows="1" cols="25" style="font-size: 20px;" form="roomform" required></td>
+                                    <td align="left"><input type="number" min="5" max="20" name="noRooms" value="<?php echo $row['NoRooms']; ?>" rows="1" cols="25" style="font-size: 20px;width:722px;margin:8px 0; padding: 5px 29px" form="roomform" required></td>
                                 </tr>
                                 <tr>
                                     <td align="left">Price Estimated:</td>
@@ -293,7 +293,7 @@ if (!isset($_SESSION['First_Name'])) {
                                 </tr>
                                 <tr>
                                     <td align="left">No of Guests:</td>
-                                    <td align="left"><input type="text" name="noGuests" value="<?php echo $row['NoGuests']; ?>" rows="1" cols="25" style="font-size: 20px;" form="roomform" required></td>
+                                    <td align="left"><input type="number" min="1" max="5" name="noGuests" value="<?php echo $row['NoGuests']; ?>" rows="1" cols="25" style="font-size: 20px;width:722px; margin:8px 0;padding: 5px 29px" form="roomform" required></td>
                                 </tr>
                                 <tr>
                                     <td align="left">Bed Type:</td>
@@ -301,7 +301,7 @@ if (!isset($_SESSION['First_Name'])) {
                                 </tr>
                                 <tr>
                                     <td align="left">No of Beds:</td>
-                                    <td align="left"><input type="text" name="noBeds" value="<?php echo $row['NoBeds']; ?>" rows="1" cols="25" style="font-size: 20px;" form="roomform" required></td>
+                                    <td align="left"><input type="number" min="1" max="3" name="noBeds" value="<?php echo $row['NoBeds']; ?>" rows="1" cols="25" style="font-size: 20px;width:722px; margin:8px 0;padding: 5px 29px" form="roomform" required></td>
                                 </tr>
                                 <tr>
                                     <td align="left">Bathroom:</td>
@@ -324,7 +324,7 @@ if (!isset($_SESSION['First_Name'])) {
                                     <td style="position:relative;left:180px">
                                         <input type="submit" class="button" name="update" value="Update Room Type"></a>
                                         <input type="submit" class="button" name="delete" value="Delete Room Type"></a>
-
+                                        <input type="reset" class="button" name="reset" value="Reset Details"></a>
                                     </td>
                                 </tr>
                         </form>

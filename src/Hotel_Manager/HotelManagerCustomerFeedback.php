@@ -145,7 +145,7 @@ if (isset($_POST['Accept'])) {
 	<?php
 	date_default_timezone_set('Asia/Colombo');
 	$date = date('Y-m-d', time());
-	echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">' . $date . '</span>    ';
+	echo '    <span id="" style="position:relative;top:-220px;width: 300px;margin-left: 500px;color:white;font-size:35px">Customer Feedbacks on ' . $date . '</span>    ';
 	?>
 	<!-- view customer feedback records  -->
 	<?php

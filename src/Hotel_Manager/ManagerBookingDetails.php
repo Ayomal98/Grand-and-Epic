@@ -82,7 +82,7 @@ checkSession();
         <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
             <tr>
                 <th><img src="../../public/images/BigCal.png" height="70px"></th>
-                <th colspan="10"><h2>View Staying Booking Details</h2></th>
+                <th colspan="10"><h2>View Staying-in Booking Details</h2></th>
             </tr>
             <tr>
                 <th>Staying ID</th>
