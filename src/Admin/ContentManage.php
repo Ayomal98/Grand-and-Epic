@@ -38,15 +38,15 @@ if (isset($_POST['update'])) {
             
                 if ($query_run) {
                   echo "<script>
-                  alert('Content Has been Updated');
-                  window.location.href='AdminManageContent.php';
+                  alert('Content Has been Updated (With the image)');
+                  
                   </script>";
                 } else {
                   echo '<script> alert("Data Not Updated") </script>';
                 }
               }
               else{
-                $query = "UPDATE content SET Content_ID='$Content_ID',Heading='$Heading',Content='$Content',Img_url='$Img_url' where Content_ID='$_POST[Content_Id]'";
+                $query = "UPDATE content SET Content_ID='$Content_ID',Heading='$Heading',Content='$Content',Img_url='$contentimage' where Content_ID='$_POST[Content_Id]'";
                 $query_run = mysqli_query($con, $query);
             
                 if ($query_run) {

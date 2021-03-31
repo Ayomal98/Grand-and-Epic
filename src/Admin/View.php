@@ -95,12 +95,13 @@ if (!isset($_SESSION['First_Name'])) {
 			});
 		}
 	</script>
-	<legend style="color:white; font-size: 20px">Occupancy</legend>
-	<select id="filter-occ" class="filter">
+	<fieldset style=" position:absolute; top:250px; left:40%; width: 20%; ">
+	<legend style="color:white; font-size: 20px">Room Type</legend>
+	<select id="filter-room" class="filter">
 		<option value="0">Any</option>
-		<option value="Suite">Suite </option>
-		<option value="Panaromic">Panaromic </option>
-		<option value="Superior">Superior </option>
+		<option value="Suite Rooms">Suite </option>
+		<option value="Panaromic Rooms">Panaromic </option>
+		<option value="Superior Rooms">Superior </option>
 	</select>
 
 	<legend style="color:white; font-size: 20px">Meal</legend>
@@ -109,6 +110,14 @@ if (!isset($_SESSION['First_Name'])) {
 		<option value="Set-Menu">Set-Menu</option>
 		<option value="Customized">Customized</option>
 	</select>
+
+	<legend style="color:white; font-size: 20px">Reservation-Type</legend>
+	<select id="filter-Res" class="filter">
+		<option value="0">Any</option>
+		<option value="Full-Board">Full-Board</option>
+		<option value="Half-Board">Half-Board</option>
+	</select>
+	</fieldset>
 
 	<script>
 		$('.filter').change(function() {
@@ -123,23 +132,26 @@ if (!isset($_SESSION['First_Name'])) {
 
 		function filter_function() {
 			$('table tbody tr').hide(); //hide all rows
-			var occFlag = 0;
-			var occValue = $('#filter-occ').val();
+			var roomFlag = 0;
+			var roomValue = $('#filter-room').val();
 			var mealFlag = 0;
 			var mealValue = $('#filter-Meal').val();
+			var resFlag = 0;
+			var resValue = $('#filter-Res').val();
 			console.log(mealValue)
-			console.log(occValue)
+			console.log(roomValue)
+			console.log(resValue)
 			//setting intial values and flags needed
 
 			//traversing each row one by one
 			$('table tbody tr').each(function() {
 
-				if (occValue == 0) { //if no value then display row
-					occFlag = 1;
-				} else if (occValue == $(this).find('td.occ').data('occ')) {
-					occFlag = 1; //if value is same display row
+				if (roomValue == 0) { //if no value then display row
+					roomFlag = 1;
+				} else if (roomValue == $(this).find('td.room').data('room')) {
+					roomFlag = 1; //if value is same display row
 				} else {
-					occFlag = 0;
+					roomFlag = 0;
 				}
 
 				if (mealValue == 0) {
@@ -150,7 +162,15 @@ if (!isset($_SESSION['First_Name'])) {
 					mealFlag = 0;
 				}
 
-				if (occFlag && mealFlag) {
+				if (resValue == 0) {
+					resFlag = 1;
+				} else if (resValue == $(this).find('td.res').data('res')) {
+					resFlag = 1;
+				} else {
+					resFlag = 0;
+				}
+
+				if (roomFlag && mealFlag && resFlag) {
 					$(this).show(); //displaying row which satisfies all conditions
 				}
 
@@ -169,7 +189,7 @@ if (!isset($_SESSION['First_Name'])) {
 
 
 
-	<table align="right" style="color:white; font-size: 17px; width:95%; top:830px; left:25px; position:absolute; border: 1px solid white; padding-bottom: 100px">
+	<table align="left" style="color:white; font-size: 17px; width:1500px; top:530px; left:30px; position:absolute; border: 1px solid white; padding-bottom: 100px">
 		<!-- <tr>
 			<th colspan="6">
 				<h4 align="center">Booking Details</h2>
@@ -213,15 +233,15 @@ if (!isset($_SESSION['First_Name'])) {
 
 				<tr>
 					<td><?php echo $row["StayingIn_ID"]; ?></td>
-					<td class="occ" data-occ="<?php echo $row["Occupancy"] ?>"><?php echo $row["Occupancy"]; ?></td>
+					<td><?php echo $row["Occupancy"]; ?></td>
 					<td><?php echo $row["No_Occupants"]; ?></td>
 					<td class="meal" data-meal="<?php echo $row["Meal_Selection"] ?>"><?php echo $row["Meal_Selection"]; ?></td>
-					<td><?php echo $row["Reservation_Type"]; ?></td>
+					<td class="res" data-res="<?php echo $row["Reservation_Type"] ?>"><?php echo $row["Reservation_Type"]; ?></td>
 					<td><?php echo $row["CheckIn_Date"]; ?></td>
 					<td><?php echo $row["CheckOut_Date"]; ?></td>
 					<td><?php echo $row["CheckIn_Time"]; ?></td>
 					<td><?php echo $row["CheckOut_Time"]; ?></td>
-					<td><?php echo $row["Room_Type"]; ?></td>
+					<td class="room" data-room="<?php echo $row["Room_Type"] ?>"><?php echo $row["Room_Type"]; ?></td>
 					<td><?php echo $row["User_Email"]; ?></td>
 				</tr>
 			<?php

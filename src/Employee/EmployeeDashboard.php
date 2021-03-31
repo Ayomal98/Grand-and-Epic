@@ -168,8 +168,8 @@ if (!isset($_SESSION['First_Name'])) {
 					<td align="center" colspan="2"><h1>USER PROFILE</h1></td>
 				</tr>
 				<tr>
-					<td>Supervisor ID:</td>
-					<td><input type="text" name="id" value="<?php echo $row['Employee_ID'] ?>" /></td>
+					<td>Employee ID:</td>
+					<td><input type="text" name="id" readonly value="<?php echo $row['Employee_ID'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>First Name:</td>

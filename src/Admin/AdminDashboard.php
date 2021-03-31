@@ -1,6 +1,6 @@
 <?php
 include("../../public/includes/session.php");
-include("../../config/connection.php");
+
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
 	header('Location:../Hotel_Website/index.php');
@@ -15,11 +15,6 @@ if (!isset($_SESSION['First_Name'])) {
 	<title>
 		Admin Dashboard
 	</title>
-	<style>
-		body {
-			height: 5500px;
-		}
-	</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -43,9 +38,6 @@ if (!isset($_SESSION['First_Name'])) {
 			<a href="AdminManageCoAdmins.php">
 				<font size="4 px">Manage Co-admins(H.M)</font>
 			</a>
-			<a href="AdminRespondToLeaveRequests.php">
-				<font size="4px">Respond to Leave Requests</font>
-			</a>
 			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
 			</a>
@@ -63,6 +55,9 @@ if (!isset($_SESSION['First_Name'])) {
 			</a>
 			<a href="AdminViewCustomerFeedback.php">
 				<font size="4 px">View Feedback</font>
+			</a>
+			<a href="AdminManageRoomDetails.php">
+				<font size="4 px">Manage Rooms</font>
 			</a>
 		</div>
 	</div>
@@ -116,7 +111,7 @@ if (!isset($_SESSION['First_Name'])) {
 			</th>
 
 			<th style="border: 1px solid white;">
-				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminViewBookings.php">View Booking Details</a></p>
+				<p style="font-family :Lato; font-size:20px; color :white;"><a href="View.php">View Booking Details</a></p>
 			</th>
 			<th style="border: 1px solid white;">
 				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminManageContent.php">Manage Content on Website</a></p>
@@ -133,6 +128,9 @@ if (!isset($_SESSION['First_Name'])) {
 			<th style="border: 1px solid white;">
 				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminViewCustomerFeedback.php">View Customer Feedback</a></p>
 			</th>
+			<th style="border: 1px solid white;">
+				<p style="font-family :Lato; font-size:20px; color :white;"><a href="AdminManageRoomDetails.php">Manage Rooms</a></p>
+			</th>
 		</tr>
 		<tr>
 			<td style="border: 1px solid white;">
@@ -141,9 +139,6 @@ if (!isset($_SESSION['First_Name'])) {
 					<tr>
 						<td align="center">
 							<img src="../../public/images/Emplo.png" height="70%">
-						</td>
-						<td align="center">
-							<p style="color: white; font-size: 20px;">No. of<br>Co-Admins - 5</p>
 						</td>
 					</tr>
 				</table>
@@ -166,7 +161,7 @@ if (!isset($_SESSION['First_Name'])) {
 							<img src="../../public/images/hotel.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
-							<p style="color: white; font-size: 20px;">12</p>
+							<p style="color: white; font-size: 20px;">Staying-in</p>
 						</td>
 					</tr>
 					<tr>
@@ -174,7 +169,7 @@ if (!isset($_SESSION['First_Name'])) {
 							<img src="../../public/images/cutlery.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
-							<p style="color: white; font-size: 20px;">16</p>
+							<p style="color: white; font-size: 20px;">Dine-in</p>
 						</td>
 					</tr>
 					<tr>
@@ -182,14 +177,14 @@ if (!isset($_SESSION['First_Name'])) {
 							<img src="../../public/images/tie.png" height="50px" weight="50px">
 						</td>
 						<td align="center">
-							<p style="color: white; font-size: 20px;">2</p>
+							<p style="color: white; font-size: 20px;">Events</p>
 						</td>
 					</tr>
 				</table>
 
 			</td>
 
-			<!--VIEW BOOKING DETAILS-->
+			<!--CONTENT-->
 
 			<td style="border: 1px solid white;">
 			<table width="100%">
@@ -340,20 +335,26 @@ if (!isset($_SESSION['First_Name'])) {
 							<p style="color: white; font-size: 18px;">Website</p>
 						</td>
 					</tr>
+					</table>
+					<td style="border: 1px solid white;">
+						<table width="100%">
+						<tr>
+						<td align="center">
+							<img src="../../public/images/Bed3.png" height="70%">
+						</td>
+					</tr>
 			
 				</table>
 			</td>
-		
-
-	
-	<!-- User Profie -->
+			</table>
+			<!-- User Profie -->
 	<form action="" method="POST">
-		<fieldset style=" position:absolute; top:980px; width: 75%; left:160px">
+		<fieldset style=" position:absolute; top:680px; width: 75%; left:160px">
 			<table align="center" style="color:white; font-size: 20px; width:88%;">
 
 			<?php
 				
-
+				include("../../config/connection.php");
 					$query = "SELECT * FROM employee where First_Name='$_SESSION[First_Name]' ; ";
 					$query_run = mysqli_query($con,$query);
 
@@ -418,7 +419,10 @@ if (!isset($_SESSION['First_Name'])) {
 			?>
 
 			</table>
+			</fieldset>
 		</form>
+
+
 
 
 	
