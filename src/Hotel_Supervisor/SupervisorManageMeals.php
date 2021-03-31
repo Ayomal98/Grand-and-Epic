@@ -329,8 +329,7 @@ if (isset($_POST['update'])) {
 		} else {
 			echo '<script> alert("Data Not Updated") </script>';
 		}
-	}
-	else{
+	}else{
 		$query = "UPDATE meals SET Meals_Name='$mealname',Price='$price',Meal_Type='$mealtype',Meal_Image='$mealimage' where Meals_ID='$_POST[mealid]'";
 		$query_run = mysqli_query($con, $query);
 
