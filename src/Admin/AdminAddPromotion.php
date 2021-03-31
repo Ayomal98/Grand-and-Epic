@@ -35,24 +35,22 @@ if (!isset($_SESSION['First_Name'])) {
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Admin Update Promotion
+		<button class="dropdown-btn">Admin Manage Promotions
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
+		<a href="AdminDashboard.php">
+				<font size="4 px">Admin Dashboard</font>
+			</a>
 			<a href="AdminManageCoAdmins.php">
 				<font size="4 px">Manage Co-admins(H.M)</font>
-			</a>
-			<a href="AdminRespondToLeaveRequests.php">
-				<font size="4px">Respond to Leave Requests</font>
 			</a>
 			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
 			</a>
+			
 			<a href="AdminManageContent.php">
-				<font size="4 px">Manage Content on web-site</font>
-			</a>
-			<a href="AdminDashboard.php">
-				<font size="4 px">Admin Dashboard</font>
+				<font size="4 px">Manage content</font>
 			</a>
 			<a href="AdminViewStats.php">
 				<font size="4 px">View Stats</font>
@@ -280,21 +278,6 @@ if (!isset($_SESSION['First_Name'])) {
 		</table>
 	</table>
 
-
-	<table style="position:absolute; top : 1500px; width:350px;width : 86%;margin-bottom: 100px;">
-		<tr>
-			<td>
-				<p style="font-family :Lato; font-size:20px; color :white;">To View Booking Analysis</p>
-			</td>
-			<td align="left">
-				<img src="../../public/images/point.png" height="50%">
-			</td>
-			<td align="left">
-				<p style="font-family :Lato; font-size:20px; color:cornflowerblue;">Booking Analysis Overview</p>
-			</td>
-			<td>
-				<img src="../../public/images/pie.png" height="90%">
-			</td>
 			<script>
 				function funcUserDetails() {
 					document.getElementById('user-detail-container').style.display = "block";

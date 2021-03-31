@@ -192,42 +192,25 @@ if (isset($_POST['print'])) {
   ?>
 
 
-<<<<<<< HEAD
-  <div class="chart-container" id="1" style="position:absolute;top:300px; height:100px; width:500px;left:100px">
-=======
-  <div class="chart-container" id="1" style="position:absolute;top:300px; height:100px; width:500px;left:10px">
->>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
-    <h2 style="color:white" style="text-align:center">Overall Staying-In Boooking Room Type Analyis</h2>
+  <div class="chart-container" id="1" style="position:absolute;top:300px; height:120px; width:540px;left:10px">
+    <h2 style="color:white" align="center" style="text-align:center">Staying-In Boooking- Room Type Analyis</h2>
     <canvas id="myChart-1"></canvas>
   </div>
 
 
 
 
-  <div class="chart-container" id="2" style="position:absolute;top:300px; height:100px; width:500px;right:200px">
-<<<<<<< HEAD
-    <h2 style="color:white" style="text-align:center">Overall Dine-In Boooking Analyis</h2>
+  <div class="chart-container" id="2" style="position:absolute;top:300px;margin-left:800px; height:120px; width:540px;right:200px">
+    <h2 style="color:white" align="center" style="text-align:center">Staying-In Booking- Reservation Type Analyis</h2>
     <canvas id="myChart-2"></canvas>
   </div>
 
-  <div class="chart-container" id="3" style="position:absolute;top:650px; height:100px; width:500px;left:500px">
-    <h2 style="color:white" style="text-align:center">Overall Events Boooking Analyis-Event Type</h2>
+  <div class="chart-container" id="3" style="position:absolute;top:700px;margin-left:450px; height:120px; width:540px;left:10px">
+    <h2 style="color:white" align="center" style="text-align:center">Overall Events Boooking</h2>
     <canvas id="myChart-3"></canvas>
   </div>
 
   <!--script for #mychart-1-->
-=======
-    <h2 style="color:white" style="text-align:center">Overall Staying-In Boooking Reservation Type Analyis</h2>
-    <canvas id="myChart-2"></canvas>
-  </div>
-
-  <div class="chart-container" id="3" style="position:absolute;top:700px; height:100px; width:500px;left:10px">
-    <h2 style="color:white" style="text-align:center">Overall Events Boooking Reservation Type Analyis</h2>
-    <canvas id="myChart-3"></canvas>
-  </div>
-
-  //script for #mychart-1
->>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
   <script>
     let myChart = document.getElementById('myChart-1').getContext('2d');
     let massChart = new Chart(myChart, {
@@ -239,9 +222,9 @@ if (isset($_POST['print'])) {
         datasets: [{
           data: <?php echo $dataCount ?>,
           backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-
+            '#82E0AA',
+            '#A569BD',
+            '#F9E79F',
           ],
 
         }]
@@ -253,11 +236,7 @@ if (isset($_POST['print'])) {
     })
   </script>
 
-<<<<<<< HEAD
   <!--script for #mychart-2-->
-=======
-  //script for #mychart-2
->>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
   <script>
     let myChart1 = document.getElementById('myChart-2').getContext('2d');
     let massChart1 = new Chart(myChart1, {
@@ -285,11 +264,7 @@ if (isset($_POST['print'])) {
     })
   </script>
 
-<<<<<<< HEAD
   <!--script for #mychart-3-->
-=======
-  //script for #mychart-3
->>>>>>> 44380bb3419ca94b7e4df24c972ac49504fd547a
   <script>
     let myChart2 = document.getElementById('myChart-3').getContext('2d');
     let massChart2 = new Chart(myChart2, {
@@ -301,8 +276,8 @@ if (isset($_POST['print'])) {
         datasets: [{
           data: <?php echo $dataCount2 ?>,
           backgroundColor: [
-            '#FF6384',
-            '#36A2EB'
+            '#F1948A ',
+            '#36A2EB',
           ],
 
 
@@ -320,7 +295,7 @@ if (isset($_POST['print'])) {
 
 
   <button style="position:absolute;top:37%;right:20%;color:white;background-color:purple;border:none;padding:5px 15px;border-radius:10px;width:15%;cursor:pointer" onclick="window.location.href='AdminViewStats.php'">
-    << Back </button>-->
+    << Back </button>
 
 
       <script>
