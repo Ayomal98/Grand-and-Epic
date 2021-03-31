@@ -90,7 +90,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<tr>
 					<td align="left">Assigned Section:</td>
 					<td align="left">
-						<select id="types" name="assignedsection" class="inputs" style="margin: 8px 68px;">
+						<select id="types" name="assignedsection" class="inputs" onchange="changeStatus(event)" style="margin: 8px 68px;">
 							<option value disabled selected>Section to be Assigned</option>
 							<option value="Staying-in Rooms">Staying-in Rooms</option>
 							<option value="Dine-in Area">Dine-in Area</option>
@@ -136,22 +136,56 @@ if (!isset($_SESSION['First_Name'])) {
 		$allotablenumbers = $_POST['allotablenumbers'];
 		$eventtype = $_POST['eventtype'];
 
-		$add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Event_Type) VALUES ('" . $employeeid . "','" . $assigneddate . "','" . $assignedsection . "','" . $alloroomnumbers . "','" . $allotablenumbers . "','" . $eventtype . "')";
-		$add_query_run = mysqli_query($con, $add_query);
+		if($allotablenumbers=="" && $eventtype==""){
+			$add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Event_Type) VALUES ('" . $employeeid . "','" . $assigneddate . "','" . $assignedsection . "','" . $alloroomnumbers . "','Not Assigned','Not Assigned')";
+			$add_query_run = mysqli_query($con, $add_query);
 
-		if ($add_query_run) {
-			echo "<script>
-        alert('Task Assigned to a Employee');
-        window.location.href='SupervisorAssignEmployeeTasks.php';
-        </script>";
-		} else {
-			echo "<script>
-        alert('Task is not Assigned!');
-        window.location.href='SupervisorAssignEmployeeTasks.php';
-        </script>";
+			if ($add_query_run) {
+				echo "<script>
+			alert('Task Assigned to a Employee');
+			window.location.href='SupervisorAssignEmployeeTasks.php';
+			</script>";
+			} else {
+				echo "<script>
+			alert('Task is not Assigned!');
+			window.location.href='SupervisorAssignEmployeeTasks.php';
+			</script>";
+			}
+		}else if($alloroomnumbers=="" && $eventtype==""){
+			$add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Event_Type) VALUES ('" . $employeeid . "','" . $assigneddate . "','" . $assignedsection . "','Not Assigned','" . $allotablenumbers . "','Not Assigned')";
+			$add_query_run = mysqli_query($con, $add_query);
+
+			if ($add_query_run) {
+				echo "<script>
+			alert('Task Assigned to a Employee');
+			window.location.href='SupervisorAssignEmployeeTasks.php';
+			</script>";
+			} else {
+				echo "<script>
+			alert('Task is not Assigned!');
+			window.location.href='SupervisorAssignEmployeeTasks.php';
+			</script>";
+			}
+		}else{
+			$add_query = "INSERT INTO employee_tasks(Employee_ID, Assigned_Date, Assigned_Section, Allo_Room_Numbers, Allo_Table_Numbers, Event_Type) VALUES ('" . $employeeid . "','" . $assigneddate . "','" . $assignedsection . "','Not Assigned','Not Assigned','" . $eventtype . "')";
+			$add_query_run = mysqli_query($con, $add_query);
+
+			if ($add_query_run) {
+				echo "<script>
+			alert('Task Assigned to a Employee');
+			window.location.href='SupervisorAssignEmployeeTasks.php';
+			</script>";
+			} else {
+				echo "<script>
+			alert('Task is not Assigned!');
+			window.location.href='SupervisorAssignEmployeeTasks.php';
+			</script>";
+			}
 		}
 	}
 	?>
+
+
 
 	<form action="" method="POST">
 		<fieldset style=" position:absolute; top:700px; width: 45%; right:0%;">
@@ -186,9 +220,9 @@ if (!isset($_SESSION['First_Name'])) {
 								<td><input type="date" name="assigneddate" value="<?php echo $row['Assigned_Date'] ?>" /></td>
 							</tr>
 							<tr>
-								<td>Assigned Date:</td>
+								<td>Assigned Section:</td>
 								<td>
-									<select id="types" name="assignedsection" class="inputs" style="margin: 8px 2px;">
+									<select name="assignedsection" class="inputs" onchange="changeStatusSearch(event)" style="margin: 8px 2px;">
 										<option value disabled selected>Setion to be Assigned</option>
 
 										<option value="Staying-in Rooms" <?php
@@ -213,15 +247,15 @@ if (!isset($_SESSION['First_Name'])) {
 							</tr>
 							<tr>
 								<td>Allocated Room Numbers:</td>
-								<td><input type="text" name="alloroomnumbers" value="<?php echo $row['Allo_Room_Numbers'] ?>" /></td>
+								<td><input type="text" name="alloroomnumbers" value="<?php echo $row['Allo_Room_Numbers']; ?>" /></td>
 							</tr>
 							<tr>
 								<td>Allocated Table Numbers:</td>
-								<td><input type="text" name="allotablenumbers" value="<?php echo $row['Allo_Table_Numbers'] ?>" /></td>
+								<td><input type="text" name="allotablenumbers" value="<?php echo $row['Allo_Table_Numbers']; ?>" /></td>
 							</tr>
 							<tr>
 								<td>Event Type:</td>
-								<td><input type="text" name="eventtype" value="<?php echo $row['Event_Type'] ?>" /></td>
+								<td><input type="text" name="eventtype" value="<?php echo $row['Event_Type']; ?>" /></td>
 							</tr>
 							<tr>
 								<td></td>
@@ -239,8 +273,10 @@ if (!isset($_SESSION['First_Name'])) {
 
 			}
 		} else {
-			echo "<script>alert('ID you entered doesn't Exist.Please Try Again!')</script>";
-			echo "<script>window.location.href='SupervisorManageMeals.php'</script>";
+			echo "<script>
+			alert('ID you entered doesn't Exist.Please Try Again!');
+			window.location.href='SupervisorAssignEmployeeTasks.php';
+			</script>";
 		}
 	}
 	?>
@@ -462,11 +498,33 @@ if (!isset($_SESSION['First_Name'])) {
 		function funcCloseUserDetails() {
 			document.getElementById('user-detail-container').style.display = "none";
 		}
+	
+		function changeStatus(e){
+			//var status = document.getElementById("types");
+			if(e.target.value == "Staying-in Rooms"){
+			console.log(e.target.value);
+				document.getElementById("rnumber").style.display = "table-row";
+				document.getElementById("tnumber").style.display = "none";
+				document.getElementById("location").style.display = "none";
+			}else if(e.target.value == "Dine-in Area"){
+			console.log(e.target.value);
+				document.getElementById("tnumber").style.display = "table-row";
+				document.getElementById("rnumber").style.display = "none";
+				document.getElementById("location").style.display = "none";
+			}else{
+			console.log(e.target.value);
+				document.getElementById("location").style.display = "table-row";
+				document.getElementById("rnumber").style.display = "none";
+				document.getElementById("tnumber").style.display = "none";
+			}
+		}
 	</script>
 
 </body>
 
 </html>
+
+
 
 
 
@@ -481,20 +539,47 @@ if (isset($_POST['update'])) {
 	$allotablenumbers = $_POST['allotablenumbers'];
 	$eventtype = $_POST['eventtype'];
 
-	$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='$alloroomnumbers', Allo_Table_Numbers='$allotablenumbers', Event_Type='$eventtype' where Employee_ID='$_POST[employeeid]'";
-	$update_query_run = mysqli_query($con, $update_query);
+	if($allotablenumbers=="Not Assigned" && $eventtype=="Not Assigned")
+	{
+		$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='$alloroomnumbers', Allo_Table_Numbers='Not Assigned', Event_Type='Not Assigned' where Employee_ID='$_POST[employeeid]'";
+		$update_query_run = mysqli_query($con, $update_query);
 
-	if ($update_query_run) {
-		echo "<script>
-			alert('Task Has been Updated');
-			window.location.href='SupervisorAssignEmployeeTasks.php';
-			</script>";
-	} else {
-		echo '<script> alert("Data Not Updated") </script>';
+		if ($update_query_run) {
+			echo "<script>
+				alert('Task Has been Updated');
+				window.location.href='SupervisorAssignEmployeeTasks.php';
+				</script>";
+		} else {
+			echo '<script> alert("Data Not Updated") </script>';
+		}
+	}else if($alloroomnumbers=="Not Assigned" && $eventtype=="Not Assigned")
+	{
+		$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='Not Assigned', Allo_Table_Numbers='$allotablenumbers', Event_Type='Not Assigned' where Employee_ID='$_POST[employeeid]'";
+		$update_query_run = mysqli_query($con, $update_query);
+
+		if ($update_query_run) {
+			echo "<script>
+				alert('Task Has been Updated');
+				window.location.href='SupervisorAssignEmployeeTasks.php';
+				</script>";
+		} else {
+			echo '<script> alert("Data Not Updated") </script>';
+		}
+	}else{
+		$update_query = "UPDATE employee_tasks SET Employee_ID='$employeeid', Assigned_Date='$assigneddate', Assigned_Section='$assignedsection', Allo_Room_Numbers='Not Assigned', Allo_Table_Numbers='Not Assigned', Event_Type='$eventtype' where Employee_ID='$_POST[employeeid]'";
+		$update_query_run = mysqli_query($con, $update_query);
+
+		if ($update_query_run) {
+			echo "<script>
+				alert('Task Has been Updated');
+				window.location.href='SupervisorAssignEmployeeTasks.php';
+				</script>";
+		} else {
+			echo '<script> alert("Data Not Updated") </script>';
+		}
 	}
 }
 ?>
-
 
 
 <!-- Delete -->

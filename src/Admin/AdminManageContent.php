@@ -13,11 +13,6 @@ if (!isset($_SESSION['First_Name'])) {
 	<title>
 		Admin Manage Content
 	</title>
-	<style>
-		body {
-			height: 1500px;
-		}
-	</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -34,22 +29,20 @@ if (!isset($_SESSION['First_Name'])) {
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Manage Contents
+		<button class="dropdown-btn">Admin Manage Content
 			<i class="fa fa-caret-down"></i>
 		</button>
 		<div class="dropdown-container">
+		<a href="AdminDashboard.php">
+				<font size="4 px">Admin Dashboard</font>
+			</a>
 			<a href="AdminManageCoAdmins.php">
 				<font size="4 px">Manage Co-admins(H.M)</font>
-			</a>
-			<a href="AdminRespondToLeaveRequests.php">
-				<font size="4px">Respond to Leave Requests</font>
 			</a>
 			<a href="AdminViewBookings.php">
 				<font size="4 px">View Booking Details</font>
 			</a>
-			<a href="AdminManageContent.php">
-				<font size="4 px">Manage Content on web-site</font>
-			</a>
+			
 			<a href="AdminAddPromotion.php">
 				<font size="4 px">Manage promotion</font>
 			</a>
@@ -159,7 +152,7 @@ while ($row = mysqli_fetch_array($query_run)) {
 	<tr>
 								<td>Update Content Image:</td>
 								<td>
-									<input type="file" accept="image/*" name="mealimage" id="fileToUpload">
+									<input type="file" accept="image/*" name="contentimage" id="fileToUpload">
 								</td>
 							</tr>
 	

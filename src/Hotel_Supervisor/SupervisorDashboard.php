@@ -259,11 +259,11 @@ checkSession();
 				</tr>
 				<tr>
 					<td>Email Address:</td>
-					<td><input type="email" name="email" value="<?php echo $row['Email'] ?>" /></td>
+					<td><input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" value="<?php echo $row['Email'] ?>" /></td>
 				</tr>
 				<tr>
 					<td>TP Number: </td>
-					<td><input type="tel" name="tel" value="<?php echo $row['Contact_No'] ?>" /></td>
+					<td><input type="tel" name="tel" pattern="[0][1-9][0-9]{8}" value="<?php echo $row['Contact_No'] ?>" /></td>
 				</tr>
 				<tr>
 					<td><input type="submit" class="button" name="update" value="UPDATE PROFILE"></td>
