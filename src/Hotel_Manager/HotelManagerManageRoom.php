@@ -1,7 +1,7 @@
 <?php
 
 include("../../public/includes/session.php");
-
+include("../../config/connection.php");
 checkSession();
 if (!isset($_SESSION['First_Name'])) {
     header('Location:../Hotel_Website/HomePage-login.php');
@@ -121,14 +121,17 @@ if (!isset($_SESSION['First_Name'])) {
                     </td>
                     <td align="center">
                         <?php
-						include("../../config/connection.php");
-						$query = "SELECT Description FROM rooms where Room_Type= ' Superior '";
-						$query_run = mysqli_query($con, $query);
-						while ($row = mysqli_fetch_array($query_run))
+                        include("../../config/connection.php");
+                        $roomTypeSuperior = "Superior Rooms";
+                        $querySuperior = "SELECT * FROM rooms where Room_Type= ' $roomTypeSuperior '";
+                        $query_run_Superior = mysqli_query($con, $querySuperior);
+                        $rowSuperior = mysqli_fetch_assoc($query_run_Superior);
                         echo
-                        '<textarea name="Description" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"> ' . $row["Description"] . '
+                        '<textarea name="Description" rows="5" cols="25" placeholder="Description" style="font-size: 20px;"> ' . $rowSuperior["Description"] . '
                             </textarea>';
-                    	?>
+
+                        ?>
+                    </td>
                 </tr>
             </table>
 
@@ -140,15 +143,17 @@ if (!isset($_SESSION['First_Name'])) {
                         <img src="../../public/images/Panora.png" height="100px">
                     </td>
                     <td align="center">
-                    <?php
-						include("../../config/connection.php");
-						$query = "SELECT Description FROM rooms where Room_Type= ' Panoramic '";
-						$query_run = mysqli_query($con, $query);
-						while ($row = mysqli_fetch_array($query_run))
-                        echo
-                        '<textarea name="Description" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"> ' . $row["Description"] . '
+                        <?php
+                        include("../../config/connection.php");
+                        $roomTypePanaromic = "Panaromic Rooms";
+                        $query_panaromic = "SELECT * FROM rooms where Room_Type=' $roomTypePanaromic '";
+                        $query_run_panaromic = mysqli_query($con, $query_panaromic);
+                        $rowPanaromic = mysqli_fetch_assoc($query_run_panaromic);
+                        echo '
+                        <textarea name="Description" rows="5" cols="25" placeholder="Description" style="font-size: 20px;"> ' . $rowPanaromic['Description'] . '
                             </textarea>';
-                    	?>
+                        ?>
+                    </td>
                 </tr>
             </table>
         </td>
@@ -159,15 +164,17 @@ if (!isset($_SESSION['First_Name'])) {
                         <img src="../../public/images/suite.png" height="80%">
                     </td>
                     <td align="center">
-                    <?php
-						include("../../config/connection.php");
-						$query = "SELECT Description FROM rooms where Room_Type= ' Suite '";
-						$query_run = mysqli_query($con, $query);
-						while ($row = mysqli_fetch_array($query_run))
-                        echo
-                        '<textarea name="Description" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"> ' . $row["Description"] . '
+                        <?php
+                        $roomTypeSuperior = "Superior Rooms";
+
+                        include("../../config/connection.php");
+                        $query = "SELECT Description FROM rooms where Room_Type= ' $roomTypeSuperior'";
+                        $query_run = mysqli_query($con, $query);
+                        while ($row = mysqli_fetch_array($query_run))
+                            echo
+                            '<textarea name="Description" rows="5" cols="20" placeholder="Description" style="font-size: 20px;"> ' . $row["Description"] . '
                             </textarea>';
-                    	?>
+                        ?>
                 </tr>
             </table>
         </td>
@@ -236,7 +243,7 @@ if (!isset($_SESSION['First_Name'])) {
                                     <tr>
                                         <td align="right">
                                             <input type="submit" class="button" value="SEND TO ADMIN" name="Insert" form="room_form">
-                                           
+
                                         </td>
                                     </tr>
                                 </table>
@@ -396,7 +403,7 @@ if (isset($_POST['update'])) {
     $other = $_POST['other'];
     $roomType = $_POST['roomType'];
     $query = "UPDATE rooms SET NoRooms='" . $noRooms . "', Price='" . $price . "', Room_View='" . $roomView . "',NoGuests='" . $noGuests . "', BedType='" . $bedType . "', NoBeds ='" . $noBeds . "' , Bathroom='" . $bathroom . "', Amenities='" . $amenities . "' , Description='" . $description . "', Other='" . $other . "' where Room_Type ='" . $roomType . "'";
-    
+
     $query_run = mysqli_query($con, $query);
 
     if ($query_run) {

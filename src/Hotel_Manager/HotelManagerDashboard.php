@@ -104,9 +104,6 @@ checkSession();
 		<th style ="border: 1px solid white;">
 			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="HotelManagerManageRoom.php">Manage Rooms</a></p>		
         </th>
-        <th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;"><a href="HotelManagerEarlyCheckOuts.php">Early Check-Outs</a></p>		
-		</th>
 		</tr>
 		<tr>
 		<td style ="border: 1px solid white;">
@@ -115,9 +112,6 @@ checkSession();
 				<tr>
 				<td align ="center">
 					<img src = "../../public/images/Emplo.png" height = "80px" >
-				</td>
-				<td align ="center">
-                    <p style = "font-family :Lato; font-size:20px; color :white;">No. of  <br>Employees -131</p>		
 				</td>
 				</tr>
 			</table>
@@ -138,9 +132,6 @@ checkSession();
 				<td align ="center">
 					<img src = "../../public/images/Fork.png" height = "60px">
                 </td>
-                <td align ="center">
-                    <p style = "font-family :Lato; font-size:20px; color :white;">Current <br>Bookings -141</p>		
-				</td>
 				</tr>
 			</table>
 			
@@ -151,9 +142,6 @@ checkSession();
 				<tr>
 				<td align ="center">
 					<img src = "../../public/images/discount.png" height = "90px" >
-				</td>
-				<td align ="center">
-					<p style = "font-family :Lato; font-size:20px; color :white;">Existing <br>Promotions -03</p>		
 				</td>
 				</tr>
 				</table>
@@ -176,22 +164,6 @@ checkSession();
 				<tr>
 				<td align ="center">
 					<img src = "../../public/images/room.png" height = "80px" >
-				</td>
-				<td align ="center">
-					<p style = "font-family :Lato; font-size:20px; color :white;">Current <br>Room Types - 3</p>	
-				</td>
-				</tr>
-			</table>
-				
-        </td>
-	<td style ="border: 1px solid white;" >
-				<table width= "100%">
-				<tr>
-				<td align ="center">
-					<img src = "../../public/images/check-out.png" height = "80px" >
-				</td>
-				<td align ="center">
-					<img src = "../../public/images/clock.png" height = "80px" >
 				</td>
 				</tr>
 			</table>
