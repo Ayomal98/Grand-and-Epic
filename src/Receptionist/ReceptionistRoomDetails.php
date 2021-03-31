@@ -1,6 +1,7 @@
 <?php
 
 include("../../public/includes/session.php");
+include("../../config/connection.php");
 
 checkSession();
 	if(!isset($_SESSION['First_Name'])){
@@ -73,206 +74,152 @@ checkSession();
 	  });
 	}
 	</script>
-	
-	<table style ="position:absolute; top : 240px; width:350px;" >
-		<tr>
-            <td>
-                <img src = "../../public/images/room.png" height = "80px">
-            </td>
-		<td>
-			<p style = "font-family :Lato; font-size:22px; color :white;">Room Details</p>		
-		</td>
-		</tr>
-	</table>
-	
 
-	<table style ="position:absolute; left:20px; top:350px; width:97%;border: 1px solid white;" >
-		<tr>
-		<th style ="border: 1px solid white;">
-			<p style = "font-family :Lato; font-size:20px; color :white;">Room Details</p>		
-		</th>
-		
-		</tr>
-		<tr>
-		<td style ="border: 1px solid white;">
-		
-			<table width="100%">
-				<tr>
-				
-				<td align="center">
-                    <img src = "../../public/images/BIgCal.png" height = "80px">
-				</td>
-				</tr>
-				<tr>
-                    <td>
-                        <table style ="width:100%;border: 1px solid white;">
+
+	<!-- View Room Details -->
+        <div class="staytablemanager">
+        <table border="1px solid white" style="border-collapse:collapse; color:white; width:100%">
+            <tr>
+                <th colspan="8"><h2>Room Details</h2></th>
+            </tr>
+            <tr>
+                <th>Staying ID</th>
+                <th>Room Numbers</th>
+                <th>Reservation Type</th>
+                <th>Room Type</th>
+                <th>No. of people</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
+                <th>Status</th>
+            </tr>
+
+            <?php
+                $view_query = "SELECT * FROM stayingin_booking ORDER BY StayingIn_ID ASC";
+                $view_query_run = mysqli_query($con,$view_query);
+
+                while($row = mysqli_fetch_array($view_query_run))
+                {
+                    $roomNumbers = unserialize($row['Room_Numbers']);
+            ?>
+
+            <tr>
+                <td><?php echo $row['StayingIn_ID'] ?></td>
+                <td><?php echo implode(",",$roomNumbers) ?></td>
+                <td><?php echo $row['Reservation_Type'] ?></td>
+                <td><?php echo $row['Room_Type'] ?></td>
+                <td><?php echo $row['No_Occupants'] ?></td>
+                <td><?php echo $row['CheckIn_Date'] ?></td>
+                <td><?php echo $row['CheckOut_Date'] ?></td>
+                <td><?php echo $row['Status'] ?></td>
+            </tr>
+
+            <?php
+                }
+            ?>
+
+        </table>
+
+    </div>
+
+
+
+	<!-- SEARCH -->
+        <form action="" method="POST">
+		<fieldset style=" position:absolute; top:700px; width:90%; left:4%;">
+			<legend style="color:white; font-size: 20px">Update Room Details</legend>
+			<input type="text" name="StayingIn_ID" placeholder="Enter StayingIn ID to Search" />
+			<input type="submit" class="button" name="search" value="Search by ID">
+		</fieldset>
+	</form>
+
+
+
+	<?php
+	
+	if (isset($_POST['search'])) {
+		$StayingIn_ID = $_POST['StayingIn_ID'];
+
+		$search_query = "SELECT * FROM stayingin_booking where StayingIn_ID='$StayingIn_ID' ";
+		$search_query_run = mysqli_query($con, $search_query);
+		if (mysqli_num_rows($search_query_run) == 1) {
+
+			while ($row = mysqli_fetch_array($search_query_run)) {
+                $roomNumbers = unserialize($row['Room_Numbers']);
+	?>
+				<form action="" method="POST">
+					<fieldset style=" position:absolute; top:790px; width: 90%; left:4%">
+						<table style="color:white; font-size: 20px; width:95%;">
+							<tr style="border: 1px solid white;">
+								<td>StayingIn ID:</td>
+								<td><input type="text" name="stayinginid" value="<?php echo $row['StayingIn_ID'] ?>" readonly /></td>
+							</tr>
+							<tr>
+								<td>Room Numbers:</td>
+								<td><input type="text" name="mealname" value="<?php echo implode(",",$roomNumbers) ?>" readonly /></td>
+							</tr>
+							<tr>
+								<td>Reservation Type:</td>
+								<td><input type="text" name="retype" value="<?php echo $row['Reservation_Type'] ?>" readonly /></td>
+							</tr>
+							<tr>
+								<td>Room Type:</td>
+								<td><input type="text" name="rotype" value="<?php echo $row['Room_Type'] ?>" readonly /></td>
+							</tr>
                             <tr>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Room ID</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Customer ID</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Customer Name</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Room Type</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">No: of People</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Housekeeping Requested</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Check-In Date</p>		
-                                </th>
-                                <th style ="border: 1px solid white;">
-                                    <p style = "font-family :Lato; font-size:20px; color :white;">Check-Out Date</p>		
-                                </th>
-                                </tr>
-                                <tr>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">S1203</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">C1111</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Hasitha Athukorala</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Superior Room</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">3</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating1" value="yes" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating1" value="no" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    <td  style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">P1203</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">C1211</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Dewni Pathirana</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Panoramic Room</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">2</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating2" value="yes" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating2" value="no" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    <td  style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Su1203</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">C2211</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Sisitha Nanayakkara</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Suite Room</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">4</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating3" value="yes" checked style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating3" value="no" disabled style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    <td  style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">S1203</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Null</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Null</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">Superior Room</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">0</p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <p style = "font-family :Lato; font-size:20px; color :white;">
-                                            <input type="radio" name="rating4" value="yes" disabled style="margin-left:65px;">Yes
-                                            <input type="radio" name="rating4" value="no" checked style="margin-left:65px;">No
-                                        </p>		
-                                    </td>
-                                    <td  style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                    <td style ="border: 1px solid white;">
-                                        <input type="date" name="startdate" size="20"></td></p>		
-                                    </td>
-                                 </tr>
-                                 <tr>
-                                <td></td>   
-                                <td></td> 
-                                <td></td> 
-                                <td></td>
-                                <td></td>
-                                <td></td> 
-                                <td></td>  
-                                <td align= "right">
-                                    <p style = "font-family :Lato; font-size:15px; color :rgb(240, 16, 16);cursor:pointer;"><u>Show more rows</u></p>
-                                </td>
+								<td>No. of People:</td>
+								<td><input type="text" name="people" value="<?php echo $row['No_Occupants'] ?>" readonly /></td>
+							</tr>
+                            <tr>
+								<td>CheckIn Date:</td>
+								<td><input type="date" name="indate" value="<?php echo $row['CheckIn_Date'] ?>" readonly /></td>
+							</tr>
+                            <tr>
+								<td>CheckOut Date:</td>
+								<td><input type="date" name="outdate" value="<?php echo $row['CheckOut_Date'] ?>" readonly /></td>
+							</tr>
+                            <tr>
+								<td>Room Status:</td>
+								<td>
+                                    <input type="radio" name="Status" value="Checked In" 
+                                    <?php
+                                        if($row["Status"]=='Checked In'){
+                                            echo "Checked In";
+                                        }
+                                    ?>
+                                    />
+                                    <label for="Checked In">Checked In</label>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="button" class="button" value="UPDATE ROOM DETAILS">
-                    </td>
-                </tr>
-             </table>
-			
-		</td>
-		</tr>
-		
-	</table>
+                                    <input type="radio" name="Status" value="Checked Out" 
+                                    <?php
+                                        if($row["Status"]=='Checked Out'){
+                                            echo "Checked Out";
+                                        }
+                                    ?>
+                                    />
+                                    <label for="Checked Out">Checked Out</label>
+
+                                </td>
+							</tr>
+							<tr>
+								<td>
+									<input type="submit" class="button" name="update" value="Update Details">
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
+
+	<?php
+
+			}
+		} else {
+			echo "<script>alert('ID you entered doesn't Exist.Please Try Again!')</script>";
+			echo "<script>window.location.href='ReceptionistRoomDetails.php'</script>";
+        }
+	}
+	?>
+
+    
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";
@@ -284,3 +231,23 @@ checkSession();
 	</script>
 	</body>
 </html>
+
+
+<!-- Update -->
+<?php 
+if (isset($_POST['update'])) {
+	$Status = $_POST['Status'];
+
+		$update_query = "UPDATE stayingin_booking SET Status='$Status' WHERE StayingIn_ID='$_POST[stayinginid]'";
+		$update_query_run = mysqli_query($con, $update_query);
+
+		if ($update_query_run) {
+			echo "<script>
+			alert('Data Has been Updated');
+			window.location.href='ReceptionistRoomDetails.php';
+			</script>";
+		} else {
+			echo '<script> alert("Data Not Updated") </script>';
+		}
+}
+?>

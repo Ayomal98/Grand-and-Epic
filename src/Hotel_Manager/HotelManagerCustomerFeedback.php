@@ -3,8 +3,6 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-
-
 include("../../public/includes/session.php");
 include("../../config/connection.php");
 checkSession();
@@ -60,7 +58,7 @@ if (isset($_POST['Accept'])) {
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 		}
 	} else {
-		echo '<script> alert("Data Not Added") </script>';
+		echo '<script> alert("Feedback not delivered!") </script>';
 	}
 }
 ?>
