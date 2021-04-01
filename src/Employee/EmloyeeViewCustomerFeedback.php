@@ -110,7 +110,7 @@ if (isset($_POST['Cancel'])) {
 			<input type="hidden" name="Feedback_ID" value="<?php echo $id ?>">
 			<input type="text" name="Staff_Rate" id="" value="<?php echo $rowDetails['Staff_Rate'] ?>">
 			<label for="Date" style="color:white;margin-top:30px;font-size: 20px;">Feedback Rate</label>
-			<input type="text" style="width:360px;height:80px;font-size:20px" name="Feedback_Rate" id="" value="<?php echo $rowDetails['Feedback_Staff'] ?>">
+			<textarea name="Feedback_Rate" rows="5" cols="20" style="font-size:20px; width:80%; float:left"> <?php echo $rowDetails['Feedback_Staff'] ?></textarea>
 			<input type="submit" name="Cancel" value="Cancel" style="border-radius: 10px;width: 200px;padding: 10px;font-size:15px;background-color: blue;color:white;border:none;cursor: pointer;margin-left:30px;margin-top:25px;">
 		</form>
 	<?php
