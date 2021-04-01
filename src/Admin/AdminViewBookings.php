@@ -34,12 +34,16 @@ if (!isset($_SESSION['First_Name'])) {
 		<button class="dropdown-btn">View Bookings
 			<i class="fa fa-caret-down"></i>
 		</button>
+		<div class="sidenav">
+		<button class="dropdown-btn">
+			<i class="fa fa-caret-down">View Booking Details</i>
+		</button>
 		<div class="dropdown-container">
 			<a href="AdminDashboard.php">
-				<font size="4 px">Dashboard</font>
+				<font size="4 px">Admin Dashboard</font>
 			</a>
-			<a href="AdminRespondToLeaveRequests.php">
-				<font size="4px">Respond to Leave Requests</font>
+			<a href="AdminManageRoomDetails.php">
+				<font size="4 px">Room Manage</font>
 			</a>
 			<a href="AdminManageCoAdmins.php">
 				<font size="4 px">Manage Co-admins(H.M)</font>
@@ -47,11 +51,17 @@ if (!isset($_SESSION['First_Name'])) {
 			<a href="AdminManageContent.php">
 				<font size="4 px">Manage Content on web-site</font>
 			</a>
-			<a href="AdminAddPromotion.php">
-				<font size="4 px">Add promotion</font>
-			</a>
 			<a href="AdminViewStats.php">
 				<font size="4 px">View Stats</font>
+			</a>
+			<a href="EditFeatures.php">
+				<font size="4 px">Edit Feature Prices</font>
+			</a>
+			<a href="AdminViewCustomerFeedback.php">
+				<font size="4 px">View Feedback</font>
+			</a>
+			<a href="AdminManagePromotions.php">
+				<font size="4 px">Manage Promotions</font>
 			</a>
 		</div>
 	</div>

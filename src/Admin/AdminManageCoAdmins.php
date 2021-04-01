@@ -91,7 +91,7 @@ if (!isset($_SESSION['First_Name'])) {
 			<table style="color:white; font-size: 20px; width:88%;">
 				<tr>
 					<td align="left">Employee ID:</td>
-					<td align="center"><input type="text" name="empID" size="4" class="inputs" required></td>
+					<td align="center"><input type="text" name="empID" pattern="[C]+[0-9]{3}" size="4" class="inputs" required></td>
 				</tr>
 
 				<tr>
@@ -159,55 +159,7 @@ if (!isset($_SESSION['First_Name'])) {
 	} ?>
 	</tr>
 
-	<!--<tr>
-                        <td align="left">First Name:</td>
-                        <td align="center"><input type="text" name="empFname" size="20" class="inputs" form="manager_form" required></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Last Name:</td>
-                        <td align="center"><input type="text" name="empSname" size="50" class="inputs" form="manager_form" required></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Password:</td>
-                        <td align="center"><input type="password" name="empPass" size="50" placeholder="Password" class="inputs" form="manager_form" required></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Email Address:</td>
-                        <td align="center"><input type="email" name="empEmail" size="50" class="inputs" form="manager_form" required></td>
-                    </tr>
-                    <tr>
-                        <td align="left">Contact No:</td>
-                        <td align="center"><input type="tel" name="empContact" size="20" class="inputs" form="manager_form" required></td>
-                    </tr>
-                </table>
-            </tr>
-        </table>
-        <table style="color:white; font-size: 20px; width:81%;">
-            <tr>
-                <td align="right">
-                    <input type="button" class="button" value="UPDATE" name="UPDATE" form="manager_form">
-                    <input type="button" class="button" value="DELETE" name="DELETE" form="manager_form">
-                </td>
-            </tr>
-		</table>
-</form>
-	</fieldset>
 	
-	<form action="" method="POST" enctype="multipart/form-data">
-	<fieldset style = " position:absolute; top:780px; width: 75%; left:160px">
-    <legend style = "color:white; font-size: 20px">Search by ID</legend>
-
-		<input type = "text" name="Employee_ID" placeholder="Enter id to Search" />
-		<input type = "submit" name="search" value="Search by ID">
-		<div class="retrieve">
-		<table align="center" style = "color:white; font-size: 20px; width:88%; top:200px">-->
-
-	<!--<tr>
-		<th>First Name</th>
-		<th>Last name</th>
-		<th>Email</th>
-		<th>Contact Number</th>
-	</tr> <br>-->
 
 	<?php
 	include("../../config/connection.php");
