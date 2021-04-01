@@ -111,7 +111,7 @@ if (!isset($_SESSION['First_Name'])) {
 				</tr>
 				<tr>
 					<td>Locations: </td>
-					<td><?php echo $row['Allo_Locations'] ?></td>
+					<td><?php echo $row['Event_Type'] ?></td>
 				</tr>
 				
 			<?php
@@ -150,7 +150,7 @@ $today_date = date("Y-m-d",time());
 				<td><?php echo $row["Assigned_Section"]; ?></td>
 				<td><?php echo $row["Allo_Room_Numbers"]; ?></td>
 				<td><?php echo $row["Allo_Table_Numbers"]; ?></td>
-				<td><?php echo $row["Allo_Locations"]; ?></td>
+				<td><?php echo $row["Event_Type"]; ?></td>
 			</tr>
 		<?php
 		}
