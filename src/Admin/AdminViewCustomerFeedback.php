@@ -37,16 +37,17 @@ if (isset($_POST['Cancel'])) {
 		</div>
 
 	</center>
-    <div class="sidenav">
-		<button class="dropdown-btn">View Customer Feedback
-			<i class="fa fa-caret-down"></i>
+
+		<div class="sidenav">
+		<button class="dropdown-btn">
+			<i class="fa fa-caret-down">View Feedback</i>
 		</button>
 		<div class="dropdown-container">
 			<a href="AdminDashboard.php">
-				<font size="4 px">Dashboard</font>
+				<font size="4 px">Admin Dashboard</font>
 			</a>
-			<a href="AdminRespondToLeaveRequests.php">
-				<font size="4px">Respond to Leave Requests</font>
+			<a href="AdminManageRoomDetails.php">
+				<font size="4 px">Room Manage</font>
 			</a>
 			<a href="AdminManageCoAdmins.php">
 				<font size="4 px">Manage Co-admins(H.M)</font>
@@ -54,11 +55,17 @@ if (isset($_POST['Cancel'])) {
 			<a href="AdminManageContent.php">
 				<font size="4 px">Manage Content on web-site</font>
 			</a>
-			<a href="AdminAddPromotion.php">
-				<font size="4 px">Add promotion</font>
-			</a>
 			<a href="AdminViewStats.php">
 				<font size="4 px">View Stats</font>
+			</a>
+			<a href="EditFeatures.php">
+				<font size="4 px">Edit Feature Prices</font>
+			</a>
+			<a href="AdminViewRoomDetails.php">
+				<font size="4 px">View Booking Details</font>
+			</a>
+			<a href="AdminManagePromotions.php">
+				<font size="4 px">Manage Promotions</font>
 			</a>
 		</div>
 	</div>

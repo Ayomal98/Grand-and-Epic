@@ -13,11 +13,6 @@ if (!isset($_SESSION['First_Name'])) {
 	<title>
 		Admin Manage Content
 	</title>
-	<style>
-		body {
-			height: 1500px;
-		}
-	</style>
 	<script src="https://kit.fontawesome.com/1d5f2c83e1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -34,27 +29,33 @@ if (!isset($_SESSION['First_Name'])) {
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Manage Contents
-			<i class="fa fa-caret-down"></i>
+		<button class="dropdown-btn">
+			<i class="fa fa-caret-down">Edit Feature Prices</i>
 		</button>
 		<div class="dropdown-container">
 			<a href="AdminDashboard.php">
-				<font size="4 px">Dashboard</font>
+				<font size="4 px">Admin Dashboard</font>
 			</a>
-			<a href="AdminRespondToLeaveRequests.php">
-				<font size="4px">Respond to Leave Requests</font>
-			</a>
-			<a href="AdminViewBookings.php">
+			<a href="View.php">
 				<font size="4 px">View Booking Details</font>
 			</a>
 			<a href="AdminManageCoAdmins.php">
-				<font size="4 px">Manage Co-Admins</font>
+				<font size="4 px">Manage Co-admins(H.M)</font>
 			</a>
-			<a href="AdminAddPromotion.php">
-				<font size="4 px">Add promotion</font>
+			<a href="AdminManageContent.php">
+				<font size="4 px">Manage Content on web-site</font>
 			</a>
-			<a href="AdminViewStats.php">
+			<a href="AdminManageRoomDetails.php">
+				<font size="4 px">Room Manage</font>
+			</a>
+			<a href="view.php">
 				<font size="4 px">View Stats</font>
+			</a>
+			<a href="AdminViewCustomerFeedback.php">
+				<font size="4 px">View Feedback</font>
+			</a>
+			<a href="AdminManagePromotions.php">
+				<font size="4 px">Manage Promotions</font>
 			</a>
 		</div>
 	</div>

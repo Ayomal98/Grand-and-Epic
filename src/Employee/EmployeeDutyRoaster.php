@@ -82,8 +82,9 @@ if (!isset($_SESSION['First_Name'])) {
 
 			<?php
 				include("../../config/connection.php");
-
-					$query = "SELECT * FROM employee_tasks where Employee_ID='$_SESSION[Employee_ID]' ; ";
+				date_default_timezone_set('Asia/Colombo');
+				$today_date = date("Y-m-d",time());
+					$query = "SELECT * FROM employee_tasks where Employee_ID='$_SESSION[Employee_ID]' AND Assigned_Date='$today_date'; ";
 					$query_run = mysqli_query($con,$query);
 
 					while($row = mysqli_fetch_array($query_run))
@@ -118,7 +119,44 @@ if (!isset($_SESSION['First_Name'])) {
 			?>
 
 			</table>
+			</fieldset>
 		</form>
+
+		<table align="right" style="color:white; font-size: 17px; width:40%; top:650px; left:350px; position:absolute; border: 1px solid white; margin-bottom:50px">
+		<tr>
+			<th colspan="6">
+				<h4>Assigned duties in the future</h2>
+			</th>
+		</tr>
+		<tr>
+			<th>Date</th>
+			<th>Sections</th>
+			<th>Room numbers</th>
+			<th>Table Numbers</th>
+			<th>Locations</th>
+		</tr>
+
+		<?php include("../../config/connection.php");
+
+date_default_timezone_set('Asia/Colombo');
+$today_date = date("Y-m-d",time());
+	$query = "SELECT * FROM employee_tasks where Employee_ID='$_SESSION[Employee_ID]' AND Assigned_Date>'$today_date'; ";
+		$query_run = mysqli_query($con, $query);
+		while ($row = mysqli_fetch_array($query_run)) {
+
+		?>
+			<tr>
+				<td><?php echo $row["Assigned_Date"]; ?></td>
+				<td><?php echo $row["Assigned_Section"]; ?></td>
+				<td><?php echo $row["Allo_Room_Numbers"]; ?></td>
+				<td><?php echo $row["Allo_Table_Numbers"]; ?></td>
+				<td><?php echo $row["Allo_Locations"]; ?></td>
+			</tr>
+		<?php
+		}
+		?>
+
+	</table>
 
 			<br>
 			<table style="color:white; font-size: 20px; width:81%;">

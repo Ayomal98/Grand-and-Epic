@@ -29,22 +29,21 @@ if (!isset($_SESSION['First_Name'])) {
 		</div>
 	</center>
 	<div class="sidenav">
-		<button class="dropdown-btn">Admin Manage Content
-			<i class="fa fa-caret-down"></i>
+		<button class="dropdown-btn">
+			<i class="fa fa-caret-down">Manage Content on web-site</i>
 		</button>
 		<div class="dropdown-container">
-		<a href="AdminDashboard.php">
+			<a href="AdminDashboard.php">
 				<font size="4 px">Admin Dashboard</font>
+			</a>
+			<a href="View.php">
+				<font size="4 px">View Booking Details</font>
 			</a>
 			<a href="AdminManageCoAdmins.php">
 				<font size="4 px">Manage Co-admins(H.M)</font>
 			</a>
-			<a href="AdminViewBookings.php">
-				<font size="4 px">View Booking Details</font>
-			</a>
-			
 			<a href="AdminAddPromotion.php">
-				<font size="4 px">Manage promotion</font>
+				<font size="4 px">Add promotion</font>
 			</a>
 			<a href="AdminViewStats.php">
 				<font size="4 px">View Stats</font>
@@ -54,6 +53,9 @@ if (!isset($_SESSION['First_Name'])) {
 			</a>
 			<a href="AdminViewCustomerFeedback.php">
 				<font size="4 px">View Feedback</font>
+			</a>
+			<a href="AdminManageRoomDetails.php">
+				<font size="4 px">Manage Rooms</font>
 			</a>
 		</div>
 	</div>
@@ -95,7 +97,7 @@ if (!isset($_SESSION['First_Name'])) {
 				<tr>
 					<th align="center" style="font-size:20px">Heading</th>
 
-					<td align="center"><textarea name="Heading" rows="2" cols="50" placeholder="Add Heading here:"></textarea></td>
+					<td align="center"><textarea name="Heading" rows="2" cols="50" pattern="^[A-Za-z -]+$" placeholder="Add Heading here:"></textarea></td>
 				</tr>
 				<tr>
 					<th align="center" style="font-size:20px">Content</th>
@@ -134,41 +136,33 @@ while ($row = mysqli_fetch_array($query_run)) {
 ?>
 <table style="width:100%; color:white; border: 1px solid white;">
 	<tr>
-	<th>Content ID</th>
-	<th><input type="text" name="Content_ID" value="<?php echo $row['Content_ID'] ?>" /></th>
-	</tr>
-	<tr>
-	<th>Heading</th>
-	<th><input type="text" name="Heading" value="<?php echo $row['Heading'] ?>" /></th>
-	</tr>
-	<tr>
-	<th>Content</th>
-	<th><input type="text" name="Content" rows="5" value="<?php echo $row['Content'] ?>" /></th>
-	</tr>
-	<tr>
-	<th>Image</th>
-	<th><?php echo '<img src="data:image;base64, ' . base64_encode($row['Img_url']) . '" alt="Image" style="width: 200px; height: 150px" >' ?></th>
-	</tr>
-	<tr>
-								<td>Update Content Image:</td>
-								<td>
-									<input type="file" accept="image/*" name="contentimage" id="fileToUpload">
-								</td>
-							</tr>
+	<form action="ContentManage.php" method="POST">
+		<th>Content ID</th>
+		<th><input type="text" name="Content_ID" value="<?php echo $row['Content_ID'] ?>" readonly/></th>
+		</tr>
+		<tr>
+		<th>Heading</th>
+		<th><input type="text" name="Heading" value="<?php echo $row['Heading'] ?>" /></th>
+		</tr>
+		<tr>
+		<th>Content</th>
+		<th><input type="text" name="Content" rows="5" value="<?php echo $row['Content'] ?>" /></th>
+		</tr>
 	
 			
 
 					<tr>
-					<form action="ContentManage.php" method="POST">
+				
 					<td align="right">
 					<input type="submit" class="button" name="update" value="UPDATE">
 						</td>
 
-						<form action="ContentManage.php" method="POST">
 					<td align="left">
 					<input type="submit" class="button" name="delete" value="DELETE POST">
 						
 						</td>
+						</form>
+
 						<?php
 }
 ?>
@@ -178,7 +172,6 @@ while ($row = mysqli_fetch_array($query_run)) {
 				</tr>
 			</table>
 		</fieldset>
-	</form>
 	<script>
 		function funcUserDetails() {
 			document.getElementById('user-detail-container').style.display = "block";

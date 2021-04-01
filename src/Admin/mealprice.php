@@ -172,8 +172,8 @@ if (isset($_POST['print'])) {
   $Staff_Rate = array("Good", "Poor", "Fair","Excellent");
   $NoRates = array($countGoods, $countPoors, $countFairs,$countExs);
 
-  $Website_Rate = array1("Good", "Poor", "Fair","Excellent");
-  $NoRatew = array1($countGoodw, $countPoorw, $countFairw, $countExw);
+  $Website_Rate = array("Good", "Poor", "Fair","Excellent");
+  $NoRatew = array($countGoodw, $countPoorw, $countFairw, $countExw);
   
   /*$Event_Type = array("Wedding", "Parties");
   $No_reservation_evnets = array($countWeddings, $countParties);
@@ -201,7 +201,7 @@ if (isset($_POST['print'])) {
   ?>
 
 
-  <div class="chart-container" id="1" style="position:absolute;top:300px; height:100px; width:500px;left:10px">
+  <div class="chart-container" id="1" style="position:absolute;top:300px; height:120px; width:540px;left:10px">
     <h2 style="color:white" align="center" style="text-align:center">Feedback analysis-Staff</h2>
     <canvas id="myChart-1"></canvas>
   </div>
@@ -209,15 +209,15 @@ if (isset($_POST['print'])) {
 
 
 
-  <div class="chart-container" id="2" style="position:absolute;top:600px; height:100px; width:500px;right:200px">
-    <h2 style="color:white" style="text-align:center">Feedback analysis-Website</h2>
+  <div class="chart-container" id="2" style="position:absolute;top:300px; height:120px; width:540px;right:200px">
+    <h2 style="color:white" align="center" style="text-align:center">Feedback analysis-Website</h2>
     <canvas id="myChart-2"></canvas>
   </div>
 
-  <!--<div class="chart-container" id="3" style="position:absolute;top:700px; height:100px; width:500px;left:10px">
+  <!-- <div class="chart-container" id="3" style="position:absolute;top:700px; height:100px; width:500px;left:10px">
     <h2 style="color:white" style="text-align:center">Overall Events Boooking Reservation Type Analyis</h2>
     <canvas id="myChart-3"></canvas>
-  </div>
+  </div> -->
 
   script for #mychart-1-->
   <script>
